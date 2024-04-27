@@ -15,6 +15,10 @@
 {{-- <script src="{{ url('/') }}/assets/plugins/apexchart/apexcharts.min.js"></script>
 <script src="{{ url('/') }}/assets/plugins/apexchart/chart-data.js"></script> --}}
 
+<!-- Datatables JS -->
+<script src="{{ url('/') }}/assets/plugins/datatables/jquery.dataTables.min.js"></script>
+<script src="{{ url('/') }}/assets/plugins/datatables/datatables.min.js"></script>
+
 <!-- Custom JS -->
 <script src="{{ url('/') }}/assets/js/script.js"></script>
 

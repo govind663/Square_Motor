@@ -21,6 +21,9 @@
 <!-- Main CSS -->
 <link rel="stylesheet" href="{{ url('/') }}/assets/css/style.css">
 
+<!-- Datatables CSS -->
+<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/datatables/datatables.min.css">
+
 <!--[if lt IE 9]>
     <script src="{{ url('/') }}/assets/js/html5shiv.min.js"></script>
     <script src="{{ url('/') }}/assets/js/respond.min.js"></script>

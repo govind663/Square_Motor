@@ -15,7 +15,9 @@ class AgentController extends Controller
      */
     public function index()
     {
-        //
+        $agents = Agent::whereNull('deleted_at')->get();
+
+        return view('master.agents.index')->with('agent', $agents);
     }
 
     /**
@@ -23,15 +25,27 @@ class AgentController extends Controller
      */
     public function create()
     {
-        //
+        return view('master.agents.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(AgentRequest $request)
     {
-        //
+        $data = $request->validated();
+        $data['inserted_by'] =  Auth::user()->id;
+        $data['inserted_at'] =  Carbon::now();
+        try {
+
+            $agent = Agent::create($data);
+
+            return redirect()->route('agent.index')->with('message','Agent created successfully');
+
+        } catch(\Exception $ex){
+
+            return redirect()->back()->with('error','Something Went Wrong  - '.$ex->getMessage());
+        }
     }
 
     /**
@@ -39,7 +53,9 @@ class AgentController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $agents = Agent::find($id);
+
+        return view('master.agents.show')->with('agent', $agents);
     }
 
     /**
@@ -47,15 +63,30 @@ class AgentController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $agents = Agent::find($id);
+
+        return view('master.agents.edit')->with('agent', $agents);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(AgentRequest $request, string $id)
     {
-        //
+        $data = $request->validated();
+        $data['modified_by'] =  Auth::user()->id;
+        $data['modified_at'] =  Carbon::now();
+        try {
+
+            $agents = Agent::findOrFail($id);
+            $agents->update($data);
+
+            return redirect()->route('agent.index')->with('message','Agent updated successfully');
+
+        } catch(\Exception $ex){
+
+            return redirect()->back()->with('error','Something Went Wrong - '.$ex->getMessage());
+        }
     }
 
     /**
@@ -63,6 +94,15 @@ class AgentController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data['deleted_by'] =  Auth::user()->id;
+        $data['deleted_at'] =  Carbon::now();
+        try {
+            $agents = Agent::findOrFail($id);
+            $agents->update($data);
+            return redirect()->route('agent.index')->with('message','Agent Deleted Succeessfully');
+        } catch(\Exception $ex){
+
+            return redirect()->back()->with('error','Something Went Wrong - '.$ex->getMessage());
+        }
     }
 }

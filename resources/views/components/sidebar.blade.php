@@ -12,7 +12,7 @@
                 <li class="submenu">
                     <a href="#"><i data-feather="grid"></i> <span> Master</span> <span class="menu-arrow"></span></a>
                     <ul>
-                        <li><a href="chat.html">Chat</a></li>
+                        <li><a href="{{ route('agent.index') }}">Manage Agents</a></li>
                     </ul>
                 </li>
 

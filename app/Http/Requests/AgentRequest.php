@@ -11,7 +11,7 @@ class AgentRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -21,8 +21,24 @@ class AgentRequest extends FormRequest
      */
     public function rules(): array
     {
+        if ($this->id){
+            $rule = [
+                'name' => 'required|max:255',
+            ];
+        }else{
+            $rule = [
+                'name' => 'required|max:255',
+            ];
+        }
+        return $rule;
+    }
+
+    public function messages()
+    {
         return [
-            //
+            'name.required' => __('Agent Name is required'),
+            'name.max' => __('The length of Agent Name should not exceed 255 characters'),
+
         ];
     }
 }
