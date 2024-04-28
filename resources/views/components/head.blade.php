@@ -20,9 +20,16 @@
 
 <!-- Main CSS -->
 <link rel="stylesheet" href="{{ url('/') }}/assets/css/style.css">
+<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/select2/css/select2.css">
+<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/intlTelInput/css/intlTelInput.css">
+<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/feather/feather.css">
+<link rel="stylesheet" href="{{ url('/') }}/assets/css/bootstrap-datetimepicker.min.css">
 
 <!-- Datatables CSS -->
-<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/datatables/datatables.min.css">
+{{-- <link rel="stylesheet" href="{{ url('/') }}/assets/plugins/datatables/datatables.min.css"> --}}
+<link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap5.css">
+<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.css">
 
 <!--[if lt IE 9]>
     <script src="{{ url('/') }}/assets/js/html5shiv.min.js"></script>

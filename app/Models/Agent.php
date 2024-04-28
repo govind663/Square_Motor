@@ -16,7 +16,7 @@ class Agent extends Model
         'agent_code',
         'name',
         'email',
-        'phone_code',
+        'phone_no',
         'address',
         'pincode',
         'city',

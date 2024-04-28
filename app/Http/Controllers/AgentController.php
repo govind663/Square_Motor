@@ -34,11 +34,26 @@ class AgentController extends Controller
     public function store(AgentRequest $request)
     {
         $data = $request->validated();
-        $data['inserted_by'] =  Auth::user()->id;
-        $data['inserted_at'] =  Carbon::now();
         try {
 
             $agent = Agent::create($data);
+            $agent->name = $request->name;
+            $agent->email = $request->email;
+            $agent->phone_no = $request->phone_no;
+            $agent->address = $request->address;
+            $agent->pincode = $request->pincode;
+            $agent->city = $request->city;
+            $agent->state = $request->state;
+            $agent->inserted_at = Carbon::now();
+            $agent->inserted_by = Auth::user()->id;
+            $agent->save();
+
+            // ==== Generate Agent Code
+            $agentCode = "AGT". "/" . sprintf("%06d", abs((int) $agent->id + 1))  . "/" . date("Y");
+            $update = [
+                'agent_code' => $agentCode,
+            ];
+            Agent::where('id', $agent->id)->update($update);
 
             return redirect()->route('agent.index')->with('message','Agent created successfully');
 
@@ -74,12 +89,19 @@ class AgentController extends Controller
     public function update(AgentRequest $request, string $id)
     {
         $data = $request->validated();
-        $data['modified_by'] =  Auth::user()->id;
-        $data['modified_at'] =  Carbon::now();
         try {
 
-            $agents = Agent::findOrFail($id);
-            $agents->update($data);
+            $agent = Agent::findOrFail($id);
+            $agent->name = $request->name;
+            $agent->email = $request->email;
+            $agent->phone_no = $request->phone_no;
+            $agent->address = $request->address;
+            $agent->pincode = $request->pincode;
+            $agent->city = $request->city;
+            $agent->state = $request->state;
+            $agent->modified_at = Carbon::now();
+            $agent->modified_by = Auth::user()->id;
+            $agent->save();
 
             return redirect()->route('agent.index')->with('message','Agent updated successfully');
 
@@ -99,6 +121,7 @@ class AgentController extends Controller
         try {
             $agents = Agent::findOrFail($id);
             $agents->update($data);
+
             return redirect()->route('agent.index')->with('message','Agent Deleted Succeessfully');
         } catch(\Exception $ex){
 

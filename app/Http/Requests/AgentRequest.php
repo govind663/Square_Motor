@@ -36,8 +36,8 @@ class AgentRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => __('Agent Name is required'),
-            'name.max' => __('The length of Agent Name should not exceed 255 characters'),
+            'name.required' => __('Name is required'),
+            'name.max' => __('The length of Name should not exceed 255 characters'),
 
         ];
     }
