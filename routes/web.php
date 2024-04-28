@@ -24,11 +24,16 @@ Route::group(['prefix' => 'Square_Motor'],function(){
     Route::get('login', [LoginController::class, 'login'])->name('login');
     Route::post('login/store', [LoginController::class, 'authenticate'])->name('login.store');
     Route::post('logout', [LoginController::class, 'logout'])->name('logout');
+
 });
 
 Route::group(['prefix' => 'square-motor','middleware'=>['auth']],function(){
     // =============== Dashboard
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    // ==== Update Password
+    Route::get('/change-password', [HomeController::class, 'changePassword'])->name('change-password');
+    Route::post('/change-password', [HomeController::class, 'updatePassword'])->name('update-password');
 
     // ==== Agent resources routes
     Route::resource('agent', AgentController::class);
