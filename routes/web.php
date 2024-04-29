@@ -8,8 +8,10 @@ use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\HomeController;
 
-// ==== Agent resources
+// ===== All Masters
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\RetailerController;
+use App\Http\Controllers\VehicleController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -37,5 +39,11 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth']],function(){
 
     // ==== Agent resources routes
     Route::resource('agent', AgentController::class);
+
+    // ==== Vehicle resources routes
+    Route::resource('vehicle', VehicleController::class);
+
+    // ===== Retailer resources routes
+    Route::resource('retailer', RetailerController::class);
 
 });

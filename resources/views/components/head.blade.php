@@ -20,7 +20,6 @@
 
 <!-- Main CSS -->
 <link rel="stylesheet" href="{{ url('/') }}/assets/css/style.css">
-<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/select2/css/select2.css">
 <link rel="stylesheet" href="{{ url('/') }}/assets/plugins/select2/css/select2.min.css">
 <link rel="stylesheet" href="{{ url('/') }}/assets/plugins/intlTelInput/css/intlTelInput.css">
 <link rel="stylesheet" href="{{ url('/') }}/assets/plugins/feather/feather.css">

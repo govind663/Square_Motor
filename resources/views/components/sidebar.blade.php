@@ -9,11 +9,25 @@
                     </a>
                 </li>
 
-                <li class="submenu">
-                    <a href="#"><i data-feather="grid"></i> <span> Master</span> <span class="menu-arrow"></span></a>
-                    <ul>
-                        <li><a href="{{ route('agent.index') }}">Manage Agents</a></li>
-                    </ul>
+                <li>
+                    <a href="{{ route('agent.index') }}">
+                        <i data-feather="users"></i>
+                        <span>Manage Agents</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('vehicle.index') }}">
+                        <i data-feather="settings"></i>
+                        <span>Manage Vehicle</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ route('retailer.index') }}">
+                        <i data-feather="user"></i>
+                        <span>Manage Retailer</span>
+                    </a>
                 </li>
 
                 {{-- <li>

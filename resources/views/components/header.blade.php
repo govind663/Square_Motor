@@ -1,12 +1,18 @@
+<style>
+    .logo img {
+        height: 50px;
+        width: 184px !important;
+    }
+</style>
 <div class="header">
 
     <!-- Logo -->
     <div class="header-left">
         <a href="{{ route('home') }}" class="logo">
-            <img src="{{ url('/') }}/assets/img/logo.png" alt="Logo">
+            <img src="{{ url('/') }}/assets/img/Gadi.png" alt="Logo" width="250" height="40">
         </a>
         <a href="index.html" class="logo logo-small">
-            <img src="{{ url('/') }}/assets/img/logo-small.png" alt="Logo" width="30" height="30">
+            <img src="{{ url('/') }}/assets/img/Gadi.png" alt="Logo" width="250" height="40">
         </a>
     </div>
     <!-- /Logo -->

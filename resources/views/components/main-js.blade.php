@@ -8,7 +8,9 @@
 <!-- Feather Icon JS -->
 <script src="{{ url('/') }}/assets/js/feather.min.js"></script>
 
+<!-- Select 2 -->
 <script src="{{ url('/') }}/assets/plugins/select2/js/select2.min.js"></script>
+{{-- <script src="{{ url('/') }}/assets/plugins/select2/js/custom-select.js"></script> --}}
 
 <script src="{{ url('/') }}/assets/plugins/intlTelInput/js/intlTelInput-jquery.min.js"></script>
 
