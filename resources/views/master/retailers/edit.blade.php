@@ -67,7 +67,7 @@ Retailer | Edit
                                             <select class="form-control js-example-basic-single select2" id="vehicle_id" name="vehicle_id">
                                                 <option value="">Select Vehicle Type</option>
                                                 @foreach ($vehicles as $value )
-                                                <option value="{{ $value->id }}" {{ $retailer->vehicle_id == $value->id ? "selected":"") }}>{{ $value->vehicle_type }}</option>
+                                                <option value="{{ $value->id }}" {{ ($retailer->vehicle_id == $value->id ? "selected":"") }}>{{ $value->vehicle_type }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -95,12 +95,19 @@ Retailer | Edit
                                     </div>
 
                                     <div class="col-lg-4 col-md-12 col-sm-12">
+                                        <div class="input-block mb-3">
+                                            <label><b>State :</b></label>
+                                            <input type="text"  id="state" name="state" class="form-control" value="{{ $retailer->state }}" placeholder="Enter State">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3" >
                                             <label><b>Discount Type : <span class="text-danger">*</span></b></label>
                                             <select class="form-control @error('discount_type') is-invalid @enderror js-example-basic-single select2" id="discount_type" name="discount_type">
                                                 <option value="">Select Discount Type</option>
-                                                <option value="01" {{ $retailer->discount_type == "01" ? "selected":"") }}>Percentage</option>
-                                                <option value="02" {{ $retailer->discount_type == "02" ? "selected":"") }}>Fixed</option>
+                                                <option value="01" {{ ($retailer->discount_type == "01" ? "selected":"") }}>Percentage</option>
+                                                <option value="02" {{ ($retailer->discount_type == "02" ? "selected":"") }}>Fixed</option>
                                             </select>
                                             @error('discount_type')
                                                 <span class="invalid-feedback" role="alert">
@@ -145,4 +152,19 @@ Retailer | Edit
 @endsection
 
 @push('scripts')
+<script>
+    $(document).ready(function(){
+        $("select").change(function(){
+            $(this).find("option:selected").each(function(){
+                var optionValue = $(this).attr("value");
+                if(optionValue){
+                    $(".box").not("." + optionValue).hide();
+                    $("." + optionValue).show();
+                } else{
+                    $(".box").hide();
+                }
+            });
+        }).change();
+    });
+</script>
 @endpush

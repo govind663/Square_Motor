@@ -24,7 +24,7 @@ class RetailerRequest extends FormRequest
         if ($this->id){
             $rule = [
                 'name' => 'required|max:255',
-                'mobile' => 'required'.$this->id,
+                'mobile' => 'required',
                 'discount_type'=>'required',
                 'percentage_amt'=> 'nullable',
             ];

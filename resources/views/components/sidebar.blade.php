@@ -30,6 +30,34 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="">
+                        <i data-feather="settings"></i>
+                        <span>Manage RTO</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="">
+                        <i data-feather="settings"></i>
+                        <span>Manage Employee</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="">
+                        <i data-feather="settings"></i>
+                        <span>Manage Insurance <br> Company</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="">
+                        <i data-feather="settings"></i>
+                        <span>Manage Polices</span>
+                    </a>
+                </li>
+
                 {{-- <li>
                     <a href="customers.html"><i data-feather="users"></i> <span>Customers</span></a>
                 </li>

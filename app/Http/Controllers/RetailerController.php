@@ -75,8 +75,9 @@ class RetailerController extends Controller
      */
     public function edit(string $id)
     {
-        $retailer = Retailer::findOrFail($id)->with('Vehicle');
-        return view('master.retailers.edit', ['retailer'=> $retailer]);
+        $retailer = Retailer::findOrFail($id);
+        $vehicles = Vehicle::whereNull('deleted_at')->get();
+        return view('master.retailers.edit', ['retailer'=> $retailer,  'vehicles'=> $vehicles]);
     }
 
     /**

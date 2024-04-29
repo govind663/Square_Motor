@@ -67,7 +67,7 @@ Retailer List
                                         <td>{{ $value->name }}</td>
                                         <td>{{ $value->mobile }}</td>
                                         <td>{{ $value->email }}</td>
-                                        <td>{{ $value->Vehicle->vehicle_type }}</td>
+                                        <td>{{ $value->Vehicle?->vehicle_type }}</td>
                                         <td class="no-export d-flex">
                                             <a href="{{ route('retailer.edit', $value->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="far fa-edit me-2"></i> Edit
