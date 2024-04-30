@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Vehicles | List
+Employee | List
 @endsection
 
 @push('styles')
@@ -23,10 +23,10 @@ Vehicles | List
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Manage Vehicles</h3>
+                    <h3 class="page-title">Manage Employee</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">All Vehicles List</li>
+                        <li class="breadcrumb-item active">All Employee List</li>
                     </ul>
                 </div>
             </div>
@@ -38,11 +38,11 @@ Vehicles | List
                 <div class="card">
                     <div class="row card-body">
                         <div class="col-10">
-                            <h5 class="card-title">All Vehicles List</h5>
+                            <h5 class="card-title">All Employee List</h5>
                         </div>
                         <div class="col-2 float-right">
-                            <a href="{{ route('vehicle.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i> Add Vehicle
+                            <a href="{{ route('employee.create') }}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i> Add Employee
                             </a>
                         </div>
                     </div>
@@ -53,23 +53,25 @@ Vehicles | List
                                 <thead>
                                     <tr>
                                         <th>Sr. No.</th>
-                                        <th>Vehicles Type</th>
-                                        <th>Description</th>
+                                        <th>Name</th>
+                                        <th>Mobile No.</th>
+                                        <th>Email Id</th>
                                         <th class="no-export">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($vehicles as $key=>$value )
+                                    @foreach ($employees as $key=>$value )
                                     <tr>
                                         <td>{{ ++$key }}</td>
-                                        <td>{{ $value->vehicle_type }}</td>
-                                        <td>{{ $value->description }}</td>
+                                        <td>{{ $value->name }}</td>
+                                        <td>{{ $value->mobile_no }}</td>
+                                        <td>{{ $value->email }}</td>
                                         <td class="no-export d-flex">
-                                            <a href="{{ route('vehicle.edit', $value->id) }}" class="btn btn-warning btn-sm">
+                                            <a href="{{ route('employee.edit', $value->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="far fa-edit me-2"></i> Edit
                                             </a>
                                             &nbsp;
-                                            <form action="{{ route('vehicle.destroy', $value->id) }}" method="post">
+                                            <form action="{{ route('employee.destroy', $value->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input name="_method" type="hidden" value="DELETE">

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Vehicles | List
+Insurance Company | List
 @endsection
 
 @push('styles')
@@ -23,10 +23,10 @@ Vehicles | List
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Manage Vehicles</h3>
+                    <h3 class="page-title">Manage Insurance Company</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">All Vehicles List</li>
+                        <li class="breadcrumb-item active">All Insurance Company List</li>
                     </ul>
                 </div>
             </div>
@@ -38,11 +38,11 @@ Vehicles | List
                 <div class="card">
                     <div class="row card-body">
                         <div class="col-10">
-                            <h5 class="card-title">All Vehicles List</h5>
+                            <h5 class="card-title">All Insurance Company List</h5>
                         </div>
                         <div class="col-2 float-right">
-                            <a href="{{ route('vehicle.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i> Add Vehicle
+                            <a href="{{ route('insurance_company.create') }}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i> Add Insurance
                             </a>
                         </div>
                     </div>
@@ -53,23 +53,37 @@ Vehicles | List
                                 <thead>
                                     <tr>
                                         <th>Sr. No.</th>
-                                        <th>Vehicles Type</th>
-                                        <th>Description</th>
+                                        <th>Company Name</th>
+                                        <th>Company Logo</th>
+                                        <th>Commission Type</th>
                                         <th class="no-export">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($vehicles as $key=>$value )
+                                    @foreach ($insuranceCompanies as $key=>$value )
                                     <tr>
                                         <td>{{ ++$key }}</td>
-                                        <td>{{ $value->vehicle_type }}</td>
-                                        <td>{{ $value->description }}</td>
+                                        <td>{{ $value->company_name }}</td>
+                                        <td>
+                                            @if(!empty($value->logo_doc))
+                                                <a href="{{url('/')}}/company_policy/logo_doc/{{ $value->logo_doc }}" target="_blank" class="btn btn-primary btn-sm">
+                                                    <b> View Document</b>
+                                                </a>
+                                            @endif
+                                        </td>
+                                        <td>
+                                        @if($value->commision_type == '1')
+                                        <span class="badge bg-success" >Percentage</span>
+                                        @elseif($value->commision_type == '2')
+                                        <span class="badge bg-success" >Fixed</span>
+                                        @endif
+                                        </td>
                                         <td class="no-export d-flex">
-                                            <a href="{{ route('vehicle.edit', $value->id) }}" class="btn btn-warning btn-sm">
+                                            <a href="{{ route('insurance_company.edit', $value->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="far fa-edit me-2"></i> Edit
                                             </a>
                                             &nbsp;
-                                            <form action="{{ route('vehicle.destroy', $value->id) }}" method="post">
+                                            <form action="{{ route('insurance_company.destroy', $value->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input name="_method" type="hidden" value="DELETE">

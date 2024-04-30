@@ -1,9 +1,4 @@
-<style>
-    .logo img {
-        height: 50px;
-        width: 184px !important;
-    }
-</style>
+
 <div class="header">
 
     <!-- Logo -->

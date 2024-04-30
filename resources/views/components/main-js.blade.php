@@ -1,5 +1,5 @@
 <!-- jQuery -->
-<script src="{{ url('/') }}/assets/js/jquery-3.7.1.min.js"></script>
+<script src="{{ url('/') }}/assets/js/jquery-3.6.1.min.js"></script>
 
 <!-- Bootstrap Core JS -->
 <script src="{{ url('/') }}/assets/js/popper.min.js"></script>
@@ -8,22 +8,8 @@
 <!-- Feather Icon JS -->
 <script src="{{ url('/') }}/assets/js/feather.min.js"></script>
 
-<!-- Select 2 -->
-<script src="{{ url('/') }}/assets/plugins/select2/js/select2.min.js"></script>
-{{-- <script src="{{ url('/') }}/assets/plugins/select2/js/custom-select.js"></script> --}}
-
-<script src="{{ url('/') }}/assets/plugins/intlTelInput/js/intlTelInput-jquery.min.js"></script>
-
 <!-- Slimscroll JS -->
 <script src="{{ url('/') }}/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
-
-<script src="{{ url('/') }}/assets/plugins/moment/moment.min.js"></script>
-<script src="{{ url('/') }}/assets/js/bootstrap-datetimepicker.min.js"></script>
-
-<!-- Datatables JS -->
-{{-- <script src="{{ url('/') }}/assets/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="{{ url('/') }}/assets/plugins/datatables/datatables.min.js"></script> --}}
-
 
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>

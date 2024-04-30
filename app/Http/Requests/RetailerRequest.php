@@ -24,15 +24,30 @@ class RetailerRequest extends FormRequest
         if ($this->id){
             $rule = [
                 'name' => 'required|max:255',
-                'mobile' => 'required',
-                'discount_type'=>'required',
-                'percentage_amt'=> 'nullable',
+                'mobile'=> 'required|max:255',
+                'email'=> 'nullable|unique:retailers|max:255',
+                'vehicle_id'=> 'nullable|max:255',
+                'address'=> 'nullable|max:255',
+                'pincode'=> 'nullable|max:255',
+                'city'=> 'nullable|max:255',
+                'state'=> 'nullable|max:255',
+                'discount_type'=>'required|max:255',
+                'percentage_amt'=>'nullable|max:255',
+                'fixed_amt'=>'nullable|max:255'
             ];
         }else{
             $rule = [
                 'name' => 'required|max:255',
-                'mobile'=> 'required',
-                'discount_type'=>'required',
+                'mobile'=> 'required|max:255',
+                'email'=> 'nullable|unique:retailers|max:255',
+                'vehicle_id'=> 'nullable|max:255',
+                'address'=> 'nullable|max:255',
+                'pincode'=> 'nullable|max:255',
+                'city'=> 'nullable|max:255',
+                'state'=> 'nullable|max:255',
+                'discount_type'=>'required|max:255',
+                'percentage_amt'=>'nullable|max:255',
+                'fixed_amt'=>'nullable|max:255'
             ];
         }
         return $rule;

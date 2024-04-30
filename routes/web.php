@@ -10,7 +10,10 @@ use App\Http\Controllers\HomeController;
 
 // ===== All Masters
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\InsuranceCompanyController;
 use App\Http\Controllers\RetailerController;
+use App\Http\Controllers\RtoController;
 use App\Http\Controllers\VehicleController;
 
 Route::get('/', function () {
@@ -46,4 +49,12 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth']],function(){
     // ===== Retailer resources routes
     Route::resource('retailer', RetailerController::class);
 
+    // ==== RTO resources routes
+    Route::resource('rto', RtoController::class);
+
+    // ===== Employee resources routes
+    Route::resource('employee', EmployeeController::class);
+
+    // ===== Insurance Company resources routes
+    Route::resource('insurance_company', InsuranceCompanyController::class);
 });
