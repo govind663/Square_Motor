@@ -15,7 +15,7 @@ class RtoController extends Controller
      */
     public function index()
     {
-        $Rto = Rto::whereNull('deleted_at')->get();
+        $Rto = Rto::orderBy("id","desc")->whereNull('deleted_at')->get();
         return view('master.rto.index', ['Rto'=> $Rto]);
     }
 

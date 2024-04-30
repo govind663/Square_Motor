@@ -12,6 +12,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AgentController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\InsuranceCompanyController;
+use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\RetailerController;
 use App\Http\Controllers\RtoController;
 use App\Http\Controllers\VehicleController;
@@ -57,4 +58,7 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth']],function(){
 
     // ===== Insurance Company resources routes
     Route::resource('insurance_company', InsuranceCompanyController::class);
+
+    // ==== Policies resources routes
+    Route::resource('policy', PolicyController::class);
 });

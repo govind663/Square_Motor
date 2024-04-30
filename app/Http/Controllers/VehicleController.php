@@ -15,7 +15,7 @@ class VehicleController extends Controller
      */
     public function index()
     {
-        $vehicles = Vehicle::whereNull('deleted_at')->get();
+        $vehicles = Vehicle::orderBy("id","desc")->whereNull('deleted_at')->get();
 
         return view('master.vehicles.index', ['vehicles' => $vehicles]);
     }

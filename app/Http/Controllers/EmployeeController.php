@@ -16,7 +16,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        $employees = User::where('user_type', 2 )->whereNull('deleted_at')->get();
+        $employees = User::orderBy("id","desc")->where('user_type', 2 )->whereNull('deleted_at')->get();
 
         return view('master.employees.index', ['employees'=> $employees]);
     }

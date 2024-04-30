@@ -16,7 +16,7 @@ class RetailerController extends Controller
      */
     public function index()
     {
-        $retailers = Retailer::with('Vehicle')->whereNull('deleted_at')->get();
+        $retailers = Retailer::with('Vehicle')->orderBy("id","desc")->whereNull('deleted_at')->get();
         return view('master.retailers.index', ['retailers'=> $retailers]);
     }
 

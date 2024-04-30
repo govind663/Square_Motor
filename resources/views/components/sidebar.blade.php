@@ -52,7 +52,7 @@
                 </li>
 
                 <li>
-                    <a href="">
+                    <a href="{{ route('policy.index') }}">
                         <i data-feather="settings"></i>
                         <span>Manage Polices</span>
                     </a>

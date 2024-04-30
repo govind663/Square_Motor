@@ -15,7 +15,7 @@ class InsuranceCompanyController extends Controller
      */
     public function index()
     {
-        $insuranceCompanies = InsuranceCompany::whereNull('deleted_at')->get();
+        $insuranceCompanies = InsuranceCompany::orderBy("id","desc")->whereNull('deleted_at')->get();
         return view('master.insurance_companies.index', ['insuranceCompanies'=> $insuranceCompanies]);
     }
 

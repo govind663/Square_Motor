@@ -15,7 +15,7 @@ class AgentController extends Controller
      */
     public function index()
     {
-        $agents = Agent::whereNull('deleted_at')->get();
+        $agents = Agent::orderBy("id","desc")->whereNull('deleted_at')->get();
 
         return view('master.agents.index')->with('agent', $agents);
     }
