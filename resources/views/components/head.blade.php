@@ -6,7 +6,7 @@
 
 <!-- CSRF Token -->
 <meta name="csrf-token" content="content">
-<meta name="csrf-token" content="{{ csrf_token() }}">
+<meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
 
 <!-- Favicon -->
 <link rel="shortcut icon" href="{{ url('/') }}/assets/img/favicon.png">
