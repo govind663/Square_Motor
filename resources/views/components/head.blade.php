@@ -18,14 +18,14 @@
 <link rel="stylesheet" href="{{ url('/') }}/assets/plugins/fontawesome/css/fontawesome.min.css">
 <link rel="stylesheet" href="{{ url('/') }}/assets/plugins/fontawesome/css/all.min.css">
 
+<!-- Feather CSS -->
+<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/feather/feather.css">
+
 <!-- Main CSS -->
 <link rel="stylesheet" href="{{ url('/') }}/assets/css/style.css">
 
 <!-- Select2 CSS -->
 <link rel="stylesheet" href="{{ url('/') }}/assets/plugins/select2/css/select2.min.css">
-
-<!-- Feather CSS -->
-<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/feather/feather.css">
 
 <!-- Datetimepicker CSS -->
 <link rel="stylesheet" href="{{ url('/') }}/assets/css/bootstrap-datetimepicker.min.css">
@@ -39,4 +39,4 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-<script src="{{ url('/') }}/assets/js/layout.js" type="7ea0214b0b4bbc838c853404-text/javascript"></script>
+<script src="{{ url('/') }}/assets/js/layout.js"></script>

@@ -8,8 +8,14 @@ use App\Http\Controllers\Auth\LoginController;
 
 use App\Http\Controllers\HomeController;
 
-// ==== Agent resources
+// ===== All Masters
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\InsuranceCompanyController;
+use App\Http\Controllers\PolicyController;
+use App\Http\Controllers\RetailerController;
+use App\Http\Controllers\RtoController;
+use App\Http\Controllers\VehicleController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -37,5 +43,23 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth']],function(){
 
     // ==== Agent resources routes
     Route::resource('agent', AgentController::class);
+
+    // ==== Vehicle resources routes
+    Route::resource('vehicle', VehicleController::class);
+
+    // ===== Retailer resources routes
+    Route::resource('retailer', RetailerController::class);
+
+    // ==== RTO resources routes
+    Route::resource('rto', RtoController::class);
+
+    // ===== Employee resources routes
+    Route::resource('employee', EmployeeController::class);
+
+    // ===== Insurance Company resources routes
+    Route::resource('insurance_company', InsuranceCompanyController::class);
+
+    // ==== Policies resources routes
+    Route::resource('policy', PolicyController::class);
 
 });
