@@ -1,7 +1,7 @@
 <div class="sidebar" id="sidebar">
     <div class="sidebar-inner slimscroll">
         <div id="sidebar-menu" class="sidebar-menu">
-            <ul>
+            <ul class="sidebar-vertical">
                 <li class="active">
                     <a href="{{ route('home') }}">
                         <i data-feather="home"></i>

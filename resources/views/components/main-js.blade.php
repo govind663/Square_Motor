@@ -2,28 +2,22 @@
 <script src="{{ url('/') }}/assets/js/jquery-3.7.1.min.js"></script>
 
 <!-- Bootstrap Core JS -->
-<script src="{{ url('/') }}/assets/js/popper.min.js"></script>
-<script src="{{ url('/') }}/assets/js/bootstrap.min.js"></script>
+<script src="{{ url('/') }}/assets/js/bootstrap.bundle.min.js"></script>
 
 <!-- Feather Icon JS -->
 <script src="{{ url('/') }}/assets/js/feather.min.js"></script>
 
+<!-- select2 JS -->
 <script src="{{ url('/') }}/assets/plugins/select2/js/select2.min.js"></script>
-
-<script src="{{ url('/') }}/assets/plugins/intlTelInput/js/intlTelInput-jquery.min.js"></script>
 
 <!-- Slimscroll JS -->
 <script src="{{ url('/') }}/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
+<!-- Datetimepicker JS -->
 <script src="{{ url('/') }}/assets/plugins/moment/moment.min.js"></script>
 <script src="{{ url('/') }}/assets/js/bootstrap-datetimepicker.min.js"></script>
 
 <!-- Datatables JS -->
-{{-- <script src="{{ url('/') }}/assets/plugins/datatables/jquery.dataTables.min.js"></script>
-<script src="{{ url('/') }}/assets/plugins/datatables/datatables.min.js"></script> --}}
-
-
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>

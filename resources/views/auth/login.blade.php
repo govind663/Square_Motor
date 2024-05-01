@@ -22,15 +22,9 @@
     <!-- Main CSS -->
     <link rel="stylesheet" href="{{ url('/') }}/assets/css/style.css">
 
-    <!--[if lt IE 9]>
-        <script src="{{ url('/') }}/assets/js/html5shiv.min.js"></script>
-        <script src="{{ url('/') }}/assets/js/respond.min.js"></script>
-    <![endif]-->
-
     <!-- Toaster Message -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </head>
 
@@ -41,7 +35,7 @@
         <div class="login-wrapper">
             <div class="container">
 
-                <img class="img-fluid logo-dark mb-2" src="{{ url('/') }}/assets/img/logo.png" alt="Logo">
+                <img class="img-fluid logo-dark mb-2 logo-color" src="{{ url('/') }}/assets/img/Gadi_Insuranca.png" alt="Logo">
                 <div class="loginbox">
 
                     <div class="login-right">
@@ -51,7 +45,7 @@
                             <form method="POST" action="{{ route('login.store') }}" enctype="multipart/form">
                                 @csrf
 
-                                <div class="form-group">
+                                <div class="form-group mb-2">
                                     <label class="form-control-label"><b>Mobile Number : <span class="text-danger">*</span></b></label>
                                     <input id="mobile_no" type="mobile_no" onkeypress='validate(event)' maxlength="10"
                                         class="form-control @error('mobile_no') is-invalid @enderror" name="mobile_no"
@@ -64,7 +58,7 @@
                                         </span>
                                     @enderror
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group mb-2">
                                     <label class="form-control-label"><b>Password : <span class="text-danger">*</span></b></label>
                                     <div class="pass-group">
                                         <input id="password" type="password"
@@ -79,7 +73,7 @@
                                         @enderror
                                     </div>
                                 </div>
-
+                                <br>
                                 <button class="btn btn-lg btn-block btn-primary w-100" type="submit">Login</button>
 
                             </form>
@@ -93,11 +87,7 @@
     <!-- /Main Wrapper -->
 
     <!-- jQuery -->
-    <script src="{{ url('/') }}/assets/js/jquery-3.6.0.min.js"></script>
-
-    <!-- Bootstrap Core JS -->
-    <script src="{{ url('/') }}/assets/js/popper.min.js"></script>
-    <script src="{{ url('/') }}/assets/js/bootstrap.min.js"></script>
+    <script src="{{ url('/') }}/assets/js/jquery-3.7.1.min.js"></script>
 
     <!-- Feather Icon JS -->
     <script src="{{ url('/') }}/assets/js/feather.min.js"></script>
