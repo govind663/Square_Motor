@@ -54,7 +54,7 @@ Insurance Company | List
                                     <tr>
                                         <th>Sr. No.</th>
                                         <th>Company Name</th>
-                                        <th>Company Logo</th>
+                                        <th class="text-start">Company Logo</th>
                                         <th>Commission Type</th>
                                         <th class="no-export">Action</th>
                                     </tr>
@@ -64,11 +64,9 @@ Insurance Company | List
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $value->company_name }}</td>
-                                        <td>
+                                        <td class="text-start">
                                             @if(!empty($value->logo_doc))
-                                                <a href="{{url('/')}}/company_policy/logo_doc/{{ $value->logo_doc }}" target="_blank" class="btn btn-primary btn-sm">
-                                                    <b> View Document</b>
-                                                </a>
+                                                <img src="{{url('/')}}/company_policy/logo_doc/{{ $value->logo_doc }}" alt="{{ $value->logo_doc }}" style="height:20% !important; width: 20% !important" >
                                             @endif
                                         </td>
                                         <td>

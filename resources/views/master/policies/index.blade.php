@@ -68,7 +68,7 @@ Policy | List
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $value->policy_no }}</td>
                                         <td>{{ $value->customer_name }}</td>
-                                        <td>{{ $value->agent_id }}</td>
+                                        <td>{{ $value->agents?->name }}</td>
                                         <td>{{ $value->actual_profit_amt }}</td>
                                         <td>{{ date('d-m-y', strtotime($value->issue_dt) ) }}</td>
                                         <td>

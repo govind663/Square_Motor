@@ -9,7 +9,7 @@
                 <img src="{{ url('/') }}/assets/img/Gadi_Insuranca.png" class="img-fluid logo-blue" alt="Logo-Full" style="width:150px; height:50px">
             </a>
             <a href="{{ route('home') }}">
-                <img src="{{ url('/') }}/assets/img/Gadi_Insuranca.png" class="img-fluid logo-small" alt="Logo-Small">
+                <img src="{{ url('/') }}/assets/img/Gadi-Insurance.png" class="img-fluid logo-small" alt="Logo-Small">
             </a>
         </div>
         <div class="logo-color">
@@ -17,7 +17,7 @@
                 <img src="{{ url('/') }}/assets/img/Gadi_Insuranca.png" class="img-fluid logo-blue" alt="Logo-Full" style="width:150px; height:50px">
             </a>
             <a href="{{ route('home') }}">
-                <img src="{{ url('/') }}/assets/img/Gadi_Insuranca.png" class="img-fluid logo-small" alt="Logo-small">
+                <img src="{{ url('/') }}/assets/img/Gadi-Insurance.png" class="img-fluid logo-small" alt="Logo-small">
             </a>
         </div>
     </div>
@@ -47,7 +47,7 @@
         <li class="nav-item dropdown">
             <a href="javascript:void(0)" class="user-link  nav-link" data-bs-toggle="dropdown">
                 <span class="user-img">
-                    <img src="{{ url('/') }}/assets/img/profiles/avatar-20.jpg" alt="img" class="profilesidebar">
+                    <img src="{{ url('/') }}/assets/img/Gadi-Insurance.png" alt="img" class="profilesidebar">
                     <span class="animate-circle"></span>
                 </span>
                 <span class="user-content">

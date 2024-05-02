@@ -19,7 +19,7 @@ class PolicyController extends Controller
      */
     public function index()
     {
-        $policy = Policy::orderBy("id","desc")->whereNull('deleted_at')->get();
+        $policy = Policy::with('agents')->orderBy("id","desc")->whereNull('deleted_at')->get();
         return view('master.policies.index', ['policy'=> $policy]);
     }
 
@@ -73,9 +73,9 @@ class PolicyController extends Controller
             $policy->commission_percentage = $request->commission_percentage ? $request->commission_percentage : null;
             $policy->comission_rupees = $request->comission_rupees ? $request->comission_rupees : null;
             $policy->payable_amount = $request->payable_amount ? $request->payable_amount : null;
-            $policy->from_dt = date('d-m-Y', strtotime($request->from_dt)) ? $request->from_dt : null;
-            $policy->to_dt = date('d-m-Y', strtotime($request->to_dt)) ? $request->to_dt : null;
-            $policy->issue_dt = date('d-m-Y', strtotime($request->issue_dt)) ? $request->issue_dt : null;
+            $policy->from_dt = $request->from_dt;
+            $policy->to_dt = $request->to_dt;
+            $policy->issue_dt = $request->issue_dt;
             $policy->payment_by = $request->payment_by ? $request->payment_by : null;
             $policy->payment_through = $request->payment_through ? $request->payment_through : null;
 
@@ -113,7 +113,11 @@ class PolicyController extends Controller
     public function edit(string $id)
     {
         $policy = Policy::find($id);
-        return view('master.policies.edit', ['policy'=> $policy]);
+        $agents = Agent::whereNull('deleted_at')->get();
+        $vehicles = Vehicle::whereNull('deleted_at')->get();
+        $Rto = RTO::whereNull('deleted_at')->get();
+        $insuranceCompany = InsuranceCompany::whereNull('deleted_at')->get();
+        return view('master.policies.edit', ['policy'=> $policy, 'agents'=> $agents, 'vehicles'=>$vehicles, 'Rto'=>$Rto, 'insuranceCompany'=>$insuranceCompany]);
     }
 
     /**

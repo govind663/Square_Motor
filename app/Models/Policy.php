@@ -44,4 +44,10 @@ class Policy extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    // ==== relationship between policy and agent
+    public function agents()
+    {
+        return $this->belongsTo(Agent::class, 'agent_id', 'id');
+    }
 }

@@ -18,7 +18,7 @@ return new class extends Migration
         Schema::create('policies', function (Blueprint $table) {
             $table->id();
 
-            $table->string('policy_no')->unique();
+            $table->string('policy_no')->unique()->nullable();
             $table->string('policy_type')->nullable();
             $table->foreignIdFor(Agent::class)->nullable()->index();
             $table->string('customer_name')->nullable();

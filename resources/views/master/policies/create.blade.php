@@ -45,7 +45,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Agent :</b></label>
-                                                            <select class="form-control select" id="agent_id" name="agent_id">
+                                                            <select class="form-control   select" id="agent_id" name="agent_id">
                                                                 <option value="">Select Agent</option>
                                                                 @foreach ($agents as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("agent_id") == $value->id ? "selected":"") }}>{{ $value->name }}</option>
@@ -57,33 +57,23 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Customer Name : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="customer_name" name="customer_name" class="form-control @error('customer_name') is-invalid @enderror" value="{{ old('customer_name') }}" placeholder="Enter Customer Name">
+                                                            <input type="text" id="customer_name" name="customer_name" class="form-control  " value="{{ old('customer_name') }}" placeholder="Enter Customer Name">
 
-                                                            @error('customer_name')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Vehicle Registration Number : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="vehicle_reg_no" name="vehicle_reg_no" class="form-control @error('vehicle_reg_no') is-invalid @enderror" value="{{ old('vehicle_reg_no') }}" placeholder="Enter Vehicle Registration Number">
+                                                            <input type="text" id="vehicle_reg_no" name="vehicle_reg_no" class="form-control   " value="{{ old('vehicle_reg_no') }}" placeholder="Enter Vehicle Registration Number">
 
-                                                            @error('vehicle_reg_no')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select RTO : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control select" id="agent_rto_id" name="rto_id">
+                                                            <select class="form-control   select" id="agent_rto_id" name="rto_id">
                                                                 <option value="">Select RTO</option>
                                                                 @foreach ($Rto as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("rto_id") == $value->id ? "selected":"") }}>{{ $value->city }} - {{ $value->pincode }}</option>
@@ -95,7 +85,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Vehicle Type : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control select" id="agent_vehicle_id" name="vehicle_id">
+                                                            <select class="form-control   select" id="agent_vehicle_id" name="vehicle_id">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 @foreach ($vehicles as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("vehicle_id") == $value->id ? "selected":"") }}>{{ $value->vehicle_type }}</option>
@@ -107,20 +97,15 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Vehicle Configruation : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="vehicle_config" name="vehicle_config" class="form-control @error('vehicle_config') is-invalid @enderror" value="{{ old('vehicle_config') }}" placeholder="Enter Vehicle Configruation">
+                                                            <input type="text" id="vehicle_config" name="vehicle_config" class="form-control   " value="{{ old('vehicle_config') }}" placeholder="Enter Vehicle Configruation">
 
-                                                            @error('vehicle_config')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Insurance Type : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control select" id="agent_insurance_type" name="insurance_type">
+                                                            <select class="form-control   select" id="agent_insurance_type" name="insurance_type">
                                                                 <option value="">Select Insurance Type</option>
                                                                 <option value="1" {{ (old("insurance_type") == "1" ? "selected":"") }}>1st Party</option>
                                                                 <option value="2" {{ (old("insurance_type") == "2" ? "selected":"") }}>3rd Party</option>
@@ -131,10 +116,10 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Company Policy : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control select" id="agent_company_id" name="company_id">
+                                                            <select class="form-control   select" id="agent_company_id" name="insurance_company_id">
                                                                 <option value="">Select Company Policye</option>
                                                                 @foreach ($insuranceCompany as $value )
-                                                                <option value="{{ $value->id }}" {{ (old("company_id") == $value->id ? "selected":"") }}>{{ $value->name }}</option>
+                                                                <option value="{{ $value->id }}" {{ (old("agent_company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -144,78 +129,48 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Main Price : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="main_price" name="main_price" class="form-control @error('main_price') is-invalid @enderror" value="{{ old('main_price') }}" placeholder="Enter Main Price">
+                                                            <input type="text" id="agent_main_price" name="main_price" class="form-control   " value="{{ old('main_price') }}" placeholder="Enter Main Price">
 
-                                                            @error('main_price')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Profit Amount : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="profit_amt" name="profit_amt" class="form-control @error('profit_amt') is-invalid @enderror" value="{{ old('profit_amt') }}" placeholder="Enter Profit Amount">
+                                                            <input type="text" id="agent_profit_amt" readonly name="profit_amt" class="form-control   " value="{{ old('profit_amt') }}" placeholder="Enter Profit Amount">
 
-                                                            @error('profit_amt')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
-                                                            <label><b>TDS Deduction (10%) : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="tds_deduction" name="tds_deduction" class="form-control @error('tds_deduction') is-invalid @enderror" value="{{ old('tds_deduction') }}" placeholder="Enter TDS Deduction (10%)">
+                                                            <label><b>TDS Deduction (%) : <span class="text-danger">*</span></b></label>
+                                                            <input type="text" id="agent_tds_deduction" name="tds_deduction" class="form-control   " value="{{ old('tds_deduction') }}" placeholder="Enter TDS Deduction (10%)">
 
-                                                            @error('tds_deduction')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Actual Profit : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="actual_profit_amt" name="actual_profit_amt" class="form-control @error('actual_profit_amt') is-invalid @enderror" value="{{ old('actual_profit_amt') }}" placeholder="Enter Actual Profit">
+                                                            <input type="text" readony id="agent_actual_profit_amt" name="actual_profit_amt" class="form-control   " value="{{ old('actual_profit_amt') }}" placeholder="Enter Actual Profit">
 
-                                                            @error('actual_profit_amt')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Agent Commission (%) : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="commission_percentage" name="commission_percentage" class="form-control @error('commission_percentage') is-invalid @enderror" value="{{ old('commission_percentage') }}" placeholder="Enter Agent Commission (%)">
+                                                            <input type="text" readonly id="agent_commission_percentage" name="commission_percentage" class="form-control   " value="{{ old('commission_percentage') }}" placeholder="Enter Agent Commission (%)">
 
-                                                            @error('commission_percentage')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Agent Commission (in rupees) : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="comission_rupees" name="comission_rupees" class="form-control @error('comission_rupees') is-invalid @enderror" value="{{ old('comission_rupees') }}" placeholder="Enter Agent Commission (in rupees)">
+                                                            <input type="text" readonly id="agent_comission_rupees" name="comission_rupees" class="form-control   " value="{{ old('comission_rupees') }}" placeholder="Enter Agent Commission (in rupees)">
 
-                                                            @error('comission_rupees')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
@@ -224,13 +179,8 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>From Date : <span class="text-danger">*</span></b></label>
                                                             <div class="cal-icon cal-icon-info">
-                                                                <input type="text" id="from_dt" name="from_dt" class="form-control datetimepicker @error('from_dt') is-invalid @enderror" value="{{ old('from_dt') }}" placeholder="Enter From Date">
+                                                                <input type="text" id="from_dt" name="from_dt" class="form-control   datetimepicker " value="{{ old('from_dt') }}" placeholder="Enter From Date">
                                                             </div>
-                                                            @error('from_dt')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
@@ -238,13 +188,8 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>To Date : <span class="text-danger">*</span></b></label>
                                                             <div class="cal-icon cal-icon-info">
-                                                            <input type="text" id="to_date" name="to_date" class="form-control datetimepicker @error('to_date') is-invalid @enderror" value="{{ old('to_date') }}" placeholder="Enter To Date">
+                                                            <input type="text" id="to_date" name="to_date" class="form-control   datetimepicker " value="{{ old('to_date') }}" placeholder="Enter To Date">
                                                             </div>
-                                                            @error('to_date')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
@@ -252,13 +197,8 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>Issue Date : <span class="text-danger">*</span></b></label>
                                                             <div class="cal-icon cal-icon-info">
-                                                            <input type="text" id="agent_issue_dt" name="issue_dt" class="form-control datetimepicker @error('issue_dt') is-invalid @enderror" value="{{ old('issue_dt') }}" placeholder="Enter Issue Date">
+                                                            <input type="text" id="agent_issue_dt" name="issue_dt" class="form-control   datetimepicker " value="{{ old('issue_dt') }}" placeholder="Enter Issue Date">
                                                             </div>
-                                                            @error('issue_dt')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
@@ -266,7 +206,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Payment By : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control select" id="agent_payment_by" name="payment_by">
+                                                            <select class="form-control   select" id="agent_payment_by" name="payment_by">
                                                                 <option value="">Select Payment By</option>
                                                                 <option value="1" {{ (old("payment_by") == "1" ? "selected":"") }}>Agent</option>
                                                                 <option value="2" {{ (old("payment_by") == "2" ? "selected":"") }}>Company</option>
@@ -277,7 +217,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Payment Through : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control select" id="agent_payment_through" name="payment_through">
+                                                            <select class="form-control   select" id="agent_payment_through" name="payment_through">
                                                                 <option value="">Select Payment Through</option>
                                                                 <option value="1" {{ (old("payment_through") == "1" ? "selected":"") }}>Online</option>
                                                                 <option value="2" {{ (old("payment_through") == "2" ? "selected":"") }}>Float</option>
@@ -289,16 +229,11 @@ Policy | Create
                                                     <div class="col-lg-6 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3 ">
                                                             <label><b>Upload Policy : </b></label>
-                                                            <input type="file" onchange="agentPreviewFile()" id="agent_policy_doc" name="policy_doc" class="form-control @error('policy_doc') is-invalid @enderror" value="{{ old('policy_doc') }}" accept=".pdf, .png, .jpg, .jpeg">
+                                                            <input type="file" onchange="agentPreviewFile()" id="agent_policy_doc" name="policy_doc" class="form-control  " value="{{ old('policy_doc') }}" accept=".pdf, .png, .jpg, .jpeg">
                                                             <small class="text-secondary"><b>Note : The file size  should be less than 2MB .</b></small>
                                                             <br>
                                                             <small class="text-secondary"><b>Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</b></small>
-                                                            <br>
-                                                            @error('class="form-control select"policy_doc')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
+
                                                         </div>
                                                         <div id="agent-preview-container">
                                                             <div id="agent-file-preview"></div>
@@ -324,33 +259,23 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Customer Name : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="customer_name" name="customer_name" class="form-control @error('customer_name') is-invalid @enderror" value="{{ old('customer_name') }}" placeholder="Enter Customer Name">
+                                                            <input type="text" id="customer_name" name="customer_name" class="form-control  " value="{{ old('customer_name') }}" placeholder="Enter Customer Name">
 
-                                                            @error('customer_name')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Vehicle Registration Number : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="vehicle_reg_no" name="vehicle_reg_no" class="form-control @error('vehicle_reg_no') is-invalid @enderror" value="{{ old('vehicle_reg_no') }}" placeholder="Enter Vehicle Registration Number">
+                                                            <input type="text" id="vehicle_reg_no" name="vehicle_reg_no" class="form-control   " value="{{ old('vehicle_reg_no') }}" placeholder="Enter Vehicle Registration Number">
 
-                                                            @error('vehicle_reg_no')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select RTO : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control select" id="rto_id" name="rto_id">
+                                                            <select class="form-control   select" id="rto_id" name="rto_id">
                                                                 <option value="">Select RTO</option>
                                                                 @foreach ($Rto as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("rto_id") == $value->id ? "selected":"") }}>{{ $value->city }} - {{ $value->pincode }}</option>
@@ -362,7 +287,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Vehicle Type : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control select" id="vehicle_id" name="vehicle_id">
+                                                            <select class="form-control   select" id="vehicle_id" name="vehicle_id">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 @foreach ($vehicles as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("vehicle_id") == $value->id ? "selected":"") }}>{{ $value->vehicle_type }}</option>
@@ -374,20 +299,15 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Vehicle Configruation : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="vehicle_config" name="vehicle_config" class="form-control @error('vehicle_config') is-invalid @enderror" value="{{ old('vehicle_config') }}" placeholder="Enter Vehicle Configruation">
+                                                            <input type="text" id="vehicle_config" name="vehicle_config" class="form-control  " value="{{ old('vehicle_config') }}" placeholder="Enter Vehicle Configruation">
 
-                                                            @error('vehicle_config')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Insurance Type : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control select" id="insurance_type" name="insurance_type">
+                                                            <select class="form-control   select" id="insurance_type" name="insurance_type">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 <option value="1" {{ (old("insurance_type") == "1" ? "selected":"") }}>1st Party</option>
                                                                 <option value="2" {{ (old("insurance_type") == "2" ? "selected":"") }}>2nd Party</option>
@@ -398,10 +318,10 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Company Policy : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control select" id="company_id" name="company_id">
+                                                            <select class="form-control   select" id="company_id" name="insurance_company_id">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 @foreach ($insuranceCompany as $value )
-                                                                <option value="{{ $value->id }}" {{ (old("company_id") == $value->id ? "selected":"") }}>{{ $value->name }}</option>
+                                                                <option value="{{ $value->id }}" {{ (old("company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -411,91 +331,56 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Main Price : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="main_price" name="main_price" class="form-control @error('main_price') is-invalid @enderror" value="{{ old('main_price') }}" placeholder="Enter Main Price">
+                                                            <input type="text" id="retailer_main_price" name="main_price" class="form-control  " value="{{ old('main_price') }}" placeholder="Enter Main Price">
 
-                                                            @error('main_price')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Company Profit : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="profit_amt" name="profit_amt" class="form-control @error('profit_amt') is-invalid @enderror" value="{{ old('profit_amt') }}" placeholder="Enter Company Profit">
+                                                            <input type="text" readonly id="retailer_profit_amt" name="profit_amt" class="form-control  " value="{{ old('profit_amt') }}" placeholder="Enter Company Profit">
 
-                                                            @error('profit_amt')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
-                                                            <label><b>TDS Deduction (10%) : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="tds_deduction" name="tds_deduction" class="form-control @error('tds_deduction') is-invalid @enderror" value="{{ old('tds_deduction') }}" placeholder="Enter TDS Deduction (10%)">
+                                                            <label><b>TDS Deduction (%) : <span class="text-danger">*</span></b></label>
+                                                            <input type="text" id="retailer_tds_deduction" name="tds_deduction" class="form-control  " value="{{ old('tds_deduction') }}" placeholder="Enter TDS Deduction (10%)">
 
-                                                            @error('tds_deduction')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Profit After TDS : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="actual_profit" name="actual_profit" class="form-control @error('actual_profit') is-invalid @enderror" value="{{ old('actual_profit') }}" placeholder="Enter Profit After TDS">
+                                                            <input type="text" readonly id="retailer_actual_profit_amt" name="actual_profit" class="form-control  " value="{{ old('actual_profit') }}" placeholder="Enter Profit After TDS">
 
-                                                            @error('actual_profit')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Retailer Discount (%) : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="commission_percentage" name="commission_percentage" class="form-control @error('commission_percentage') is-invalid @enderror" value="{{ old('commission_percentage') }}" placeholder="Enter Retailer Discount (%)">
+                                                            <input type="text" id="retailer_commission_percentage" name="commission_percentage" class="form-control  " value="{{ old('commission_percentage') }}" placeholder="Enter Retailer Discount (%)">
 
-                                                            @error('commission_percentage')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <div class="input-block mb-3">
+                                                            <label><b>Retailer Discount Amount (in RS) : <span class="text-danger">*</span></b></label>
+                                                            <input type="text" readonly id="retailer_commission_rupees" name="commission_rupees" class="form-control  " value="{{ old('commission_rupees') }}" placeholder="Enter Retailer Discount Amount (in RS)">
+
                                                         </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Payable Amount : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="commission_rupees" name="commission_rupees" class="form-control @error('commission_rupees') is-invalid @enderror" value="{{ old('commission_rupees') }}" placeholder="Enter Retailer Discount Amount (in rupees)">
+                                                            <input type="text" id="retailer_payable_amount" name="payable_amount" class="form-control  " value="{{ old('payable_amount') }}" placeholder="Enter Payable Amount">
 
-                                                            @error('commission_rupees')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                                        <div class="input-block mb-3">
-                                                            <label><b>Payable Amount : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="payable_amount" name="payable_amount" class="form-control @error('payable_amount') is-invalid @enderror" value="{{ old('payable_amount') }}" placeholder="Enter Payable Amount">
-
-                                                            @error('payable_amount')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
@@ -504,13 +389,8 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>From Date : <span class="text-danger">*</span></b></label>
                                                             <div class="cal-icon cal-icon-info">
-                                                                 <input type="text" id="from_dt" name="from_dt" class="form-control datetimepicker @error('from_dt') is-invalid @enderror" value="{{ old('from_dt') }}" placeholder="Enter From Date">
+                                                                 <input type="text" id="from_dt" name="from_dt" class="form-control   datetimepicker" value="{{ old('from_dt') }}" placeholder="Enter From Date">
                                                             </div>
-                                                            @error('from_dt')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
@@ -518,13 +398,8 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>To Date : <span class="text-danger">*</span></b></label>
                                                             <div class="cal-icon cal-icon-info">
-                                                                  <input type="text" id="to_date" name="to_date" class="form-control datetimepicker @error('to_date') is-invalid @enderror" value="{{ old('to_date') }}" placeholder="Enter To Date">
+                                                                  <input type="text" id="to_date" name="to_date" class="form-control   datetimepicker " value="{{ old('to_date') }}" placeholder="Enter To Date">
                                                             </div>
-                                                            @error('to_date')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
@@ -532,13 +407,8 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>Issue Date : <span class="text-danger">*</span></b></label>
                                                             <div class="cal-icon cal-icon-info">
-                                                                <input type="text" id="retailer_issue_dt" name="issue_dt" class="form-control datetimepicker @error('issue_dt') is-invalid @enderror" value="{{ old('issue_dt') }}" placeholder="Enter Issue Date">
+                                                                <input type="text" id="retailer_issue_dt" name="issue_dt" class="form-control   datetimepicker " value="{{ old('issue_dt') }}" placeholder="Enter Issue Date">
                                                             </div>
-                                                            @error('issue_dt')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
                                                     </div>
 
@@ -546,7 +416,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Payment By : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control select" id="payment_by" name="payment_by">
+                                                            <select class="form-control   select" id="payment_by" name="payment_by">
                                                                 <option value="">Select Payment By</option>
                                                                 <option value="1" {{ (old("payment_by") == "1" ? "selected":"") }}>Company</option>
                                                             </select>
@@ -556,7 +426,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Payment Through : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control select" id="payment_through" name="payment_through">
+                                                            <select class="form-control   select" id="payment_through" name="payment_through">
                                                                 <option value="">Select Payment Through</option>
                                                                 <option value="1" {{ (old("payment_through") == "1" ? "selected":"") }}>Online</option>
                                                                 <option value="2" {{ (old("payment_through") == "2" ? "selected":"") }}>Float</option>
@@ -567,16 +437,11 @@ Policy | Create
                                                     <div class="col-lg-6 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Upload Policy : </b></label>
-                                                            <input type="file" onchange="retailerPreviewFile()" id="retailer_policy_doc" name="policy_doc" class="form-control @error('policy_doc') is-invalid @enderror" value="{{ old('policy_doc') }}" accept=".pdf, .png, .jpg, .jpeg">
+                                                            <input type="file" onchange="retailerPreviewFile()" id="retailer_policy_doc" name="policy_doc" class="form-control  " value="{{ old('policy_doc') }}" accept=".pdf, .png, .jpg, .jpeg">
                                                             <small class="text-secondary"><b>Note : The file size  should be less than 2MB .</b></small>
                                                             <br>
                                                             <small class="text-secondary"><b>Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</b></small>
                                                             <br>
-                                                            @error('policy_doc')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
                                                         </div>
 
                                                         <div id="retailer-preview-container">
@@ -716,5 +581,108 @@ Policy | Create
 
     }
 
+</script>
+
+{{-- Agent Commission In Percentage fetch by agent_commission_percentage --}}
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#agent_id', function() {
+            let agent_id = $(this).val();
+            $('#agent_commission_percentage').show();
+            $.ajax({
+                method: 'post',
+                url: "{{ route('agent_commission_percentage') }}",
+                data: {
+                    agentId: agent_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    // === aler the data percentage amt
+                    $('#agent_commission_percentage').val(data.agentCommissionPercentage);
+
+                }
+            })
+        });
+    });
+</script>
+
+{{-- Agent Commercial Caluation --}}
+<script>
+    $(document).ready(function () {
+        $('#agent_main_price,#agent_profit_amt').on('keyup', function () {
+            agent_main_price = $('#agent_main_price').val();
+
+            if (agent_main_price != '' && agent_profit_amt != '') {
+                // === Agent Main Price dived by half 2
+                var agent_main_price_div_by_half = agent_main_price / 2;
+                agent_profit_amt = $('#agent_profit_amt').val(agent_main_price_div_by_half);
+            }
+        });
+
+        $('#agent_tds_deduction, #agent_profit_amt').on('keyup', function () {
+            agent_profit_amt = $('#agent_profit_amt').val();
+            agent_tds_deduction = $('#agent_tds_deduction').val();
+
+            if (agent_profit_amt != '' && agent_tds_deduction != '') {
+                // === Agent Profit Amount minus TDS deduction in percentage
+                var agent_profit_amt = $('#agent_profit_amt').val();
+                var agent_tds_deduction = $('#agent_tds_deduction').val();
+                var agent_profit_amt_minus_tds = agent_profit_amt - (agent_tds_deduction / 100);
+                $('#agent_actual_profit_amt').val(agent_profit_amt_minus_tds);
+
+                // === Agent Profit Amount minus TDS deduction in percentage
+                var agent_actual_profit_amt = $('#agent_actual_profit_amt').val();
+                var agent_commission_percentage = $('#agent_commission_percentage').val();
+                var agent_comission_rupees_minus_with_commissionInDiscount = agent_actual_profit_amt * (agent_commission_percentage / 100);
+                $('#agent_comission_rupees').val(agent_comission_rupees_minus_with_commissionInDiscount);
+            }
+        });
+    });
+</script>
+
+{{-- Retailer Commercial Caluation --}}
+<script>
+    $(document).ready(function () {
+        $('#retailer_main_price,#retailer_profit_amt').on('keyup', function () {
+            retailer_main_price = $('#retailer_main_price').val();
+
+            if (retailer_main_price != '' && retailer_profit_amt != '') {
+                // === Retailer Main Price dived by half 2
+                var retailer_main_price_div_by_half = retailer_main_price / 2;
+                retailer_profit_amt = $('#retailer_profit_amt').val(retailer_main_price_div_by_half);
+            }
+        });
+
+        $('#retailer_tds_deduction, #retailer_profit_amt').on('keyup', function () {
+            retailer_profit_amt = $('#retailer_profit_amt').val();
+            retailer_tds_deduction = $('#retailer_tds_deduction').val();
+
+            if (retailer_profit_amt != '' && retailer_tds_deduction != '') {
+                // === Retailer Profit Amount minus TDS deduction in percentage
+                var retailer_profit_amt = $('#retailer_profit_amt').val();
+                var retailer_tds_deduction = $('#retailer_tds_deduction').val();
+                var retailer_profit_amt_minus_tds = retailer_profit_amt - (retailer_tds_deduction / 100);
+                $('#retailer_actual_profit_amt').val(retailer_profit_amt_minus_tds);
+
+            }
+        });
+
+        $('#retailer_commission_percentage, #retailer_actual_profit_amt').on('keyup', function () {
+            retailer_commission_percentage = $('#retailer_commission_percentage').val();
+            if (retailer_commission_percentage != '' && retailer_actual_profit_amt != '') {
+                // === Retailer Profit Amount minus TDS deduction in percentage
+                var retailer_actual_profit_amt = $('#retailer_actual_profit_amt').val();
+                var retailer_commission_percentage = $('#retailer_commission_percentage').val();
+                var retailer_commission_rupees_minus_with_commissionInDiscount = retailer_actual_profit_amt * (retailer_commission_percentage / 100);
+                $('#retailer_commission_rupees').val(retailer_commission_rupees_minus_with_commissionInDiscount);
+
+                // === Calculate (retailer_main_price - retailer_commission_rupees)
+                var retailer_main_price = $('#retailer_main_price').val();
+                var retailer_commission_rupees = $('#retailer_commission_rupees').val();
+                var retailer_main_price_minus_commission_rupees = retailer_main_price - retailer_commission_rupees;
+                $('#retailer_payable_amount').val(retailer_main_price_minus_commission_rupees);
+            }
+        });
+    });
 </script>
 @endpush

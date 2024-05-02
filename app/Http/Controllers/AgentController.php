@@ -134,4 +134,11 @@ class AgentController extends Controller
             return redirect()->back()->with('error','Something Went Wrong - '.$ex->getMessage());
         }
     }
+
+    public function agent_commission_percentage(Request $request)
+    {
+        $data['agentCommissionPercentage'] = Agent::whereId($request->agentId)->pluck('percentage_amt');
+
+        return response()->json($data);
+    }
 }

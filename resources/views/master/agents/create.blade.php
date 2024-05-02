@@ -87,7 +87,7 @@
                                                 <select class="form-control @error('comission_type') is-invalid @enderror js-example-basic-single select2" id="comission_type" name="comission_type">
                                                     <option value="">Select Commission Type</option>
                                                     <option value="01" {{ (old("comission_type") == '01' ? "selected":"") }}>Percentage</option>
-                                                    <option value="02" {{ (old("comission_type") == '02' ? "selected":"") }}>Fixed</option>
+                                                    {{-- <option value="02" {{ (old("comission_type") == '02' ? "selected":"") }}>Fixed</option> --}}
                                                 </select>
                                                 @error('comission_type')
                                                     <span class="invalid-feedback" role="alert">

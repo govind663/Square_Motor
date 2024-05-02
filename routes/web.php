@@ -62,4 +62,7 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth']],function(){
     // ==== Policies resources routes
     Route::resource('policy', PolicyController::class);
 
+    // === fetch Agent Commission in percentage
+    Route::post ('agent_commission_percentage', [AgentController::class,'agent_commission_percentage'])->name('agent_commission_percentage');
+
 });
