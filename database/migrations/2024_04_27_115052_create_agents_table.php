@@ -21,6 +21,9 @@ return new class extends Migration
             $table->string('pincode')->nullable();
             $table->string('city')->nullable();
             $table->string('state')->nullable();
+            $table->string('comission_type')->nullable();
+            $table->string('percentage_amt')->nullable();
+            $table->string('fixed_amt')->nullable();
             $table->integer('inserted_by')->nullable();
             $table->timestamp('inserted_at')->nullable();
             $table->integer('modified_by')->nullable();

@@ -25,6 +25,7 @@
 <link rel="stylesheet" href="{{ url('/') }}/assets/css/style.css">
 
 <!-- Select2 CSS -->
+<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/select2/css/select2.css">
 <link rel="stylesheet" href="{{ url('/') }}/assets/plugins/select2/css/select2.min.css">
 
 <!-- Datetimepicker CSS -->
@@ -36,7 +37,8 @@
 
 <!-- Toaster Message -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
 <script src="{{ url('/') }}/assets/js/layout.js"></script>
+

@@ -80,6 +80,42 @@
                                                 <input type="text" id="state" name="state" class="form-control" value="{{ old('state') }}" placeholder="Enter State">
                                             </div>
                                         </div>
+
+                                        <div class="col-lg-4 col-md-12 col-sm-12">
+                                            <div class="input-block mb-3" >
+                                                <label><b>Discount Type : <span class="text-danger">*</span></b></label>
+                                                <select class="form-control @error('comission_type') is-invalid @enderror js-example-basic-single select2" id="comission_type" name="comission_type">
+                                                    <option value="">Select Discount Type</option>
+                                                    <option value="01" {{ (old("comission_type") == '01' ? "selected":"") }}>Percentage</option>
+                                                    <option value="02" {{ (old("comission_type") == '02' ? "selected":"") }}>Fixed</option>
+                                                </select>
+                                                @error('comission_type')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-12 col-sm-12 01 box" style="display:none">
+                                            <div class="input-block mb-3" >
+                                                <label><b>Percentage : <span class="text-danger">*</span></b></label>
+                                                <input type="text" id="percentage_amt" name="percentage_amt" class="form-control @error('percentage_amt') is-invalid @enderror" value="{{ old('percentage_amt') }}" placeholder="Enter Percentage">
+                                                @error('percentage_amt')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-12 col-sm-12 02 box" style="display:none">
+                                            <div class="input-block mb-3" >
+                                                <label><b>Fixed :</b></label>
+                                                <input type="text" id="fixed_amt" name="fixed_amt" class="form-control" value="{{ old('fixed_amt') }}" placeholder="Enter Fixed Amount">
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <div class="add-customer-btns text-end">
@@ -96,4 +132,19 @@
 @endsection
 
 @push('scripts')
+<script>
+    $(document).ready(function(){
+        $("select").change(function(){
+            $(this).find("option:selected").each(function(){
+                var optionValue = $(this).attr("value");
+                if(optionValue){
+                    $(".box").not("." + optionValue).hide();
+                    $("." + optionValue).show();
+                } else{
+                    $(".box").hide();
+                }
+            });
+        }).change();
+    });
+</script>
 @endpush

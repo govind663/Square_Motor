@@ -71,7 +71,7 @@ Insurance Company | Add
                                         <div class="col-lg-4 col-md-12 col-sm-12">
                                             <div class="input-block mb-3" >
                                                 <label><b>Commision Type : <span class="text-danger">*</span></b></label>
-                                                <select class="form-control @error('commision_type') is-invalid @enderror js-example-basic-single select2" id="commision_type" name="commision_type">
+                                                <select class="@error('commision_type') is-invalid @enderror select" id="commision_type" name="commision_type">
                                                     <option value="">Select Commision Type</option>
                                                     <option value="01" {{ (old("commision_type") == '01' ? "selected":"") }}>Percentage</option>
                                                     <option value="02" {{ (old("commision_type") == '02' ? "selected":"") }}>Fixed</option>

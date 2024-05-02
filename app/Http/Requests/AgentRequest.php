@@ -24,10 +24,16 @@ class AgentRequest extends FormRequest
         if ($this->id){
             $rule = [
                 'name' => 'required|max:255',
+                'comission_type'=>'required|max:255',
+                'percentage_amt'=>'nullable|max:255',
+                'fixed_amt'=>'nullable|max:255'
             ];
         }else{
             $rule = [
                 'name' => 'required|max:255',
+                'comission_type'=>'required|max:255',
+                'percentage_amt'=>'nullable|max:255',
+                'fixed_amt'=>'nullable|max:255'
             ];
         }
         return $rule;
@@ -38,6 +44,8 @@ class AgentRequest extends FormRequest
         return [
             'name.required' => __('Name is required'),
             'name.max' => __('The length of Name should not exceed 255 characters'),
+            'comission_type.required' => __('Please Select Commission'),
+            'comission_type.max' => __('The length of Name should not exceed 255 characters'),
 
         ];
     }

@@ -64,7 +64,7 @@
                     <div class="subscription-menu">
                         <ul>
                             <li>
-                                <a class="dropdown-item" href="profile.html">Change Password</a>
+                                <a class="dropdown-item" href="{{ route('change-password') }}">Change Password</a>
                             </li>
                         </ul>
                     </div>

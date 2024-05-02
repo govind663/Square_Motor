@@ -44,6 +44,9 @@ class AgentController extends Controller
             $agent->pincode = $request->pincode;
             $agent->city = $request->city;
             $agent->state = $request->state;
+            $agent->comission_type = $request->comission_type;
+            $agent->percentage_amt = $request->percentage_amt;
+            $agent->fixed_amt = $request->fixed_amt;
             $agent->inserted_at = Carbon::now();
             $agent->inserted_by = Auth::user()->id;
             $agent->save();
@@ -99,6 +102,9 @@ class AgentController extends Controller
             $agent->pincode = $request->pincode;
             $agent->city = $request->city;
             $agent->state = $request->state;
+            $agent->comission_type = $request->comission_type;
+            $agent->percentage_amt = $request->percentage_amt;
+            $agent->fixed_amt = $request->fixed_amt;
             $agent->modified_at = Carbon::now();
             $agent->modified_by = Auth::user()->id;
             $agent->save();

@@ -10,6 +10,9 @@
 <!-- select2 JS -->
 <script src="{{ url('/') }}/assets/plugins/select2/js/select2.min.js"></script>
 
+<!--- File Upload JS -->
+<script src="{{ url('/') }}/assets/plugins/fileupload/fileupload.min.js"></script>
+
 <!-- Slimscroll JS -->
 <script src="{{ url('/') }}/assets/plugins/slimscroll/jquery.slimscroll.min.js"></script>
 
@@ -29,8 +32,15 @@
 <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.colVis.min.js"></script>
 
+<script src="{{ url('/') }}/assets/js/jquery-ui.min.js"></script>
+
+<script src="{{ url('/') }}/assets/js/theme-settings.js"></script>
+<script src="{{ url('/') }}/assets/js/greedynav.js"></script>
+
 <!-- Custom JS -->
 <script src="{{ url('/') }}/assets/js/script.js"></script>
+<script src="{{ url('/') }}/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js" data-cf-settings="95d6fa7baa386c7329d0cf92-|49" defer></script>
+
 
 <script>
     @if(Session::has('message'))

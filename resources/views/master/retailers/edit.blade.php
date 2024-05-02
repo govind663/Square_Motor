@@ -64,7 +64,7 @@ Retailer | Edit
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Vehicle Type :</b></label>
-                                            <select class="form-control js-example-basic-single select2" id="vehicle_id" name="vehicle_id">
+                                            <select class="select" id="vehicle_id" name="vehicle_id">
                                                 <option value="">Select Vehicle Type</option>
                                                 @foreach ($vehicles as $value )
                                                 <option value="{{ $value->id }}" {{ ($retailer->vehicle_id == $value->id ? "selected":"") }}>{{ $value->vehicle_type }}</option>

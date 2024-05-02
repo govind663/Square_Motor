@@ -30,30 +30,35 @@ class HomeController extends Controller
 
     public function changePassword(Request $request)
     {
-        return view('change-password');
+        return view('auth.change_password');
     }
 
     public function updatePassword(Request $request)
     {
             # Validation
             $request->validate([
-                'old_password' => 'required',
-                'new_password' => 'required|confirmed',
+                'current_password' => 'required',
+                'password' => 'required|string|min:8|confirmed',
+                'password_confirmation' => 'required',
+            ],[
+                'current_password.required' => 'Current Password is required',
+                'password.required' => 'New Password is required',
+                'password_confirmation.required' => 'Confirm Password is required',
             ]);
 
 
             #Match The Old Password
-            if(!Hash::check($request->old_password, auth()->user()->password)){
+            if(!Hash::check($request->current_password, auth()->user()->password)){
                 return back()->with("error", "Old Password Doesn't match!");
             }
 
 
             #Update the new Password
             User::whereId(auth()->user()->id)->update([
-                'password' => Hash::make($request->new_password)
+                'password' => Hash::make($request->password)
             ]);
 
-            return back()->with("status", "Password changed successfully!");
+            return back()->with("message", "Password changed successfully!");
     }
 
 
