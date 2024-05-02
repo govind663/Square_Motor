@@ -80,9 +80,9 @@
 
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3" >
-                                            <label><b>Discount Type : <span class="text-danger">*</span></b></label>
+                                            <label><b>Commision Type : <span class="text-danger">*</span></b></label>
                                             <select class="form-control @error('comission_type') is-invalid @enderror js-example-basic-single select2" id="comission_type" name="comission_type">
-                                                <option value="">Select Discount Type</option>
+                                                <option value="">Select Commision Type</option>
                                                 <option value="01" {{ ($agent->comission_type == "01" ? "selected":"") }}>Percentage</option>
                                                 <option value="02" {{ ($agent->comission_type == "02" ? "selected":"") }}>Fixed</option>
                                             </select>

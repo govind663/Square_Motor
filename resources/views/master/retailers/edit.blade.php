@@ -57,7 +57,7 @@ Retailer | Edit
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Email id :</b></label>
-                                            <input type="email" id="email" name="email" class="form-control" value="{{ $retailer->emails }}" placeholder="Enter Email Id">
+                                            <input type="email" id="email" name="email" class="form-control" value="{{ $retailer->email }}" placeholder="Enter Email Id">
                                         </div>
                                     </div>
 
