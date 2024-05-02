@@ -63,21 +63,27 @@ Policy | List
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($policy as $key=>$value ) --}}
+                                    @foreach ($policy as $key=>$value )
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ ++$key }}</td>
+                                        <td>{{ $value->policy_no }}</td>
+                                        <td>{{ $value->customer_name }}</td>
+                                        <td>{{ $value->agent_id }}</td>
+                                        <td>{{ $value->actual_profit_amt }}</td>
+                                        <td>{{ date('d-m-y', strtotime($value->issue_dt) ) }}</td>
+                                        <td>
+                                            @if(!empty($value->policy_doc))
+                                                <a href="{{url('/')}}/company_policy/policy_doc/{{ $value->policy_doc }}" target="_blank" class="btn btn-primary btn-sm">
+                                                    <b> View </b>
+                                                </a>
+                                            @endif
+                                        </td>
                                         <td class="no-export d-flex">
-                                            <a href="" class="btn btn-warning btn-sm">
+                                            <a href="{{ route('policy.edit', $value->id) }}" class="btn btn-warning btn-sm">
                                                 <i class="far fa-edit me-2"></i> Edit
                                             </a>
                                             &nbsp;
-                                            <form action="" method="post">
+                                            <form action="{{ route('policy.edit', $value->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input name="_method" type="hidden" value="DELETE">
@@ -87,7 +93,7 @@ Policy | List
                                             </form>
                                         </td>
                                     </tr>
-                                    {{-- @endforeach --}}
+                                    @endforeach
                                 </tbody>
                             </table>
                         </div>
