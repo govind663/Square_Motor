@@ -7,7 +7,7 @@ Employee | Add
 @push('styles')
 <style>
     .form-control {
-        border: 1px solid #6525ed;
+        border: 1px solid #387dff !important;
     }
 </style>
 @endpush
@@ -20,7 +20,7 @@ Employee | Add
 
                     <div class="page-header">
                         <div class="content-page-header">
-                            <h5>Add Employee</h5>
+                            <h5>Change Password</h5>
                         </div>
                     </div>
 
@@ -69,7 +69,7 @@ Employee | Add
                                             </div>
                                         </div>
 
-                                        <div class="add-customer-btns text-end">
+                                        <div class="add-customer-btns text-start">
                                             <a href="{{ route('home') }}" class="btn btn-danger">Cancel</a>
                                             <button type="submit" class="btn btn-success">Submit</button>
                                         </div>

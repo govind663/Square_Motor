@@ -93,7 +93,7 @@ Employee | Add
 
                                     </div>
                                 </div>
-                                <div class="add-customer-btns text-end">
+                                <div class="add-customer-btns text-start">
                                     <a href="{{ route('employee.index') }}" class="btn btn-danger">Cancel</a>
                                     <button type="submit" class="btn btn-success">Submit</button>
                                 </div>

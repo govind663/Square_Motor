@@ -88,7 +88,7 @@ Policy | List
                                                 <i class="far fa-edit me-2"></i>Edit
                                             </a>
                                             &nbsp;
-                                            <form action="{{ route('policy.edit', $value->id) }}" method="post">
+                                            <form action="{{ route('policy.destroy', $value->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input name="_method" type="hidden" value="DELETE">

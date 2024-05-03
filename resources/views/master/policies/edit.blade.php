@@ -250,7 +250,7 @@ Policy | Create
 
                                                 </div>
 
-                                                <div class="add-customer-btns text-end">
+                                                <div class="add-customer-btns text-start">
                                                     <a href="{{ route('policy.index') }}" class="btn btn-danger">Cancel</a>
                                                     <button type="submit" class="btn btn-success">Submit</button>
                                                 </div>
@@ -468,7 +468,7 @@ Policy | Create
 
                                                 </div>
 
-                                                <div class="add-customer-btns text-end">
+                                                <div class="add-customer-btns text-start">
                                                     <a href="{{ route('policy.index') }}" class="btn btn-danger">Cancel</a>
                                                     <button type="submit" class="btn btn-success">Submit</button>
                                                 </div>
@@ -503,22 +503,23 @@ Policy | Create
 </script>
 <script>
     $(document).ready(function(){
-        $("#agent_issue_dt").datepicker({
+        $("#agent_issue_dt").datetimepicker({
         });
         var myDate = new Date();
         var month = myDate.getMonth() + 1;
+        var pre
         var prettyDate = myDate.getDate() + '-' + month + '-' + myDate.getFullYear();
         $("#agent_issue_dt").val(prettyDate);
     });
 </script>
 <script>
     $(document).ready(function(){
-        $("#retailer_issue_dt").datepicker({
+        $("#retailer_issue_dt").datetimepicker({
         });
-        var myDate = new Date();
-        var month = myDate.getMonth() + 1;
-        var prettyDate = myDate.getDate() + '-' + month + '-' + myDate.getFullYear();
-        $("#retailer_issue_dt").val(prettyDate);
+        var myDate1 = new Date();
+        var month1 = myDate.getMonth() + 1;
+        var prettyDate1 = myDate1.getDate() + '-' + month1 + '-' + myDate1.getFullYear();
+        $("#retailer_issue_dt").val(prettyDate1);
     });
 </script>
 
