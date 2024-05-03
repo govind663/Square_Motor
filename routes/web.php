@@ -16,6 +16,7 @@ use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\RetailerController;
 use App\Http\Controllers\RtoController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Middleware\PreventBackHistoryMiddleware;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -33,7 +34,7 @@ Route::group(['prefix' => 'Square_Motor'],function(){
 
 });
 
-Route::group(['prefix' => 'square-motor','middleware'=>['auth', 'preventBackHistoryMiddleware']],function(){
+Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHistoryMiddleware::class]],function(){
     // =============== Dashboard
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 
