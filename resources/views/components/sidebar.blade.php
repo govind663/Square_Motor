@@ -59,6 +59,27 @@
                     </a>
                 </li>
 
+                <li>
+                    <a href="#">
+                        <i class="fe fe-file"></i>
+                        <span>Report</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fe fe-file"></i>
+                        <span>Finance</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="#">
+                        <i class="fe fe-file"></i>
+                        <span>Download Section</span>
+                    </a>
+                </li>
+
             </ul>
         </div>
     </div>
