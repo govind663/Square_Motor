@@ -33,7 +33,7 @@ Route::group(['prefix' => 'Square_Motor'],function(){
 
 });
 
-Route::group(['prefix' => 'square-motor','middleware'=>['auth']],function(){
+Route::group(['prefix' => 'square-motor','middleware'=>['auth', 'preventBackHistoryMiddleware']],function(){
     // =============== Dashboard
     Route::get('/home', [HomeController::class, 'index'])->name('home');
 

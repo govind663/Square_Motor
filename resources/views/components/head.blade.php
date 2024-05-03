@@ -9,7 +9,7 @@
 <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="{{ url('/') }}/assets/img/Gadi-Insurance.png">
+<link rel="shortcut icon" href="{{ url('/') }}/assets/img/Gadi_Insurances_ico.png">
 
 <!-- Bootstrap CSS -->
 <link rel="stylesheet" href="{{ url('/') }}/assets/css/bootstrap.min.css">

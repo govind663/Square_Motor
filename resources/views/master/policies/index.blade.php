@@ -73,14 +73,14 @@ Policy | List
                                         <td>{{ date('d-m-y', strtotime($value->issue_dt) ) }}</td>
                                         <td>
                                             @if(!empty($value->policy_doc))
-                                                <a href="{{url('/')}}/company_policy/policy_doc/{{ $value->policy_doc }}" target="_blank" class="btn btn-primary btn-sm">
+                                                <a href="{{url('/')}}/company_policy/policy_doc/{{ $value->policy_doc }}" target="_blank" class="btn btn-primary btn-sm text-light">
                                                     <b> View </b>
                                                 </a>
                                             @endif
                                         </td>
                                         <td class="no-export d-flex">
-                                            <a href="{{ route('policy.edit', $value->id) }}" class="btn btn-warning btn-sm">
-                                                <i class="far fa-edit me-2"></i> Edit
+                                            <a href="{{ route('policy.edit', $value->id) }}" class="btn btn-warning btn-sm text-black">
+                                                <i class="far fa-edit me-2"></i>Edit
                                             </a>
                                             &nbsp;
                                             <form action="{{ route('policy.edit', $value->id) }}" method="post">
@@ -88,7 +88,7 @@ Policy | List
                                                 @method('DELETE')
                                                 <input name="_method" type="hidden" value="DELETE">
                                                 <button type="submit" class="btn btn-danger btn-sm " onclick="return confirm('Are you sure to delete?')">
-                                                    <i class="far fa-trash-alt me-2"></i> Delete
+                                                    <i class="far fa-trash-alt me-2"></i>Delete
                                                 </button>
                                             </form>
                                         </td>

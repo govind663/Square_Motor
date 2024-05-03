@@ -42,7 +42,7 @@ Insurance Company | List
                         </div>
                         <div class="col-2 float-right">
                             <a href="{{ route('insurance_company.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i> Add Insurance
+                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Insurance
                             </a>
                         </div>
                     </div>
@@ -77,8 +77,8 @@ Insurance Company | List
                                         @endif
                                         </td>
                                         <td class="no-export d-flex">
-                                            <a href="{{ route('insurance_company.edit', $value->id) }}" class="btn btn-warning btn-sm">
-                                                <i class="far fa-edit me-2"></i> Edit
+                                            <a href="{{ route('insurance_company.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">
+                                                <i class="far fa-edit me-2"></i>Edit
                                             </a>
                                             &nbsp;
                                             <form action="{{ route('insurance_company.destroy', $value->id) }}" method="post">
@@ -86,7 +86,7 @@ Insurance Company | List
                                                 @method('DELETE')
                                                 <input name="_method" type="hidden" value="DELETE">
                                                 <button type="submit" class="btn btn-danger btn-sm " onclick="return confirm('Are you sure to delete?')">
-                                                    <i class="far fa-trash-alt me-2"></i> Delete
+                                                    <i class="far fa-trash-alt me-2"></i>Delete
                                                 </button>
                                             </form>
                                         </td>

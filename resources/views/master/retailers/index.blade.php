@@ -69,8 +69,8 @@ Retailer List
                                         <td>{{ $value->email }}</td>
                                         <td>{{ $value->Vehicle?->vehicle_type }}</td>
                                         <td class="no-export d-flex">
-                                            <a href="{{ route('retailer.edit', $value->id) }}" class="btn btn-warning btn-sm">
-                                                <i class="far fa-edit me-2"></i> Edit
+                                            <a href="{{ route('retailer.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">
+                                                <i class="far fa-edit me-2"></i>Edit
                                             </a>
                                             &nbsp;
                                             <form action="{{ route('retailer.destroy', $value->id) }}" method="post">
@@ -78,7 +78,7 @@ Retailer List
                                                 @method('DELETE')
                                                 <input name="_method" type="hidden" value="DELETE">
                                                 <button type="submit" class="btn btn-danger btn-sm " onclick="return confirm('Are you sure to delete?')">
-                                                    <i class="far fa-trash-alt me-2"></i> Delete
+                                                    <i class="far fa-trash-alt me-2"></i>Delete
                                                 </button>
                                             </form>
                                         </td>
