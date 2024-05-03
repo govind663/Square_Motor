@@ -44,8 +44,8 @@ Policy | Create
                                                     <h5 class="card-title text-primary mb-2">Agent Details</h5>
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
-                                                            <label><b>Select Agent :</b></label>
-                                                            <select class="form-control   select" id="agent_id" name="agent_id">
+                                                            <label><b>Select Agent : <span class="text-danger">*</span></b></label>
+                                                            <select required class="form-control   select" id="agent_id" name="agent_id">
                                                                 <option value="">Select Agent</option>
                                                                 @foreach ($agents as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("agent_id") == $value->id ? "selected":"") }}>{{ $value->name }}</option>
@@ -57,7 +57,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Customer Name : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="customer_name" name="customer_name" class="form-control  " value="{{ old('customer_name') }}" placeholder="Enter Customer Name">
+                                                            <input type="text" id="customer_name" name="customer_name" required class="form-control  " value="{{ old('customer_name') }}" placeholder="Enter Customer Name">
 
                                                         </div>
                                                     </div>
@@ -65,7 +65,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Vehicle Registration Number : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="vehicle_reg_no" name="vehicle_reg_no" class="form-control   " value="{{ old('vehicle_reg_no') }}" placeholder="Enter Vehicle Registration Number">
+                                                            <input type="text" id="vehicle_reg_no" name="vehicle_reg_no" required class="form-control   " value="{{ old('vehicle_reg_no') }}" placeholder="Enter Vehicle Registration Number">
 
                                                         </div>
                                                     </div>
@@ -73,7 +73,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select RTO : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control   select" id="agent_rto_id" name="rto_id">
+                                                            <select required class="form-control   select" id="agent_rto_id" name="rto_id">
                                                                 <option value="">Select RTO</option>
                                                                 @foreach ($Rto as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("rto_id") == $value->id ? "selected":"") }}>{{ $value->city }} - {{ $value->pincode }}</option>
@@ -85,7 +85,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Vehicle Type : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control   select" id="agent_vehicle_id" name="vehicle_id">
+                                                            <select required class="form-control   select" id="agent_vehicle_id" name="vehicle_id">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 @foreach ($vehicles as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("vehicle_id") == $value->id ? "selected":"") }}>{{ $value->vehicle_type }}</option>
@@ -97,7 +97,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Vehicle Configruation : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="vehicle_config" name="vehicle_config" class="form-control   " value="{{ old('vehicle_config') }}" placeholder="Enter Vehicle Configruation">
+                                                            <input type="text" id="vehicle_config" name="vehicle_config" required class="form-control   " value="{{ old('vehicle_config') }}" placeholder="Enter Vehicle Configruation">
 
                                                         </div>
                                                     </div>
@@ -105,7 +105,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Insurance Type : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control   select" id="agent_insurance_type" name="insurance_type">
+                                                            <select required class="form-control   select" id="agent_insurance_type" name="insurance_type">
                                                                 <option value="">Select Insurance Type</option>
                                                                 <option value="1" {{ (old("insurance_type") == "1" ? "selected":"") }}>1st Party</option>
                                                                 <option value="2" {{ (old("insurance_type") == "2" ? "selected":"") }}>3rd Party</option>
@@ -116,7 +116,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Company Policy : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control   select" id="agent_company_id" name="insurance_company_id">
+                                                            <select required class="form-control   select" id="agent_company_id" name="insurance_company_id">
                                                                 <option value="">Select Company Policye</option>
                                                                 @foreach ($insuranceCompany as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("agent_company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
@@ -129,7 +129,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Main Price : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="agent_main_price" name="main_price" class="form-control   " value="{{ old('main_price') }}" placeholder="Enter Main Price">
+                                                            <input type="text" id="agent_main_price" name="main_price" required class="form-control   " value="{{ old('main_price') }}" placeholder="Enter Main Price">
 
                                                         </div>
                                                     </div>
@@ -137,7 +137,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Profit Amount : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="agent_profit_amt" readonly name="profit_amt" class="form-control   " value="{{ old('profit_amt') }}" placeholder="Enter Profit Amount">
+                                                            <input type="text" id="agent_profit_amt" readonly name="profit_amt" required class="form-control   " value="{{ old('profit_amt') }}" placeholder="Enter Profit Amount">
 
                                                         </div>
                                                     </div>
@@ -145,7 +145,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>TDS Deduction (%) : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="agent_tds_deduction" name="tds_deduction" class="form-control   " value="{{ old('tds_deduction') }}" placeholder="Enter TDS Deduction (10%)">
+                                                            <input type="text" id="agent_tds_deduction" name="tds_deduction" required class="form-control   " value="{{ old('tds_deduction') }}" placeholder="Enter TDS Deduction (10%)">
 
                                                         </div>
                                                     </div>
@@ -153,7 +153,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Actual Profit : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" readony id="agent_actual_profit_amt" name="actual_profit_amt" class="form-control   " value="{{ old('actual_profit_amt') }}" placeholder="Enter Actual Profit">
+                                                            <input type="text" readony id="agent_actual_profit_amt" name="actual_profit_amt" required class="form-control   " value="{{ old('actual_profit_amt') }}" placeholder="Enter Actual Profit">
 
                                                         </div>
                                                     </div>
@@ -161,7 +161,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Agent Commission (%) : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" readonly id="agent_commission_percentage" name="commission_percentage" class="form-control   " value="{{ old('commission_percentage') }}" placeholder="Enter Agent Commission (%)">
+                                                            <input type="text" readonly id="agent_commission_percentage" name="commission_percentage" required class="form-control   " value="{{ old('commission_percentage') }}" placeholder="Enter Agent Commission (%)">
 
                                                         </div>
                                                     </div>
@@ -169,7 +169,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Agent Commission (in rupees) : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" readonly id="agent_comission_rupees" name="comission_rupees" class="form-control   " value="{{ old('comission_rupees') }}" placeholder="Enter Agent Commission (in rupees)">
+                                                            <input type="text" readonly id="agent_comission_rupees" name="comission_rupees" required class="form-control   " value="{{ old('comission_rupees') }}" placeholder="Enter Agent Commission (in rupees)">
 
                                                         </div>
                                                     </div>
@@ -179,7 +179,7 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>From Date : <span class="text-danger">*</span></b></label>
                                                             <div class="cal-icon cal-icon-info">
-                                                                <input type="text" id="from_dt" name="from_dt" class="form-control   datetimepicker " value="{{ old('from_dt') }}" placeholder="Enter From Date">
+                                                                <input type="text" id="from_dt" name="from_dt" required class="form-control   datetimepicker " value="{{ old('from_dt') }}" placeholder="Enter From Date">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -188,7 +188,7 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>To Date : <span class="text-danger">*</span></b></label>
                                                             <div class="cal-icon cal-icon-info">
-                                                            <input type="text" id="to_date" name="to_date" class="form-control   datetimepicker " value="{{ old('to_date') }}" placeholder="Enter To Date">
+                                                            <input type="text" id="to_date" name="to_date" required class="form-control   datetimepicker " value="{{ old('to_date') }}" placeholder="Enter To Date">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -197,7 +197,7 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>Issue Date : <span class="text-danger">*</span></b></label>
                                                             <div class="cal-icon cal-icon-info">
-                                                            <input type="text" id="agent_issue_dt" name="issue_dt" class="form-control   datetimepicker " value="{{ old('issue_dt') }}" placeholder="Enter Issue Date">
+                                                            <input type="text" id="agent_issue_dt" name="issue_dt" required class="form-control   datetimepicker " value="{{ old('issue_dt') }}" placeholder="Enter Issue Date">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -206,7 +206,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Payment By : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control   select" id="agent_payment_by" name="payment_by">
+                                                            <select required class="form-control   select" id="agent_payment_by" name="payment_by">
                                                                 <option value="">Select Payment By</option>
                                                                 <option value="1" {{ (old("payment_by") == "1" ? "selected":"") }}>Agent</option>
                                                                 <option value="2" {{ (old("payment_by") == "2" ? "selected":"") }}>Company</option>
@@ -217,7 +217,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Payment Through : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control   select" id="agent_payment_through" name="payment_through">
+                                                            <select required class="form-control   select" id="agent_payment_through" name="payment_through">
                                                                 <option value="">Select Payment Through</option>
                                                                 <option value="1" {{ (old("payment_through") == "1" ? "selected":"") }}>Online</option>
                                                                 <option value="2" {{ (old("payment_through") == "2" ? "selected":"") }}>Float</option>
@@ -229,7 +229,7 @@ Policy | Create
                                                     <div class="col-lg-6 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3 ">
                                                             <label><b>Upload Policy : </b></label>
-                                                            <input type="file" onchange="agentPreviewFile()" id="agent_policy_doc" name="policy_doc" class="form-control  " value="{{ old('policy_doc') }}" accept=".pdf, .png, .jpg, .jpeg">
+                                                            <input type="file" onchange="agentPreviewFile()" id="agent_policy_doc" name="policy_doc" required class="form-control  " value="{{ old('policy_doc') }}" accept=".pdf, .png, .jpg, .jpeg">
                                                             <small class="text-secondary"><b>Note : The file size  should be less than 2MB .</b></small>
                                                             <br>
                                                             <small class="text-secondary"><b>Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</b></small>
@@ -259,7 +259,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Customer Name : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="customer_name" name="customer_name" class="form-control  " value="{{ old('customer_name') }}" placeholder="Enter Customer Name">
+                                                            <input type="text" id="customer_name" name="customer_name" required class="form-control  " value="{{ old('customer_name') }}" placeholder="Enter Customer Name">
 
                                                         </div>
                                                     </div>
@@ -267,7 +267,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Vehicle Registration Number : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="vehicle_reg_no" name="vehicle_reg_no" class="form-control   " value="{{ old('vehicle_reg_no') }}" placeholder="Enter Vehicle Registration Number">
+                                                            <input type="text" id="vehicle_reg_no" name="vehicle_reg_no" required class="form-control   " value="{{ old('vehicle_reg_no') }}" placeholder="Enter Vehicle Registration Number">
 
                                                         </div>
                                                     </div>
@@ -275,7 +275,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select RTO : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control   select" id="rto_id" name="rto_id">
+                                                            <select required class="form-control   select" id="rto_id" name="rto_id">
                                                                 <option value="">Select RTO</option>
                                                                 @foreach ($Rto as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("rto_id") == $value->id ? "selected":"") }}>{{ $value->city }} - {{ $value->pincode }}</option>
@@ -287,7 +287,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Vehicle Type : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control   select" id="vehicle_id" name="vehicle_id">
+                                                            <select required class="form-control   select" id="vehicle_id" name="vehicle_id">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 @foreach ($vehicles as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("vehicle_id") == $value->id ? "selected":"") }}>{{ $value->vehicle_type }}</option>
@@ -299,7 +299,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Vehicle Configruation : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="vehicle_config" name="vehicle_config" class="form-control  " value="{{ old('vehicle_config') }}" placeholder="Enter Vehicle Configruation">
+                                                            <input type="text" id="vehicle_config" name="vehicle_config" required class="form-control  " value="{{ old('vehicle_config') }}" placeholder="Enter Vehicle Configruation">
 
                                                         </div>
                                                     </div>
@@ -307,7 +307,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Insurance Type : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control   select" id="insurance_type" name="insurance_type">
+                                                            <select required class="form-control   select" id="insurance_type" name="insurance_type">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 <option value="1" {{ (old("insurance_type") == "1" ? "selected":"") }}>1st Party</option>
                                                                 <option value="2" {{ (old("insurance_type") == "2" ? "selected":"") }}>2nd Party</option>
@@ -318,7 +318,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Company Policy : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control   select" id="company_id" name="insurance_company_id">
+                                                            <select required class="form-control   select" id="company_id" name="insurance_company_id">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 @foreach ($insuranceCompany as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
@@ -331,7 +331,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Main Price : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="retailer_main_price" name="main_price" class="form-control  " value="{{ old('main_price') }}" placeholder="Enter Main Price">
+                                                            <input type="text" id="retailer_main_price" name="main_price" required class="form-control  " value="{{ old('main_price') }}" placeholder="Enter Main Price">
 
                                                         </div>
                                                     </div>
@@ -339,7 +339,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Company Profit : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" readonly id="retailer_profit_amt" name="profit_amt" class="form-control  " value="{{ old('profit_amt') }}" placeholder="Enter Company Profit">
+                                                            <input type="text" readonly id="retailer_profit_amt" name="profit_amt" required class="form-control  " value="{{ old('profit_amt') }}" placeholder="Enter Company Profit">
 
                                                         </div>
                                                     </div>
@@ -347,7 +347,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>TDS Deduction (%) : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="retailer_tds_deduction" name="tds_deduction" class="form-control  " value="{{ old('tds_deduction') }}" placeholder="Enter TDS Deduction (10%)">
+                                                            <input type="text" id="retailer_tds_deduction" name="tds_deduction" required class="form-control  " value="{{ old('tds_deduction') }}" placeholder="Enter TDS Deduction (10%)">
 
                                                         </div>
                                                     </div>
@@ -355,7 +355,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Profit After TDS : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" readonly id="retailer_actual_profit_amt" name="actual_profit" class="form-control  " value="{{ old('actual_profit') }}" placeholder="Enter Profit After TDS">
+                                                            <input type="text" readonly id="retailer_actual_profit_amt" name="actual_profit" required class="form-control  " value="{{ old('actual_profit') }}" placeholder="Enter Profit After TDS">
 
                                                         </div>
                                                     </div>
@@ -363,7 +363,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Retailer Discount (%) : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="retailer_commission_percentage" name="commission_percentage" class="form-control  " value="{{ old('commission_percentage') }}" placeholder="Enter Retailer Discount (%)">
+                                                            <input type="text" id="retailer_commission_percentage" name="commission_percentage" required class="form-control  " value="{{ old('commission_percentage') }}" placeholder="Enter Retailer Discount (%)">
 
                                                         </div>
                                                     </div>
@@ -371,7 +371,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Retailer Discount Amount (in RS) : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" readonly id="retailer_commission_rupees" name="commission_rupees" class="form-control  " value="{{ old('commission_rupees') }}" placeholder="Enter Retailer Discount Amount (in RS)">
+                                                            <input type="text" readonly id="retailer_commission_rupees" name="commission_rupees" required class="form-control  " value="{{ old('commission_rupees') }}" placeholder="Enter Retailer Discount Amount (in RS)">
 
                                                         </div>
                                                     </div>
@@ -379,7 +379,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Payable Amount : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="retailer_payable_amount" name="payable_amount" class="form-control  " value="{{ old('payable_amount') }}" placeholder="Enter Payable Amount">
+                                                            <input type="text" id="retailer_payable_amount" name="payable_amount" required class="form-control  " value="{{ old('payable_amount') }}" placeholder="Enter Payable Amount">
 
                                                         </div>
                                                     </div>
@@ -389,7 +389,7 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>From Date : <span class="text-danger">*</span></b></label>
                                                             <div class="cal-icon cal-icon-info">
-                                                                 <input type="text" id="from_dt" name="from_dt" class="form-control   datetimepicker" value="{{ old('from_dt') }}" placeholder="Enter From Date">
+                                                                 <input type="text" id="from_dt" name="from_dt" required class="form-control   datetimepicker" value="{{ old('from_dt') }}" placeholder="Enter From Date">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -398,7 +398,7 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>To Date : <span class="text-danger">*</span></b></label>
                                                             <div class="cal-icon cal-icon-info">
-                                                                  <input type="text" id="to_date" name="to_date" class="form-control   datetimepicker " value="{{ old('to_date') }}" placeholder="Enter To Date">
+                                                                  <input type="text" id="to_date" name="to_date" required class="form-control   datetimepicker " value="{{ old('to_date') }}" placeholder="Enter To Date">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -407,7 +407,7 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>Issue Date : <span class="text-danger">*</span></b></label>
                                                             <div class="cal-icon cal-icon-info">
-                                                                <input type="text" id="retailer_issue_dt" name="issue_dt" class="form-control   datetimepicker " value="{{ old('issue_dt') }}" placeholder="Enter Issue Date">
+                                                                <input type="text" id="retailer_issue_dt" name="issue_dt" required class="form-control   datetimepicker " value="{{ old('issue_dt') }}" placeholder="Enter Issue Date">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -416,7 +416,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Payment By : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control   select" id="payment_by" name="payment_by">
+                                                            <select required class="form-control   select" id="payment_by" name="payment_by">
                                                                 <option value="">Select Payment By</option>
                                                                 <option value="1" {{ (old("payment_by") == "1" ? "selected":"") }}>Company</option>
                                                             </select>
@@ -426,7 +426,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Payment Through : <span class="text-danger">*</span></b></label>
-                                                            <select class="form-control   select" id="payment_through" name="payment_through">
+                                                            <select required class="form-control   select" id="payment_through" name="payment_through">
                                                                 <option value="">Select Payment Through</option>
                                                                 <option value="1" {{ (old("payment_through") == "1" ? "selected":"") }}>Online</option>
                                                                 <option value="2" {{ (old("payment_through") == "2" ? "selected":"") }}>Float</option>
@@ -437,7 +437,7 @@ Policy | Create
                                                     <div class="col-lg-6 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Upload Policy : </b></label>
-                                                            <input type="file" onchange="retailerPreviewFile()" id="retailer_policy_doc" name="policy_doc" class="form-control  " value="{{ old('policy_doc') }}" accept=".pdf, .png, .jpg, .jpeg">
+                                                            <input type="file" onchange="retailerPreviewFile()" id="retailer_policy_doc" name="policy_doc" required class="form-control  " value="{{ old('policy_doc') }}" accept=".pdf, .png, .jpg, .jpeg">
                                                             <small class="text-secondary"><b>Note : The file size  should be less than 2MB .</b></small>
                                                             <br>
                                                             <small class="text-secondary"><b>Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</b></small>

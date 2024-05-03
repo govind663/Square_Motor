@@ -20,6 +20,7 @@ class PolicyController extends Controller
     public function index()
     {
         $policy = Policy::with('agents')->orderBy("id","desc")->whereNull('deleted_at')->get();
+
         return view('master.policies.index', ['policy'=> $policy]);
     }
 
@@ -117,7 +118,18 @@ class PolicyController extends Controller
         $vehicles = Vehicle::whereNull('deleted_at')->get();
         $Rto = RTO::whereNull('deleted_at')->get();
         $insuranceCompany = InsuranceCompany::whereNull('deleted_at')->get();
-        return view('master.policies.edit', ['policy'=> $policy, 'agents'=> $agents, 'vehicles'=>$vehicles, 'Rto'=>$Rto, 'insuranceCompany'=>$insuranceCompany]);
+
+        // $policyType = Policy::orderBy("id","desc")->whereNull('deleted_at')->pluck('policy_type')->toArray();
+        $filledTabs = [];
+
+        // Check which tabs are filled and which are not
+        if ($policy->policy_type == '1') {
+            $filledTabs[] = 'tab1';
+        }
+        if ($policy->policy_type == '2') {
+            $filledTabs[] = 'tab2';
+        }
+        return view('master.policies.edit', ['policy'=> $policy, 'agents'=> $agents, 'vehicles'=>$vehicles, 'Rto'=>$Rto, 'insuranceCompany'=>$insuranceCompany, 'filledTabs'=>$filledTabs]);
     }
 
     /**
