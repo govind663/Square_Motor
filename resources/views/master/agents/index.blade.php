@@ -8,8 +8,13 @@
 <style>
     .btn-secondary {
         color: #fff;
-        background-color: #7638ff;
-        border-color: #7638ff;
+        background-color: #387dff;
+        border-color: #387dff;
+    }
+    .pagination li.active a.page-link {
+        background: #387dff;
+        border-color: #387dff;
+        border-radius: 5px;
     }
 </style>
 @endpush
@@ -99,7 +104,7 @@
 <script>
     $('.data-table-export1').DataTable({
         scrollCollapse: true,
-        autoWidth: true,
+        autoWidth: false,
         responsive: true,
         columnDefs: [{
             targets: "datatable-nosort",
@@ -109,10 +114,10 @@
         "language": {
             "info": "_START_-_END_ of _TOTAL_ entries",
             searchPlaceholder: "Search",
-            paginate: {
-                next: '<i class="ion-chevron-right"></i>',
-                previous: '<i class="ion-chevron-left"></i>'
-            }
+            // paginate: {
+            //     next: '<i class="ion-chevron-right"></i>',
+            //     previous: '<i class="ion-chevron-left"></i>'
+            // }
         },
         dom: 'Bfrtip',
         buttons: [

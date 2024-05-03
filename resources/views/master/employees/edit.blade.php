@@ -5,6 +5,11 @@
 @endsection
 
 @push('styles')
+<style>
+    .form-control {
+        border: 1px solid #387dff !important;
+    }
+</style>
 @endpush
 
 @section('content')

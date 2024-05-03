@@ -1519,16 +1519,16 @@ div#global-loader,
 }
 
 .btn-primary {
-    background-color: #7539ff;
-    border: 1px solid #7539ff;
+    background-color: #387dff;
+    border: 1px solid #387dff;
     box-shadow: inset 0 0 0 0 #fff;
     border-radius: 4px
 }
 
 .btn-primary:hover {
     background-color: #fff;
-    border-color: #7539ff;
-    color: #7539ff;
+    border-color: #387dff;
+    color: #387dff;
     box-shadow: inset 0 50px 0 0 #fff
 }
 

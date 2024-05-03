@@ -7,7 +7,7 @@ RTO | Add
 @push('styles')
 <style>
     .form-control {
-        border: 1px solid #6525ed;
+        border: 1px solid #387dff !important;
     }
 </style>
 @endpush

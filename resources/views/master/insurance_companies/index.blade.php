@@ -8,8 +8,13 @@ Insurance Company | List
 <style>
     .btn-secondary {
         color: #fff;
-        background-color: #7638ff;
-        border-color: #7638ff;
+        background-color: #387dff !important;
+        border-color: #387dff !important;
+    }
+    .pagination li.active a.page-link {
+        background: #387dff !important;
+        border-color: #387dff !important;
+        border-radius: 5px;
     }
 </style>
 @endpush
