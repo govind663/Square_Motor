@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AgentRequest;
 use App\Models\Agent;
+use App\Models\InsuranceCompany;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -138,6 +139,13 @@ class AgentController extends Controller
     public function agent_commission_percentage(Request $request)
     {
         $data['agentCommissionPercentage'] = Agent::whereId($request->agentId)->pluck('percentage_amt');
+
+        return response()->json($data);
+    }
+
+    public function fetch_agent_profit_amt(Request $request)
+    {
+        $data['agentProfitAmount'] = InsuranceCompany::whereId($request->agentId)->pluck('percentage_amt');
 
         return response()->json($data);
     }

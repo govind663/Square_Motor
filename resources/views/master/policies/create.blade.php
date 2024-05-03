@@ -627,9 +627,10 @@ Policy | Create
             if (agent_profit_amt != '' && agent_tds_deduction != '') {
                 // === Agent Profit Amount minus TDS deduction in percentage
                 var agent_profit_amt = $('#agent_profit_amt').val();
-                var agent_tds_deduction = $('#agent_tds_deduction').val();
-                var agent_profit_amt_minus_tds = parseInt(agent_profit_amt) - (parseInt(agent_tds_deduction) / 100);
-                $('#agent_actual_profit_amt').val(parseInt(agent_profit_amt_minus_tds));
+                // var agent_tds_deduction = $('#agent_tds_deduction').val();
+                var agent_profit_amt_minus_tds = (parseInt(agent_profit_amt) / 100 ) * parseInt(agent_tds_deduction);
+                var company_profit = (parseInt(agent_profit_amt)) - parseInt(agent_profit_amt_minus_tds)
+                $('#agent_actual_profit_amt').val(parseInt(company_profit));
 
                 // === Agent Profit Amount minus TDS deduction in percentage
                 var agent_actual_profit_amt = $('#agent_actual_profit_amt').val();
