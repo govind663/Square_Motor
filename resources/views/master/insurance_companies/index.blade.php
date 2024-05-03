@@ -54,7 +54,7 @@ Insurance Company | List
                                     <tr>
                                         <th>Sr. No.</th>
                                         <th>Company Name</th>
-                                        <th class="text-start">Company Logo</th>
+                                        <th class="text-start no-export">Company Logo</th>
                                         <th>Commission Type</th>
                                         <th class="no-export">Action</th>
                                     </tr>
@@ -64,7 +64,7 @@ Insurance Company | List
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $value->company_name }}</td>
-                                        <td class="text-start">
+                                        <td class="text-start no-export">
                                             @if(!empty($value->logo_doc))
                                                 <img src="{{url('/')}}/company_policy/logo_doc/{{ $value->logo_doc }}" alt="{{ $value->logo_doc }}" style="height:20% !important; width: 20% !important" >
                                             @endif
