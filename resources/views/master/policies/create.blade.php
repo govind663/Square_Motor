@@ -96,8 +96,8 @@ Policy | Create
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
-                                                            <label><b>Vehicle Configruation : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="vehicle_config" name="vehicle_config" required class="form-control   " value="{{ old('vehicle_config') }}" placeholder="Enter Vehicle Configruation">
+                                                            <label><b>Vehicle Configuration : <span class="text-danger">*</span></b></label>
+                                                            <input type="text" id="vehicle_config" name="vehicle_config" required class="form-control   " value="{{ old('vehicle_config') }}" placeholder="Enter Vehicle Configuration">
 
                                                         </div>
                                                     </div>
@@ -298,8 +298,8 @@ Policy | Create
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
-                                                            <label><b>Vehicle Configruation : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="vehicle_config" name="vehicle_config" required class="form-control  " value="{{ old('vehicle_config') }}" placeholder="Enter Vehicle Configruation">
+                                                            <label><b>Vehicle Configuration : <span class="text-danger">*</span></b></label>
+                                                            <input type="text" id="vehicle_config" name="vehicle_config" required class="form-control  " value="{{ old('vehicle_config') }}" placeholder="Enter Vehicle Configuration">
 
                                                         </div>
                                                     </div>
