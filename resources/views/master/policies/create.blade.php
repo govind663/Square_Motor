@@ -615,8 +615,8 @@ Policy | Create
 
             if (agent_main_price != '' && agent_profit_amt != '') {
                 // === Agent Main Price dived by half 2
-                var agent_main_price_div_by_half = agent_main_price / 2;
-                agent_profit_amt = $('#agent_profit_amt').val(agent_main_price_div_by_half);
+                var agent_main_price_div_by_half = parseInt(agent_main_price) / 2;
+                agent_profit_amt = $('#agent_profit_amt').val(parseInt(agent_main_price_div_by_half) );
             }
         });
 
@@ -628,14 +628,14 @@ Policy | Create
                 // === Agent Profit Amount minus TDS deduction in percentage
                 var agent_profit_amt = $('#agent_profit_amt').val();
                 var agent_tds_deduction = $('#agent_tds_deduction').val();
-                var agent_profit_amt_minus_tds = agent_profit_amt - (agent_tds_deduction / 100);
-                $('#agent_actual_profit_amt').val(agent_profit_amt_minus_tds);
+                var agent_profit_amt_minus_tds = parseInt(agent_profit_amt) - (parseInt(agent_tds_deduction) / 100);
+                $('#agent_actual_profit_amt').val(parseInt(agent_profit_amt_minus_tds));
 
                 // === Agent Profit Amount minus TDS deduction in percentage
                 var agent_actual_profit_amt = $('#agent_actual_profit_amt').val();
                 var agent_commission_percentage = $('#agent_commission_percentage').val();
-                var agent_comission_rupees_minus_with_commissionInDiscount = agent_actual_profit_amt * (agent_commission_percentage / 100);
-                $('#agent_comission_rupees').val(agent_comission_rupees_minus_with_commissionInDiscount);
+                var agent_comission_rupees_minus_with_commissionInDiscount = parseInt(agent_actual_profit_amt) * (parseInt(agent_commission_percentage) / 100);
+                $('#agent_comission_rupees').val(parseInt(agent_comission_rupees_minus_with_commissionInDiscount));
             }
         });
     });
