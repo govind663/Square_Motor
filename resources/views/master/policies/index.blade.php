@@ -73,7 +73,7 @@ Policy | List
                                         <td>{{ date('d-m-y', strtotime($value->issue_dt) ) }}</td>
                                         <td>
                                             @if(!empty($value->policy_doc))
-                                                <a href="{{url('/')}}/company_policy/policy_doc/{{ $value->policy_doc }}" target="_blank" class="btn btn-primary btn-sm text-light">
+                                                <a href="{{url('/')}}/company_policy/policy_doc/{{ $value->policy_doc }}" target="_blank" class="btn btn-info btn-sm text-light">
                                                     <b> View </b>
                                                 </a>
                                             @endif

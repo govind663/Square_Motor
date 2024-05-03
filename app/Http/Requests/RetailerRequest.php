@@ -25,7 +25,7 @@ class RetailerRequest extends FormRequest
             $rule = [
                 'name' => 'required|max:255',
                 'mobile'=> 'required|max:255',
-                'email'=> 'nullable|unique:retailers|max:255',
+                'email'=> 'nullable|unique:retailers,email,'.$this->id.'|max:255',
                 'vehicle_id'=> 'nullable|max:255',
                 'address'=> 'nullable|max:255',
                 'pincode'=> 'nullable|max:255',
