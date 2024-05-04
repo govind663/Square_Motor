@@ -8,6 +8,7 @@ use App\Models\InsuranceCompany;
 use App\Models\Policy;
 use App\Models\RTO;
 use App\Models\Vehicle;
+use App\Models\Retailer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -29,11 +30,13 @@ class PolicyController extends Controller
      */
     public function create()
     {
-        $agents = Agent::whereNull('deleted_at')->get();
-        $vehicles = Vehicle::whereNull('deleted_at')->get();
-        $Rto = RTO::whereNull('deleted_at')->get();
-        $insuranceCompany = InsuranceCompany::whereNull('deleted_at')->get();
-        return view('master.policies.create', ['agents'=> $agents, 'vehicles'=>$vehicles, 'Rto'=>$Rto, 'insuranceCompany'=>$insuranceCompany]);
+        $agents = Agent::orderBy("id","desc")->whereNull('deleted_at')->get();
+        $vehicles = Vehicle::orderBy("id","desc")->whereNull('deleted_at')->get();
+        $Rto = RTO::orderBy("id","desc")->whereNull('deleted_at')->get();
+        $insuranceCompany = InsuranceCompany::orderBy("id","desc")->whereNull('deleted_at')->get();
+        $retailerUser = Retailer::orderBy("id","desc")->whereNull('deleted_at')->get();
+
+        return view('master.policies.create', ['agents'=> $agents, 'vehicles'=>$vehicles, 'Rto'=>$Rto, 'insuranceCompany'=>$insuranceCompany, 'retailerUser'=>$retailerUser]);
     }
 
     /**
@@ -114,10 +117,11 @@ class PolicyController extends Controller
     public function edit(string $id)
     {
         $policy = Policy::find($id);
-        $agents = Agent::whereNull('deleted_at')->get();
-        $vehicles = Vehicle::whereNull('deleted_at')->get();
-        $Rto = RTO::whereNull('deleted_at')->get();
-        $insuranceCompany = InsuranceCompany::whereNull('deleted_at')->get();
+        $agents = Agent::orderBy("id","desc")->whereNull('deleted_at')->get();
+        $vehicles = Vehicle::orderBy("id","desc")->whereNull('deleted_at')->get();
+        $Rto = RTO::orderBy("id","desc")->whereNull('deleted_at')->get();
+        $insuranceCompany = InsuranceCompany::orderBy("id","desc")->whereNull('deleted_at')->get();
+        $retailerUser = Retailer::orderBy("id","desc")->whereNull('deleted_at')->get();
 
         // $policyType = Policy::orderBy("id","desc")->whereNull('deleted_at')->pluck('policy_type')->toArray();
         $filledTabs = [];
@@ -129,7 +133,7 @@ class PolicyController extends Controller
         if ($policy->policy_type == '2') {
             $filledTabs[] = 'tab2';
         }
-        return view('master.policies.edit', ['policy'=> $policy, 'agents'=> $agents, 'vehicles'=>$vehicles, 'Rto'=>$Rto, 'insuranceCompany'=>$insuranceCompany, 'filledTabs'=>$filledTabs]);
+        return view('master.policies.edit', ['policy'=> $policy, 'agents'=> $agents, 'vehicles'=>$vehicles, 'Rto'=>$Rto, 'insuranceCompany'=>$insuranceCompany, 'filledTabs'=>$filledTabs, 'retailerUser'=>$retailerUser]);
     }
 
     /**

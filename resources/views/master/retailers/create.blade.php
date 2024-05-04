@@ -110,7 +110,7 @@ Retailer | Create
                                                 <select class="form-control @error('discount_type') is-invalid @enderror js-example-basic-single select2" id="discount_type" name="discount_type">
                                                     <option value="">Select Discount Type</option>
                                                     <option value="01" {{ (old("discount_type") == '01' ? "selected":"") }}>Percentage</option>
-                                                    <option value="02" {{ (old("discount_type") == '02' ? "selected":"") }}>Fixed</option>
+                                                    {{-- <option value="02" {{ (old("discount_type") == '02' ? "selected":"") }}>Fixed</option> --}}
                                                 </select>
                                                 @error('discount_type')
                                                     <span class="invalid-feedback" role="alert">

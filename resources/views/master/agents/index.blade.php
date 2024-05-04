@@ -16,6 +16,13 @@
         border-color: #387dff;
         border-radius: 5px;
     }
+    table.dataTable thead > tr > th.dt-orderable-asc, table.dataTable thead > tr > th.dt-orderable-desc, table.dataTable thead > tr > th.dt-ordering-asc, table.dataTable thead > tr > th.dt-ordering-desc, table.dataTable thead > tr > td.dt-orderable-asc, table.dataTable thead > tr > td.dt-orderable-desc, table.dataTable thead > tr > td.dt-ordering-asc, table.dataTable thead > tr > td.dt-ordering-desc {
+        position: relative;
+        padding-right: 0px !important;
+    }
+    table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date {
+        text-align: left !important;
+    }
 </style>
 @endpush
 
@@ -47,7 +54,7 @@
                         </div>
                         <div class="col-2 float-right">
                             <a href="{{ route('agent.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i> Add Agent
+                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Agent
                             </a>
                         </div>
                     </div>
@@ -67,7 +74,7 @@
                                 <tbody>
                                     @foreach ($agent as $key=>$value )
                                     <tr>
-                                        <td>{{ ++$key }}</td>
+                                        <td class="text-left">{{ ++$key }}</td>
                                         <td>{{ $value->agent_code }}</td>
                                         <td>{{ $value->name }}</td>
                                         <td>{{ $value->city }}</td>

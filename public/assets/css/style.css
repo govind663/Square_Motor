@@ -4560,7 +4560,7 @@ span.select2-container.select2-container--default.select2-container--open {
     position: absolute;
     left: 0;
     top: 0;
-    background: #7539ff;
+    background: #387dff;
     -webkit-transition: all .5s ease;
     -ms-transition: all .5s ease;
     transition: all .5s ease;
@@ -4575,7 +4575,7 @@ span.select2-container.select2-container--default.select2-container--open {
     left: 0;
     top: 50%;
     transform: translateY(-50%);
-    background: #7638ff;
+    background: #387dff;
     -webkit-transition: all .5s;
     -ms-transition: all .5s;
     transition: all .5s;
@@ -4592,13 +4592,14 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 .sidebar .sidebar-menu ul li.active a span {
-    color: #7539ff
+    color: #387dff
 }
 
 .sidebar .sidebar-menu ul li a {
     padding: 8px 25px;
     position: relative;
-    color: #3f4254
+    color: #19191c;
+    font-size: larger;
 }
 
 @media(max-width:1199.98px) {
@@ -4608,7 +4609,7 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 .sidebar .sidebar-menu ul li a .badge {
-    background: #7539ff;
+    background: #387dff;
     padding-left: 5px;
     padding-right: 5px
 }
@@ -4628,7 +4629,7 @@ span.select2-container.select2-container--default.select2-container--open {
 
 .sidebar .sidebar-menu ul li a:hover {
     background-color: rgba(38, 17, 85, .05);
-    color: #7539ff
+    color: #387dff
 }
 
 .sidebar .sidebar-menu ul li a:hover img {
@@ -4636,15 +4637,15 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 .sidebar .sidebar-menu ul li a:hover span {
-    color: #7539ff
+    color: #387dff
 }
 
 .sidebar .sidebar-menu ul li a:hover svg {
-    color: #7539ff
+    color: #387dff
 }
 
 .sidebar .sidebar-menu ul li a:hover i {
-    color: #7539ff
+    color: #387dff
 }
 
 .sidebar .sidebar-menu ul li a:hover .badge {
@@ -4652,12 +4653,12 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 .sidebar .sidebar-menu ul li a.active {
-    color: #7539ff;
+    color: #387dff;
     border-radius: 0
 }
 
 .sidebar .sidebar-menu ul li a.active svg {
-    color: #7539ff
+    color: #387dff
 }
 
 .sidebar .sidebar-menu ul li a.active img {
@@ -4665,7 +4666,7 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 .sidebar .sidebar-menu ul li a.active span {
-    color: #7539ff
+    color: #387dff
 }
 
 .sidebar .sidebar-menu ul li a.active::before {
@@ -4698,7 +4699,7 @@ span.select2-container.select2-container--default.select2-container--open {
 
 .sidebar .sidebar-menu ul li a span {
     padding: 0 10px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 400;
     line-height: 18px
 }
@@ -4707,7 +4708,7 @@ span.select2-container.select2-container--default.select2-container--open {
     display: inline-block;
     font-family: "font awesome 5 free";
     text-rendering: auto;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 18px;
     position: absolute;
     top: 8px;
@@ -4762,23 +4763,23 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 .sidebar .sidebar-menu ul li.submenu ul li a.active {
-    color: #7539ff;
+    color: #387dff;
     font-weight: 400
 }
 
 .sidebar .sidebar-menu ul li.submenu ul li a.active:after {
-    background: #7539ff;
-    border: 1px solid #7539ff;
+    background: #387dff;
+    border: 1px solid #387dff;
     display: none
 }
 
 .sidebar .sidebar-menu ul li.submenu ul li a:hover {
-    color: #7539ff
+    color: #387dff
 }
 
 .sidebar .sidebar-menu ul li.submenu ul li a:hover:after {
-    background: #7539ff;
-    border: 1px solid #7539ff
+    background: #387dff;
+    border: 1px solid #387dff
 }
 
 .sidebar .nav-link {
@@ -4788,7 +4789,7 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 .sidebar .nav-link.active {
-    color: #7539ff;
+    color: #387dff;
     background: 0 0;
     position: relative
 }
@@ -4796,7 +4797,7 @@ span.select2-container.select2-container--default.select2-container--open {
 .sidebar .nav-link.active:after {
     content: "";
     border-width: 10px;
-    border-color: transparent #7539ff transparent transparent;
+    border-color: transparent #387dff transparent transparent;
     border-style: solid;
     position: absolute;
     top: 36px;
@@ -4855,7 +4856,7 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 .sidebar .sidebar-right ul li.active a {
-    background: linear-gradient(46.62deg, #7539FF 0%, #3E45EB 93.64%);
+    background: linear-gradient(46.62deg, #387dff 0%, #3E45EB 93.64%);
     color: #fff
 }
 
@@ -4866,7 +4867,7 @@ span.select2-container.select2-container--default.select2-container--open {
 }
 
 .sidebar .sidebar-right ul li a.active {
-    color: #7539ff
+    color: #387dff
 }
 
 .sidebar .sidebar-right .menu-arrow {

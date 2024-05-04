@@ -16,6 +16,13 @@ Policy | List
         border-color: #387dff !important;
         border-radius: 5px;
     }
+    table.dataTable thead > tr > th.dt-orderable-asc, table.dataTable thead > tr > th.dt-orderable-desc, table.dataTable thead > tr > th.dt-ordering-asc, table.dataTable thead > tr > th.dt-ordering-desc, table.dataTable thead > tr > td.dt-orderable-asc, table.dataTable thead > tr > td.dt-orderable-desc, table.dataTable thead > tr > td.dt-ordering-asc, table.dataTable thead > tr > td.dt-ordering-desc {
+        position: relative;
+        padding-right: 0px !important;
+    }
+    table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date {
+        text-align: left !important;
+    }
 </style>
 @endpush
 
@@ -47,7 +54,7 @@ Policy | List
                         </div>
                         <div class="col-2 float-right">
                             <a href="{{ route('policy.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i> Add Policy
+                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Policy
                             </a>
                         </div>
                     </div>
@@ -85,7 +92,7 @@ Policy | List
                                         </td>
                                         <td class="no-export d-flex">
                                             <a href="{{ route('policy.edit', $value->id) }}" class="btn btn-warning btn-sm text-black">
-                                                <i class="far fa-edit me-2"></i>Edit
+                                                <i class="far fa-edit me-2"></i>Update
                                             </a>
                                             &nbsp;
                                             <form action="{{ route('policy.destroy', $value->id) }}" method="post">
@@ -126,10 +133,10 @@ Policy | List
         "language": {
             "info": "_START_-_END_ of _TOTAL_ entries",
             searchPlaceholder: "Search",
-            paginate: {
-                next: '<i class="ion-chevron-right"></i>',
-                previous: '<i class="ion-chevron-left"></i>'
-            }
+            // paginate: {
+            //     next: '<i class="ion-chevron-right"></i>',
+            //     previous: '<i class="ion-chevron-left"></i>'
+            // }
         },
         dom: 'Bfrtip',
         buttons: [

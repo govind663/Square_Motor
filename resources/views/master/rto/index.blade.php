@@ -16,6 +16,13 @@ RTO | List
         border-color: #387dff !important;
         border-radius: 5px;
     }
+    table.dataTable thead > tr > th.dt-orderable-asc, table.dataTable thead > tr > th.dt-orderable-desc, table.dataTable thead > tr > th.dt-ordering-asc, table.dataTable thead > tr > th.dt-ordering-desc, table.dataTable thead > tr > td.dt-orderable-asc, table.dataTable thead > tr > td.dt-orderable-desc, table.dataTable thead > tr > td.dt-ordering-asc, table.dataTable thead > tr > td.dt-ordering-desc {
+        position: relative;
+        padding-right: 0px !important;
+    }
+    table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date {
+        text-align: left !important;
+    }
 </style>
 @endpush
 
@@ -47,7 +54,7 @@ RTO | List
                         </div>
                         <div class="col-2 float-right">
                             <a href="{{ route('rto.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i> Add RTO
+                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i> RTO
                             </a>
                         </div>
                     </div>
@@ -114,10 +121,10 @@ RTO | List
         "language": {
             "info": "_START_-_END_ of _TOTAL_ entries",
             searchPlaceholder: "Search",
-            paginate: {
-                next: '<i class="ion-chevron-right"></i>',
-                previous: '<i class="ion-chevron-left"></i>'
-            }
+            // paginate: {
+            //     next: '<i class="ion-chevron-right"></i>',
+            //     previous: '<i class="ion-chevron-left"></i>'
+            // }
         },
         dom: 'Bfrtip',
         buttons: [

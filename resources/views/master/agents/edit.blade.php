@@ -122,7 +122,7 @@
                             </div>
                             <div class="add-customer-btns text-start">
                                 <a href="{{ route('agent.index') }}" class="btn btn-danger">Cancel</a>
-                                <button type="submit" class="btn btn-success">Submit</button>
+                                <button type="submit" class="btn btn-success">Update</button>
                             </div>
                         </form>
                     </div>

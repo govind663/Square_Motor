@@ -145,7 +145,7 @@ class AgentController extends Controller
 
     public function fetch_agent_profit_amt(Request $request)
     {
-        $data['agentProfitAmount'] = InsuranceCompany::whereId($request->agentId)->pluck('percentage_amt');
+        $data['agentProfitAmount'] = InsuranceCompany::whereId($request->agentCompanyId)->pluck('percentage_amt');
 
         return response()->json($data);
     }

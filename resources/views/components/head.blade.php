@@ -9,27 +9,26 @@
 <meta name="csrf-token" id="csrf-token" content="{{ csrf_token() }}">
 
 <!-- Favicon -->
-<link rel="shortcut icon" href="{{ url('/') }}/assets/img/Gadi_Insurances_ico.png">
+<link rel="shortcut icon" href="{{ asset('/assets/img/Gadi_Insurances_ico.png') }}">
 
 <!-- Bootstrap CSS -->
-<link rel="stylesheet" href="{{ url('/') }}/assets/css/bootstrap.min.css">
+<link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
 
 <!-- Fontawesome CSS -->
-<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/fontawesome/css/fontawesome.min.css">
-<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/fontawesome/css/all.min.css">
+<link rel="stylesheet" href="{{ asset('/assets/plugins/fontawesome/css/fontawesome.min.css') }}">
+<link rel="stylesheet" href="{{ asset('/assets/plugins/fontawesome/css/all.min.css') }}">
 
 <!-- Feather CSS -->
-<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/feather/feather.css">
+<link rel="stylesheet" href="{{ asset('/assets/plugins/feather/feather.css') }}">
 
 <!-- Main CSS -->
-<link rel="stylesheet" href="{{ url('/') }}/assets/css/style.css">
+<link rel="stylesheet" href="{{ asset('/assets/css/style.css') }}">
 
 <!-- Select2 CSS -->
-<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/select2/css/select2.css">
-<link rel="stylesheet" href="{{ url('/') }}/assets/plugins/select2/css/select2.min.css">
+<link rel="stylesheet" href="{{ asset('/assets/plugins/select2/css/select2.min.css') }}">
 
 <!-- Datetimepicker CSS -->
-<link rel="stylesheet" href="{{ url('/') }}/assets/css/bootstrap-datetimepicker.min.css">
+<link rel="stylesheet" href="{{ asset('/assets/css/bootstrap-datetimepicker.min.css') }}">
 
 <!-- Datatables CSS -->
 <link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap5.css">
@@ -40,5 +39,5 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 
-<script src="{{ url('/') }}/assets/js/layout.js"></script>
+<script src="{{ asset('/assets/js/layout.js') }}"></script>
 

@@ -137,7 +137,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Profit Amount : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="agent_profit_amt" readonly name="profit_amt" required class="form-control   " value="{{ old('profit_amt') }}" placeholder="Enter Profit Amount">
+                                                            <input type="text" id="agent_profit_amt" readonly name="profit_amt" readonly class="form-control   " value="{{ old('profit_amt') }}" placeholder="Enter Profit Amount">
 
                                                         </div>
                                                     </div>
@@ -260,7 +260,6 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>Customer Name : <span class="text-danger">*</span></b></label>
                                                             <input type="text" id="customer_name" name="customer_name" required class="form-control  " value="{{ old('customer_name') }}" placeholder="Enter Customer Name">
-
                                                         </div>
                                                     </div>
 
@@ -318,7 +317,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Company Policy : <span class="text-danger">*</span></b></label>
-                                                            <select required class="form-control   select" id="company_id" name="insurance_company_id">
+                                                            <select required class="form-control   select" id="retailer_company_id" name="insurance_company_id">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 @foreach ($insuranceCompany as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
@@ -607,16 +606,67 @@ Policy | Create
     });
 </script>
 
+{{-- Company Commission In Percentage fetch by agent_commission_percentage --}}
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#agent_company_id', function() {
+            let agent_company_id = $(this).val();
+            $('#agent_profit_amt').show();
+            $.ajax({
+                method: 'post',
+                url: "{{ route('fetch_agent_profit_amt') }}",
+                data: {
+                    agentCompanyId: agent_company_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    // === aler the data percentage amt
+                    $('#agent_profit_amt').val(data.agentProfitAmount);
+
+                }
+            })
+        });
+    });
+</script>
+
+{{-- Company Commission In Percentage fetch by agent_commission_percentage --}}
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#retailer_company_id', function() {
+            let retailer_company_id = $(this).val();
+            $('#retailer_profit_amt').show();
+            $.ajax({
+                method: 'post',
+                url: "{{ route('fetch_agent_profit_amt') }}",
+                data: {
+                    agentCompanyId: retailer_company_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    // === aler the data percentage amt
+                    $('#retailer_profit_amt').val(data.agentProfitAmount);
+
+                }
+            })
+        });
+    });
+</script>
+
 {{-- Agent Commercial Caluation --}}
 <script>
     $(document).ready(function () {
-        $('#agent_main_price,#agent_profit_amt').on('keyup', function () {
+        $('#agent_main_price, #agent_profit_amt').on('keyup', function () {
             agent_main_price = $('#agent_main_price').val();
+            agent_profit_amt = $('#agent_profit_amt').val();
 
             if (agent_main_price != '' && agent_profit_amt != '') {
-                // === Agent Main Price dived by half 2
-                var agent_main_price_div_by_half = parseInt(agent_main_price) / 2;
-                agent_profit_amt = $('#agent_profit_amt').val(parseInt(agent_main_price_div_by_half) );
+                agent_main_price = $('#agent_main_price').val();
+                agent_profit_amt = $('#agent_profit_amt').val();
+                // alert(agent_profit_amt);
+                var one_percent_value = (parseInt(agent_main_price) / 100);
+                var total_percent_value = (one_percent_value * agent_profit_amt);
+
+                $('#agent_profit_amt').val(total_percent_value);
             }
         });
 
@@ -645,13 +695,16 @@ Policy | Create
 {{-- Retailer Commercial Caluation --}}
 <script>
     $(document).ready(function () {
-        $('#retailer_main_price,#retailer_profit_amt').on('keyup', function () {
+        $('#retailer_main_price, #retailer_profit_amt').on('keyup', function () {
             retailer_main_price = $('#retailer_main_price').val();
+            retailer_profit_amt = $('#retailer_profit_amt').val();
 
             if (retailer_main_price != '' && retailer_profit_amt != '') {
-                // === Retailer Main Price dived by half 2
-                var retailer_main_price_div_by_half = retailer_main_price / 2;
-                retailer_profit_amt = $('#retailer_profit_amt').val(retailer_main_price_div_by_half);
+
+                var total_percent_main_price = (parseInt(retailer_main_price) / 100);
+                var total_retailer_profit_amt = (parseInt(total_percent_main_price) * parseInt(retailer_profit_amt));
+                // alert (parseInt(total_retailer_profit_amt));
+                $('#retailer_profit_amt').val(parseInt(total_retailer_profit_amt));
             }
         });
 
@@ -660,12 +713,9 @@ Policy | Create
             retailer_tds_deduction = $('#retailer_tds_deduction').val();
 
             if (retailer_profit_amt != '' && retailer_tds_deduction != '') {
-                // === Retailer Profit Amount minus TDS deduction in percentage
-                var retailer_profit_amt = $('#retailer_profit_amt').val();
-                var retailer_tds_deduction = $('#retailer_tds_deduction').val();
-                var retailer_profit_amt_minus_tds = retailer_profit_amt - (retailer_tds_deduction / 100);
-                $('#retailer_actual_profit_amt').val(retailer_profit_amt_minus_tds);
-
+                var retailer_profit_amt_minus_tds = (parseInt(retailer_profit_amt) / 100 ) * parseInt(retailer_tds_deduction);
+                var retailer_profit = (parseInt(retailer_profit_amt)) - parseInt(retailer_profit_amt_minus_tds)
+                $('#retailer_actual_profit_amt').val(parseInt(retailer_profit));
             }
         });
 
