@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
             'user_type' => '1',
             'email' => 'admin@gmail.com',
             'mobile_no' => '1234567890',
-            'password' => Hash::make('1234567890'),
+            'password' => Hash::make('Suresh@12'),
             'created_by' => 1,
             'created_at' => Carbon::now(),
         ]);
