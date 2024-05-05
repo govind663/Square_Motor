@@ -63,6 +63,7 @@ class PolicyController extends Controller
 
             $policy->policy_type = $request->policy_type ? $request->policy_type : null;
             $policy->agent_id = $request->agent_id ? $request->agent_id : null;
+            $policy->retailer_id = $request->retailer_id ? $request->retailer_id : null;
             $policy->customer_name = $request->customer_name? $request->customer_name : null;
             $policy->vehicle_reg_no = $request->vehicle_reg_no ? $request->vehicle_reg_no : null;
             $policy->r_t_o_id = $request->r_t_o_id ? $request->r_t_o_id : null;
@@ -71,15 +72,16 @@ class PolicyController extends Controller
             $policy->insurance_type = $request->insurance_type ? $request->insurance_type : null;
             $policy->insurance_company_id = $request->insurance_company_id ? $request->insurance_company_id : null;
             $policy->main_price = $request->main_price ? $request->main_price : null;
+            $policy->company_commission_percentage = $request->company_commission_percentage ? $request->company_commission_percentage : null;
             $policy->profit_amt = $request->profit_amt ? $request->profit_amt : null;
             $policy->tds_deduction = $request->tds_deduction ? $request->tds_deduction : null;
             $policy->actual_profit_amt = $request->actual_profit_amt ? $request->actual_profit_amt : null;
             $policy->commission_percentage = $request->commission_percentage ? $request->commission_percentage : null;
             $policy->comission_rupees = $request->comission_rupees ? $request->comission_rupees : null;
             $policy->payable_amount = $request->payable_amount ? $request->payable_amount : null;
-            $policy->from_dt = $request->from_dt;
-            $policy->to_dt = $request->to_dt;
-            $policy->issue_dt = $request->issue_dt;
+            $policy->from_dt = date("Y-m-d", strtotime($request->from_dt));
+            $policy->to_dt = date("Y-m-d", strtotime($request->to_dt));
+            $policy->issue_dt = date("Y-m-d", strtotime($request->issue_dt));
             $policy->payment_by = $request->payment_by ? $request->payment_by : null;
             $policy->payment_through = $request->payment_through ? $request->payment_through : null;
 
@@ -159,6 +161,7 @@ class PolicyController extends Controller
 
             $policy->policy_type = $request->policy_type ? $request->policy_type : null;
             $policy->agent_id = $request->agent_id ? $request->agent_id : null;
+            $policy->retailer_id = $request->retailer_id ? $request->retailer_id : null;
             $policy->customer_name = $request->customer_name? $request->customer_name : null;
             $policy->vehicle_reg_no = $request->vehicle_reg_no ? $request->vehicle_reg_no : null;
             $policy->r_t_o_id = $request->r_t_o_id ? $request->r_t_o_id : null;
@@ -167,15 +170,16 @@ class PolicyController extends Controller
             $policy->insurance_type = $request->insurance_type ? $request->insurance_type : null;
             $policy->insurance_company_id = $request->insurance_company_id ? $request->insurance_company_id : null;
             $policy->main_price = $request->main_price ? $request->main_price : null;
+            $policy->company_commission_percentage = $request->company_commission_percentage ? $request->company_commission_percentage : null;
             $policy->profit_amt = $request->profit_amt ? $request->profit_amt : null;
             $policy->tds_deduction = $request->tds_deduction ? $request->tds_deduction : null;
             $policy->actual_profit_amt = $request->actual_profit_amt ? $request->actual_profit_amt : null;
             $policy->commission_percentage = $request->commission_percentage ? $request->commission_percentage : null;
             $policy->comission_rupees = $request->comission_rupees ? $request->comission_rupees : null;
             $policy->payable_amount = $request->payable_amount ? $request->payable_amount : null;
-            $policy->from_dt = date('d-m-Y', strtotime($request->from_dt)) ? $request->from_dt : null;
-            $policy->to_dt = date('d-m-Y', strtotime($request->to_dt)) ? $request->to_dt : null;
-            $policy->issue_dt = date('d-m-Y', strtotime($request->issue_dt)) ? $request->issue_dt : null;
+            $policy->from_dt = date("Y-m-d", strtotime($request->from_dt));
+            $policy->to_dt = date("Y-m-d", strtotime($request->to_dt));
+            $policy->issue_dt = date("Y-m-d", strtotime($request->issue_dt));
             $policy->payment_by = $request->payment_by ? $request->payment_by : null;
             $policy->payment_through = $request->payment_through ? $request->payment_through : null;
 

@@ -18,7 +18,7 @@ Policy | List
     }
     table.dataTable thead > tr > th.dt-orderable-asc, table.dataTable thead > tr > th.dt-orderable-desc, table.dataTable thead > tr > th.dt-ordering-asc, table.dataTable thead > tr > th.dt-ordering-desc, table.dataTable thead > tr > td.dt-orderable-asc, table.dataTable thead > tr > td.dt-orderable-desc, table.dataTable thead > tr > td.dt-ordering-asc, table.dataTable thead > tr > td.dt-ordering-desc {
         position: relative;
-        padding-right: 0px !important;
+        padding-left: 2px !important;
     }
     table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date {
         text-align: left !important;
@@ -61,7 +61,7 @@ Policy | List
                     <div class="card-body">
 
                         <div class="table-responsive">
-                            <table class="data-table-export1 table table-nowrap">
+                            <table class="data-table-export1 table table-hover">
                                 <thead>
                                     <tr>
                                         <th>Sr. No.</th>
@@ -71,6 +71,7 @@ Policy | List
                                         <th>Amount</th>
                                         <th>Issue Date</th>
                                         <th>Policy Document</th>
+                                        <th>Policy Type</th>
                                         <th class="no-export">Action</th>
                                     </tr>
                                 </thead>
@@ -88,6 +89,13 @@ Policy | List
                                                 <a href="{{url('/')}}/company_policy/policy_doc/{{ $value->policy_doc }}" target="_blank" class="btn btn-info btn-sm text-light">
                                                     <b> View </b>
                                                 </a>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if($value->policy_type == '1')
+                                            <span class="badge bg-success" >Agent</span>
+                                            @elseif($value->policy_type == '2')
+                                            <span class="badge bg-primary" >Retailer</span>
                                             @endif
                                         </td>
                                         <td class="no-export d-flex">

@@ -73,10 +73,10 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select RTO : <span class="text-danger">*</span></b></label>
-                                                            <select required class="form-control   select" id="agent_rto_id" name="rto_id">
+                                                            <select required class="select" id="agent_rto_id" name="r_t_o_id">
                                                                 <option value="">Select RTO</option>
                                                                 @foreach ($Rto as $value )
-                                                                <option value="{{ $value->id }}" {{ (old("rto_id") == $value->id ? "selected":"") }}>{{ $value->city }} - {{ $value->pincode }}</option>
+                                                                <option value="{{ $value->id }}" {{ (old("r_t_o_id") == $value->id ? "selected":"") }}>{{ $value->city }} - {{ $value->pincode }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -85,7 +85,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Vehicle Type : <span class="text-danger">*</span></b></label>
-                                                            <select required class="form-control   select" id="agent_vehicle_id" name="vehicle_id">
+                                                            <select required class="select" id="agent_vehicle_id" name="vehicle_id">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 @foreach ($vehicles as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("vehicle_id") == $value->id ? "selected":"") }}>{{ $value->vehicle_type }}</option>
@@ -105,7 +105,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Insurance Type : <span class="text-danger">*</span></b></label>
-                                                            <select required class="form-control   select" id="agent_insurance_type" name="insurance_type">
+                                                            <select required class="select" id="agent_insurance_type" name="insurance_type">
                                                                 <option value="">Select Insurance Type</option>
                                                                 <option value="1" {{ (old("insurance_type") == "1" ? "selected":"") }}>1st Party</option>
                                                                 <option value="2" {{ (old("insurance_type") == "2" ? "selected":"") }}>3rd Party</option>
@@ -119,7 +119,7 @@ Policy | Create
                                                             <select required class="form-control   select" id="agent_company_id" name="insurance_company_id">
                                                                 <option value="">Select Company Policye</option>
                                                                 @foreach ($insuranceCompany as $value )
-                                                                <option value="{{ $value->id }}" {{ (old("agent_company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
+                                                                <option value="{{ $value->id }}" {{ (old("insurance_company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -249,6 +249,7 @@ Policy | Create
                                                     </div>
 
                                                 </div>
+
                                                 <div class="add-customer-btns text-start">
                                                     <a href="{{ route('policy.index') }}" class="btn btn-danger">Cancel</a>
                                                     <button type="submit" class="btn btn-success">Submit</button>
@@ -291,10 +292,10 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select RTO : <span class="text-danger">*</span></b></label>
-                                                            <select required class="form-control   select" id="rto_id" name="rto_id">
+                                                            <select required class="select" id="rto_id" name="r_t_o_id">
                                                                 <option value="">Select RTO</option>
                                                                 @foreach ($Rto as $value )
-                                                                <option value="{{ $value->id }}" {{ (old("rto_id") == $value->id ? "selected":"") }}>{{ $value->city }} - {{ $value->pincode }}</option>
+                                                                <option value="{{ $value->id }}" {{ (old("r_t_o_id") == $value->id ? "selected":"") }}>{{ $value->city }} - {{ $value->pincode }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -303,7 +304,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Vehicle Type : <span class="text-danger">*</span></b></label>
-                                                            <select required class="form-control   select" id="vehicle_id" name="vehicle_id">
+                                                            <select required class="select" id="vehicle_id" name="vehicle_id">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 @foreach ($vehicles as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("vehicle_id") == $value->id ? "selected":"") }}>{{ $value->vehicle_type }}</option>
@@ -337,7 +338,7 @@ Policy | Create
                                                             <select required class="select" id="retailer_company_id" name="insurance_company_id">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 @foreach ($insuranceCompany as $value )
-                                                                <option value="{{ $value->id }}" {{ (old("company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
+                                                                <option value="{{ $value->id }}" {{ (old("insurance_company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
                                                                 @endforeach
                                                             </select>
                                                         </div>
@@ -355,7 +356,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Company Commission (%) : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="retailer_company_commission_percentage" readonly name="retailer_company_commission_percentage" readonly class="form-control   " value="{{ old('retailer_company_commission_percentage') }}" placeholder="Enter Company Profit (%)">
+                                                            <input type="text" id="retailer_company_commission_percentage" readonly name="company_commission_percentage" readonly class="form-control   " value="{{ old('company_commission_percentage') }}" placeholder="Enter Company Profit (%)">
 
                                                         </div>
                                                     </div>
@@ -395,7 +396,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Retailer Discount Amount (in RS) : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" readonly id="retailer_commission_rupees" name="commission_rupees" required class="form-control  " value="{{ old('commission_rupees') }}" placeholder="Enter Retailer Discount Amount (in RS)">
+                                                            <input type="text" readonly id="retailer_commission_rupees" name="comission_rupees" required class="form-control  " value="{{ old('comission_rupees') }}" placeholder="Enter Retailer Discount Amount (in RS)">
 
                                                         </div>
                                                     </div>

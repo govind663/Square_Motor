@@ -2,6 +2,7 @@
 
 use App\Models\Agent;
 use App\Models\InsuranceCompany;
+use App\Models\Retailer;
 use App\Models\RTO;
 use App\Models\Vehicle;
 use Illuminate\Database\Migrations\Migration;
@@ -20,7 +21,9 @@ return new class extends Migration
 
             $table->string('policy_no')->unique()->nullable();
             $table->string('policy_type')->nullable();
+
             $table->foreignIdFor(Agent::class)->nullable()->index();
+            $table->foreignIdFor(Retailer::class)->nullable()->index();
             $table->string('customer_name')->nullable();
             $table->string('vehicle_reg_no')->nullable();
             $table->foreignIdFor(RTO::class)->nullable()->index();
@@ -29,6 +32,7 @@ return new class extends Migration
             $table->string('insurance_type')->nullable();
             $table->foreignIdFor(InsuranceCompany::class)->nullable()->index();
             $table->string('main_price')->nullable();
+            $table->string('company_commission_percentage')->nullable();
             $table->string('profit_amt')->nullable();
             $table->string('tds_deduction')->nullable();
             $table->string('actual_profit_amt')->nullable();
