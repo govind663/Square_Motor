@@ -45,7 +45,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Agent : <span class="text-danger">*</span></b></label>
-                                                            <select required class="form-control   select" id="agent_id" name="agent_id">
+                                                            <select required class="select" id="agent_id" name="agent_id">
                                                                 <option value="">Select Agent</option>
                                                                 @foreach ($agents as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("agent_id") == $value->id ? "selected":"") }}>{{ $value->name }}</option>
@@ -136,8 +136,16 @@ Policy | Create
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
-                                                            <label><b>Profit Amount : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="agent_profit_amt" readonly name="profit_amt" readonly class="form-control   " value="{{ old('profit_amt') }}" placeholder="Enter Profit Amount">
+                                                            <label><b>Company Commission (%) : <span class="text-danger">*</span></b></label>
+                                                            <input type="text" id="company_commission_percentage" readonly name="company_commission_percentage" readonly class="form-control   " value="{{ old('company_commission_percentage') }}" placeholder="Enter Company Profit (%)">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <div class="input-block mb-3">
+                                                            <label><b>Company Profit Amount : <span class="text-danger">*</span></b></label>
+                                                            <input type="text" id="agent_profit_amt" readonly name="profit_amt" readonly class="form-control   " value="{{ old('profit_amt') }}" placeholder="Enter Company Profit Amount">
 
                                                         </div>
                                                     </div>
@@ -153,7 +161,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Actual Profit : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" readony id="agent_actual_profit_amt" name="actual_profit_amt" required class="form-control   " value="{{ old('actual_profit_amt') }}" placeholder="Enter Actual Profit">
+                                                            <input type="text" readonly id="agent_actual_profit_amt" name="actual_profit_amt" required class="form-control   " value="{{ old('actual_profit_amt') }}" placeholder="Enter Actual Profit">
 
                                                         </div>
                                                     </div>
@@ -259,8 +267,17 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Customer Name : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="customer_name" name="customer_name" required class="form-control  " value="{{ old('customer_name') }}" placeholder="Enter Customer Name">
+                                                            <select required class="select" id="retailer_id" name="retailer_id">
+                                                                <option value="">Select Customer Name</option>
+                                                                @foreach ($retailerUser as $value )
+                                                                <option value="{{ $value->id }}" {{ (old("retailer_id") == $value->id ? "selected":"") }}>{{ $value->name }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            <a href="{{ route('retailer.create') }}" class="btn btn-primary btn-sm">
+                                                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Customer
+                                                            </a>
                                                         </div>
+
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
@@ -306,7 +323,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Insurance Type : <span class="text-danger">*</span></b></label>
-                                                            <select required class="form-control   select" id="insurance_type" name="insurance_type">
+                                                            <select required class="select" id="insurance_type" name="insurance_type">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 <option value="1" {{ (old("insurance_type") == "1" ? "selected":"") }}>1st Party</option>
                                                                 <option value="2" {{ (old("insurance_type") == "2" ? "selected":"") }}>2nd Party</option>
@@ -317,7 +334,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Select Company Policy : <span class="text-danger">*</span></b></label>
-                                                            <select required class="form-control   select" id="retailer_company_id" name="insurance_company_id">
+                                                            <select required class="select" id="retailer_company_id" name="insurance_company_id">
                                                                 <option value="">Select Vehicle Type</option>
                                                                 @foreach ($insuranceCompany as $value )
                                                                 <option value="{{ $value->id }}" {{ (old("company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
@@ -331,6 +348,14 @@ Policy | Create
                                                         <div class="input-block mb-3">
                                                             <label><b>Main Price : <span class="text-danger">*</span></b></label>
                                                             <input type="text" id="retailer_main_price" name="main_price" required class="form-control  " value="{{ old('main_price') }}" placeholder="Enter Main Price">
+
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <div class="input-block mb-3">
+                                                            <label><b>Company Commission (%) : <span class="text-danger">*</span></b></label>
+                                                            <input type="text" id="retailer_company_commission_percentage" readonly name="retailer_company_commission_percentage" readonly class="form-control   " value="{{ old('retailer_company_commission_percentage') }}" placeholder="Enter Company Profit (%)">
 
                                                         </div>
                                                     </div>
@@ -483,24 +508,27 @@ Policy | Create
         }).change();
     });
 </script>
+
+{{-- Current Date javascript for agent_issued_dt  --}}
 <script>
     $(document).ready(function(){
         $("#agent_issue_dt").datetimepicker({
         });
         var myDate = new Date();
         var month = myDate.getMonth() + 1;
-        var pre
         var prettyDate = myDate.getDate() + '-' + month + '-' + myDate.getFullYear();
         $("#agent_issue_dt").val(prettyDate);
     });
 </script>
+
+{{-- Current Date javascript for retailer_issued_dt  --}}
 <script>
     $(document).ready(function(){
         $("#retailer_issue_dt").datetimepicker({
         });
-        var myDate1 = new Date();
-        var month1 = myDate.getMonth() + 1;
-        var prettyDate1 = myDate1.getDate() + '-' + month1 + '-' + myDate1.getFullYear();
+        var myDate = new Date();
+        var month = myDate.getMonth() + 1;
+        var prettyDate1 = myDate.getDate() + '-' + month + '-' + myDate.getFullYear();
         $("#retailer_issue_dt").val(prettyDate1);
     });
 </script>
@@ -583,6 +611,28 @@ Policy | Create
 
 </script>
 
+{{-- Retailer Commission In Percentage fetch by retailer_commission_percentage --}}
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#retailer_id', function() {
+            let retailer_id = $(this).val();
+            $('#retailer_commission_percentage').show();
+            $.ajax({
+                method: 'post',
+                url: "{{ route('fetch_retailer_commission_percentage') }}",
+                data: {
+                    retailerId: retailer_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    // === aler the data percentage amt
+                    $('#retailer_commission_percentage').val(data.retailerCommissionPercentage);
+
+                }
+            })
+        });
+    });
+</script>
 {{-- Agent Commission In Percentage fetch by agent_commission_percentage --}}
 <script>
     $(document).ready(function(){
@@ -606,12 +656,12 @@ Policy | Create
     });
 </script>
 
-{{-- Company Commission In Percentage fetch by agent_commission_percentage --}}
+{{-- Company Commission In Percentage fetch by agent_company_commission_percentage --}}
 <script>
     $(document).ready(function(){
         $(document).on('change','#agent_company_id', function() {
             let agent_company_id = $(this).val();
-            $('#agent_profit_amt').show();
+            $('#company_commission_percentage').show();
             $.ajax({
                 method: 'post',
                 url: "{{ route('fetch_agent_profit_amt') }}",
@@ -621,7 +671,7 @@ Policy | Create
                 },
                 success: function(data) {
                     // === aler the data percentage amt
-                    $('#agent_profit_amt').val(data.agentProfitAmount);
+                    $('#company_commission_percentage').val(data.agentProfitAmount);
 
                 }
             })
@@ -629,12 +679,12 @@ Policy | Create
     });
 </script>
 
-{{-- Company Commission In Percentage fetch by agent_commission_percentage --}}
+{{-- Company Commission In Percentage fetch by retailer_company_commission_percentage --}}
 <script>
     $(document).ready(function(){
         $(document).on('change','#retailer_company_id', function() {
             let retailer_company_id = $(this).val();
-            $('#retailer_profit_amt').show();
+            $('#retailer_company_commission_percentage').show();
             $.ajax({
                 method: 'post',
                 url: "{{ route('fetch_agent_profit_amt') }}",
@@ -644,7 +694,7 @@ Policy | Create
                 },
                 success: function(data) {
                     // === aler the data percentage amt
-                    $('#retailer_profit_amt').val(data.agentProfitAmount);
+                    $('#retailer_company_commission_percentage').val(data.agentProfitAmount);
 
                 }
             })
@@ -655,19 +705,17 @@ Policy | Create
 {{-- Agent Commercial Caluation --}}
 <script>
     $(document).ready(function () {
-        $('#agent_main_price, #agent_profit_amt').on('keyup', function () {
+        $('#agent_main_price, #company_commission_percentage').on('keyup', function () {
             agent_main_price = $('#agent_main_price').val();
-            agent_profit_amt = $('#agent_profit_amt').val();
+            company_commission_percentage = $('#company_commission_percentage').val();
 
-            if (agent_main_price != '' && agent_profit_amt != '') {
-                agent_main_price = $('#agent_main_price').val();
-                agent_profit_amt = $('#agent_profit_amt').val();
-                // alert(agent_profit_amt);
+            if (agent_main_price != '' && company_commission_percentage != '') {
+
                 var one_percent_value = (parseInt(agent_main_price) / 100);
-                var total_percent_value = (one_percent_value * agent_profit_amt);
-
+                var total_percent_value = (parseInt(one_percent_value) * parseInt(company_commission_percentage));
                 $('#agent_profit_amt').val(total_percent_value);
             }
+
         });
 
         $('#agent_tds_deduction, #agent_profit_amt').on('keyup', function () {
@@ -695,44 +743,40 @@ Policy | Create
 {{-- Retailer Commercial Caluation --}}
 <script>
     $(document).ready(function () {
-        $('#retailer_main_price, #retailer_profit_amt').on('keyup', function () {
+        $('#retailer_main_price, #retailer_company_commission_percentage').on('keyup', function () {
             retailer_main_price = $('#retailer_main_price').val();
-            retailer_profit_amt = $('#retailer_profit_amt').val();
+            retailer_company_commission_percentage = $('#retailer_company_commission_percentage').val();
 
-            if (retailer_main_price != '' && retailer_profit_amt != '') {
-
-                var total_percent_main_price = (parseInt(retailer_main_price) / 100);
-                var total_retailer_profit_amt = (parseInt(total_percent_main_price) * parseInt(retailer_profit_amt));
-                // alert (parseInt(total_retailer_profit_amt));
-                $('#retailer_profit_amt').val(parseInt(total_retailer_profit_amt));
+            if (retailer_main_price != '' && retailer_company_commission_percentage != '') {
+                var one_percent_value = (parseInt(retailer_main_price) / 100);
+                var total_percent_value = (parseInt(one_percent_value) * parseInt(retailer_company_commission_percentage));
+                $('#retailer_profit_amt').val(total_percent_value);
             }
         });
 
-        $('#retailer_tds_deduction, #retailer_profit_amt').on('keyup', function () {
+        $('#retailer_tds_deduction, #retailer_profit_amt, #retailer_commission_percentage').on('keyup', function () {
             retailer_profit_amt = $('#retailer_profit_amt').val();
             retailer_tds_deduction = $('#retailer_tds_deduction').val();
+            retailer_commission_percentage = $('#retailer_commission_percentage').val();
 
             if (retailer_profit_amt != '' && retailer_tds_deduction != '') {
                 var retailer_profit_amt_minus_tds = (parseInt(retailer_profit_amt) / 100 ) * parseInt(retailer_tds_deduction);
                 var retailer_profit = (parseInt(retailer_profit_amt)) - parseInt(retailer_profit_amt_minus_tds)
                 $('#retailer_actual_profit_amt').val(parseInt(retailer_profit));
             }
-        });
 
-        $('#retailer_commission_percentage, #retailer_actual_profit_amt').on('keyup', function () {
-            retailer_commission_percentage = $('#retailer_commission_percentage').val();
             if (retailer_commission_percentage != '' && retailer_actual_profit_amt != '') {
                 // === Retailer Profit Amount minus TDS deduction in percentage
                 var retailer_actual_profit_amt = $('#retailer_actual_profit_amt').val();
                 var retailer_commission_percentage = $('#retailer_commission_percentage').val();
-                var retailer_commission_rupees_minus_with_commissionInDiscount = retailer_actual_profit_amt * (retailer_commission_percentage / 100);
-                $('#retailer_commission_rupees').val(retailer_commission_rupees_minus_with_commissionInDiscount);
+                var retailer_commission_rupees_minus_with_commissionInDiscount = parseInt(retailer_actual_profit_amt) * (parseInt(retailer_commission_percentage) / 100);
+                $('#retailer_commission_rupees').val(parseInt(retailer_commission_rupees_minus_with_commissionInDiscount));
 
                 // === Calculate (retailer_main_price - retailer_commission_rupees)
                 var retailer_main_price = $('#retailer_main_price').val();
                 var retailer_commission_rupees = $('#retailer_commission_rupees').val();
-                var retailer_main_price_minus_commission_rupees = retailer_main_price - retailer_commission_rupees;
-                $('#retailer_payable_amount').val(retailer_main_price_minus_commission_rupees);
+                var retailer_main_price_minus_commission_rupees = parseInt(retailer_main_price) - parseInt(retailer_commission_rupees);
+                $('#retailer_payable_amount').val(parseInt(retailer_main_price_minus_commission_rupees));
             }
         });
     });

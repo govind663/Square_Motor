@@ -39,7 +39,6 @@
 
 <!-- Custom JS -->
 <script src="{{ asset('/assets/js/script.js') }}"></script>
-<script src="{{ asset('/cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}" ></script>
 
 
 <script>

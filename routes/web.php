@@ -66,6 +66,9 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHisto
     // === fetch Agent Commission in percentage
     Route::post ('agent_commission_percentage', [AgentController::class,'agent_commission_percentage'])->name('agent_commission_percentage');
 
+    // === fetch Retailer Commission in percentage
+    Route::post ('fetch_retailer_commission_percentage', [AgentController::class,'retailer_commission_percentage'])->name('fetch_retailer_commission_percentage');
+
     // === fetch Company Commission in percentage
     Route::post ('fetch_agent_profit_amt', [AgentController::class,'fetch_agent_profit_amt'])->name('fetch_agent_profit_amt');
 

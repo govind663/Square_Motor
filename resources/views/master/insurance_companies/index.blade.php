@@ -49,10 +49,10 @@ Insurance Company | List
             <div class="col-sm-12">
                 <div class="card">
                     <div class="row card-body">
-                        <div class="col-10">
+                        <div class="col-9">
                             <h5 class="card-title">All Insurance Company List</h5>
                         </div>
-                        <div class="col-2 float-right">
+                        <div class="col-3 float-right">
                             <a href="{{ route('insurance_company.create') }}" class="btn btn-primary btn-sm">
                                 <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Insurance Company
                             </a>
@@ -78,7 +78,7 @@ Insurance Company | List
                                         <td>{{ $value->company_name }}</td>
                                         <td class="text-start no-export">
                                             @if(!empty($value->logo_doc))
-                                                <img src="{{url('/')}}/company_policy/logo_doc/{{ $value->logo_doc }}" alt="{{ $value->logo_doc }}" style="height:20% !important; width: 20% !important" >
+                                                <img src="{{url('/')}}/company_policy/logo_doc/{{ $value->logo_doc }}" alt="{{ $value->logo_doc }}" style="height:60px !important; width: 60px !important; border-radius: 50%;" >
                                             @endif
                                         </td>
                                         <td>

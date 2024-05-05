@@ -82,7 +82,7 @@ Insurance Company | Edit
                                             <select class="@error('commision_type') is-invalid @enderror select" id="commision_type" name="commision_type">
                                                 <option value="">Select Commision Type</option>
                                                 <option value="01" {{ ($insuranceCompany->commision_type == '01' ? "selected":"") }}>Percentage</option>
-                                                <option value="02" {{ ($insuranceCompany->commision_type == '02' ? "selected":"") }}>Fixed</option>
+                                                {{-- <option value="02" {{ ($insuranceCompany->commision_type == '02' ? "selected":"") }}>Fixed</option> --}}
                                             </select>
                                             @error('commision_type')
                                                 <span class="invalid-feedback" role="alert">
