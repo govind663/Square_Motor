@@ -60,7 +60,7 @@
                 </li>
 
                 <li>
-                    <a href="#">
+                    <a href="{{ route('report.index') }}">
                         <i class="fe fe-file"></i>
                         <span>Report</span>
                     </a>

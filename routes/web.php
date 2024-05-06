@@ -16,7 +16,12 @@ use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\RetailerController;
 use App\Http\Controllers\RtoController;
 use App\Http\Controllers\VehicleController;
+
+// === Middleware for PreventBackHistory of Browser data
 use App\Http\Middleware\PreventBackHistoryMiddleware;
+
+// ==== Report
+use App\Http\Controllers\ReportController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -71,5 +76,9 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHisto
 
     // === fetch Company Commission in percentage
     Route::post ('fetch_agent_profit_amt', [AgentController::class,'fetch_agent_profit_amt'])->name('fetch_agent_profit_amt');
+
+    // ==== Report list
+    Route::get('report/index', [ReportController::class, 'index'])->name('report.index');
+    Route::post('/search_policy_result', [ReportController::class, 'search_policy_list'])->name('serch.policy.list');
 
 });
