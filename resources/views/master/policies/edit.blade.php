@@ -276,9 +276,9 @@ Policy | Create
                                                     <h5 class="card-title text-primary mb-2">Retailer Details</h5>
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
-                                                            <label><b>Customer Name : <span class="text-danger">*</span></b></label>
+                                                            <label><b>Retailer Name : <span class="text-danger">*</span></b></label>
                                                             <select required class="select" id="retailer_id" name="retailer_id">
-                                                                <option value="">Select Customer Name</option>
+                                                                <option value="">Select Retailer Name</option>
                                                                 @foreach ($retailerUser as $value )
                                                                 <option value="{{ $value->id }}" {{ ( $policy->retailer_id == $value->id ? "selected":"") }}>{{ $value->name }}</option>
                                                                 @endforeach
@@ -288,6 +288,14 @@ Policy | Create
                                                             </a>
                                                         </div>
 
+                                                    </div>
+
+                                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                                        <div class="input-block mb-3">
+                                                            <label><b>Customer Name : <span class="text-danger">*</span></b></label>
+                                                            <input type="text" id="customer_name" name="customer_name" required class="form-control  " value="{{ old('customer_name') }}" placeholder="Enter Customer Name">
+
+                                                        </div>
                                                     </div>
 
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
