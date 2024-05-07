@@ -86,7 +86,7 @@ Policy | List
                                         <td>{{ $value->customer_name }}</td>
                                         <td>{{ $value->agents?->name }}</td>
                                         @php
-                                            $totalAmount = [];
+                                            $totalAmount = '';
 
                                             if($value->policy_type == '1'){
                                                 $totalAmount = $value->comission_rupees;
@@ -112,7 +112,7 @@ Policy | List
                                         </td>
                                         <td class="no-export d-flex">
                                             <a href="{{ route('policy.edit', $value->id) }}" class="btn btn-warning btn-sm text-black">
-                                                <i class="far fa-edit me-2"></i>Update
+                                                <i class="far fa-edit me-2"></i>Edit
                                             </a>
                                             &nbsp;
                                             <form action="{{ route('policy.destroy', $value->id) }}" method="post">
