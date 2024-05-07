@@ -26,6 +26,11 @@ Report | List
     .form-control {
         border: 1px solid #387dff !important;
     }
+    .form-group-customer {
+        border-bottom: 0px;
+        margin: 0px;
+        padding: 0px;
+    }
 </style>
 @endpush
 
@@ -52,64 +57,68 @@ Report | List
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        {{-- Serch Filter Start --}}
                         <form method="POST" action="{{ route('serch.policy.list') }}" enctype="multipart/form-data">
                             @csrf
 
-                            <div class="row p-3">
-                                <div class="col-lg-3 col-md-12 col-sm-12">
-                                    <div class="input-block mb-3">
-                                        <label><b>From Date : <span class="text-danger">*</span></b></b></label>
-                                        <input type="text"  id="from_date" name="from_date" class="form-control datetimepicker @error('from_date') is-invalid @enderror" value="{{ old('from_date') }}" placeholder="DD/MM/YYYY">
-                                        @error('from_date')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                            <div class="form-group-customer customer-additional-form">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-12 col-sm-12">
+                                        <div class="input-block mb-3">
+                                            <label><b>From Date : <span class="text-danger">*</span></b></b></label>
+                                            <input type="text"  id="from_date" name="from_date" class="form-control datetimepicker @error('from_date') is-invalid @enderror" value="{{ old('from_date') }}" placeholder="DD/MM/YYYY">
+                                            @error('from_date')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-12 col-sm-12">
+                                        <div class="input-block mb-3">
+                                            <label><b>To Date : <span class="text-danger">*</span></b></b></label>
+                                            <input type="text"  id="to_date" name="to_date" class="form-control datetimepicker @error('to_date') is-invalid @enderror" value="{{ old('to_date') }}" placeholder="DD/MM/YYYY">
+                                            @error('to_date')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-12 col-sm-12">
+                                        <div class="input-block mb-3" >
+                                            <label><b>Policy Type : <span class="text-danger">*</span></b></label>
+                                            <select class="form-control-sm @error('policy_type') is-invalid @enderror select" id="policy_type" name="policy_type">
+                                                <option value="">Select Policy Type</option>
+                                                <option value="1" {{ (old("policy_type") == '1' ? "selected":"") }}>Agent</option>
+                                                <option value="2" {{ (old("policy_type") == '2' ? "selected":"") }}>Retailer</option>
+                                            </select>
+                                            @error('policy_type')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-12 col-sm-12">
+                                        <div class="input-block mt-2 text-start">
+                                            <br>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
                                     </div>
                                 </div>
-
-                                <div class="col-lg-3 col-md-12 col-sm-12">
-                                    <div class="input-block mb-3">
-                                        <label><b>To Date : <span class="text-danger">*</span></b></b></label>
-                                        <input type="text"  id="to_date" name="to_date" class="form-control datetimepicker @error('to_date') is-invalid @enderror" value="{{ old('to_date') }}" placeholder="DD/MM/YYYY">
-                                        @error('to_date')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-12 col-sm-12">
-                                    <div class="input-block mb-3" >
-                                        <label><b>Policy Type : <span class="text-danger">*</span></b></label>
-                                        <select class="form-control-sm @error('policy_type') is-invalid @enderror select" id="policy_type" name="policy_type">
-                                            <option value="">Select Policy Type</option>
-                                            <option value="1" {{ (old("policy_type") == '1' ? "selected":"") }}>Agent</option>
-                                            <option value="2" {{ (old("policy_type") == '2' ? "selected":"") }}>Retailer</option>
-                                        </select>
-                                        @error('policy_type')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-3 col-md-12 col-sm-12">
-                                    <div class="input-block mb-3">
-                                        <label><b>Total Earning :</b></label>
-                                        <input type="text"  class="form-control" value="{{ $totalEarning }}" readonly>
-                                    </div>
-                                </div>
-
-                                <div class="add-customer-btns text-end">
-                                    <button type="submit" class="btn btn-success">Submit</button>
-                                </div>
-
                             </div>
+
                         </form>
+                        <div class="col-10">
+                            <h5 class="card-title">Total Earning : {{ $totalEarning }}
+                                <i class="fa fa-rupee" aria-hidden="true"></i>
+                            </h5>
+                        </div>
+                    </div>
+                    <div class="card-body">
 
                         <div class="table-responsive">
                             <table class="data-table-export1 table table-hover">

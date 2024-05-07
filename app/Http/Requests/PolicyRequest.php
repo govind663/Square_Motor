@@ -39,7 +39,6 @@ class PolicyRequest extends FormRequest
 
                     'main_price'=> 'required|numeric|max:255',
                     'company_commission_percentage'=> 'required|numeric|max:255',
-                    'mobile'=> 'required|numeric|max:255',
                     'profit_amt'=> 'required|numeric|max:255',
                     'tds_deduction'=> 'required|numeric|max:255',
                     'actual_profit_amt'=> 'required|numeric|max:255',
@@ -47,9 +46,9 @@ class PolicyRequest extends FormRequest
                     'comission_rupees'=> 'required|numeric|max:255',
 
                     // === policy date
-                    'from_dt'=> 'required|date_format:Y-m-d|max:255',
-                    'to_dt'=> 'required|date_format:Y-m-d|max:255',
-                    'issue_dt'=> 'required|date_format:Y-m-d|max:255',
+                    'from_dt'=> 'required|max:255',
+                    'to_dt'=> 'required|max:255',
+                    'issue_dt'=> 'required|max:255',
                     'payment_by'=> 'required|numeric|max:3',
                     'payment_through'=> 'required|numeric|max:3',
 
@@ -58,6 +57,7 @@ class PolicyRequest extends FormRequest
                 ];
             }else{
                 $rule = [
+                    // === policy Validation
                     'policy_type' => 'required|numeric|max:4',
                     'agent_id'=> 'required|numeric|max:4',
                     'customer_name'=> 'required|alpha_dash|max:255',
@@ -68,26 +68,27 @@ class PolicyRequest extends FormRequest
                     'insurance_type'=> 'required|numeric|max:4',
                     'insurance_company_id'=> 'required|numeric|max:4',
 
+                    // === Commercial Validation
                     'main_price'=> 'required|numeric|max:255',
                     'company_commission_percentage'=> 'required|numeric|max:255',
-                    'mobile'=> 'required|numeric|max:255',
                     'profit_amt'=> 'required|numeric|max:255',
                     'tds_deduction'=> 'required|numeric|max:255',
                     'actual_profit_amt'=> 'required|numeric|max:255',
                     'commission_percentage'=> 'required|numeric|max:255',
                     'comission_rupees'=> 'required|numeric|max:255',
 
-                    // === policy date
-                    'from_dt'=> 'required|date_format:Y-m-d|max:255',
-                    'to_dt'=> 'required|date_format:Y-m-d|max:255',
-                    'issue_dt'=> 'required|date_format:Y-m-d|max:255',
+                    // === policy date Validation
+                    'from_dt'=> 'required|max:255',
+                    'to_dt'=> 'required|max:255',
+                    'issue_dt'=> 'required|max:255',
                     'payment_by'=> 'required|numeric|max:3',
                     'payment_through'=> 'required|numeric|max:3',
 
-                    // === Document
+                    // === Document Validation
                     'policy_doc'=> 'required|mimes:jpeg,png,jpg,pdf|max:2048',
                 ];
             }
+            return $rule;
         } elseif ($policy_type == '2'){
             if ($this->id){
                 $rule = [
@@ -103,7 +104,6 @@ class PolicyRequest extends FormRequest
 
                     'main_price'=> 'required|numeric|max:255',
                     'company_commission_percentage'=> 'required|numeric|max:255',
-                    'mobile'=> 'required|numeric|max:255',
                     'profit_amt'=> 'required|numeric|max:255',
                     'tds_deduction'=> 'required|numeric|max:255',
                     'actual_profit_amt'=> 'required|numeric|max:255',
@@ -112,9 +112,9 @@ class PolicyRequest extends FormRequest
                     'payable_amount'=> 'required|numeric|max:255',
 
                     // === policy date
-                    'from_dt'=> 'required|date_format:Y-m-d|max:255',
-                    'to_dt'=> 'required|date_format:Y-m-d|max:255',
-                    'issue_dt'=> 'required|date_format:Y-m-d|max:255',
+                    'from_dt'=> 'required|max:255',
+                    'to_dt'=> 'required|max:255',
+                    'issue_dt'=> 'required|max:255',
                     'payment_by'=> 'required|numeric|max:3',
                     'payment_through'=> 'required|numeric|max:3',
 
@@ -135,7 +135,6 @@ class PolicyRequest extends FormRequest
 
                     'main_price'=> 'required|numeric|max:255',
                     'company_commission_percentage'=> 'required|numeric|max:255',
-                    'mobile'=> 'required|numeric|max:255',
                     'profit_amt'=> 'required|numeric|max:255',
                     'tds_deduction'=> 'required|numeric|max:255',
                     'actual_profit_amt'=> 'required|numeric|max:255',
@@ -144,9 +143,9 @@ class PolicyRequest extends FormRequest
                     'payable_amount'=> 'required|numeric|max:255',
 
                     // === policy date
-                    'from_dt'=> 'required|date_format:Y-m-d|max:255',
-                    'to_dt'=> 'required|date_format:Y-m-d|max:255',
-                    'issue_dt'=> 'required|date_format:Y-m-d|max:255',
+                    'from_dt'=> 'required|max:255',
+                    'to_dt'=> 'required|max:255',
+                    'issue_dt'=> 'required|max:255',
                     'payment_by'=> 'required|numeric|max:3',
                     'payment_through'=> 'required|numeric|max:3',
 
@@ -154,17 +153,42 @@ class PolicyRequest extends FormRequest
                     'policy_doc'=> 'required|mimes:jpeg,png,jpg,pdf|max:2048',
                 ];
             }
+            return $rule;
         }
-
-
-        return $rule;
     }
 
 
     public function messages()
     {
         return [
-            'company_name.required' => __('Company Name is required'),
+            // === Policy custom message
+            'policy_type.required' => __('Policy Type is required'),
+            'retailer_id.required' => __('Please Select Agent Name'),
+            'agent_id.required' => __('Please Select Agent Name'),
+            'customer_name.required' => __('Customer name is required'),
+            'vehicle_reg_no.required' => __('Vehicle Registration Number is required'),
+            'r_t_o_id.required' => __('Please Select RTO'),
+            'vehicle_id.required' => __('Please Select Vehicle Type'),
+            'vehicle_config.required' => __('Vehicle Configuration is required'),
+            'insurance_type.required' => __('Please Select Insurance Type'),
+            'insurance_company_id.required' => __('Please Select Company Policy'),
+
+            // === Commercia custom message
+            'main_price' => __('Main Price is required'),
+            'company_commission_percentage' => __('Company Commission (%) is required'),
+            'profit_amt' => __('Company Profit is required'),
+            'tds_deduction' => __('TDS Deduction (%) is required'),
+            'actual_profit_amt' => __('Actual Profit is required'),
+            'commission_percentage' => __('Commission (%) is required'),
+            'comission_rupees' => __('Commission (in rupees) is required'),
+            'payable_amount' => __('Payable Amount'),
+
+            // === Policy date custom message
+            'from_dt.required' => __('From Date is required'),
+            'to_dt.required' => __('To Date is required'),
+            'issue_dt.required' => __('Issue Date is required'),
+            'payment_by.required' => __('Payment By is required'),
+            'payment_through.required' => __('Payment Through is required'),
 
             // === Document validation custom message
             'policy_doc.required' => __('Please Upload Policy Document.'),
