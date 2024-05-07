@@ -23,6 +23,9 @@ use App\Http\Middleware\PreventBackHistoryMiddleware;
 // ==== Report
 use App\Http\Controllers\ReportController;
 
+// ==== Finance
+use App\Http\Controllers\AgentToCompanyController;
+
 Route::get('/', function () {
     return view('auth.login');
 })->name('/');
@@ -76,9 +79,16 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHisto
 
     // === fetch Company Commission in percentage
     Route::post ('fetch_agent_profit_amt', [AgentController::class,'fetch_agent_profit_amt'])->name('fetch_agent_profit_amt');
+});
 
-    // ==== Report list
+Route::group(['prefix' => 'reports','middleware'=>['auth', PreventBackHistoryMiddleware::class]],function(){
+    // ==== Reports
     Route::get('report/index', [ReportController::class, 'index'])->name('report.index');
     Route::post('/search_policy_result', [ReportController::class, 'search_policy_result'])->name('serch.policy.list');
+});
 
+Route::group(['prefix'=> 'finance','middleware'=>['auth', PreventBackHistoryMiddleware::class]],function(){
+
+    // ===== Agent to Company Resource
+    Route::resource('agent_to_company', AgentToCompanyController::class);
 });

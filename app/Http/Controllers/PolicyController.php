@@ -42,11 +42,10 @@ class PolicyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(PolicyRequest $request)
     {
-        // $data = $request->validated();
+        $data = $request->validated();
         try {
-
             $policy = Policy::create() ;
 
             // ==== Upload (policy_doc)

@@ -59,18 +59,30 @@
                     </a>
                 </li>
 
-                <li class="{{ ($currentRoute === 'report.index') || ($currentRoute === 'serch.policy.list') || ($currentRoute === 'policy.edit') ? 'active' : '' }}">
+                <li class="{{ ($currentRoute === 'report.index') || ($currentRoute === 'serch.policy.list') ? 'active' : '' }}">
                     <a href="{{ route('report.index') }}">
                         <i class="fe fe-clipboard"></i>
                         <span>Report</span>
                     </a>
                 </li>
 
-                <li>
+                <li class="submenu">
                     <a href="#">
                         <i class="fe fe-credit-card"></i>
                         <span>Finance</span>
+                        <span class="menu-arrow"></span>
                     </a>
+                    <ul>
+                        <li class="{{ ($currentRoute === 'agent_to_company.index') || ($currentRoute === 'agent_to_company.create') || ($currentRoute === 'agent_to_company.edit') ? 'active' : '' }}">
+                            <a href="{{ route('agent_to_company.index') }}">Agent to Company</a>
+                        </li>
+                        <li>
+                            <a href="#">Retailer to Company</a>
+                        </li>
+                        <li>
+                            <a href="#">Company to Company</a>
+                        </li>
+                    </ul>
                 </li>
 
                 <li>
