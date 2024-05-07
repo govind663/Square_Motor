@@ -59,23 +59,23 @@
                     </a>
                 </li>
 
-                <li>
+                <li class="{{ ($currentRoute === 'report.index') || ($currentRoute === 'serch.policy.list') || ($currentRoute === 'policy.edit') ? 'active' : '' }}">
                     <a href="{{ route('report.index') }}">
-                        <i class="fe fe-file"></i>
+                        <i class="fe fe-clipboard"></i>
                         <span>Report</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="#">
-                        <i class="fe fe-file"></i>
+                        <i class="fe fe-credit-card"></i>
                         <span>Finance</span>
                     </a>
                 </li>
 
                 <li>
                     <a href="#">
-                        <i class="fe fe-file"></i>
+                        <i class="fe fe-file-text"></i>
                         <span>Download Section</span>
                     </a>
                 </li>

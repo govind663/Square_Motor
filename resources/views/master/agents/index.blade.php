@@ -23,6 +23,9 @@
     table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date {
         text-align: left !important;
     }
+    .form-control {
+        border: 1px solid #387dff !important;
+    }
 </style>
 @endpush
 

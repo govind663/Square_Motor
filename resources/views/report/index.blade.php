@@ -23,6 +23,9 @@ Report | List
     table.dataTable th.dt-type-numeric, table.dataTable th.dt-type-date, table.dataTable td.dt-type-numeric, table.dataTable td.dt-type-date {
         text-align: left !important;
     }
+    .form-control {
+        border: 1px solid #387dff !important;
+    }
 </style>
 @endpush
 
@@ -57,8 +60,8 @@ Report | List
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>From Date :</b></label>
-                                            <input type="text"  id="from_dt" name="from_dt" class="form-control datetimepicker @error('from_dt') is-invalid @enderror" value="{{ old('from_dt') }}" placeholder="Enter From Date">
-                                            @error('from_dts')
+                                            <input type="text"  id="from_date" name="from_date" class="form-control datetimepicker @error('from_date') is-invalid @enderror" value="{{ old('from_date') }}" placeholder="Enter From Date">
+                                            @error('from_date')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -69,8 +72,8 @@ Report | List
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>To Date :</b></label>
-                                            <input type="text"  id="to_dt" name="to_dt" class="form-control datetimepicker @error('to_dt') is-invalid @enderror" value="{{ old('to_dt') }}" placeholder="Enter To Date">
-                                            @error('to_dt')
+                                            <input type="text"  id="to_date" name="to_date" class="form-control datetimepicker @error('to_date') is-invalid @enderror" value="{{ old('to_date') }}" placeholder="Enter To Date">
+                                            @error('to_date')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -80,8 +83,8 @@ Report | List
 
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3" >
-                                            <label><b>Poicy Type : <span class="text-danger">*</span></b></label>
-                                            <select class="@error('policy_type') is-invalid @enderror select" id="policy_type" name="policy_type">
+                                            <label><b>Policy Type : <span class="text-danger">*</span></b></label>
+                                            <select class="form-control @error('policy_type') is-invalid @enderror select" id="policy_type" name="policy_type">
                                                 <option value="">Select Policy Type</option>
                                                 <option value="1" {{ (old("policy_type") == '1' ? "selected":"") }}>Agent</option>
                                                 <option value="2" {{ (old("policy_type") == '2' ? "selected":"") }}>Retailer</option>

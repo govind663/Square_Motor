@@ -79,6 +79,6 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHisto
 
     // ==== Report list
     Route::get('report/index', [ReportController::class, 'index'])->name('report.index');
-    Route::post('/search_policy_result', [ReportController::class, 'search_policy_list'])->name('serch.policy.list');
+    Route::post('/search_policy_result', [ReportController::class, 'search_policy_result'])->name('serch.policy.list');
 
 });
