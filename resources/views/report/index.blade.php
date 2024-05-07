@@ -51,7 +51,7 @@ Report | List
         <div class="row">
             <div class="col-sm-12">
                 <div class="card">
-                    <div class="row card-body">
+                    <div class="card-body">
                         <form method="POST" action="{{ route('serch.policy.list') }}" enctype="multipart/form-data">
                             @csrf
 
@@ -84,7 +84,7 @@ Report | List
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3" >
                                             <label><b>Policy Type : <span class="text-danger">*</span></b></label>
-                                            <select class="form-control @error('policy_type') is-invalid @enderror select" id="policy_type" name="policy_type">
+                                            <select class="form-control-sm @error('policy_type') is-invalid @enderror select" id="policy_type" name="policy_type">
                                                 <option value="">Select Policy Type</option>
                                                 <option value="1" {{ (old("policy_type") == '1' ? "selected":"") }}>Agent</option>
                                                 <option value="2" {{ (old("policy_type") == '2' ? "selected":"") }}>Retailer</option>
@@ -97,7 +97,7 @@ Report | List
                                         </div>
                                     </div>
 
-                                    <div class="add-customer-btns text-start">
+                                    <div class="add-customer-btns text-end">
                                         <button type="submit" class="btn btn-success">Submit</button>
                                     </div>
 
@@ -106,7 +106,7 @@ Report | List
 
                         </form>
                         <div class="col-10">
-                            <h5 class="card-title">All Report List</h5>
+                            <h5 class="card-title">Total Earning : {{ $totalEarning }} <i class="fa fa-rupee" aria-hidden="true"></i></h5>
                         </div>
                     </div>
                     <div class="card-body">
@@ -132,7 +132,16 @@ Report | List
                                         <td>{{ $value->policy_no }}</td>
                                         <td>{{ $value->customer_name }}</td>
                                         <td>{{ $value->agents?->name }}</td>
-                                        <td>{{ $value->actual_profit_amt }}</td>
+                                        @php
+                                            $totalAmount = [];
+
+                                            if($value->policy_type == '1'){
+                                                $totalAmount = $value->comission_rupees;
+                                            }elseif($value->policy_type == '2'){
+                                                $totalAmount = $value->payable_amount;
+                                            }
+                                        @endphp
+                                        <td>{{ $totalAmount }}</td>
                                         <td>{{ date('d-m-y', strtotime($value->issue_dt) ) }}</td>
                                         <td>
                                             @if(!empty($value->policy_doc))

@@ -14174,7 +14174,7 @@ body[data-layout-mode=dark] .alertify .ajs-header {
 
 .card .card-body {
     position: relative;
-    padding: 1.5rem
+    /* padding: 1.5rem */
 }
 
 @media(max-width:1199.98px) {

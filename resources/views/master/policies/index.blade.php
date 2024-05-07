@@ -85,7 +85,16 @@ Policy | List
                                         <td>{{ $value->policy_no }}</td>
                                         <td>{{ $value->customer_name }}</td>
                                         <td>{{ $value->agents?->name }}</td>
-                                        <td>{{ $value->actual_profit_amt }}</td>
+                                        @php
+                                            $totalAmount = [];
+
+                                            if($value->policy_type == '1'){
+                                                $totalAmount = $value->comission_rupees;
+                                            }elseif($value->policy_type == '2'){
+                                                $totalAmount = $value->payable_amount;
+                                            }
+                                        @endphp
+                                        <td>{{ $totalAmount }}</td>
                                         <td>{{ date('d-m-y', strtotime($value->issue_dt) ) }}</td>
                                         <td>
                                             @if(!empty($value->policy_doc))
