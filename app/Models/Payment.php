@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AgentToCompany extends Model
+class Payment extends Model
 {
     use HasFactory, SoftDeletes;
     public $timestamps = false;
@@ -27,4 +27,10 @@ class AgentToCompany extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    // ==== relationship between policy and agent
+    public function agents()
+    {
+        return $this->belongsTo(Agent::class, 'agent_id', 'id');
+    }
 }

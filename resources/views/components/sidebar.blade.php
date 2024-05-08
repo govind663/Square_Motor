@@ -73,8 +73,11 @@
                         <span class="menu-arrow"></span>
                     </a>
                     <ul>
-                        <li class="{{ ($currentRoute === 'agent_to_company.index') || ($currentRoute === 'agent_to_company.create') || ($currentRoute === 'agent_to_company.edit') ? 'active' : '' }}">
-                            <a href="{{ route('agent_to_company.index') }}">Agent to Company</a>
+                        <li class="{{ ($currentRoute === 'payment.index') || ($currentRoute === 'payment.create') || ($currentRoute === 'payment.edit') ? 'active' : '' }}">
+                            <a href="{{ route('payment.index') }}">Manage Payment</a>
+                        </li>
+                        <li>
+                            <a href="#">Agent to Company</a>
                         </li>
                         <li>
                             <a href="#">Retailer to Company</a>

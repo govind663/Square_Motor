@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('agent_to_companies', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Agent::class)->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->integer('amount')->nullable();
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('agent_to_companies');
+        Schema::dropIfExists('payments');
     }
 };

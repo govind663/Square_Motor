@@ -24,7 +24,7 @@ use App\Http\Middleware\PreventBackHistoryMiddleware;
 use App\Http\Controllers\ReportController;
 
 // ==== Finance
-use App\Http\Controllers\AgentToCompanyController;
+use App\Http\Controllers\PaymentController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -89,6 +89,7 @@ Route::group(['prefix' => 'reports','middleware'=>['auth', PreventBackHistoryMid
 
 Route::group(['prefix'=> 'finance','middleware'=>['auth', PreventBackHistoryMiddleware::class]],function(){
 
-    // ===== Agent to Company Resource
-    Route::resource('agent_to_company', AgentToCompanyController::class);
+    // ===== Payment Resource
+    Route::resource('payment', PaymentController::class);
+
 });
