@@ -96,9 +96,19 @@ Policy | List
                                         @endphp
                                         <td>{{ $totalAmount }}</td>
                                         <td>{{ date('d-m-y', strtotime($value->issue_dt) ) }}</td>
+
+                                        @php
+                                            $policyDoc = '';
+
+                                            if($value->policy_type == '1'){
+                                                $policyDoc = $value->policy_doc;
+                                            }elseif($value->policy_type == '2'){
+                                                $policyDoc = $value->retailer_policy_doc;
+                                            }
+                                        @endphp
                                         <td>
                                             @if(!empty($value->policy_doc))
-                                                <a href="{{url('/')}}/company_policy/policy_doc/{{ $value->policy_doc }}" target="_blank" class="btn btn-info btn-sm text-light">
+                                                <a href="{{url('/')}}/company_policy/policy_doc/{{ $policyDoc }}" target="_blank" class="btn btn-info btn-sm text-light">
                                                     <b> View </b>
                                                 </a>
                                             @endif
@@ -110,19 +120,21 @@ Policy | List
                                             <span class="badge bg-primary" >Retailer</span>
                                             @endif
                                         </td>
-                                        <td class="no-export d-flex">
+                                        <td class="no-export">
                                             <a href="{{ route('policy.edit', $value->id) }}" class="btn btn-warning btn-sm text-black">
                                                 <i class="far fa-edit me-2"></i>Edit
                                             </a>
                                             &nbsp;
-                                            <form action="{{ route('policy.destroy', $value->id) }}" method="post">
-                                                @csrf
-                                                @method('DELETE')
-                                                <input name="_method" type="hidden" value="DELETE">
-                                                <button type="submit" class="btn btn-danger btn-sm " onclick="return confirm('Are you sure to delete?')">
-                                                    <i class="far fa-trash-alt me-2"></i>Delete
-                                                </button>
-                                            </form>
+                                            <a>
+                                                <form action="{{ route('policy.destroy', $value->id) }}" method="post">
+                                                    @csrf
+                                                    @method('DELETE')
+                                                    <input name="_method" type="hidden" value="DELETE">
+                                                    <button type="submit" class="btn btn-danger btn-sm " onclick="return confirm('Are you sure to delete?')">
+                                                        <i class="far fa-trash-alt me-2"></i>Delete
+                                                    </button>
+                                                </form>
+                                            </a>
                                         </td>
                                     </tr>
                                     @endforeach

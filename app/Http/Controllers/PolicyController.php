@@ -46,56 +46,123 @@ class PolicyController extends Controller
     {
         $data = $request->validated();
         try {
-            $policy = Policy::create() ;
 
-            // ==== Upload (policy_doc)
-            if (!empty($request->hasFile('policy_doc'))) {
-                $image = $request->file('policy_doc');
-                $image_name = $image->getClientOriginalName();
-                $extension = $image->getClientOriginalExtension();
-                $new_name = time() . rand(10, 999) . '.' . $extension;
-                $image->move(public_path('/company_policy/policy_doc'), $new_name);
+            if($request->policy_type == '1'){
 
-                $image_path = "/company_policy/policy_doc" . $image_name;
-                $policy->policy_doc = $new_name;
+                $policy = Policy::create() ;
+
+                // ==== Upload (policy_doc)
+                if (!empty($request->hasFile('policy_doc'))) {
+                    $image = $request->file('policy_doc');
+                    $image_name = $image->getClientOriginalName();
+                    $extension = $image->getClientOriginalExtension();
+                    $new_name = time() . rand(10, 999) . '.' . $extension;
+                    $image->move(public_path('/company_policy/policy_doc'), $new_name);
+
+                    $image_path = "/company_policy/policy_doc" . $image_name;
+                    $policy->policy_doc = $new_name;
+                }
+
+                // ==== Agent Details
+                $policy->policy_type = $request->policy_type ? $request->policy_type : null;
+                $policy->agent_id = $request->agent_id ? $request->agent_id : null;
+                $policy->customer_name = $request->customer_name? $request->customer_name : null;
+                $policy->vehicle_reg_no = $request->vehicle_reg_no ? $request->vehicle_reg_no : null;
+                $policy->r_t_o_id = $request->r_t_o_id ? $request->r_t_o_id : null;
+                $policy->vehicle_id = $request->vehicle_id ? $request->vehicle_id : null;
+                $policy->vehicle_config = $request->vehicle_config ? $request->vehicle_config : null;
+                $policy->insurance_type = $request->insurance_type ? $request->insurance_type : null;
+                $policy->insurance_company_id = $request->insurance_company_id ? $request->insurance_company_id : null;
+
+                // === Commercial Details
+                $policy->main_price = $request->main_price ? $request->main_price : null;
+                $policy->company_commission_percentage = $request->company_commission_percentage ? $request->company_commission_percentage : null;
+                $policy->profit_amt = $request->profit_amt ? $request->profit_amt : null;
+                $policy->tds_deduction = $request->tds_deduction ? $request->tds_deduction : null;
+                $policy->actual_profit_amt = $request->actual_profit_amt ? $request->actual_profit_amt : null;
+                $policy->commission_percentage = $request->commission_percentage ? $request->commission_percentage : null;
+                $policy->comission_rupees = $request->comission_rupees ? $request->comission_rupees : null;
+
+                // === Policy Period
+                $policy->from_dt = date("Y-m-d", strtotime($request->from_dt));
+                $policy->to_dt = date("Y-m-d", strtotime($request->to_dt));
+                $policy->issue_dt = date("Y-m-d", strtotime($request->issue_dt));
+
+                // === Payment Through
+                $policy->payment_by = $request->payment_by ? $request->payment_by : null;
+                $policy->payment_through = $request->payment_through ? $request->payment_through : null;
+
+                $policy->inserted_at = Carbon::now();
+                $policy->inserted_by = Auth::user()->id;
+                $policy->save();
+
+                // ==== Generate Policy Number ====
+                $policyNumber = "PN". "/" . sprintf("%06d", abs((int) $policy->id + 1))  . "/" . date("Y");
+                $update = [
+                    'policy_no' => $policyNumber,
+                ];
+                Policy::where('id', $policy->id)->update($update);
+
+                return redirect()->route('policy.index')->with('message', 'Agent Policy Created Successfully');
+
+            } elseif($request->policy_type == '2'){
+                $policy = Policy::create() ;
+
+                // ==== Upload (retailer_policy_doc)
+                if (!empty($request->hasFile('retailer_policy_doc'))) {
+                    $image = $request->file('retailer_policy_doc');
+                    $image_name = $image->getClientOriginalName();
+                    $extension = $image->getClientOriginalExtension();
+                    $new_name = time() . rand(10, 999) . '.' . $extension;
+                    $image->move(public_path('/company_policy/retailer_policy_doc'), $new_name);
+
+                    $image_path = "/company_policy/retailer_policy_doc" . $image_name;
+                    $policy->policy_doc = $new_name;
+                }
+
+                // ==== Retailer Details
+                $policy->policy_type = $request->policy_type ? $request->policy_type : null;
+                $policy->retailer_id = $request->retailer_id ? $request->retailer_id : null;
+                $policy->customer_name = $request->retailer_customer_name ? $request->retailer_customer_name : null;
+                $policy->vehicle_reg_no = $request->retailer_vehicle_reg_no ? $request->retailer_vehicle_reg_no : null;
+                $policy->r_t_o_id = $request->retailer_r_t_o_id ? $request->retailer_r_t_o_id : null;
+                $policy->vehicle_id = $request->retailer_vehicle_id ? $request->retailer_vehicle_id : null;
+                $policy->vehicle_config = $request->retailer_vehicle_config ? $request->retailer_vehicle_config : null;
+                $policy->insurance_type = $request->retailer_insurance_type ? $request->retailer_insurance_type : null;
+                $policy->insurance_company_id = $request->retailer_insurance_company_id ? $request->retailer_insurance_company_id : null;
+
+                // === Commercial Details
+                $policy->main_price = $request->retailer_main_price ? $request->retailer_main_price : null;
+                $policy->company_commission_percentage = $request->retailer_company_commission_percentage ? $request->retailer_company_commission_percentage : null;
+                $policy->profit_amt = $request->retailer_profit_amt ? $request->retailer_profit_amt : null;
+                $policy->tds_deduction = $request->retailer_tds_deduction ? $request->retailer_tds_deduction : null;
+                $policy->actual_profit_amt = $request->retailer_actual_profit_amt ? $request->retailer_actual_profit_amt : null;
+                $policy->commission_percentage = $request->retailer_commission_percentage ? $request->retailer_commission_percentage : null;
+                $policy->comission_rupees = $request->retailer_comission_rupees ? $request->retailer_comission_rupees : null;
+                $policy->payable_amount = $request->retailer_payable_amount ? $request->retailer_payable_amount : null;
+
+                // === Policy Period
+                $policy->from_dt = date("Y-m-d", strtotime($request->retailer_from_dt));
+                $policy->to_dt = date("Y-m-d", strtotime($request->retailer_to_dt));
+                $policy->issue_dt = date("Y-m-d", strtotime($request->retailer_issue_dt));
+
+                // === Payment Through
+                $policy->payment_by = $request->retailer_payment_by ? $request->retailer_payment_by : null;
+                $policy->payment_through = $request->retailer_payment_through ? $request->retailer_payment_through : null;
+
+                $policy->inserted_at = Carbon::now();
+                $policy->inserted_by = Auth::user()->id;
+                $policy->save();
+
+                // ==== Generate Policy Number ====
+                $policyNumber = "PN". "/" . sprintf("%06d", abs((int) $policy->id + 1))  . "/" . date("Y");
+                $update = [
+                    'policy_no' => $policyNumber,
+                ];
+                Policy::where('id', $policy->id)->update($update);
+
+                return redirect()->route('policy.index')->with('message', 'Retailer Policy Created Successfully');
             }
-
-            $policy->policy_type = $request->policy_type ? $request->policy_type : null;
-            $policy->agent_id = $request->agent_id ? $request->agent_id : null;
-            $policy->retailer_id = $request->retailer_id ? $request->retailer_id : null;
-            $policy->customer_name = $request->customer_name? $request->customer_name : null;
-            $policy->vehicle_reg_no = $request->vehicle_reg_no ? $request->vehicle_reg_no : null;
-            $policy->r_t_o_id = $request->r_t_o_id ? $request->r_t_o_id : null;
-            $policy->vehicle_id = $request->vehicle_id ? $request->vehicle_id : null;
-            $policy->vehicle_config = $request->vehicle_config ? $request->vehicle_config : null;
-            $policy->insurance_type = $request->insurance_type ? $request->insurance_type : null;
-            $policy->insurance_company_id = $request->insurance_company_id ? $request->insurance_company_id : null;
-            $policy->main_price = $request->main_price ? $request->main_price : null;
-            $policy->company_commission_percentage = $request->company_commission_percentage ? $request->company_commission_percentage : null;
-            $policy->profit_amt = $request->profit_amt ? $request->profit_amt : null;
-            $policy->tds_deduction = $request->tds_deduction ? $request->tds_deduction : null;
-            $policy->actual_profit_amt = $request->actual_profit_amt ? $request->actual_profit_amt : null;
-            $policy->commission_percentage = $request->commission_percentage ? $request->commission_percentage : null;
-            $policy->comission_rupees = $request->comission_rupees ? $request->comission_rupees : null;
-            $policy->payable_amount = $request->payable_amount ? $request->payable_amount : null;
-            $policy->from_dt = date("Y-m-d", strtotime($request->from_dt));
-            $policy->to_dt = date("Y-m-d", strtotime($request->to_dt));
-            $policy->issue_dt = date("Y-m-d", strtotime($request->issue_dt));
-            $policy->payment_by = $request->payment_by ? $request->payment_by : null;
-            $policy->payment_through = $request->payment_through ? $request->payment_through : null;
-
-            $policy->inserted_at = Carbon::now();
-            $policy->inserted_by = Auth::user()->id;
-            $policy->save();
-
-            // ==== Generate Policy Number ====
-            $policyNumber = "PN". "/" . sprintf("%06d", abs((int) $policy->id + 1))  . "/" . date("Y");
-            $update = [
-                'policy_no' => $policyNumber,
-            ];
-            Policy::where('id', $policy->id)->update($update);
-
-            return redirect()->route('policy.index')->with('message', 'Policy Created Successfully');
 
         } catch(\Exception $ex){
 
