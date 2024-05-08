@@ -76,8 +76,8 @@
                         <li class="{{ ($currentRoute === 'payment.index') || ($currentRoute === 'payment.create') || ($currentRoute === 'payment.edit') ? 'active' : '' }}">
                             <a href="{{ route('payment.index') }}">Manage Payment</a>
                         </li>
-                        <li>
-                            <a href="#">Agent to Company</a>
+                        <li class="{{ ($currentRoute === 'agent_to_company.index') ? 'active' : '' }}">
+                            <a href="{{ route('agent_to_company.index') }}">Agent to Company</a>
                         </li>
                         <li>
                             <a href="#">Retailer to Company</a>

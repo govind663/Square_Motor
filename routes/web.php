@@ -25,6 +25,7 @@ use App\Http\Controllers\ReportController;
 
 // ==== Finance
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\AgentToCompanyController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -91,5 +92,8 @@ Route::group(['prefix'=> 'finance','middleware'=>['auth', PreventBackHistoryMidd
 
     // ===== Payment Resource
     Route::resource('payment', PaymentController::class);
+
+    // ====== AgentToCompany 
+    Route::get('agent_to_company/index', [AgentToCompanyController::class, 'index'])->name('agent_to_company.index');
 
 });

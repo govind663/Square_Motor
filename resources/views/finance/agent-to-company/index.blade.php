@@ -113,10 +113,23 @@ Report | List
                             </div>
 
                         </form>
-                        <div class="col-2 float-right">
-                            <a href="{{ route('policy.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Payment
-                            </a>
+
+                        <div class="row d-flex">
+                            <div class="col-4">
+                                <h5 class="card-title">
+                                    Total Debit : 0000 Rs
+                                </h5>
+                            </div>
+                            <div class="col-4">
+                                <h5 class="card-title">
+                                    Total Credit : 0000 Rs
+                                </h5>
+                            </div>
+                            <div class="col-4">
+                                <h5 class="card-title">
+                                    Total Earning : 0000 Rs
+                                </h5>
+                            </div>
                         </div>
                     </div>
                     <div class="card-body">
@@ -134,11 +147,16 @@ Report | List
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{-- @foreach ($agentToCompanys as $key=>$value ) --}}
+                                    
                                     <tr>
-
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
+                                        <td></td>
                                     </tr>
-                                    {{-- @endforeach --}}
+                                    
                                 </tbody>
                             </table>
                         </div>
