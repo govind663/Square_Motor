@@ -32,7 +32,7 @@ class ReportController extends Controller
         $policy = Policy::with('agents')
                           ->orderBy("inserted_at","desc")
                           ->whereBetween('issue_dt', [$fromDate, $toDate])
-                          ->orwhere('policy_type', $request->policy_type)
+                          ->where('policy_type', $request->policy_type)
                           ->whereNull('deleted_at')
                           ->get();
 

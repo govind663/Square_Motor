@@ -113,8 +113,8 @@ Report | List
 
                         </form>
                         <div class="col-10">
-                            <h5 class="card-title">Total Earning : {{ $totalEarning }}
-                                <i class="fa fa-rupee" aria-hidden="true"></i>
+                            <h5 class="card-title">
+                                Total Earning : {{ $totalEarning }} Rs
                             </h5>
                         </div>
                     </div>
