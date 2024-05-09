@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Report | List
+Agent to Company | List
 @endsection
 
 @push('styles')
@@ -43,7 +43,7 @@ Report | List
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Manage Finance</h3>
+                    <h3 class="page-title">Agent to Company</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active">All Agent to Company List</li>
@@ -127,7 +127,7 @@ Report | List
                             </div>
                             <div class="col-4">
                                 <h5 class="card-title">
-                                    Total Earning : 0000 Rs
+                                    Total Earning : {{ $total_balance }} Rs
                                 </h5>
                             </div>
                         </div>
@@ -147,16 +147,26 @@ Report | List
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    
+
+                                    @php
+                                        $tbalance = 0;
+                                    @endphp
+                                    @foreach ($agentDebitCreditLog as $key => $value)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{ ++$key }}</td>
+                                        <td>{{ date("d-m-Y", strtotime($value->tranx_dt)) }}</td>
+                                        <td>{{ $value->policy_id }}</td>
+                                        <td>{{ $value->debit_tranx }}</td>
+                                        <td>{{ $value->credit_tranx }}</td>
+                                        <td>
+                                            <?php
+                                                 $chkbala = ($value->credit_tranx - $value->debit_tranx);
+                                                 echo $tbalance += $chkbala;
+                                            ?>
+                                        </td>
                                     </tr>
-                                    
+                                    @endforeach
+
                                 </tbody>
                             </table>
                         </div>

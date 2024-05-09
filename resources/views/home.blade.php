@@ -18,7 +18,8 @@
                     <div class="card-body">
                         <div class="dash-widget-header">
                             <span class="dash-widget-icon bg-1">
-                                <i class="fas fa-dollar-sign"></i>
+                                <img src="{{ asset('assets/img/indian_rupees_curancy.png') }}" alt="">
+                                {{-- <i class="fa fa-rupee-sign"></i> --}}
                             </span>
                             <div class="dash-count">
                                 <div class="dash-title">Amount Due</div>

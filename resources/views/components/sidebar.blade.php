@@ -67,14 +67,14 @@
                 </li>
 
                 <li class="submenu">
-                    <a href="#">
+                    <a href="javascript:void(0);">
                         <i class="fe fe-credit-card"></i>
                         <span>Finance</span>
                         <span class="menu-arrow"></span>
                     </a>
-                    <ul>
-                        <li class="{{ ($currentRoute === 'payment.index') || ($currentRoute === 'payment.create') || ($currentRoute === 'payment.edit') ? 'active' : '' }}">
-                            <a href="{{ route('payment.index') }}">Manage Payment</a>
+                    <ul style="display: none;">
+                        <li class="menu-arrow {{ ($currentRoute === 'payment.index') || ($currentRoute === 'payment.create') || ($currentRoute === 'payment.edit') ? 'active' : '' }}">
+                            <a href="{{ route('payment.index') }}">Payment to Agent</a>
                         </li>
                         <li class="{{ ($currentRoute === 'agent_to_company.index') ? 'active' : '' }}">
                             <a href="{{ route('agent_to_company.index') }}">Agent to Company</a>

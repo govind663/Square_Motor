@@ -12,9 +12,17 @@ use App\Models\Retailer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\logs\agentDebitCreditLogs;
 
 class PolicyController extends Controller
 {
+    protected $agentDebitCreditLogs;
+
+    public function __construct(agentDebitCreditLogs $agentDebitCreditLogs)
+    {
+        $this->agentDebitCreditLogs = $agentDebitCreditLogs;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -102,6 +110,27 @@ class PolicyController extends Controller
                     'policy_no' => $policyNumber,
                 ];
                 Policy::where('id', $policy->id)->update($update);
+
+                // ==== create agentDebitCreditLogs
+                $totalBalance = 0;
+                $tranxDate = Carbon::now()->format('Y-m-d');
+                $policyId = $policyNumber;
+                $tranxDebit = 0;
+                $tranxCredit = $request->comission_rupees;
+                $totalBalance += $request->comission_rupees;
+                $balance = $totalBalance;
+                $insertedBy = Auth::user()->id;
+                $insertedAt = Carbon::now();
+
+                $this->agentDebitCreditLogs->agentDebitCreditActivity(
+                    $tranxDate,
+                    $policyId,
+                    $tranxDebit,
+                    $tranxCredit,
+                    $balance,
+                    $insertedBy,
+                    $insertedAt
+                );
 
                 return redirect()->route('policy.index')->with('message', 'Agent Policy Created Successfully');
 
