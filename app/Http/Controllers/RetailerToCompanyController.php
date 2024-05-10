@@ -2,72 +2,72 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Agent;
-use App\Models\AgentDebitCreditLog;
+use App\Models\Retailer;
+use App\Models\RetailerDebitCreditLog;
 use Illuminate\Http\Request;
 
-class AgentToCompanyController extends Controller
+class RetailerToCompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $agentDebitCreditLog = AgentDebitCreditLog::orderBy("tranx_dt","asc")->whereNull('deleted_at')->get();
-        $agent = Agent::orderBy("id","desc")->whereNull('deleted_at')->get();
-        // dd($agent);
+        $retailerDebitCreditLog = RetailerDebitCreditLog::orderBy("tranx_dt","asc")->whereNull('deleted_at')->get();
+        $retailer = Retailer::orderBy("id","desc")->whereNull('deleted_at')->get();
+        // dd($retailer);
 
         $debitTranxTotal = 0;
         $creditTranxTotal = 0;
         $balance = 0;
 
-        return view('finance.agent-to-company.index',
+        return view('finance.retailer-to-company.index',
         [
-            'agentDebitCreditLog' => $agentDebitCreditLog,
-            'agent' => $agent,
+            'retailerDebitCreditLog' => $retailerDebitCreditLog,
+            'retailer' => $retailer,
             'creditTranxTotal'=> $creditTranxTotal,
             'debitTranxTotal'=> $debitTranxTotal,
             'balance'=> $balance
         ]);
     }
 
-    public function search_agent_wise_tranx(Request $request)
+    public function search_retailer_wise_tranx(Request $request)
     {
-        $agent = Agent::orderBy("id","desc")->whereNull('deleted_at')->get();
-        // dd($agent);
+        $retailer = Retailer::orderBy("id","desc")->whereNull('deleted_at')->get();
+        // dd($retailer);
 
         // ==== Validation
         $this->validate($request, [
             'from_date' => 'required',
             'to_date' => 'required',
-            'agent_id' => 'required',
+            'retailer_id' => 'required',
            ],[
             'from_date.required' => 'From Date of Transaction is required.',
             'to_date.required' => 'To Date of Transaction is required.',
-            'agent_id' => 'Agent Name is required.',
+            'retailer_id' => 'Retailer Name is required.',
             ]);
 
         $fromDate = date("Y-m-d", strtotime($request['from_date']) );
         $toDate = date("Y-m-d", strtotime($request['to_date']) );
 
-        $agentDebitCreditLog = AgentDebitCreditLog::orderBy("inserted_at","asc")
+        $retailerDebitCreditLog = RetailerDebitCreditLog::orderBy("inserted_at","asc")
                           ->whereBetween('tranx_dt', [$fromDate, $toDate])
-                          ->where('agent_id', $request->agent_id)
+                          ->where('retailer_id', $request->retailer_id)
                           ->whereNull('deleted_at')
                           ->get();
 
-        // dd($agentDebitCreditLog);
+        // dd($retailerDebitCreditLog);
 
-        // ==== Calulate the total Credit Tranx based on Agent_Type
-        $creditTranxTotal = AgentDebitCreditLog::whereBetween('tranx_dt', [$fromDate, $toDate])
-                                                ->where('agent_id', $request->agent_id)
+        // ==== Calulate the total Credit Tranx based on Retailer Type
+        $creditTranxTotal = RetailerDebitCreditLog::whereBetween('tranx_dt', [$fromDate, $toDate])
+                                                ->where('retailer_id', $request->retailer_id)
                                                 ->where('tranx_type', '1')
                                                 ->whereNull('deleted_at')
                                                 ->sum('credit_tranx');
 
-        // ==== Calulate the total Debit Tranx based on Agent_Type
-        $debitTranxTotal = AgentDebitCreditLog::whereBetween('tranx_dt', [$fromDate, $toDate])
-                                                ->where('agent_id', $request->agent_id)
+        // ==== Calulate the total Debit Tranx based on Retailer Type
+        $debitTranxTotal = RetailerDebitCreditLog::whereBetween('tranx_dt', [$fromDate, $toDate])
+                                                ->where('retailer_id', $request->retailer_id)
                                                 ->where('tranx_type', '2')
                                                 ->whereNull('deleted_at')
                                                 ->sum('debit_tranx');
@@ -75,14 +75,13 @@ class AgentToCompanyController extends Controller
         // Calculate balance
         $balance = $creditTranxTotal - $debitTranxTotal;
 
-       return view('finance.agent-to-company.index',
-       [ 'agent' => $agent,
-         'agentDebitCreditLog'=> $agentDebitCreditLog,
+       return view('finance.retailer-to-company.index',
+       [ 'retailer' => $retailer,
+         'retailerDebitCreditLog'=> $retailerDebitCreditLog,
          'creditTranxTotal'=> $creditTranxTotal,
          'debitTranxTotal'=> $debitTranxTotal,
          'balance'=> $balance
        ]);
 
     }
-
 }

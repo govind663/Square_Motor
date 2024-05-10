@@ -74,16 +74,16 @@
                     </a>
                     <ul style="display: none;">
                         <li class="menu-arrow {{ ($currentRoute === 'payment.index') || ($currentRoute === 'payment.create') || ($currentRoute === 'payment.edit') ? 'active' : '' }}">
-                            <a href="{{ route('payment.index') }}">Payment to Agent</a>
+                            <a href="{{ route('payment.index') }}"><span>Payment to Agent</span></a>
                         </li>
                         <li class="{{ ($currentRoute === 'agent_to_company.index') ? 'active' : '' }}">
-                            <a href="{{ route('agent_to_company.index') }}">Agent to Company</a>
+                            <a href="{{ route('agent_to_company.index') }}"><span>Agent to Company</span></a>
+                        </li>
+                        <li class="{{ ($currentRoute === 'retailer_to_company.index') ? 'active' : '' }}">
+                            <a href="{{ route('retailer_to_company.index') }}"><span>Retailer to Company</span></a>
                         </li>
                         <li>
-                            <a href="#">Retailer to Company</a>
-                        </li>
-                        <li>
-                            <a href="#">Company to Company</a>
+                            <a href="#"><span>Company to Company</span></a>
                         </li>
                     </ul>
                 </li>

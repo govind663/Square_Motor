@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Agent to Company | List
+Retailer to Company | List
 @endsection
 
 @push('styles')
@@ -43,10 +43,10 @@ Agent to Company | List
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Agent to Company</h3>
+                    <h3 class="page-title">Retailer to Company</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">All Agent to Company List</li>
+                        <li class="breadcrumb-item active">All Retailer to Company List</li>
                     </ul>
                 </div>
             </div>
@@ -57,7 +57,7 @@ Agent to Company | List
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('agent_to_company.search_agent_wise_tranx') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('retailer_to_company.search_agent_wise_tranx') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group-customer customer-additional-form">
@@ -88,14 +88,14 @@ Agent to Company | List
 
                                     <div class="col-lg-3 col-md-12 col-sm-12">
                                         <div class="input-block mb-3" >
-                                            <label><b>Agent Name : <span class="text-danger">*</span></b></label>
-                                            <select  class="form-control @error('agent_id') is-invalid @enderror select" id="agent_id" name="agent_id">
-                                                <option value="">Select Agent</option>
-                                                @foreach ($agent as $value )
-                                                <option value="{{ $value->id }}" {{ (old("agent_id") == $value->id ? "selected":"") }}>{{ $value->name }}</option>
+                                            <label><b>Retailer Name : <span class="text-danger">*</span></b></label>
+                                            <select  class="form-control @error('retailer_id') is-invalid @enderror select" id="retailer_id" name="retailer_id">
+                                                <option value="">Select Retailer</option>
+                                                @foreach ($retailer as $value )
+                                                <option value="{{ $value->id }}" {{ (old("retailer_id") == $value->id ? "selected":"") }}>{{ $value->name }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('agent_id')
+                                            @error('retailer_id')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -152,7 +152,7 @@ Agent to Company | List
                                         $tbalance = 0;
                                     @endphp
 
-                                    @foreach ($agentDebitCreditLog as $key => $value)
+                                    @foreach ($retailerDebitCreditLog as $key => $value)
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>{{ date("d-m-Y", strtotime($value->tranx_dt)) }}</td>

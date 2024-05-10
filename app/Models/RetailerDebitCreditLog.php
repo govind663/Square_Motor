@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class AgentDebitCreditLog extends Model
+class RetailerDebitCreditLog extends Model
 {
     use HasFactory, SoftDeletes;
     public $timestamps = false;
@@ -28,9 +28,7 @@ class AgentDebitCreditLog extends Model
     ];
 
     protected $dates = ['deleted_at'];
-
-    // === relatioship with agents ===
-    public function agents(){
-        return $this->hasMany(Agent::class);
+    public function Retailer(){
+        return $this->belongsTo(Retailer::class);
     }
 }

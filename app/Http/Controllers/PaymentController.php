@@ -8,9 +8,17 @@ use App\Models\Payment;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\logs\agentDebitCreditLogs;
 
 class PaymentController extends Controller
 {
+    protected $agentDebitCreditLogs;
+
+    public function __construct(agentDebitCreditLogs $agentDebitCreditLogs)
+    {
+        $this->agentDebitCreditLogs = $agentDebitCreditLogs;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -46,6 +54,31 @@ class PaymentController extends Controller
             $payment->inserted_at = Carbon::now();
             $payment->inserted_by = Auth::user()->id;
             $payment->save();
+
+            // ==== create agentDebitCreditLogs
+            $totalBalance = 0;
+            $tranxDate = Carbon::now()->format('Y-m-d');
+            $agentId = $request->agent_id;
+            $policyId = $request->payment_mode;
+            $tranxDebit = $request->amount;
+            $tranxCredit = 0;
+            $totalBalance += $tranxDebit;
+            $balance = $totalBalance;
+            $tranx_type = '2';
+            $insertedBy = Auth::user()->id;
+            $insertedAt = Carbon::now();
+
+            $this->agentDebitCreditLogs->agentDebitCreditActivity(
+                $tranxDate,
+                $agentId,
+                $policyId,
+                $tranxDebit,
+                $tranxCredit,
+                $balance,
+                $tranx_type,
+                $insertedBy,
+                $insertedAt
+            );
 
             return redirect()->route('payment.index')->with('message','Payment created successfully');
 

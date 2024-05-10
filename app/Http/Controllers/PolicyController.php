@@ -114,20 +114,24 @@ class PolicyController extends Controller
                 // ==== create agentDebitCreditLogs
                 $totalBalance = 0;
                 $tranxDate = Carbon::now()->format('Y-m-d');
+                $agentId = $request->agent_id;
                 $policyId = $policyNumber;
                 $tranxDebit = 0;
                 $tranxCredit = $request->comission_rupees;
                 $totalBalance += $request->comission_rupees;
                 $balance = $totalBalance;
+                $tranx_type = '1';
                 $insertedBy = Auth::user()->id;
                 $insertedAt = Carbon::now();
 
                 $this->agentDebitCreditLogs->agentDebitCreditActivity(
                     $tranxDate,
+                    $agentId,
                     $policyId,
                     $tranxDebit,
                     $tranxCredit,
                     $balance,
+                    $tranx_type,
                     $insertedBy,
                     $insertedAt
                 );
@@ -189,6 +193,31 @@ class PolicyController extends Controller
                     'policy_no' => $policyNumber,
                 ];
                 Policy::where('id', $policy->id)->update($update);
+
+                // ==== create agentDebitCreditLogs
+                $totalBalance = 0;
+                $tranxDate = Carbon::now()->format('Y-m-d');
+                $retailerId = $request->retailer_id;
+                $policyId = $policyNumber;
+                $tranxDebit = 0;
+                $tranxCredit = $request->retailer_payable_amount;
+                $totalBalance += $request->retailer_payable_amount;
+                $balance = $totalBalance;
+                $tranx_type = '1';
+                $insertedBy = Auth::user()->id;
+                $insertedAt = Carbon::now();
+
+                $this->agentDebitCreditLogs->agentDebitCreditActivity(
+                    $tranxDate,
+                    $retailerId,
+                    $policyId,
+                    $tranxDebit,
+                    $tranxCredit,
+                    $balance,
+                    $tranx_type,
+                    $insertedBy,
+                    $insertedAt
+                );
 
                 return redirect()->route('policy.index')->with('message', 'Retailer Policy Created Successfully');
             }
