@@ -30,7 +30,7 @@
                 <div class="col">
                     <h3 class="page-title">Dashboard</h3>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item active">Home</li>
+                        {{-- <li class="breadcrumb-item active">Home</li> --}}
                     </ul>
                 </div>
             </div>
