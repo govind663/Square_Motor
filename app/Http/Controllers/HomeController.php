@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Agent;
+use App\Models\AgentDebitCreditLog;
+use App\Models\Policy;
+use App\Models\Retailer;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -23,9 +27,32 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        return view('home');
+        // ==== Calulate the total Credit Tranx based on Agent_Type
+        $creditTranxTotal = AgentDebitCreditLog::where('tranx_type', '1')->whereNull('deleted_at')->sum('credit_tranx');
+
+        // ==== Calulate the total Debit Tranx based on Agent_Type
+        $debitTranxTotal = AgentDebitCreditLog::where('tranx_type', '2')->whereNull('deleted_at')->sum('debit_tranx');
+
+        // Calculate totalEarningBalance
+        $totalEarningBalance = $creditTranxTotal - $debitTranxTotal;
+
+        // ==== Total Agents Count
+        $totalAgents = Agent::whereNull('deleted_at')->sum('id');
+
+        // ==== Total Retailer Count
+        $totalRetailer = Retailer::whereNull('deleted_at')->sum('id');
+
+        // ==== Total Policy Count
+        $totalPolicy = Policy::whereNull('deleted_at')->sum('id');
+
+        return view('home',[
+            'totalEarningBalance' => $totalEarningBalance,
+            'totalAgents'=> $totalAgents,
+            'totalRetailer'=> $totalRetailer,
+            'totalPolicy'=> $totalPolicy
+        ]);
     }
 
     public function changePassword(Request $request)

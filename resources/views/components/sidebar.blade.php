@@ -61,7 +61,7 @@
 
                 <li class="{{ ($currentRoute === 'report.index') || ($currentRoute === 'serch.policy.list') ? 'active' : '' }}">
                     <a href="{{ route('report.index') }}">
-                        <i class="fe fe-clipboard"></i>
+                        <i class="fe fe-pie-chart"></i>
                         <span>Report</span>
                     </a>
                 </li>
@@ -92,6 +92,13 @@
                     <a href="#">
                         <i class="fe fe-file-text"></i>
                         <span>Download Section</span>
+                    </a>
+                </li>
+
+                <li class="{{ ($currentRoute === 'expenses.index') || ($currentRoute === 'expenses.create') || ($currentRoute === 'expenses.edit') ? 'active' : '' }}">
+                    <a href="{{ route('expenses.index') }}">
+                        <i class="fe fe-package"></i>
+                        <span>Manage Expenses</span>
                     </a>
                 </li>
 

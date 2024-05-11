@@ -16,6 +16,7 @@ use App\Http\Controllers\PolicyController;
 use App\Http\Controllers\RetailerController;
 use App\Http\Controllers\RtoController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\ExpensesController;
 
 // === Middleware for PreventBackHistory of Browser data
 use App\Http\Middleware\PreventBackHistoryMiddleware;
@@ -27,6 +28,7 @@ use App\Http\Controllers\ReportController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\AgentToCompanyController;
 use App\Http\Controllers\RetailerToCompanyController;
+use App\Http\Controllers\CompanyToCompanyController;
 
 Route::get('/', function () {
     return view('auth.login');
@@ -73,6 +75,9 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHisto
     // ==== Policies resources routes
     Route::resource('policy', PolicyController::class);
 
+    // ==== Expenses resources routes
+    Route::resource('expenses', ExpensesController::class);
+
     // === fetch Agent Commission in percentage
     Route::post ('agent_commission_percentage', [AgentController::class,'agent_commission_percentage'])->name('agent_commission_percentage');
 
@@ -100,6 +105,10 @@ Route::group(['prefix'=> 'finance','middleware'=>['auth', PreventBackHistoryMidd
 
     // ====== RetailerToCompany
     Route::get('retailer_to_company/index', [RetailerToCompanyController::class, 'index'])->name('retailer_to_company.index');
-    Route::post('retailer_to_company/search_retailer_wise_tranx', [RetailerToCompanyController::class, 'search_retailer_wise_tranx'])->name('retailer_to_company.search_agent_wise_tranx');
+    Route::post('retailer_to_company/search_retailer_wise_tranx', [RetailerToCompanyController::class, 'search_retailer_wise_tranx'])->name('retailer_to_company.search_retailer_wise_tranx');
+
+    // ====== CompanyToCompany
+    Route::get('company_to_company/index', [CompanyToCompanyController::class, 'index'])->name('company_to_company.index');
+    Route::post('company_to_company/search_company_wise_tranx', [CompanyToCompanyController::class, 'search_company_wise_tranx'])->name('company_to_company.search_company_wise_tranx');
 
 });
