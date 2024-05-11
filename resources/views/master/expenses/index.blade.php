@@ -122,6 +122,8 @@ Expenses | List
     </div>
 </div>
 <!-- /Page Wrapper -->
+
+</div>
 @endsection
 
 @push('scripts')
