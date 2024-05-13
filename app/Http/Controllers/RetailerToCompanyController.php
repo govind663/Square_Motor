@@ -13,13 +13,17 @@ class RetailerToCompanyController extends Controller
      */
     public function index()
     {
-        $retailerDebitCreditLog = RetailerDebitCreditLog::with('retailes')
-                                                        ->orderBy("tranx_dt","asc")
-                                                        ->whereNull('deleted_at')
-                                                        ->get();
         $retailer = Retailer::orderBy("id","desc")->whereNull('deleted_at')->get();
         // dd($retailer);
 
+        $retailerID = Retailer::orderBy("id","desc")->whereNull('deleted_at')->get()->pluck('id')->toArray();
+        // dd($retailerID);
+
+        $retailerDebitCreditLog = RetailerDebitCreditLog::with('retailes')
+                                    ->orderBy("tranx_dt","asc")
+                                    ->whereIn('retailer_id', $retailerID)
+                                    ->whereNull('deleted_at')
+                                    ->get();
         $debitTranxTotal = 0;
         $creditTranxTotal = 0;
         $balance = 0;

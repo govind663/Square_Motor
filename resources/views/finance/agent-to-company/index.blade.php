@@ -57,7 +57,7 @@ Agent to Company | List
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('agent_to_company.search_agent_wise_tranx') }}" enctype="multipart/form-data">
+                        <form method="POST" class="col-sm-12" action="{{ route('agent_to_company.search_agent_wise_tranx') }}" enctype="multipart/form-data" autocomplete="off" >
                             @csrf
 
                             <div class="form-group-customer customer-additional-form">

@@ -52,6 +52,46 @@ Expenses | List
             <div class="col-sm-12">
                 <div class="card">
                     <div class="row card-body">
+                        <form method="POST" class='col-sm-12 p-3' action="#" enctype="multipart/form-data">
+                            @csrf
+
+                            <div class="form-group-customer customer-additional-form">
+                                <div class="row">
+                                    <div class="col-lg-3 col-md-12 col-sm-12">
+                                        <div class="input-block mb-3">
+                                            <label><b>From Date : <span class="text-danger">*</span></b></b></label>
+                                            <input type="text"  id="from_date" name="from_date" class="form-control datetimepicker @error('from_date') is-invalid @enderror" value="{{ old('from_date') }}" placeholder="DD/MM/YYYY">
+                                            @error('from_date')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-12 col-sm-12">
+                                        <div class="input-block mb-3">
+                                            <label><b>To Date : <span class="text-danger">*</span></b></b></label>
+                                            <input type="text"  id="to_date" name="to_date" class="form-control datetimepicker @error('to_date') is-invalid @enderror" value="{{ old('to_date') }}" placeholder="DD/MM/YYYY">
+                                            @error('to_date')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-12 col-sm-12">
+                                        <div class="input-block mt-2 text-start">
+                                            <br>
+                                            <button type="submit" class="btn btn-primary">Submit</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </form>
+
                         <div class="col-10">
                             <h5 class="card-title">All Expenses List</h5>
                         </div>

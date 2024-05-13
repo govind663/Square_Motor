@@ -16,10 +16,15 @@ class AgentToCompanyController extends Controller
         $agent = Agent::orderBy("id","desc")->whereNull('deleted_at')->get();
         // dd($agent);
 
+        $agentID = Agent::orderBy("id","desc")->whereNull('deleted_at')->get()->pluck('id')->toArray();
+        // dd($agentID);
+
         $agentDebitCreditLog = AgentDebitCreditLog::with('agents')
-                                                   ->orderBy("tranx_dt","asc")
-                                                   ->whereNull('deleted_at')
-                                                   ->get();
+                                ->orderBy("tranx_dt","asc")
+                                ->whereIn('agent_id',$agentID)
+                                ->whereNull('deleted_at')
+                                ->get();
+        // dd($agentDebitCreditLog);
 
         $debitTranxTotal = 0;
         $creditTranxTotal = 0;

@@ -17,6 +17,9 @@ class ExpensesController extends Controller
     {
         $expenses = Expenses::orderBy("id","desc")->orderBy("id","desc")->whereNull('deleted_at')->paginate(10);
         return view('master.expenses.index', ['expenses'=> $expenses]);
+        // Encoding the URL
+
+
     }
 
     /**
@@ -110,5 +113,23 @@ class ExpensesController extends Controller
 
             return redirect()->back()->with('error','Something Went Wrong - '.$ex->getMessage());
         }
+    }
+
+    // ==== serch expenses by from - To date
+    public function search(Request $request){
+        // ==== Validation
+        $this->validate($request, [
+            'from_date' => 'required',
+            'to_date' => 'required',
+           ],[
+            'from_date.required' => 'From Date of Transaction is required.',
+            'to_date.required' => 'To Date of Transaction is required.',
+            ]);
+
+        $fromDate = date("Y-m-d", strtotime($request['from_date']) );
+        $toDate = date("Y-m-d", strtotime($request['to_date']) );
+
+        $expenses = Expenses::whereBetween('inserted_at', [$fromDate, $toDate])->orderBy("id","desc")->whereNull('deleted_at')->paginate(10);
+        return view('master.expenses.index', ['expenses' => $expenses]);
     }
 }
