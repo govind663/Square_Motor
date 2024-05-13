@@ -31,6 +31,6 @@ class AgentDebitCreditLog extends Model
 
     // === relatioship with agents ===
     public function agents(){
-        return $this->hasMany(Agent::class);
+        return $this->belongsTo(Agent::class, 'agent_id', 'id');
     }
 }

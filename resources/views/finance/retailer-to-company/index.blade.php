@@ -57,7 +57,7 @@ Retailer to Company | List
             <div class="col-sm-12">
                 <div class="card">
                     <div class="card-body">
-                        <form method="POST" action="{{ route('retailer_to_company.search_agent_wise_tranx') }}" enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('retailer_to_company.search_retailer_wise_tranx') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group-customer customer-additional-form">
@@ -139,6 +139,7 @@ Retailer to Company | List
                                 <thead>
                                     <tr>
                                         <th>Sr. No.</th>
+                                        <th>Retailer Name</th>
                                         <th>Date</th></th>
                                         <th>Particular</th>
                                         <th>Debit</th>
@@ -155,6 +156,7 @@ Retailer to Company | List
                                     @foreach ($retailerDebitCreditLog as $key => $value)
                                     <tr>
                                         <td>{{ ++$key }}</td>
+                                        <td>{{ $value->retailer?->name }}</td>
                                         <td>{{ date("d-m-Y", strtotime($value->tranx_dt)) }}</td>
 
                                             @if($value->tranx_type == '1')

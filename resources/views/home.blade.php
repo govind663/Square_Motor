@@ -48,7 +48,7 @@
                                 {{-- <i class="fa fa-rupee-sign"></i> --}}
                             </span>
                             <div class="dash-count">
-                                <div class="dash-title text-dark">Amount Due</div>
+                                <div class="dash-title text-dark">Total Earning</div>
                                 <div class="dash-counts text-dark">
                                     <p>{{ $totalEarningBalance }}</p>
                                 </div>
@@ -64,7 +64,7 @@
                     <div class="card-body border shadow">
                         <div class="dash-widget-header">
                             <span class="dash-widget-icon bg-2">
-                                <i class="fas fa-users"></i>
+                                <i class="fas fa-user"></i>
                             </span>
                             <div class="dash-count">
                                 <div class="dash-title text-dark">Total Agents</div>
@@ -83,7 +83,7 @@
                     <div class="card-body border shadow">
                         <div class="dash-widget-header">
                             <span class="dash-widget-icon bg-2">
-                                <i class="fas fa-user"></i>
+                                <i class="fas fa-users"></i>
                             </span>
                             <div class="dash-count">
                                 <div class="dash-title text-dark">Total Retailer</div>
@@ -105,7 +105,7 @@
                                 <i class="fas fa-file-alt"></i>
                             </span>
                             <div class="dash-count">
-                                <div class="dash-title text-dark">Policy</div>
+                                <div class="dash-title text-dark">Total Policy</div>
                                 <div class="dash-counts text-dark">
                                     <p>{{ $totalPolicy }}</p>
                                 </div>

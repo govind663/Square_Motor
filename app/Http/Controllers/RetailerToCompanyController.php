@@ -13,7 +13,10 @@ class RetailerToCompanyController extends Controller
      */
     public function index()
     {
-        $retailerDebitCreditLog = RetailerDebitCreditLog::orderBy("tranx_dt","asc")->whereNull('deleted_at')->get();
+        $retailerDebitCreditLog = RetailerDebitCreditLog::with('retailes')
+                                                        ->orderBy("tranx_dt","asc")
+                                                        ->whereNull('deleted_at')
+                                                        ->get();
         $retailer = Retailer::orderBy("id","desc")->whereNull('deleted_at')->get();
         // dd($retailer);
 

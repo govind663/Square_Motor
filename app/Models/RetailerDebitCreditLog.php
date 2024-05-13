@@ -12,7 +12,7 @@ class RetailerDebitCreditLog extends Model
     public $timestamps = false;
     protected $fillable = [
         'id',
-        'agent_id',
+        'retailer_id',
         'tranx_dt',
         'policy_id',
         'debit_tranx',
@@ -28,7 +28,7 @@ class RetailerDebitCreditLog extends Model
     ];
 
     protected $dates = ['deleted_at'];
-    public function Retailer(){
-        return $this->belongsTo(Retailer::class);
+    public function retailers(){
+        return $this->belongsTo(Retailer::class, 'retailer_id', 'id');
     }
 }

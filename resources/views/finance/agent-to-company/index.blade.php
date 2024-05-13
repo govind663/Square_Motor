@@ -139,6 +139,7 @@ Agent to Company | List
                                 <thead>
                                     <tr>
                                         <th>Sr. No.</th>
+                                        <th>Agent Name</th>
                                         <th>Date</th></th>
                                         <th>Particular</th>
                                         <th>Debit</th>
@@ -155,6 +156,7 @@ Agent to Company | List
                                     @foreach ($agentDebitCreditLog as $key => $value)
                                     <tr>
                                         <td>{{ ++$key }}</td>
+                                        <td>{{ $value->agents?->name }}</td>
                                         <td>{{ date("d-m-Y", strtotime($value->tranx_dt)) }}</td>
 
                                             @if($value->tranx_type == '1')
