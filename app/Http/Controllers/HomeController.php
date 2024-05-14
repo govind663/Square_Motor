@@ -39,13 +39,14 @@ class HomeController extends Controller
         $totalEarningBalance = $creditTranxTotal - $debitTranxTotal;
 
         // ==== Total Agents Count
-        $totalAgents = Agent::whereNull('deleted_at')->sum('id');
+        $totalAgents = Agent::whereNull('deleted_at')->count('id');
 
         // ==== Total Retailer Count
-        $totalRetailer = Retailer::whereNull('deleted_at')->sum('id');
+        $totalRetailer = Retailer::whereNull('deleted_at')->count('id');
 
         // ==== Total Policy Count
-        $totalPolicy = Policy::whereNull('deleted_at')->sum('id');
+        $totalPolicy = Policy::whereNull('deleted_at')->count('id');
+        // dd($totalPolicy);
 
         return view('home',[
             'totalEarningBalance' => $totalEarningBalance,
