@@ -58,7 +58,8 @@ class RetailerToCompanyController extends Controller
         $fromDate = date("Y-m-d", strtotime($request['from_date']) );
         $toDate = date("Y-m-d", strtotime($request['to_date']) );
 
-        $retailerDebitCreditLog = RetailerDebitCreditLog::orderBy("inserted_at","asc")
+        $retailerDebitCreditLog = RetailerDebitCreditLog::with('retailers')
+                          ->orderBy("tranx_dt","asc")
                           ->whereBetween('tranx_dt', [$fromDate, $toDate])
                           ->where('retailer_id', $request->retailer_id)
                           ->where('policy_type', '2')

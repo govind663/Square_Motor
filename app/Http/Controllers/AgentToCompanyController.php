@@ -60,12 +60,13 @@ class AgentToCompanyController extends Controller
         $fromDate = date("Y-m-d", strtotime($request['from_date']) );
         $toDate = date("Y-m-d", strtotime($request['to_date']) );
 
-        $agentDebitCreditLog = AgentDebitCreditLog::orderBy("inserted_at","asc")
-                          ->whereBetween('tranx_dt', [$fromDate, $toDate])
-                          ->where('agent_id', $request->agent_id)
-                          ->where('policy_type', '1')
-                          ->whereNull('deleted_at')
-                          ->get();
+        $agentDebitCreditLog = AgentDebitCreditLog::with('agents')
+                                ->orderBy("tranx_dt","asc")
+                                ->whereBetween('tranx_dt', [$fromDate, $toDate])
+                                ->where('agent_id', $request->agent_id)
+                                ->where('policy_type', '1')
+                                ->whereNull('deleted_at')
+                                ->get();
 
         // dd($agentDebitCreditLog);
 
