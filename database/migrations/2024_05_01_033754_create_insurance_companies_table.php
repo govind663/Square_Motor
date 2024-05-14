@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('insurance_companies', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name');
-            $table->string('logo_doc');
-            $table->string('description');
+            $table->string('company_name')->nullable();
+            $table->string('logo_doc')->nullable();
+            $table->string('description')->nullable();
             $table->string('commision_type')->nullable();
             $table->string('percentage_amt')->nullable();
             $table->string('fixed_amt')->nullable();
