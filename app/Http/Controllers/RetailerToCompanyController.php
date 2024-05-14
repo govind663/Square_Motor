@@ -19,9 +19,10 @@ class RetailerToCompanyController extends Controller
         $retailerID = Retailer::orderBy("id","desc")->whereNull('deleted_at')->get()->pluck('id')->toArray();
         // dd($retailerID);
 
-        $retailerDebitCreditLog = RetailerDebitCreditLog::with('retailes')
+        $retailerDebitCreditLog = RetailerDebitCreditLog::with('retailers')
                                     ->orderBy("tranx_dt","asc")
                                     ->whereIn('retailer_id', $retailerID)
+                                    ->where('policy_type', '2')
                                     ->whereNull('deleted_at')
                                     ->get();
         $debitTranxTotal = 0;
@@ -60,6 +61,7 @@ class RetailerToCompanyController extends Controller
         $retailerDebitCreditLog = RetailerDebitCreditLog::orderBy("inserted_at","asc")
                           ->whereBetween('tranx_dt', [$fromDate, $toDate])
                           ->where('retailer_id', $request->retailer_id)
+                          ->where('policy_type', '2')
                           ->whereNull('deleted_at')
                           ->get();
 

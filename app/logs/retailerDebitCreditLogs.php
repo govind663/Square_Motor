@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\URL;
 
 class retailerDebitCreditLogs{
 
-    public function retailerDebitCreditActivity($tranxDate, $retailerId, $policyId, $tranxDebit, $tranxCredit, $balance, $tranx_type, $insertedBy, $insertedAt){
+    public function retailerDebitCreditActivity($tranxDate, $retailerId, $policyId, $tranxDebit, $tranxCredit, $balance, $tranx_type, $insertedBy, $insertedAt, $policyType){
         $retailerDebitCreditLog = new RetailerDebitCreditLog();
         $retailerDebitCreditLog->tranx_dt = $tranxDate;
         $retailerDebitCreditLog->retailer_id = $retailerId;
@@ -17,6 +17,7 @@ class retailerDebitCreditLogs{
         $retailerDebitCreditLog->credit_tranx = $tranxCredit;
         $retailerDebitCreditLog->balance = $balance;
         $retailerDebitCreditLog->tranx_type = $tranx_type;
+        $retailerDebitCreditLog->policy_type = $policyType;
         $retailerDebitCreditLog->inserted_by = $insertedBy;
         $retailerDebitCreditLog->inserted_at = $insertedAt;
         $retailerDebitCreditLog->save();

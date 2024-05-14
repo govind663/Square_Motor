@@ -13,14 +13,17 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\logs\agentDebitCreditLogs;
+use App\logs\retailerDebitCreditLogs;
+
 
 class PolicyController extends Controller
 {
-    protected $agentDebitCreditLogs;
+    protected $agentDebitCreditLogs, $retailerDebitCreditLogs;
 
-    public function __construct(agentDebitCreditLogs $agentDebitCreditLogs)
+    public function __construct(agentDebitCreditLogs $agentDebitCreditLogs, retailerDebitCreditLogs $retailerDebitCreditLogs)
     {
         $this->agentDebitCreditLogs = $agentDebitCreditLogs;
+        $this->retailerDebitCreditLogs = $retailerDebitCreditLogs;
     }
 
     /**
@@ -121,6 +124,7 @@ class PolicyController extends Controller
                 $totalBalance += $request->comission_rupees;
                 $balance = $totalBalance;
                 $tranx_type = '1';
+                $policyType = '1';
                 $insertedBy = Auth::user()->id;
                 $insertedAt = Carbon::now();
 
@@ -133,7 +137,8 @@ class PolicyController extends Controller
                     $balance,
                     $tranx_type,
                     $insertedBy,
-                    $insertedAt
+                    $insertedAt,
+                    $policyType
                 );
 
                 return redirect()->route('policy.index')->with('message', 'Agent Policy Created Successfully');
@@ -194,7 +199,7 @@ class PolicyController extends Controller
                 ];
                 Policy::where('id', $policy->id)->update($update);
 
-                // ==== create agentDebitCreditLogs
+                // ==== create retailerDebitCreditLogs
                 $totalBalance = 0;
                 $tranxDate = Carbon::now()->format('Y-m-d');
                 $retailerId = $request->retailer_id;
@@ -204,10 +209,11 @@ class PolicyController extends Controller
                 $totalBalance += $request->retailer_payable_amount;
                 $balance = $totalBalance;
                 $tranx_type = '1';
+                $policyType = '2';
                 $insertedBy = Auth::user()->id;
                 $insertedAt = Carbon::now();
 
-                $this->agentDebitCreditLogs->agentDebitCreditActivity(
+                $this->retailerDebitCreditLogs->retailerDebitCreditActivity(
                     $tranxDate,
                     $retailerId,
                     $policyId,
@@ -216,7 +222,8 @@ class PolicyController extends Controller
                     $balance,
                     $tranx_type,
                     $insertedBy,
-                    $insertedAt
+                    $insertedAt,
+                    $policyType,
                 );
 
                 return redirect()->route('policy.index')->with('message', 'Retailer Policy Created Successfully');

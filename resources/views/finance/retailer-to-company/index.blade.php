@@ -156,7 +156,7 @@ Retailer to Company | List
                                     @foreach ($retailerDebitCreditLog as $key => $value)
                                     <tr>
                                         <td>{{ ++$key }}</td>
-                                        <td>{{ $value->retailer?->name }}</td>
+                                        <td>{{ $value->retailers?->name }}</td>
                                         <td>{{ date("d-m-Y", strtotime($value->tranx_dt)) }}</td>
 
                                             @if($value->tranx_type == '1')

@@ -22,6 +22,7 @@ class AgentToCompanyController extends Controller
         $agentDebitCreditLog = AgentDebitCreditLog::with('agents')
                                 ->orderBy("tranx_dt","asc")
                                 ->whereIn('agent_id',$agentID)
+                                ->where('policy_type', '1')
                                 ->whereNull('deleted_at')
                                 ->get();
         // dd($agentDebitCreditLog);
@@ -62,6 +63,7 @@ class AgentToCompanyController extends Controller
         $agentDebitCreditLog = AgentDebitCreditLog::orderBy("inserted_at","asc")
                           ->whereBetween('tranx_dt', [$fromDate, $toDate])
                           ->where('agent_id', $request->agent_id)
+                          ->where('policy_type', '1')
                           ->whereNull('deleted_at')
                           ->get();
 
