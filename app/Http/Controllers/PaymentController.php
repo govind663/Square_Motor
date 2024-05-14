@@ -65,6 +65,7 @@ class PaymentController extends Controller
             $totalBalance += $tranxDebit;
             $balance = $totalBalance;
             $tranx_type = '2';
+            $policyType = '1';
             $insertedBy = Auth::user()->id;
             $insertedAt = Carbon::now();
 
@@ -77,7 +78,8 @@ class PaymentController extends Controller
                 $balance,
                 $tranx_type,
                 $insertedBy,
-                $insertedAt
+                $insertedAt,
+                $policyType
             );
 
             return redirect()->route('payment.index')->with('message','Payment created successfully');
