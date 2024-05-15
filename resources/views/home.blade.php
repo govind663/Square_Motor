@@ -102,8 +102,8 @@
                     <div class="card-body border shadow">
                         <div class="dash-widget-header">
                             <span class="dash-widget-icon bg-3">
-                                {{-- <img src="{{ asset('assets/img/invoice.jpg') }}" alt=""> --}}
-                                <i class="fas fa-file-alt"></i>
+                                <img src="{{ asset('assets/img/Policy.png') }}" alt="">
+                                {{-- <i class="fas fa-file-alt"></i> --}}
                             </span>
                             <div class="dash-count">
                                 <div class="dash-title text-dark">Total Policy</div>
