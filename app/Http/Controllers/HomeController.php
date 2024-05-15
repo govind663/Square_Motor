@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Agent;
 use App\Models\AgentDebitCreditLog;
+use App\Models\Expenses;
 use App\Models\Policy;
 use App\Models\Retailer;
 use App\Models\User;
@@ -38,6 +39,9 @@ class HomeController extends Controller
         // Calculate totalEarningBalance
         $totalEarningBalance = $creditTranxTotal - $debitTranxTotal;
 
+        // ==== Total Expenses Count
+        $totalExpensesCount = Expenses::whereNull('deleted_at')->sum('amount');
+
         // ==== Total Agents Count
         $totalAgents = Agent::whereNull('deleted_at')->count('id');
 
@@ -52,7 +56,8 @@ class HomeController extends Controller
             'totalEarningBalance' => $totalEarningBalance,
             'totalAgents'=> $totalAgents,
             'totalRetailer'=> $totalRetailer,
-            'totalPolicy'=> $totalPolicy
+            'totalPolicy'=> $totalPolicy,
+            'totalExpensesCount'=> $totalExpensesCount,
         ]);
     }
 

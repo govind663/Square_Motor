@@ -38,7 +38,7 @@
         <!-- /Page Header -->
 
         <div class="row">
-            {{-- Total Earning Money --}}
+            {{-- Total Expenses --}}
             <div class="col-xl-3 col-sm-6 col-12">
                 <div class="card">
                     <div class="card-body border shadow">
@@ -48,9 +48,9 @@
                                 {{-- <i class="fa fa-rupee-sign"></i> --}}
                             </span>
                             <div class="dash-count">
-                                <div class="dash-title text-dark">Total Earning</div>
+                                <div class="dash-title text-dark">Total Expenses</div>
                                 <div class="dash-counts text-dark">
-                                    <p>{{ $totalEarningBalance }}</p>
+                                    <p>{{ $totalExpensesCount }}</p>
                                 </div>
                             </div>
                         </div>
@@ -102,6 +102,7 @@
                     <div class="card-body border shadow">
                         <div class="dash-widget-header">
                             <span class="dash-widget-icon bg-3">
+                                {{-- <img src="{{ asset('assets/img/invoice.jpg') }}" alt=""> --}}
                                 <i class="fas fa-file-alt"></i>
                             </span>
                             <div class="dash-count">
