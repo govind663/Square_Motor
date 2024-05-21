@@ -9,6 +9,19 @@ Policy | Create
     .form-control {
         border: 1px solid #387dff !important;
     }
+    .select2-container .select2-selection--single .select2-selection__rendered {
+        padding-right: 69px;
+    }
+    .css-equal-heights, .css-equal-content {
+        display: flex;
+        display: -webkit-flex;
+        flex-wrap: nowrap;
+        -webkit-flex-wrap: wrap;
+        flex-direction: row;
+        align-content: center;
+        justify-content: space-between;
+        align-items: self-start;
+    }
 </style>
 @endpush
 
@@ -362,20 +375,27 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Retailer Name : <span class="text-danger">*</span></b></label>
-                                                            <select  class="form-control select @error('retailer_id') is-invalid @enderror" id="retailer_id" name="retailer_id">
-                                                                <option value="">Select Retailer Name</option>
-                                                                @foreach ($retailerUser as $value )
-                                                                <option value="{{ $value->id }}" {{ (old("retailer_id") == $value->id ? "selected":"") }}>{{ $value->name }}</option>
-                                                                @endforeach
-                                                            </select>
-                                                            <a href="{{ route('retailer.create') }}" class="btn btn-primary btn-sm">
-                                                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Add Customer
-                                                            </a>
-                                                            @error('retailer_id')
-                                                                <span class="invalid-feedback" role="alert">
-                                                                    <strong>{{ $message }}</strong>
-                                                                </span>
-                                                            @enderror
+                                                            <ul class="form-group-plus css-equal-heights">
+                                                                <li>
+                                                                    <select style="width: 314px !important;" class="form-control select @error('retailer_id') is-invalid @enderror" id="retailer_id" name="retailer_id">
+                                                                        <option value="">Select Retailer Name</option>
+                                                                        @foreach ($retailerUser as $value )
+                                                                        <option value="{{ $value->id }}" {{ (old("retailer_id") == $value->id ? "selected":"") }}>{{ $value->name }}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                                    @error('retailer_id')
+                                                                        <span class="invalid-feedback" role="alert">
+                                                                            <strong>{{ $message }}</strong>
+                                                                        </span>
+                                                                    @enderror
+                                                                </li>
+
+                                                                <li>
+                                                                    <a href="{{ route('retailer.create') }}" class="btn btn-primary form-plus-btn">
+                                                                        <i class="fa fa-plus-circle me-2" aria-hidden="true"></i> Add
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
                                                         </div>
                                                     </div>
 
