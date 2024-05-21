@@ -92,7 +92,9 @@ class AgentToCompanyController extends Controller
          'agentDebitCreditLog'=> $agentDebitCreditLog,
          'creditTranxTotal'=> $creditTranxTotal,
          'debitTranxTotal'=> $debitTranxTotal,
-         'balance'=> $balance
+         'balance'=> $balance,
+         'fromDate'=> $fromDate,
+         'toDate'=> $toDate
        ]);
 
     }

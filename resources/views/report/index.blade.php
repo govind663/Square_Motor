@@ -65,34 +65,38 @@ Report | List
                                     <div class="col-lg-3 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>From Date : <span class="text-danger">*</span></b></b></label>
-                                            <input type="text"  id="from_date" name="from_date" class="form-control datetimepicker @error('from_date') is-invalid @enderror" value="{{ old('from_date') }}" placeholder="DD/MM/YYYY">
-                                            @error('from_date')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                            <div class="cal-icon cal-icon-info">
+                                                <input type="text"  id="from_date" name="from_date" class="form-control datetimepicker @error('from_date') is-invalid @enderror" value="{{ old('from_date', request('from_date')) }}" placeholder="DD-MM-YYYY">
+                                                @error('from_date')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-3 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>To Date : <span class="text-danger">*</span></b></b></label>
-                                            <input type="text"  id="to_date" name="to_date" class="form-control datetimepicker @error('to_date') is-invalid @enderror" value="{{ old('to_date') }}" placeholder="DD/MM/YYYY">
-                                            @error('to_date')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                            <div class="cal-icon cal-icon-info">
+                                                <input type="text"  id="to_date" name="to_date" class="form-control datetimepicker @error('to_date') is-invalid @enderror" value="{{ old('to_date', request('to_date')) }}" placeholder="DD-MM-YYYY">
+                                                @error('to_date')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
 
                                     <div class="col-lg-3 col-md-12 col-sm-12">
                                         <div class="input-block mb-3" >
                                             <label><b>Policy Type : <span class="text-danger">*</span></b></label>
-                                            <select class="form-control-sm @error('policy_type') is-invalid @enderror select" id="policy_type" name="policy_type">
-                                                <option value="">Select Policy Type</option>
-                                                <option value="1" {{ (old("policy_type") == '1' ? "selected":"") }}>Agent</option>
-                                                <option value="2" {{ (old("policy_type") == '2' ? "selected":"") }}>Retailer</option>
+                                            <select class="form-control select @error('policy_type') is-invalid @enderror" id="policy_type" name="policy_type">
+                                                <option value=" ">Select Policy Type</option>
+                                                <option value="1" {{ (old('policy_type', request('policy_type') ) == "1" ? "selected":"") }}>Agent</option>
+                                                <option value="2" {{ (old('policy_type', request('policy_type') ) == "2" ? "selected":"") }}>Retailer</option>
                                             </select>
                                             @error('policy_type')
                                                 <span class="invalid-feedback" role="alert">

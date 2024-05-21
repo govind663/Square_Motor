@@ -90,7 +90,9 @@ class RetailerToCompanyController extends Controller
          'retailerDebitCreditLog'=> $retailerDebitCreditLog,
          'creditTranxTotal'=> $creditTranxTotal,
          'debitTranxTotal'=> $debitTranxTotal,
-         'balance'=> $balance
+         'balance'=> $balance,
+         'fromDate'=> $fromDate,
+         'toDate'=> $toDate
        ]);
 
     }

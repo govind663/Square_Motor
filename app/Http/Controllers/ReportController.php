@@ -50,7 +50,12 @@ class ReportController extends Controller
         }
         $totalEarning = number_format($totalEarning, 0);
 
-       return view('report.index', [ 'policy'=> $policy, 'totalEarning'=> $totalEarning ]);
+       return view('report.index', [
+            'policy'=> $policy,
+            'totalEarning'=> $totalEarning,
+            'fromDate'=> $fromDate,
+            'toDate'=> $toDate
+        ]);
 
     }
 }
