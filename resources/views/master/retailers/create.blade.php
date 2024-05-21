@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Retailer | Create
+Customer | Create
 @endsection
 
 @push('styles')
@@ -20,7 +20,7 @@ Retailer | Create
 
                     <div class="page-header">
                         <div class="content-page-header">
-                            <h5>Add Retailer</h5>
+                            <h5>Add Customer</h5>
                         </div>
                     </div>
 

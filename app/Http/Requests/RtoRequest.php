@@ -40,10 +40,10 @@ class RtoRequest extends FormRequest
     public function messages()
     {
         return [
-            'city.required' => __('City is required'),
+            'city.required' => __('Region is required'),
             'city.max' => __('The length of city should not exceed 255 characters'),
-            'pincode.required' => __('Pincode is required'),
-            'pincode.max' => __('The length of Pincode should not exceed 255 characters'),
+            'pincode.required' => __('RTO Code is required'),
+            'pincode.max' => __('The length of RTO Code should not exceed 255 characters'),
         ];
     }
 }

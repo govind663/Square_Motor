@@ -34,8 +34,8 @@ RTO | Add
 
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="input-block mb-3">
-                                                <label><b>City : <span class="text-danger">*</span></b></label>
-                                                <input type="text" id="city" name="city" class="form-control @error('city') is-invalid @enderror" value="{{ old('city') }}" placeholder="Enter City">
+                                                <label><b>Region : <span class="text-danger">*</span></b></label>
+                                                <input type="text" id="city" name="city" class="form-control @error('city') is-invalid @enderror" value="{{ old('city') }}" placeholder="Enter Region">
 
                                                 @error('city')
                                                     <span class="invalid-feedback" role="alert">
@@ -47,8 +47,8 @@ RTO | Add
 
                                         <div class="col-lg-4 col-md-12 col-sm-12">
                                             <div class="input-block mb-3">
-                                                <label><b>Pincode : <span class="text-danger">*</span></b></label>
-                                                <input type="text" id="pincode" name="pincode" class="form-control @error('city') is-invalid @enderror" value="{{ old('pincode') }}" placeholder="Enter Pincode">
+                                                <label><b>RTO Code : <span class="text-danger">*</span></b></label>
+                                                <input type="text" id="pincode" name="pincode" class="form-control @error('city') is-invalid @enderror" value="{{ old('pincode') }}" placeholder="Enter RTO Code">
                                                 @error('pincode')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>

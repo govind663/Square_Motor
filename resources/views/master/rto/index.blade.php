@@ -68,8 +68,8 @@ RTO | List
                                 <thead>
                                     <tr>
                                         <th>Sr. No.</th>
-                                        <th>City</th>
-                                        <th>Pincode</th>
+                                        <th>Region</th>
+                                        <th>RTO Code</th>
                                         <th>State</th>
                                         <th class="no-export">Action</th>
                                     </tr>

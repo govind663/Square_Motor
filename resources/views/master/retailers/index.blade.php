@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Retailer List
+Customer List
 @endsection
 
 @push('styles')
@@ -38,10 +38,10 @@ Retailer List
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Manage Retailer</h3>
+                    <h3 class="page-title">Manage Customer</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">All Retailer List</li>
+                        <li class="breadcrumb-item active">All Customer List</li>
                     </ul>
                 </div>
             </div>
@@ -53,7 +53,7 @@ Retailer List
                 <div class="card">
                     <div class="row card-body">
                         <div class="col-10">
-                            <h5 class="card-title">All Retailer List</h5>
+                            <h5 class="card-title">All Customer List</h5>
                         </div>
                         <div class="col-2 float-right">
                             <a href="{{ route('retailer.create') }}" class="btn btn-primary btn-sm">

@@ -121,8 +121,9 @@ Policy | Create
                                                             <label><b>Insurance Type : <span class="text-danger">*</span></b></label>
                                                             <select required class="select" id="agent_insurance_type" name="insurance_type">
                                                                 <option value="">Select Insurance Type</option>
-                                                                <option value="1" {{ ( $policy->insurance_type == "1" ? "selected":"") }}>1st Party</option>
-                                                                <option value="2" {{ ( $policy->insurance_type == "2" ? "selected":"") }}>3rd Party</option>
+                                                                <option value="1" {{ (old("insurance_type") == "1" ? "selected":"") }}>1st Party (Comprehensive)</option>
+                                                                <option value="2" {{ (old("insurance_type") == "2" ? "selected":"") }}>3rd Party(Liability)</option>
+                                                                <option value="3" {{ (old("insurance_type") == "3" ? "selected":"") }}>OD Only</option>
                                                             </select>
                                                         </div>
                                                     </div>
@@ -362,8 +363,9 @@ Policy | Create
                                                             <label><b>Insurance Type : <span class="text-danger">*</span></b></label>
                                                             <select required class="select" id="insurance_type" name="insurance_type">
                                                                 <option value="">Select Vehicle Type</option>
-                                                                <option value="1" {{ ( $policy->insurance_type == "1" ? "selected":"") }}>1st Party</option>
-                                                                <option value="2" {{ ( $policy->insurance_type == "2" ? "selected":"") }}>2nd Party</option>
+                                                                <option value="1" {{ (old("insurance_type") == "1" ? "selected":"") }}>1st Party (Comprehensive)</option>
+                                                                <option value="2" {{ (old("insurance_type") == "2" ? "selected":"") }}>3rd Party(Liability)</option>
+                                                                <option value="3" {{ (old("insurance_type") == "3" ? "selected":"") }}>OD Only</option>
                                                             </select>
                                                         </div>
                                                     </div>

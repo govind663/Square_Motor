@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Retailer | Edit
+Customer | Edit
 @endsection
 
 @push('styles')
@@ -20,7 +20,7 @@ Retailer | Edit
 
                 <div class="page-header">
                     <div class="content-page-header">
-                        <h5>Edit Retailer</h5>
+                        <h5>Edit Customer</h5>
                     </div>
                 </div>
 

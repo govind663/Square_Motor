@@ -29,7 +29,11 @@ return new class extends Migration
             $table->foreignIdFor(RTO::class)->nullable()->index();
             $table->foreignIdFor(Vehicle::class)->nullable()->index();
             $table->string('vehicle_config')->nullable();
-            $table->string('insurance_type')->nullable();
+            $table->string('insurance_type')->nullable()->comment('
+            1. 1st Party (Comprehensive),
+            2. 3rd Party (Liability),
+            3. OD Only
+            ');
             $table->foreignIdFor(InsuranceCompany::class)->nullable()->index();
             $table->string('main_price')->nullable();
             $table->string('company_commission_percentage')->nullable();

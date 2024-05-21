@@ -147,8 +147,9 @@ Policy | Create
                                                             <label><b>Insurance Type : <span class="text-danger">*</span></b></label>
                                                             <select  class="form-control select @error('insurance_type') is-invalid @enderror" id="agent_insurance_type" name="insurance_type">
                                                                 <option value="">Select Insurance Type</option>
-                                                                <option value="1" {{ (old("insurance_type") == "1" ? "selected":"") }}>1st Party</option>
-                                                                <option value="2" {{ (old("insurance_type") == "2" ? "selected":"") }}>3rd Party</option>
+                                                                <option value="1" {{ (old("insurance_type") == "1" ? "selected":"") }}>1st Party (Comprehensive)</option>
+                                                                <option value="2" {{ (old("insurance_type") == "2" ? "selected":"") }}>3rd Party(Liability)</option>
+                                                                <option value="3" {{ (old("insurance_type") == "3" ? "selected":"") }}>OD Only</option>
                                                             </select>
                                                             @error('insurance_type')
                                                                 <span class="invalid-feedback" role="alert">
@@ -474,8 +475,9 @@ Policy | Create
                                                             <label><b>Insurance Type : <span class="text-danger">*</span></b></label>
                                                             <select  class="form select @error('retailer_insurance_type') is-invalid @enderror" id="retailer_insurance_type" name="retailer_insurance_type">
                                                                 <option value="">Select Vehicle Type</option>
-                                                                <option value="1" {{ (old("retailer_insurance_type") == "1" ? "selected":"") }}>1st Party</option>
-                                                                <option value="2" {{ (old("retailer_insurance_type") == "2" ? "selected":"") }}>2nd Party</option>
+                                                                <option value="1" {{ (old("insurance_type") == "1" ? "selected":"") }}>1st Party (Comprehensive)</option>
+                                                                <option value="2" {{ (old("insurance_type") == "2" ? "selected":"") }}>3rd Party(Liability)</option>
+                                                                <option value="3" {{ (old("insurance_type") == "3" ? "selected":"") }}>OD Only</option>
                                                             </select>
                                                             @error('retailer_insurance_type')
                                                                 <span class="invalid-feedback" role="alert">

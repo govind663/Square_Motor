@@ -27,7 +27,7 @@
                 <li class="{{ ($currentRoute === 'retailer.index') || ($currentRoute === 'retailer.create') || ($currentRoute === 'retailer.edit') ? 'active' : '' }}">
                     <a href="{{ route('retailer.index') }}">
                         <i class="fe fe-user-plus"></i>
-                        <span>Manage Retailer</span>
+                        <span>Manage Customer</span>
                     </a>
                 </li>
 
