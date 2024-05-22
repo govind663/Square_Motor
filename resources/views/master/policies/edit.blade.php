@@ -79,7 +79,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Vehicle Registration Number : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="vehicle_reg_no" name="vehicle_reg_no" required class="form-control   " value="{{ $policy->vehicle_reg_no }}" placeholder="Enter Vehicle Registration Number">
+                                                            <input type="text" onkeypress="allowAlphaNumericSpace(event)" id="vehicle_reg_no" name="vehicle_reg_no" required class="form-control   " value="{{ $policy->vehicle_reg_no }}" placeholder="Enter Vehicle Registration Number">
 
                                                         </div>
                                                     </div>
@@ -321,7 +321,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Vehicle Registration Number : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="vehicle_reg_no" name="vehicle_reg_no" required class="form-control   " value="{{ $policy->vehicle_reg_no }}" placeholder="Enter Vehicle Registration Number">
+                                                            <input type="text" onkeypress="allowAlphaNumericSpace(event)" id="vehicle_reg_no" name="vehicle_reg_no" required class="form-control   " value="{{ $policy->vehicle_reg_no }}" placeholder="Enter Vehicle Registration Number">
 
                                                         </div>
                                                     </div>
@@ -553,6 +553,19 @@ Policy | Create
             });
         }).change();
     });
+</script>
+
+<script>
+    function allowAlphaNumericSpace(e) {
+            var code = ('charCode' in e) ? e.charCode : e.keyCode;
+
+            if (!(code == 32) && // space
+            !(code > 47 && code < 58) && // numeric (0-9)
+            !(code > 64 && code < 91) && // upper alpha (A-Z)
+            !(code > 96 && code < 123)) { // lower alpha (a-z)
+            e.preventDefault();
+        }
+    }
 </script>
 
 {{-- Current Date javascript for agent_issued_dt  --}}

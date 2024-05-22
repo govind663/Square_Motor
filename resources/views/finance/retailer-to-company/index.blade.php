@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Retailer to Company | List
+Direct Customer | List
 @endsection
 
 @push('styles')
@@ -43,10 +43,10 @@ Retailer to Company | List
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Retailer to Company</h3>
+                    <h3 class="page-title">Direct Customer</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">All Retailer to Company List</li>
+                        <li class="breadcrumb-item active">All Direct Customer List</li>
                     </ul>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Agent to Company | List
+Agent Leadger | List
 @endsection
 
 @push('styles')
@@ -43,10 +43,10 @@ Agent to Company | List
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Agent to Company</h3>
+                    <h3 class="page-title">Agent Leadger</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">All Agent to Company List</li>
+                        <li class="breadcrumb-item active">All Agent Leadger List</li>
                     </ul>
                 </div>
             </div>

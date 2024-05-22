@@ -77,13 +77,13 @@
                             <a href="{{ route('payment.index') }}"><span>Payment to Agent</span></a>
                         </li>
                         <li class="{{ ($currentRoute === 'agent_to_company.index') ? 'active' : '' }}">
-                            <a href="{{ route('agent_to_company.index') }}"><span>Agent to Company</span></a>
+                            <a href="{{ route('agent_to_company.index') }}"><span>Agent Leadger</span></a>
                         </li>
                         <li class="{{ ($currentRoute === 'retailer_to_company.index') ? 'active' : '' }}">
-                            <a href="{{ route('retailer_to_company.index') }}"><span>Retailer to Company</span></a>
+                            <a href="{{ route('retailer_to_company.index') }}"><span>Direct Customer</span></a>
                         </li>
                         <li>
-                            <a href="#"><span>Company to Company</span></a>
+                            <a href="#"><span>Company Leadger</span></a>
                         </li>
                     </ul>
                 </li>

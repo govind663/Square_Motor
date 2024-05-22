@@ -86,7 +86,7 @@
                                 <i class="fas fa-users"></i>
                             </span>
                             <div class="dash-count">
-                                <div class="dash-title text-dark">Total Retailer</div>
+                                <div class="dash-title text-dark">Total Direct Customer</div>
                                 <div class="dash-counts text-dark">
                                     <p>{{ $totalRetailer }}</p>
                                 </div>

@@ -87,7 +87,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Vehicle Registration Number : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="vehicle_reg_no" name="vehicle_reg_no"  class="form-control @error('vehicle_reg_no') is-invalid @enderror" value="{{ old('vehicle_reg_no') }}" placeholder="Enter Vehicle Registration Number">
+                                                            <input type="text" onkeypress="allowAlphaNumericSpace(event)" id="vehicle_reg_no" name="vehicle_reg_no"  class="form-control @error('vehicle_reg_no') is-invalid @enderror" value="{{ old('vehicle_reg_no') }}" placeholder="Enter Vehicle Registration Number">
                                                             @error('vehicle_reg_no')
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
@@ -415,7 +415,7 @@ Policy | Create
                                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                                         <div class="input-block mb-3">
                                                             <label><b>Vehicle Registration Number : <span class="text-danger">*</span></b></label>
-                                                            <input type="text" id="retailer_vehicle_reg_no" name="retailer_vehicle_reg_no"  class="form-control @error('retailer_vehicle_reg_no') is-invalid @enderror" value="{{ old('retailer_vehicle_reg_no') }}" placeholder="Enter Vehicle Registration Number">
+                                                            <input type="text" onkeypress="allowAlphaNumericSpace(event)" id="retailer_vehicle_reg_no" name="retailer_vehicle_reg_no"  class="form-control @error('retailer_vehicle_reg_no') is-invalid @enderror" value="{{ old('retailer_vehicle_reg_no') }}" placeholder="Enter Vehicle Registration Number">
                                                             @error('retailer_vehicle_reg_no')
                                                                 <span class="invalid-feedback" role="alert">
                                                                     <strong>{{ $message }}</strong>
@@ -730,6 +730,19 @@ Policy | Create
             });
         }).change();
     });
+</script>
+
+<script>
+    function allowAlphaNumericSpace(e) {
+            var code = ('charCode' in e) ? e.charCode : e.keyCode;
+
+            if (!(code == 32) && // space
+            !(code > 47 && code < 58) && // numeric (0-9)
+            !(code > 64 && code < 91) && // upper alpha (A-Z)
+            !(code > 96 && code < 123)) { // lower alpha (a-z)
+            e.preventDefault();
+        }
+    }
 </script>
 
 {{-- Current Date javascript for agent_issued_dt  --}}
