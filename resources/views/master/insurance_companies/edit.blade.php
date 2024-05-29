@@ -69,20 +69,20 @@ Insurance Company | Edit
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Description : </b></label>
-                                            <input type="text" id="description" name="description" class="form-control" value="{{ $insuranceCompany->description }}" placeholder="Enter Description">
+                                            <textarea type="text" id="description" name="description" class="form-control" value="{{ $insuranceCompany->description }}" placeholder="Enter Description">{{ $insuranceCompany->description }}</textarea>
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-12 col-sm-12">
+                                    {{-- <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3" >
                                             <label><b>Commision Type : <span class="text-danger">*</span></b></label>
                                             <select class="@error('commision_type') is-invalid @enderror select" id="commision_type" name="commision_type">
                                                 <option value="">Select Commision Type</option>
                                                 <option value="01" {{ ($insuranceCompany->commision_type == '01' ? "selected":"") }}>Percentage</option>
-                                                {{-- <option value="02" {{ ($insuranceCompany->commision_type == '02' ? "selected":"") }}>Fixed</option> --}}
+                                                <option value="02" {{ ($insuranceCompany->commision_type == '02' ? "selected":"") }}>Fixed</option>
                                             </select>
                                             @error('commision_type')
                                                 <span class="invalid-feedback" role="alert">
@@ -104,7 +104,8 @@ Insurance Company | Edit
                                             <label><b>Fixed :</b></label>
                                             <input type="text" id="fixed_amt" name="fixed_amt" class="form-control" value="{{ $insuranceCompany->fixed_amt }}" placeholder="Enter Fixed Amount">
                                         </div>
-                                    </div>
+                                    </div> --}}
+
                                 </div>
                             </div>
                             <div class="add-customer-btns text-start">

@@ -86,7 +86,7 @@
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3" >
                                             <label><b>Commision Type : <span class="text-danger">*</span></b></label>
-                                            <select class="form-control @error('comission_type') is-invalid @enderror js-example-basic-single select2" id="comission_type" name="comission_type">
+                                            <select class="form-control @error('comission_type') is-invalid @enderror select" id="comission_type" name="comission_type">
                                                 <option value="">Select Commision Type</option>
                                                 <option value="01" {{ ($agent->comission_type == "01" ? "selected":"") }}>Percentage</option>
                                                 {{-- <option value="02" {{ ($agent->comission_type == "02" ? "selected":"") }}>Fixed</option> --}}
@@ -101,7 +101,7 @@
 
                                     <div class="col-lg-4 col-md-12 col-sm-12 01 box" style="display:none">
                                         <div class="input-block mb-3" >
-                                            <label><b>Percentage : <span class="text-danger">*</span></b></label>
+                                            <label><b>Percentage (%) : <span class="text-danger">*</span></b></label>
                                             <input type="text" id="percentage_amt" name="percentage_amt" class="form-control @error('percentage_amt') is-invalid @enderror" value="{{ $agent->percentage_amt }}" placeholder="Enter Percentage">
                                             @error('percentage_amt')
                                                 <span class="invalid-feedback" role="alert">

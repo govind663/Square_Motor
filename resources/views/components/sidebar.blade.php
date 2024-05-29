@@ -52,6 +52,13 @@
                     </a>
                 </li>
 
+                <li class="{{ ($currentRoute === 'insurance_company_id.index') || ($currentRoute === 'insurance_company_id.create') || ($currentRoute === 'insurance_company_id.edit') ? 'active' : '' }}">
+                    <a href="{{ route('insurance_company_id.index') }}">
+                        <i class="fe fe-settings"></i>
+                        <span>Manage Insurance Company IDs</span>
+                    </a>
+                </li>
+
                 <li class="{{ ($currentRoute === 'policy.index') || ($currentRoute === 'policy.create') || ($currentRoute === 'policy.edit') ? 'active' : '' }}">
                     <a href="{{ route('policy.index') }}">
                         <i class="fe fe-file"></i>

@@ -50,9 +50,6 @@ class InsuranceCompanyController extends Controller
 
             $insuranceCompany->company_name = $request->company_name;
             $insuranceCompany->description = $request->description;
-            $insuranceCompany->commision_type = $request->commision_type;
-            $insuranceCompany->percentage_amt = $request->percentage_amt ? $request->percentage_amt : null;
-            $insuranceCompany->fixed_amt = $request->fixed_amt ? $request->fixed_amt : null;
             $insuranceCompany->inserted_at = Carbon::now();
             $insuranceCompany->inserted_by = Auth::user()->id;
             $insuranceCompany->save();
@@ -109,9 +106,6 @@ class InsuranceCompanyController extends Controller
 
             $insuranceCompany->company_name = $request->company_name;
             $insuranceCompany->description = $request->description;
-            $insuranceCompany->commision_type = $request->commision_type;
-            $insuranceCompany->percentage_amt = $request->percentage_amt ? $request->percentage_amt : null;
-            $insuranceCompany->fixed_amt = $request->fixed_amt ? $request->fixed_amt : null;
             $insuranceCompany->modified_at = Carbon::now();
             $insuranceCompany->modified_by = Auth::user()->id;
             $insuranceCompany->save();

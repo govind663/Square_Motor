@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Insurance Company | List
+Insurance Company IDs | List
 @endsection
 
 @push('styles')
@@ -38,7 +38,7 @@ Insurance Company | List
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Manage Insurance Company</h3>
+                    <h3 class="page-title">Manage Insurance Company IDs</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
                         <li class="breadcrumb-item active">All Insurance Company List</li>
@@ -53,11 +53,11 @@ Insurance Company | List
                 <div class="card">
                     <div class="row card-body">
                         <div class="col-9">
-                            <h5 class="card-title">All Insurance Company List</h5>
+                            <h5 class="card-title">All Insurance Company IDs List</h5>
                         </div>
                         <div class="col-3 float-right">
-                            <a href="{{ route('insurance_company.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Insurance Company
+                            <a href="{{ route('insurance_company_id.create') }}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Insurance Company IDs
                             </a>
                         </div>
                     </div>
@@ -69,28 +69,24 @@ Insurance Company | List
                                     <tr>
                                         <th>Sr. No.</th>
                                         <th>Company Name</th>
-                                        <th class="text-start no-export">Company Logo</th>
-                                        <th>Description</th>
+                                        <th>Company ID No.</th>
+                                        <th>Commision</th>
                                         <th class="no-export">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($insuranceCompanies as $key=>$value )
+                                    @foreach ($InsuranceCompanyID as $key=>$value )
                                     <tr>
                                         <td>{{ ++$key }}</td>
-                                        <td>{{ $value->company_name }}</td>
-                                        <td class="text-start no-export">
-                                            @if(!empty($value->logo_doc))
-                                                <img src="{{url('/')}}/company_policy/logo_doc/{{ $value->logo_doc }}" alt="{{ $value->logo_doc }}" style="height:60px !important; width: 60px !important; border-radius: 50%;" >
-                                            @endif
-                                        </td>
-                                        <td>{{ $value->description }}</td>
+                                        <td>{{ $value->insuranceCompany?->name }}</td>
+                                        <td>{{ $value->company_id }}</td>
+                                        <td>{{ $value->commision_percentage }}</td>
                                         <td class="no-export d-flex">
-                                            <a href="{{ route('insurance_company.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">
+                                            <a href="{{ route('insurance_company_id.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">
                                                 <i class="far fa-edit me-2"></i>Edit
                                             </a>
                                             &nbsp;
-                                            <form action="{{ route('insurance_company.destroy', $value->id) }}" method="post">
+                                            <form action="{{ route('insurance_company_id.destroy', $value->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input name="_method" type="hidden" value="DELETE">

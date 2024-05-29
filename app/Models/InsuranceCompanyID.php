@@ -6,15 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class InsuranceCompany extends Model
+class InsuranceCompanyID extends Model
 {
     use HasFactory, SoftDeletes;
     public $timestamps = false;
     protected $fillable = [
         'id',
-        'company_name',
-        'logo_doc',
-        'description',
+        'insurance_company_id',
+        'company_id',
+        'commision_percentage',
         'inserted_by',
         'inserted_at',
         'modified_by',
@@ -24,4 +24,9 @@ class InsuranceCompany extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    // ==== relationship between insurance_company_id
+    public function insuranceCompany(){
+        return $this->belongsTo(InsuranceCompany::class, 'insurance_company_id', 'id');
+    }
 }

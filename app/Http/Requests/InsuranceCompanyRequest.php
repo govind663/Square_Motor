@@ -26,18 +26,12 @@ class InsuranceCompanyRequest extends FormRequest
                 'company_name' => 'required|max:255',
                 'logo_doc'=> 'nullable|mimes:jpeg,png,jpg,pdf|max:2048',
                 'description'=>'nullable',
-                'commision_type'=>'required',
-                'percentage_amt'=> 'nullable',
-                'fixed_amt'=> 'nullable',
             ];
         }else{
             $rule = [
                 'company_name' => 'required|max:255',
                 'logo_doc'=> 'required|mimes:jpeg,png,jpg,pdf|max:2048',
                 'description'=>'nullable',
-                'commision_type'=>'required',
-                'percentage_amt'=> 'nullable',
-                'fixed_amt'=> 'nullable',
             ];
         }
         return $rule;
@@ -50,7 +44,6 @@ class InsuranceCompanyRequest extends FormRequest
             'logo_doc.required' => 'Company Logo is required',
             'logo_doc.max' => 'The file size should be less than 2MB.',
             'logo_doc.mimes' => ' Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .',
-            'commision_type.required'=> 'Commision Type is required',
         ];
     }
 }

@@ -1,6 +1,5 @@
 <?php
 
-use App\Models\Agent;
 use App\Models\InsuranceCompany;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -13,16 +12,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('payments', function (Blueprint $table) {
+        Schema::create('insurance_company_i_d_s', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(Agent::class)->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignIdFor(InsuranceCompany::class)->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade')->comment('Insurance company id');
-            $table->integer('amount')->nullable();
-            $table->integer('payment_mode')->nullable()->comment('1 => Cash, 2 => Cheque, 3 => Online Transfer, 4 => GooglePay, 5 => PhonePay');
-            $table->text('notes')->nullable();
-            $table->date('payment_dt')->nullable();
-            $table->integer('payment_status')->default(1)->comment('1 => Pending, 2 => Paid, 3 => Cancelled');
-            $table->integer('payment_by')->nullable()->comment('1 - Agent, 2 - Company');
+            $table->string('company_id')->nullable()->unique();
+            $table->integer('commision_percentage')->nullable()->comment('commision amount in percentage');
             $table->integer('inserted_by')->nullable();
             $table->timestamp('inserted_at')->nullable();
             $table->integer('modified_by')->nullable();
@@ -37,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('payments');
+        Schema::dropIfExists('insurance_company_i_d_s');
     }
 };
