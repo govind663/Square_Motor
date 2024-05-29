@@ -1,12 +1,12 @@
 <div class="header header-one">
     <a href="{{ route('home') }}"
         class="d-inline-flex d-sm-inline-flex align-items-center d-md-inline-flex d-lg-none align-items-center device-logo">
-        <img src="{{ url('/') }}/assets/img/Gadi_Insuranca.png" class="img-fluid logo2" alt="Logo" style="width:150px; height:50px">
+        <img src="{{ url('/') }}/assets/img/Gadi_Insuranca.png" class="img-fluid logo2" alt="Logo" style="width:150px; height:50px !important;">
     </a>
     <div class="main-logo d-inline float-start d-lg-flex align-items-center d-none d-sm-none d-md-none">
         <div class="logo-white">
             <a href="{{ route('home') }}">
-                <img src="{{ url('/') }}/assets/img/Gadi_Insuranca.png" class="img-fluid logo-blue" alt="Logo-Full" style="width:150px; height:50px">
+                <img src="{{ url('/') }}/assets/img/Gadi_Insuranca.png" class="img-fluid logo-blue" alt="Logo-Full" style="width:150px; height:50px !important;">
             </a>
             <a href="{{ route('home') }}">
                 <img src="{{ url('/') }}/assets/img/Gadi-Insurance.png" class="img-fluid logo-small" alt="Logo-Small">
@@ -14,7 +14,7 @@
         </div>
         <div class="logo-color">
             <a href="{{ route('home') }}">
-                <img src="{{ url('/') }}/assets/img/Gadi_Insuranca.png" class="img-fluid logo-blue" alt="Logo-Full" style="width:150px; height:50px">
+                <img src="{{ url('/') }}/assets/img/Gadi_Insuranca.png" class="img-fluid logo-blue" alt="Logo-Full" style="width:150px; height:50px !important;">
             </a>
             <a href="{{ route('home') }}">
                 <img src="{{ url('/') }}/assets/img/Gadi-Insurance.png" class="img-fluid logo-small" alt="Logo-small">
