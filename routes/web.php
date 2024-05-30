@@ -10,6 +10,7 @@ use App\Http\Controllers\HomeController;
 
 // ===== All Masters
 use App\Http\Controllers\AgentController;
+use App\Http\Controllers\AgentCommissionController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\InsuranceCompanyController;
 use App\Http\Controllers\InsuranceCompanyIDController;
@@ -57,6 +58,12 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHisto
 
     // ==== Agent resources routes
     Route::resource('agent', AgentController::class);
+
+    // ==== Agent Commission routes
+    Route::resource('agent_commission', AgentCommissionController::class);
+
+    // ==== fetch_insurance_company_id
+    Route::post('fetch_insurance_company_id', [AgentCommissionController::class, 'fetch_insurance_company_id'])->name('fetch_insurance_company_id');
 
     // ==== Vehicle resources routes
     Route::resource('vehicle', VehicleController::class);

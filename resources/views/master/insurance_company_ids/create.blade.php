@@ -48,7 +48,7 @@ Insurance Company ID | Add
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-12 col-sm-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Company ID : <span class="text-danger">*</span></b></label>
                                             <input type="text" id="company_id" name="company_id" class="form-control @error('company_id') is-invalid @enderror" value="{{ old('company_id') }}" placeholder="Enter Company ID">
@@ -60,7 +60,7 @@ Insurance Company ID | Add
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-12 col-sm-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="input-block mb-3" >
                                             <label><b>Commission Percentage (%) : <span class="text-danger">*</span></b></label>
                                             <input type="text" id="commision_percentage" name="commision_percentage" class="form-control @error('commision_percentage') is-invalid @enderror" value="{{ old('commision_percentage') }}" placeholder="Enter Commission Percentage (%)">

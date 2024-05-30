@@ -1,19 +1,19 @@
 @extends('layouts.master')
 
 @section('title')
-Insurance Company IDs | List
+  Commission List
 @endsection
 
 @push('styles')
 <style>
     .btn-secondary {
         color: #fff;
-        background-color: #387dff !important;
-        border-color: #387dff !important;
+        background-color: #387dff;
+        border-color: #387dff;
     }
     .pagination li.active a.page-link {
-        background: #387dff !important;
-        border-color: #387dff !important;
+        background: #387dff;
+        border-color: #387dff;
         border-radius: 5px;
     }
     table.dataTable thead > tr > th.dt-orderable-asc, table.dataTable thead > tr > th.dt-orderable-desc, table.dataTable thead > tr > th.dt-ordering-asc, table.dataTable thead > tr > th.dt-ordering-desc, table.dataTable thead > tr > td.dt-orderable-asc, table.dataTable thead > tr > td.dt-orderable-desc, table.dataTable thead > tr > td.dt-ordering-asc, table.dataTable thead > tr > td.dt-ordering-desc {
@@ -38,10 +38,10 @@ Insurance Company IDs | List
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Manage Insurance Company IDs</h3>
+                    <h3 class="page-title">Manage Commission</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">All Insurance Company List</li>
+                        <li class="breadcrumb-item active">All Commission List</li>
                     </ul>
                 </div>
             </div>
@@ -52,12 +52,12 @@ Insurance Company IDs | List
             <div class="col-sm-12">
                 <div class="card">
                     <div class="row card-body">
-                        <div class="col-9">
-                            <h5 class="card-title">All Insurance Company IDs List</h5>
+                        <div class="col-10">
+                            <h5 class="card-title">All Commission List</h5>
                         </div>
-                        <div class="col-3 float-right">
-                            <a href="{{ route('insurance_company_id.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Insurance Company IDs
+                        <div class="col-2 float-right">
+                            <a href="{{ route('agent_commission.create') }}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Commission
                             </a>
                         </div>
                     </div>
@@ -68,25 +68,29 @@ Insurance Company IDs | List
                                 <thead>
                                     <tr>
                                         <th>Sr. No.</th>
+                                        <th>Agent Name</th>
                                         <th>Company Name</th>
-                                        <th>Company ID No.</th>
-                                        <th>Commision (%)</th>
+                                        <th>Company ID</th>
+                                        <th>Vehicle Name</th>
+                                        <th>Commission Amount</th>
                                         <th class="no-export">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($InsuranceCompanyID as $key=>$value )
+                                    @foreach ($agentCommission as $key=>$value )
                                     <tr>
-                                        <td>{{ ++$key }}</td>
-                                        <td>{{ $value->insuranceCompany?->company_name }}</td>
-                                        <td>{{ $value->company_id }}</td>
-                                        <td>{{ $value->commision_percentage }}</td>
+                                        <td class="text-left">{{ ++$key }}</td>
+                                        <td >{{ $value->agent?->name }}</td>
+                                        <td >{{ $value->insuranceCompany?->company_name }}</td>
+                                        <td >{{ $value->insuranceCompanyID?->company_id }}</td>
+                                        <td >{{ $value->vehicle?->vehicle_type }}</td>
+                                        <td >{{ $value->comission_type }}</td>
                                         <td class="no-export d-flex">
-                                            <a href="{{ route('insurance_company_id.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">
+                                            <a href="{{ route('agent_commission.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">
                                                 <i class="far fa-edit me-2"></i>Edit
                                             </a>
                                             &nbsp;
-                                            <form action="{{ route('insurance_company_id.destroy', $value->id) }}" method="post">
+                                            <form action="{{ route('agent_commission.destroy', $value->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input name="_method" type="hidden" value="DELETE">
@@ -114,7 +118,7 @@ Insurance Company IDs | List
 <script>
     $('.data-table-export1').DataTable({
         scrollCollapse: true,
-        autoWidth: true,
+        autoWidth: false,
         responsive: true,
         columnDefs: [{
             targets: "datatable-nosort",
@@ -155,7 +159,7 @@ Insurance Company IDs | List
                     columns: ':not(.no-export)',
                 },
                header: true,
-               title: 'Report',
+               title: 'All Commission List',
                orientation: 'landscape',
                pageSize: 'A4',
                customize: function(doc) {

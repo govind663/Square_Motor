@@ -47,7 +47,7 @@ Policy | Create
                                     </div>
 
                                     <div class="tab-content">
-                                        <div class="tab-pane fade active show border border-2 border-black p-4" style="border-radius: 5px;" id="v-pills-agent" role="tabpanel" aria-labelledby="v-pills-agent-tab">
+                                        <div class="tab-pane fade active show border-2 border-black p-4" style="border-radius: 5px;" id="v-pills-agent" role="tabpanel" aria-labelledby="v-pills-agent-tab">
                                             <form method="POST" action="{{ route('policy.store') }}" enctype="multipart/form-data">
                                                 @csrf
 
@@ -365,7 +365,7 @@ Policy | Create
                                             </form>
                                         </div>
 
-                                        <div class="tab-pane fade  border border-2 border-black p-4" style="border-radius: 5px;" id="v-pills-retailer" role="tabpanel" aria-labelledby="v-pills-retailer-tab">
+                                        <div class="tab-pane fade  border-2 border-black p-4" style="border-radius: 5px;" id="v-pills-retailer" role="tabpanel" aria-labelledby="v-pills-retailer-tab">
                                             <form method="POST" action="{{ route('policy.store') }}" enctype="multipart/form-data">
                                                 @csrf
 

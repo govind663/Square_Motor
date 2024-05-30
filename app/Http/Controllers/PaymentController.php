@@ -25,7 +25,7 @@ class PaymentController extends Controller
     public function index()
     {
         $payments = Payment::with('agents')->orderBy("id","desc")->whereNull('deleted_at')->get();
-        return view('finance.payments.index',['payments' => $payments]);
+        return view('finance.payments.agents.index',['payments' => $payments]);
     }
 
     /**
@@ -34,7 +34,7 @@ class PaymentController extends Controller
     public function create()
     {
         $agent = Agent::orderBy("id","desc")->whereNull('deleted_at')->get();
-        return view('finance.payments.create', ['agent' => $agent]);
+        return view('finance.payments.agents.create', ['agent' => $agent]);
     }
 
     /**
@@ -105,7 +105,7 @@ class PaymentController extends Controller
     {
         $payment = Payment::find($id);
         $agent = Agent::orderBy("id","desc")->whereNull('deleted_at')->get();
-        return view('finance.payments.edit', ['payment'=> $payment, 'agent' => $agent]);
+        return view('finance.payments.agents.edit', ['payment'=> $payment, 'agent' => $agent]);
     }
 
     /**

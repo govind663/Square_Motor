@@ -10,6 +10,20 @@
                     </a>
                 </li>
 
+                <li class="{{ ($currentRoute === 'insurance_company.index') || ($currentRoute === 'insurance_company.create') || ($currentRoute === 'insurance_company.edit') ? 'active' : '' }}">
+                    <a href="{{ route('insurance_company.index') }}">
+                        <i class="fe fe-file-plus"></i>
+                        <span>Manage Insurance Company</span>
+                    </a>
+                </li>
+
+                <li class="{{ ($currentRoute === 'insurance_company_id.index') || ($currentRoute === 'insurance_company_id.create') || ($currentRoute === 'insurance_company_id.edit') ? 'active' : '' }}">
+                    <a href="{{ route('insurance_company_id.index') }}">
+                        <i class="fe fe-clipboard"></i>
+                        <span>Manage Insurance Company IDs</span>
+                    </a>
+                </li>
+
                 <li class="{{ ($currentRoute === 'agent.index') || ($currentRoute === 'agent.create') || ($currentRoute === 'agent.edit') ? 'active' : '' }}">
                     <a href="{{ route('agent.index') }}">
                         <i class="fe fe-users"></i>
@@ -24,17 +38,17 @@
                     </a>
                 </li>
 
+                <li class="{{ ($currentRoute === 'agent_commission.index') || ($currentRoute === 'agent_commission.create') || ($currentRoute === 'agent_commission.edit') ? 'active' : '' }}">
+                    <a href="{{ route('agent_commission.index') }}">
+                        <i class="fe fe-user"></i>
+                        <span>Manage Commission</span>
+                    </a>
+                </li>
+
                 <li class="{{ ($currentRoute === 'retailer.index') || ($currentRoute === 'retailer.create') || ($currentRoute === 'retailer.edit') ? 'active' : '' }}">
                     <a href="{{ route('retailer.index') }}">
                         <i class="fe fe-user-plus"></i>
                         <span>Manage Customer</span>
-                    </a>
-                </li>
-
-                <li class="{{ ($currentRoute === 'rto.index') || ($currentRoute === 'rto.create') || ($currentRoute === 'rto.edit') ? 'active' : '' }}">
-                    <a href="{{ route('rto.index') }}">
-                        <i class="fe fe-settings"></i>
-                        <span>Manage RTO</span>
                     </a>
                 </li>
 
@@ -45,17 +59,10 @@
                     </a>
                 </li>
 
-                <li class="{{ ($currentRoute === 'insurance_company.index') || ($currentRoute === 'insurance_company.create') || ($currentRoute === 'insurance_company.edit') ? 'active' : '' }}">
-                    <a href="{{ route('insurance_company.index') }}">
+                <li class="{{ ($currentRoute === 'rto.index') || ($currentRoute === 'rto.create') || ($currentRoute === 'rto.edit') ? 'active' : '' }}">
+                    <a href="{{ route('rto.index') }}">
                         <i class="fe fe-settings"></i>
-                        <span>Manage Insurance Company</span>
-                    </a>
-                </li>
-
-                <li class="{{ ($currentRoute === 'insurance_company_id.index') || ($currentRoute === 'insurance_company_id.create') || ($currentRoute === 'insurance_company_id.edit') ? 'active' : '' }}">
-                    <a href="{{ route('insurance_company_id.index') }}">
-                        <i class="fe fe-settings"></i>
-                        <span>Manage Insurance Company IDs</span>
+                        <span>Manage RTO</span>
                     </a>
                 </li>
 

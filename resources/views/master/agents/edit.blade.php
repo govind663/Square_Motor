@@ -83,13 +83,13 @@
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-12 col-sm-12">
+                                    {{-- <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3" >
                                             <label><b>Commision Type : <span class="text-danger">*</span></b></label>
                                             <select class="form-control @error('comission_type') is-invalid @enderror select" id="comission_type" name="comission_type">
                                                 <option value="">Select Commision Type</option>
                                                 <option value="01" {{ ($agent->comission_type == "01" ? "selected":"") }}>Percentage</option>
-                                                {{-- <option value="02" {{ ($agent->comission_type == "02" ? "selected":"") }}>Fixed</option> --}}
+                                                <option value="02" {{ ($agent->comission_type == "02" ? "selected":"") }}>Fixed</option>
                                             </select>
                                             @error('comission_type')
                                                 <span class="invalid-feedback" role="alert">
@@ -116,7 +116,7 @@
                                             <label><b>Fixed :</b></label>
                                             <input type="text" id="fixed_amt" name="fixed_amt" class="form-control" value="{{ $agent->fixed_amt }}" placeholder="Enter Fixed Amount">
                                         </div>
-                                    </div>
+                                    </div> --}}
 
                                 </div>
                             </div>

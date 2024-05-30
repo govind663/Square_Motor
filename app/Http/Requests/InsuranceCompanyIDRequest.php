@@ -24,7 +24,7 @@ class InsuranceCompanyIDRequest extends FormRequest
         if ($this->id){
             $rule = [
                 'insurance_company_id' => 'required|numeric',
-                'company_id'=> 'required|numeric|unique:insurance_company_i_d_s,company_id',
+                'company_id'=> 'required|numeric',
                 'commision_percentage'=>'required|string',
             ];
         }else{
@@ -40,7 +40,7 @@ class InsuranceCompanyIDRequest extends FormRequest
     public function messages()
     {
         return [
-            'insurance_company_id.required' => 'Please select Insurance Company Name',
+            'insurance_company_id.required' => 'Please select Company Name',
             'company_id.required' => 'Company Id is required.',
             'commision_percentage.required' => 'Commision Percentage is required.',
         ];
