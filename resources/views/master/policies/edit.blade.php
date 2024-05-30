@@ -47,7 +47,7 @@ Policy | Create
                                     </div>
 
                                     <div class="tab-content">
-                                        <div class="tab-pane fade {{ in_array('tab1', $filledTabs) ? ' show active' : '' }} border border-2 border-black p-4" style="border-radius: 5px;" id="v-pills-agent" role="tabpanel" aria-labelledby="v-pills-agent-tab">
+                                        <div class="tab-pane fade {{ in_array('tab1', $filledTabs) ? ' show active' : '' }} border-2 border-black p-4" style="border-radius: 5px;" id="v-pills-agent" role="tabpanel" aria-labelledby="v-pills-agent-tab">
                                             <form method="POST" action="{{ route('policy.update', $policy->id) }}" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PATCH')
@@ -279,7 +279,7 @@ Policy | Create
                                             </form>
                                         </div>
 
-                                        <div class="tab-pane fade {{ in_array('tab2', $filledTabs) ? ' show active' : '' }} border border-2 border-black p-4" style="border-radius: 5px;" id="v-pills-retailer" role="tabpanel" aria-labelledby="v-pills-retailer-tab">
+                                        <div class="tab-pane fade {{ in_array('tab2', $filledTabs) ? ' show active' : '' }} border-2 border-black p-4" style="border-radius: 5px;" id="v-pills-retailer" role="tabpanel" aria-labelledby="v-pills-retailer-tab">
                                             <form method="POST" action="{{ route('policy.update', $policy->id) }}" enctype="multipart/form-data">
                                                 @csrf
                                                 @method('PATCH')
