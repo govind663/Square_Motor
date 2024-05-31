@@ -13,6 +13,7 @@ class Payment extends Model
     protected $fillable = [
         'id',
         'agent_id',
+        'insurance_company_id',
         'amount',
         'payment_mode',
         'notes',
@@ -32,5 +33,10 @@ class Payment extends Model
     public function agents()
     {
         return $this->belongsTo(Agent::class, 'agent_id', 'id');
+    }
+
+    // ==== relationship between insurance company id
+    public function insurance_companies(){
+        return $this->belongsTo(InsuranceCompany::class, 'insurance_company_id', 'id');
     }
 }

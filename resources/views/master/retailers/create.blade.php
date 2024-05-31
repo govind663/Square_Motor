@@ -107,7 +107,7 @@ Customer | Create
                                         <div class="col-lg-4 col-md-12 col-sm-12">
                                             <div class="input-block mb-3" >
                                                 <label><b>Discount Type : <span class="text-danger">*</span></b></label>
-                                                <select class="form-control @error('discount_type') is-invalid @enderror js-example-basic-single select2" id="discount_type" name="discount_type">
+                                                <select class="form-control @error('discount_type') is-invalid @enderror select" id="discount_type" name="discount_type">
                                                     <option value="">Select Discount Type</option>
                                                     <option value="01" {{ (old("discount_type") == '01' ? "selected":"") }}>Percentage</option>
                                                     {{-- <option value="02" {{ (old("discount_type") == '02' ? "selected":"") }}>Fixed</option> --}}

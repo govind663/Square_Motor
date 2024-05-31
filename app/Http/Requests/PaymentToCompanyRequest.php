@@ -2,9 +2,10 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
-class PaymentRequest extends FormRequest
+class PaymentToCompanyRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +24,7 @@ class PaymentRequest extends FormRequest
     {
         if ($this->id){
             $rule = [
-                'agent_id' => 'required|max:255',
+                'insurance_company_id' => 'required|max:255',
                 'amount'=>'required|max:255',
                 'payment_mode'=>'required|max:255',
                 'notes'=>'required|max:255',
@@ -31,7 +32,7 @@ class PaymentRequest extends FormRequest
             ];
         }else{
             $rule = [
-                'agent_id' => 'required|max:255',
+                'insurance_company_id' => 'required|max:255',
                 'amount'=>'required|max:255',
                 'payment_mode'=>'required|max:255',
                 'notes'=>'required|max:255',
@@ -44,14 +45,20 @@ class PaymentRequest extends FormRequest
     public function messages()
     {
         return [
-            'agent_id.required' => __('Please Select Agent Nmae'),
-            'agent_id.max' => __('The length of Agent Name should not exceed 255 characters'),
+            'insurance_company_id.required' => __('Please Select Insurance Company Name'),
+            'insurance_company_id.max' => __('The length of Insurance Company Name should not exceed 255 characters'),
             'amount.required' => __('Please Select Amount'),
             'amount.max' => __('The length of Amount should not exceed 255 characters'),
             'payment_mode.required'=> __('Please Select Payment Mode'),
             'notes.required'=> __('Notes is required'),
-            'payment_dt.required'=> __('Date is required')
-
+            'c.required'=> __('Date is required'),
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        $this->merge([
+            'payment_dt' => Carbon::parse($this->payment_dt)->format('Y-m-d'),
+        ]);
     }
 }

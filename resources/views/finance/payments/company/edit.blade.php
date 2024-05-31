@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-  Payment | Edit
+Payment | Edit
 @endsection
 
 @push('styles')
@@ -26,7 +26,7 @@
 
                 <div class="row">
                     <div class="col-md-12">
-                        <form method="POST" action="{{ route('payment.update', $payment->id) }}"  enctype="multipart/form-data">
+                        <form method="POST" action="{{ route('payment_to_company.update', $payment->id) }}"  enctype="multipart/form-data">
                             @csrf
                             @method('PATCH')
                             <input type="text" id="id" name="id" hidden  value="{{ $payment->id }}" >
@@ -36,14 +36,16 @@
 
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3" >
-                                            <label><b>Agent Name : <span class="text-danger">*</span></b></label>
-                                            <select  class="form-control @error('agent_id') is-invalid @enderror select" id="agent_id" name="agent_id">
-                                                <option value="">Select Agent</option>
-                                                @foreach ($agent as $value )
-                                                <option value="{{ $value->id }}" {{ ( $payment->agent_id == $value->id ? "selected":"") }}>{{ $value->name }}</option>
-                                                @endforeach
+                                            <label><b>Select Company Name : <span class="text-danger">*</span></b></label>
+                                            <select  class="form-control @error('insurance_company_id') is-invalid @enderror select" id="insurance_company_id" name="insurance_company_id">
+                                                <option value="">Select Company Name</option>
+                                                <optgroup label="Company Name">
+                                                    @foreach ($insuranceCompany as $value )
+                                                    <option value="{{ $value->id }}" {{ ($payment->insurance_company_id == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
+                                                    @endforeach
+                                                </optgroup>
                                             </select>
-                                            @error('agent_id')
+                                            @error('insurance_company_id')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -97,20 +99,21 @@
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Date : <span class="text-danger">*</span></b></label>
-                                            <input type="date" id="payment_dt" name="payment_dt" class="form-control @error('payment_dt') is-invalid @enderror" value="{{ $payment->payment_dt }}" placeholder="Enter Date">
-                                            @error('payment_dt')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                            <div class="cal-icon cal-icon-info">
+                                                <input type="text" id="payment_dt" name="payment_dt" class="form-control datetimepicker @error('payment_dt') is-invalid @enderror" value="{{ $payment->payment_dt }}" placeholder="Enter Date">
+                                                @error('payment_dt')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 
                             <div class="add-customer-btns text-start">
-                                <a href="{{ route('payment.index') }}" class="btn btn-danger">Cancel</a>
+                                <a href="{{ route('payment_to_company.index') }}" class="btn btn-danger">Cancel</a>
                                 <button type="submit" class="btn btn-success">Update</button>
                             </div>
                         </form>

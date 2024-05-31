@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-  Payment | Edit
+Payment to Agent | Edit
 @endsection
 
 @push('styles')
@@ -97,15 +97,16 @@
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Date : <span class="text-danger">*</span></b></label>
-                                            <input type="date" id="payment_dt" name="payment_dt" class="form-control @error('payment_dt') is-invalid @enderror" value="{{ $payment->payment_dt }}" placeholder="Enter Date">
-                                            @error('payment_dt')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
+                                            <div class="cal-icon cal-icon-info">
+                                                <input type="text" id="payment_dt" name="payment_dt" class="form-control datetimepicker @error('payment_dt') is-invalid @enderror" value="{{ $payment->payment_dt }}" placeholder="Enter Date">
+                                                @error('payment_dt')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
 

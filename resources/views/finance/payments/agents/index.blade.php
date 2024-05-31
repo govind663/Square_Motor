@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Manage Payment | List
+Manage Payment to Agent | List
 @endsection
 
 @push('styles')
@@ -43,10 +43,10 @@ Manage Payment | List
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Manage Payment</h3>
+                    <h3 class="page-title">Manage Payment to Agent</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">All Payment List</li>
+                        <li class="breadcrumb-item active">All Payment to Agent List</li>
                     </ul>
                 </div>
             </div>
@@ -58,11 +58,11 @@ Manage Payment | List
                 <div class="card">
                     <div class="row card-body">
                         <div class="col-10">
-                            <h5 class="card-title">All Payment List</h5>
+                            <h5 class="card-title">All Payment to Agent List</h5>
                         </div>
                         <div class="col-2 float-right">
                             <a href="{{ route('payment.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Payment
+                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Payment to Agent
                             </a>
                         </div>
                     </div>
@@ -88,15 +88,15 @@ Manage Payment | List
                                         <td>{{ $value->amount }}</td>
                                         <td>
                                             @if($value->payment_mode == '1')
-                                                <span class="badge bg-success" >Cash</span>  
+                                                <span class="badge bg-success" >Cash</span>
                                             @elseif($value->payment_mode == '2')
-                                                <span class="badge bg-primary" >Cheque</span>    
+                                                <span class="badge bg-primary" >Cheque</span>
                                             @elseif($value->payment_mode == '3')
-                                                <span class="badge bg-info" >Online Transfer</span>     
+                                                <span class="badge bg-info" >Online Transfer</span>
                                             @elseif($value->payment_mode == '4')
-                                                <span class="badge bg-warning text-dark" >GooglePay</span> 
+                                                <span class="badge bg-warning text-dark" >GooglePay</span>
                                             @elseif($value->payment_mode == '5')
-                                                <span class="badge bg-dark" >PhonePay</span>  
+                                                <span class="badge bg-dark" >PhonePay</span>
                                             @endif
                                         </td>
                                         <td>{{ $value->notes }}</td>

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Manage Payment | List
+Manage Payment to Company | List
 @endsection
 
 @push('styles')
@@ -43,10 +43,10 @@ Manage Payment | List
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Manage Payment</h3>
+                    <h3 class="page-title">Manage Payment to Company</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">All Payment List</li>
+                        <li class="breadcrumb-item active">All Payment to Company List</li>
                     </ul>
                 </div>
             </div>
@@ -57,12 +57,12 @@ Manage Payment | List
             <div class="col-sm-12">
                 <div class="card">
                     <div class="row card-body">
-                        <div class="col-10">
-                            <h5 class="card-title">All Payment List</h5>
+                        <div class="col-9">
+                            <h5 class="card-title">All Payment to Company List</h5>
                         </div>
-                        <div class="col-2 float-right">
-                            <a href="{{ route('payment.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Payment
+                        <div class="col-3 float-right">
+                            <a href="{{ route('payment_to_company.create') }}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Payment to Company
                             </a>
                         </div>
                     </div>
@@ -72,7 +72,7 @@ Manage Payment | List
                                 <thead>
                                     <tr>
                                         <th>Sr. No.</th>
-                                        <th>Agent Name</th></th>
+                                        <th>Company Name</th></th>
                                         <th>Amount</th>
                                         <th>Payment Mode</th>
                                         <th>Notes</th>
@@ -84,7 +84,7 @@ Manage Payment | List
                                     @foreach ($payments as $key=>$value )
                                     <tr>
                                         <td>{{ ++$key }}</td>
-                                        <td>{{ $value->agents?->name }}</td>
+                                        <td>{{ $value->insurance_companies?->company_name }}</td>
                                         <td>{{ $value->amount }}</td>
                                         <td>
                                             @if($value->payment_mode == '1')
@@ -102,12 +102,12 @@ Manage Payment | List
                                         <td>{{ $value->notes }}</td>
                                         <td>{{ date('d-m-Y', strtotime($value->payment_dt)) }}</td>
                                         <td class="no-export">
-                                            <a href="{{ route('payment.edit', $value->id) }}" class="btn btn-warning btn-sm text-black">
+                                            <a href="{{ route('payment_to_company.edit', $value->id) }}" class="btn btn-warning btn-sm text-black">
                                                 <i class="far fa-edit me-2"></i>Edit
                                             </a>
                                             &nbsp;
                                             <a>
-                                                <form action="{{ route('payment.destroy', $value->id) }}" method="post">
+                                                <form action="{{ route('payment_to_company.destroy', $value->id) }}" method="post">
                                                     @csrf
                                                     @method('DELETE')
                                                     <input name="_method" type="hidden" value="DELETE">

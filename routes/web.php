@@ -28,6 +28,7 @@ use App\Http\Controllers\ReportController;
 
 // ==== Finance
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\PaymentToCompanyController;
 use App\Http\Controllers\AgentToCompanyController;
 use App\Http\Controllers\RetailerToCompanyController;
 use App\Http\Controllers\CompanyToCompanyController;
@@ -111,6 +112,9 @@ Route::group(['prefix'=> 'finance','middleware'=>['auth', PreventBackHistoryMidd
 
     // ===== Payment Resource
     Route::resource('payment', PaymentController::class);
+
+    // ===== Payment to Company Resource
+    Route::resource('payment_to_company', PaymentToCompanyController::class);
 
     // ====== AgentToCompany
     Route::get('agent_to_company/index', [AgentToCompanyController::class, 'index'])->name('agent_to_company.index');

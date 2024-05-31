@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-    Payment | Add
+Payment to Agent | Add
 @endsection
 
 @push('styles')
@@ -20,7 +20,7 @@
 
                     <div class="page-header">
                         <div class="content-page-header">
-                            <h5>Add Payment</h5>
+                            <h5>Add Payment to Agent</h5>
                         </div>
                     </div>
 
@@ -95,12 +95,14 @@
                                         <div class="col-lg-4 col-md-12 col-sm-12">
                                             <div class="input-block mb-3">
                                                 <label><b>Date : <span class="text-danger">*</span></b></label>
-                                                <input type="date" id="payment_dt" name="payment_dt" class="form-control @error('payment_dt') is-invalid @enderror" value="{{ old('payment_dt') }}" placeholder="Enter Date">
-                                                @error('payment_dt')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                                                <div class="cal-icon cal-icon-info">
+                                                    <input type="text" id="payment_dt" name="payment_dt" class="form-control datetimepicker @error('payment_dt') is-invalid @enderror" value="{{ old('payment_dt') }}" placeholder="Enter Date">
+                                                    @error('payment_dt')
+                                                        <span class="invalid-feedback" role="alert">
+                                                            <strong>{{ $message }}</strong>
+                                                        </span>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
 
