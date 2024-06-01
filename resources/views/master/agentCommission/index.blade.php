@@ -84,7 +84,17 @@
                                         <td >{{ $value->insuranceCompany?->company_name }}</td>
                                         <td >{{ $value->insuranceCompanyID?->company_id }}</td>
                                         <td >{{ $value->vehicle?->vehicle_type }}</td>
-                                        <td >{{ $value->comission_type }}</td>
+                                        @php
+                                            $commissionAmount = '';
+                                            if($value->comission_type == '1'){
+                                                // === append %
+                                                $commissionAmount = $value->percentage_amt.'%';
+                                            }elseif($value->comission_type == '2'){
+                                                // === append Rs
+                                                $commissionAmount = $value->fixed_amt.' Rs';
+                                            }
+                                        @endphp
+                                        <td >{{ $commissionAmount }}</td>
                                         <td class="no-export d-flex">
                                             <a href="{{ route('agent_commission.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">
                                                 <i class="far fa-edit me-2"></i>Edit

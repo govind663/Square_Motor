@@ -56,7 +56,7 @@ Policy | Create
                                                 <div class="row">
                                                     <h5 class="card-title text-primary mb-2">Agent Details</h5>
                                                     <div class="row">
-                                                        <div class="col-lg-4 col-md-12 col-sm-12">
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
                                                                 <label><b>Select Agent : <span class="text-danger">*</span></b></label>
                                                                 <select  class="form-control @error('agent_id') is-invalid @enderror select" id="agent_id" name="agent_id">
@@ -97,13 +97,13 @@ Policy | Create
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-lg-4 col-md-12 col-sm-12">
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
                                                                 <label><b>Select RTO : <span class="text-danger">*</span></b></label>
                                                                 <select  class="form-control select @error('r_t_o_id') is-invalid @enderror" id="agent_rto_id" name="r_t_o_id">
                                                                     <option value="">Select RTO</option>
                                                                     @foreach ($Rto as $value )
-                                                                    <option value="{{ $value->id }}" {{ (old("r_t_o_id") == $value->id ? "selected":"") }}>{{ $value->city }} - {{ $value->pincode }}</option>
+                                                                    <option value="{{ $value->id }}" {{ (old("r_t_o_id") == $value->id ? "selected":"") }}>{{ $value->state }} - {{ $value->pincode }}</option>
                                                                     @endforeach
                                                                 </select>
                                                                 @error('r_t_o_id')
@@ -114,7 +114,38 @@ Policy | Create
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-lg-4 col-md-12 col-sm-12">
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
+                                                                <label><b>Select Company Name : <span class="text-danger">*</span></b></label>
+                                                                <select  class="form-control select @error('insurance_company_id') is-invalid @enderror" id="agent_insurance_company_id" name="insurance_company_id">
+                                                                    <option value="">Select Company Namee</option>
+                                                                    @foreach ($insuranceCompany as $value )
+                                                                    <option value="{{ $value->id }}" {{ (old("insurance_company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('insurance_company_id')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
+                                                                <label><b>Select Insurance Company ID : <span class="text-danger">*</span></b></label>
+                                                                <select  class="form-control select @error('agent_company_id') is-invalid @enderror" id="agent_company_id" name="agent_company_id">
+                                                                    <option value="">Select Insurance Company ID</option>
+                                                                </select>
+                                                                @error('agent_company_id')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
                                                                 <label><b>Select Vehicle Type : <span class="text-danger">*</span></b></label>
                                                                 <select  class="form-control select @error('vehicle_id') is-invalid @enderror" id="agent_vehicle_id" name="vehicle_id">
@@ -143,7 +174,7 @@ Policy | Create
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-lg-4 col-md-12 col-sm-12">
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
                                                                 <label><b>Insurance Type : <span class="text-danger">*</span></b></label>
                                                                 <select  class="form-control select @error('insurance_type') is-invalid @enderror" id="agent_insurance_type" name="insurance_type">
@@ -160,45 +191,64 @@ Policy | Create
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-lg-4 col-md-12 col-sm-12">
-                                                            <div class="input-block mb-3">
-                                                                <label><b>Select Company Name : <span class="text-danger">*</span></b></label>
-                                                                <select  class="form-control select @error('insurance_company_id') is-invalid @enderror" id="agent_insurance_company_id" name="insurance_company_id">
-                                                                    <option value="">Select Company Namee</option>
-                                                                    @foreach ($insuranceCompany as $value )
-                                                                    <option value="{{ $value->id }}" {{ (old("insurance_company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                @error('insurance_company_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
 
-                                                        <div class="col-lg-4 col-md-12 col-sm-12">
-                                                            <div class="input-block mb-3">
-                                                                <label><b>Select Insurance Company ID : <span class="text-danger">*</span></b></label>
-                                                                <select  class="form-control select @error('agent_company_id') is-invalid @enderror" id="agent_company_id" name="agent_company_id">
-                                                                    <option value="">Select Insurance Company ID</option>
-                                                                </select>
-                                                                @error('agent_company_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
                                                     </div>
 
                                                     <h5 class="card-title text-primary mb-2">Commercial Details</h5>
                                                     <div class="row">
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Main Price : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" id="agent_main_price" name="main_price"  class="form-control @error('main_price') is-invalid @enderror" value="{{ old('main_price') }}" placeholder="Enter Main Price">
+                                                                <label><b>OD Premimum : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" id="agent_main_price" name="main_price"  class="form-control @error('main_price') is-invalid @enderror" value="{{ old('main_price') }}" placeholder="Enter OD Premimum">
                                                                 @error('main_price')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
+                                                                <label><b>TP Premimum : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" id="agent_tp_premimum" name="agent_tp_premimum"  class="form-control @error('agent_tp_premimum') is-invalid @enderror" value="{{ old('agent_tp_premimum') }}" placeholder="Enter TP Premimum">
+                                                                @error('agent_tp_premimum')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
+                                                                <label><b>NET Premimum : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" readonly id="agent_net_premimum" name="agent_net_premimum"  class="form-control @error('agent_net_premimum') is-invalid @enderror" value="{{ old('agent_net_premimum') }}" placeholder="Enter NET Premimum">
+                                                                @error('agent_net_premimum')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
+                                                                <label><b>GST : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" readonly id="agent_gst" name="agent_gst"  class="form-control @error('agent_gst') is-invalid @enderror" value="{{ old('agent_gst') }}" placeholder="Enter GST">
+                                                                @error('agent_gst')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
+                                                                <label><b>Gross : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" id="agent_gross" name="agent_gross"  class="form-control @error('agent_gross') is-invalid @enderror" value="{{ old('agent_gross') }}" placeholder="Enter Gross">
+                                                                @error('agent_gross')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -220,8 +270,8 @@ Policy | Create
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Company Profit Amount : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" id="agent_profit_amt" readonly name="profit_amt" class="form-control @error('profit_amt') is-invalid @enderror" value="{{ old('profit_amt') }}" placeholder="Enter Company Profit Amount">
+                                                                <label><b>Company Commission Amount (Rs): <span class="text-danger">*</span></b></label>
+                                                                <input type="text" id="agent_profit_amt" readonly name="profit_amt" class="form-control @error('profit_amt') is-invalid @enderror" value="{{ old('profit_amt') }}" placeholder="Enter Company Commission Amount (Rs)">
                                                                 @error('profit_amt')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -244,19 +294,8 @@ Policy | Create
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Actual Profit : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" readonly id="agent_actual_profit_amt" name="actual_profit_amt"  class="form-control @error('actual_profit_amt') is-invalid @enderror" value="{{ old('actual_profit_amt') }}" placeholder="Enter Actual Profit">
-                                                                @error('actual_profit_amt')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-4 col-md-6 col-sm-12">
-                                                            <div class="input-block mb-3">
                                                                 <label><b>Agent Commission (%) : <span class="text-danger">*</span></b></label>
+                                                                <input type="hidden" id="agent_commission_type" name="agent_commission_type"  class="form-control" value="{{ old('agent_commission_type') }}" >
                                                                 <input type="text" readonly id="agent_commission_percentage" name="commission_percentage"  class="form-control @error('commission_percentage') is-invalid @enderror" value="{{ old('commission_percentage') }}" placeholder="Enter Agent Commission (%)">
                                                                 @error('commission_percentage')
                                                                     <span class="invalid-feedback" role="alert">
@@ -268,9 +307,21 @@ Policy | Create
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Agent Commission (in rupees) : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" readonly id="agent_comission_rupees" name="comission_rupees"  class="form-control @error('comission_rupees') is-invalid @enderror" value="{{ old('comission_rupees') }}" placeholder="Enter Agent Commission (in rupees)">
+                                                                <label><b>Agent Commission (Rs) : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" readonly id="agent_comission_rupees" name="comission_rupees"  class="form-control @error('comission_rupees') is-invalid @enderror" value="{{ old('comission_rupees') }}" placeholder="Enter Agent Commission (Rs)">
                                                                 @error('comission_rupees')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
+                                                                <label><b>Actual Profit : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" readonly id="agent_actual_profit_amt" name="actual_profit_amt"  class="form-control @error('actual_profit_amt') is-invalid @enderror" value="{{ old('actual_profit_amt') }}" placeholder="Enter Actual Profit">
+                                                                @error('actual_profit_amt')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -894,6 +945,7 @@ Policy | Create
 {{-- Agent Commission In Percentage fetch by agent_commission_percentage --}}
 <script>
     $(document).ready(function(){
+        // ==== pass multiple parameter in onChange
         $(document).on('change','#agent_id', function() {
             let agent_id = $(this).val();
             $('#agent_commission_percentage').show();
@@ -905,9 +957,13 @@ Policy | Create
                     _token : '{{ csrf_token() }}'
                 },
                 success: function(data) {
-                    // === aler the data percentage amt
-                    $('#agent_commission_percentage').val(data.agentCommissionPercentage);
-
+                    if(data.comissionType == 1){
+                        $('#agent_commission_type').val(data.comissionType);
+                        $('#agent_commission_percentage').val(data.commissionPercentage);
+                    } else if(data.comissionType == 2){
+                        $('#agent_commission_type').val(data.comissionType);
+                        $('#agent_comission_rupees').val(data.commissionAmount);
+                    }
                 }
             })
         });
@@ -934,10 +990,10 @@ Policy | Create
                     $.each(result.insuranceCompanyID, function (key, value) {
                         // === check value is selected or not
                         if (value.id == agent_insurance_company_id) {
-                            $('#agent_company_id').append('<option value="' + value.id + '" selected>' + value.company_id + '</option>');
+                            $('#agent_company_id').append('<option value="' + value.company_id + '" selected>' + value.company_id + '</option>');
                         }
                         else {
-                            $('#agent_company_id').append('<option value="' + value.id + '">' + value.company_id + '</option>');
+                            $('#agent_company_id').append('<option value="' + value.company_id + '">' + value.company_id + '</option>');
                         }
                     });
                 },
@@ -947,7 +1003,7 @@ Policy | Create
 </script>
 
 {{-- Company Commission In Percentage fetch by agent_company_commission_percentage --}}
-{{-- <script>
+<script>
     $(document).ready(function(){
         $(document).on('change','#agent_company_id', function() {
             let agent_company_id = $(this).val();
@@ -961,13 +1017,12 @@ Policy | Create
                 },
                 success: function(data) {
                     // === aler the data percentage amt
-                    $('#company_commission_percentage').val(data.agentProfitAmount);
-
+                    $('#company_commission_percentage').val(data.companyCommissionPercentage);
                 }
             })
         });
     });
-</script> --}}
+</script>
 
 {{-- Company Commission In Percentage fetch by retailer_company_commission_percentage --}}
 <script>
@@ -995,6 +1050,23 @@ Policy | Create
 {{-- Agent Commercial Caluation --}}
 <script>
     $(document).ready(function () {
+
+        $('#agent_main_price, #agent_tp_premimum').on('keyup', function () {
+            agent_main_price = $('#agent_main_price').val();
+            agent_tp_premimum = $('#agent_tp_premimum').val();
+
+            if (agent_main_price != '' && agent_tp_premimum != '') {
+                var agent_main_price = $('#agent_main_price').val();
+                var agent_tp_premimum = $('#agent_tp_premimum').val();
+                var total_net_premimum_amt = (parseInt(agent_main_price) + parseInt(agent_tp_premimum));
+                $('#agent_net_premimum').val(total_net_premimum_amt);
+            }
+            else {
+                $('#agent_net_premimum').val('');
+            }
+
+        });
+
         $('#agent_main_price, #company_commission_percentage').on('keyup', function () {
             agent_main_price = $('#agent_main_price').val();
             company_commission_percentage = $('#company_commission_percentage').val();
@@ -1005,7 +1077,23 @@ Policy | Create
                 var total_percent_value = (parseInt(one_percent_value) * parseInt(company_commission_percentage));
                 $('#agent_profit_amt').val(total_percent_value);
             }
+            else {
+                $('#agent_profit_amt').val('');
+            }
+        });
 
+        $('#agent_net_premimum, #agent_gross').on('keyup', function () {
+
+            agent_net_premimum = $('#agent_net_premimum').val();
+            agent_gross = $('#agent_gross').val();
+
+            if (agent_net_premimum != '' && agent_gross != '') {
+
+                var agent_net_premimum = $('#agent_net_premimum').val();
+                var agent_gross = $('#agent_gross').val();
+                var total_gst_amt = (parseInt(agent_net_premimum) - parseInt(agent_gross));
+                $('#agent_gst').val(total_gst_amt);
+            }
         });
 
         $('#agent_tds_deduction, #agent_profit_amt').on('keyup', function () {

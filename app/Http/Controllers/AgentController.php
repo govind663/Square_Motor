@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\AgentRequest;
 use App\Models\Agent;
+use App\Models\AgentCommission;
 use App\Models\InsuranceCompany;
+use App\Models\InsuranceCompanyID;
 use App\Models\Retailer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -133,7 +135,13 @@ class AgentController extends Controller
 
     public function agent_commission_percentage(Request $request)
     {
-        $data['agentCommissionPercentage'] = Agent::whereId($request->agentId)->pluck('percentage_amt');
+        $data['comissionType'] = AgentCommission::where('agent_id', $request->agentId)->pluck('comission_type');
+
+        $data['commissionPercentage'] = '';
+        $data['commissionAmount'] = '';
+
+        $data['commissionPercentage'] = AgentCommission::where('agent_id', $request->agentId)->pluck('percentage_amt');
+        $data['commissionAmount'] = AgentCommission::where('agent_id', $request->agentId)->pluck('fixed_amt');
 
         return response()->json($data);
     }
@@ -147,7 +155,9 @@ class AgentController extends Controller
 
     public function fetch_agent_profit_amt(Request $request)
     {
-        $data['agentProfitAmount'] = InsuranceCompany::whereId($request->agentCompanyId)->pluck('percentage_amt');
+        // === Fetch AgentCommission
+
+        $data['companyCommissionPercentage'] = InsuranceCompanyID::where('company_id',$request->agentCompanyId)->pluck('commision_percentage');
 
         return response()->json($data);
     }
