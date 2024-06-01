@@ -234,9 +234,9 @@ Policy | Create
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>GST : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" readonly id="agent_gst" name="agent_gst"  class="form-control @error('agent_gst') is-invalid @enderror" value="{{ old('agent_gst') }}" placeholder="Enter GST">
-                                                                @error('agent_gst')
+                                                                <label><b>Gross : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" id="agent_gross" name="agent_gross"  class="form-control @error('agent_gross') is-invalid @enderror" value="{{ old('agent_gross') }}" placeholder="Enter Gross">
+                                                                @error('agent_gross')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -246,9 +246,9 @@ Policy | Create
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Gross : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" id="agent_gross" name="agent_gross"  class="form-control @error('agent_gross') is-invalid @enderror" value="{{ old('agent_gross') }}" placeholder="Enter Gross">
-                                                                @error('agent_gross')
+                                                                <label><b>GST : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" readonly id="agent_gst" name="agent_gst"  class="form-control @error('agent_gst') is-invalid @enderror" value="{{ old('agent_gst') }}" placeholder="Enter GST">
+                                                                @error('agent_gst')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -282,19 +282,7 @@ Policy | Create
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>TDS Deduction (%) : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" id="agent_tds_deduction" name="tds_deduction"  class="form-control @error('tds_deduction') is-invalid @enderror" value="{{ old('tds_deduction') }}" placeholder="Enter TDS Deduction (10%)">
-                                                                @error('tds_deduction')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-4 col-md-6 col-sm-12">
-                                                            <div class="input-block mb-3">
-                                                                <label><b>Agent Commission (%) : <span class="text-danger">*</span></b></label>
+                                                                <label><b>Agent Commission (%) : </b></label>
                                                                 <input type="hidden" id="agent_commission_type" name="agent_commission_type"  class="form-control" value="{{ old('agent_commission_type') }}" >
                                                                 <input type="text" readonly id="agent_commission_percentage" name="commission_percentage"  class="form-control @error('commission_percentage') is-invalid @enderror" value="{{ old('commission_percentage') }}" placeholder="Enter Agent Commission (%)">
                                                                 @error('commission_percentage')
@@ -307,7 +295,7 @@ Policy | Create
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Agent Commission (Rs) : <span class="text-danger">*</span></b></label>
+                                                                <label><b>Agent Commission (Rs) : </b></label>
                                                                 <input type="text" readonly id="agent_comission_rupees" name="comission_rupees"  class="form-control @error('comission_rupees') is-invalid @enderror" value="{{ old('comission_rupees') }}" placeholder="Enter Agent Commission (Rs)">
                                                                 @error('comission_rupees')
                                                                     <span class="invalid-feedback" role="alert">
@@ -319,8 +307,32 @@ Policy | Create
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Actual Profit : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" readonly id="agent_actual_profit_amt" name="actual_profit_amt"  class="form-control @error('actual_profit_amt') is-invalid @enderror" value="{{ old('actual_profit_amt') }}" placeholder="Enter Actual Profit">
+                                                                <label><b>Actual Agent Commission : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" readonly id="agent_actual_commission_amt" name="agent_actual_commission_amt"  class="form-control @error('agent_actual_commission_amt') is-invalid @enderror" value="{{ old('agent_actual_commission_amt') }}" placeholder="Enter Agent Commission (Rs)">
+                                                                @error('agent_actual_commission_amt')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
+                                                                <label><b>TDS Deduction (%) : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" id="agent_tds_deduction" name="tds_deduction"  class="form-control @error('tds_deduction') is-invalid @enderror" value="{{ old('tds_deduction') }}" placeholder="Enter TDS Deduction (10%)">
+                                                                @error('tds_deduction')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
+                                                                <label><b>Actual Profit (Rs): <span class="text-danger">*</span></b></label>
+                                                                <input type="text" readonly id="agent_actual_profit_amt" name="actual_profit_amt"  class="form-control @error('actual_profit_amt') is-invalid @enderror" value="{{ old('actual_profit_amt') }}" placeholder="Enter Actual Profit (Rs)">
                                                                 @error('actual_profit_amt')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -1082,10 +1094,14 @@ Policy | Create
             }
         });
 
-        $('#agent_net_premimum, #agent_gross').on('keyup', function () {
+        $('#agent_net_premimum, #agent_gross, #agent_commission_type, #agent_commission_percentage, #agent_comission_rupees, #agent_profit_amt').on('keyup', function () {
 
             agent_net_premimum = $('#agent_net_premimum').val();
             agent_gross = $('#agent_gross').val();
+            agent_commission_type = $('#agent_commission_type').val();
+            agent_commission_percentage = $('#agent_commission_percentage').val();
+            agent_comission_rupees = $('#agent_comission_rupees').val();
+            agent_profit_amt = $('#agent_profit_amt').val();
 
             if (agent_net_premimum != '' && agent_gross != '') {
 
@@ -1093,28 +1109,59 @@ Policy | Create
                 var agent_gross = $('#agent_gross').val();
                 var total_gst_amt = (parseInt(agent_net_premimum) - parseInt(agent_gross));
                 $('#agent_gst').val(total_gst_amt);
+            } else {
+                $('#agent_gst').val('');
+            }
+
+            if (agent_commission_type == 1) {
+                if (agent_commission_percentage != '' && agent_profit_amt != '') {
+                    var agent_commission_percentage = $('#agent_commission_percentage').val();
+                    var agent_profit_amt = $('#agent_profit_amt').val();
+                    var total_commission_amt = (parseInt(agent_commission_percentage) / 100) * parseInt(agent_profit_amt);
+                    $('#agent_actual_commission_amt').val(total_commission_amt);
+                } else {
+                    $('#agent_actual_commission_amt').val('');
+                }
+            } else if (agent_commission_type == 2) {
+                if (agent_comission_rupees != '' && agent_profit_amt != '') {
+                    var agent_comission_rupees = $('#agent_comission_rupees').val();
+                    var agent_profit_amt = $('#agent_profit_amt').val();
+                    var total_commission_amt = parseInt(agent_comission_rupees) - parseInt(agent_profit_amt);
+                    $('#agent_actual_commission_amt').val(total_commission_amt);
+                } else {
+                    $('#agent_actual_commission_amt').val('');
+                }
             }
         });
 
-        $('#agent_tds_deduction, #agent_profit_amt').on('keyup', function () {
+        $('agent_profit_amt, #agent_tds_deduction, #agent_actual_commission_amt').on('keyup', function () {
+
             agent_profit_amt = $('#agent_profit_amt').val();
             agent_tds_deduction = $('#agent_tds_deduction').val();
+            agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
 
             if (agent_profit_amt != '' && agent_tds_deduction != '') {
-                // === Agent Profit Amount minus TDS deduction in percentage
+
                 var agent_profit_amt = $('#agent_profit_amt').val();
-                // var agent_tds_deduction = $('#agent_tds_deduction').val();
-                var agent_profit_amt_minus_tds = (parseInt(agent_profit_amt) / 100 ) * parseInt(agent_tds_deduction);
-                var company_profit = (parseInt(agent_profit_amt)) - parseInt(agent_profit_amt_minus_tds)
-                $('#agent_actual_profit_amt').val(parseInt(company_profit));
+                var agent_tds_deduction = $('#agent_tds_deduction').val();
+                var agent_actual_profit_amt = $('#agent_actual_profit_amt').val();
+                var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
 
                 // === Agent Profit Amount minus TDS deduction in percentage
-                var agent_actual_profit_amt = $('#agent_actual_profit_amt').val();
-                var agent_commission_percentage = $('#agent_commission_percentage').val();
-                var agent_comission_rupees_minus_with_commissionInDiscount = parseInt(agent_actual_profit_amt) * (parseInt(agent_commission_percentage) / 100);
-                $('#agent_comission_rupees').val(parseInt(agent_comission_rupees_minus_with_commissionInDiscount));
+                var agent_profit_amt_minus_tds = (parseInt(agent_profit_amt) / 100 ) * parseInt(agent_tds_deduction);
+                var company_profit = (parseInt(agent_profit_amt) - parseInt(agent_profit_amt_minus_tds));
+
+                // company_profit - agent_actual_commission_amt
+                var company_profit_minus_with_commissionInDiscount = parseInt(company_profit) - parseInt(agent_actual_commission_amt);
+
+                $('#agent_actual_profit_amt').val(company_profit_minus_with_commissionInDiscount);
+            } else {
+                $('#agent_actual_profit_amt').val('');
             }
+
         });
+
+
     });
 </script>
 
