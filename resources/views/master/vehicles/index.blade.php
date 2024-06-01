@@ -68,7 +68,8 @@ Vehicles | List
                                 <thead>
                                     <tr>
                                         <th>Sr. No.</th>
-                                        <th>Vehicles Type</th>
+                                        <th>Vehicle Type</th>
+                                        <th>Vehicle Name</th>
                                         <th>Description</th>
                                         <th class="no-export">Action</th>
                                     </tr>
@@ -77,7 +78,12 @@ Vehicles | List
                                     @foreach ($vehicles as $key=>$value )
                                     <tr>
                                         <td>{{ ++$key }}</td>
-                                        <td>{{ $value->vehicle_type }}</td>
+                                        @if($value->vehicle_type == '1')
+                                        <td>Private</td>
+                                        @elseif($value->vehicle_type == '2')
+                                        <td>Other</td>
+                                        @endif
+                                        <td>{{ $value->vehicle_name }}</td>
                                         <td>{{ $value->description }}</td>
                                         <td class="no-export d-flex">
                                             <a href="{{ route('vehicle.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">

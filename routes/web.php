@@ -69,6 +69,9 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHisto
     // ==== Vehicle resources routes
     Route::resource('vehicle', VehicleController::class);
 
+    // === fetch_current_vehicle_type
+    Route::post('fetch_current_vehicle_type', [VehicleController::class, 'fetch_current_vehicle_type'])->name('fetch_current_vehicle_type');
+
     // ===== Retailer resources routes
     Route::resource('retailer', RetailerController::class);
 

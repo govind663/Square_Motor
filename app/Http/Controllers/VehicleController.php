@@ -37,6 +37,7 @@ class VehicleController extends Controller
         try {
             $vehicle = Vehicle::create($data);
             $vehicle->vehicle_type = $request->vehicle_type;
+            $vehicle->vehicle_name = $request->vehicle_name;
             $vehicle->description = $request->description;
             $vehicle->inserted_at = Carbon::now();
             $vehicle->inserted_by = Auth::user()->id;
@@ -77,6 +78,7 @@ class VehicleController extends Controller
         try {
             $vehicle = Vehicle::findOrFail($id);
             $vehicle->vehicle_type = $request->vehicle_type;
+            $vehicle->vehicle_name = $request->vehicle_name;
             $vehicle->description = $request->description;
             $vehicle->modified_at = Carbon::now();
             $vehicle->modified_by = Auth::user()->id;
@@ -106,5 +108,13 @@ class VehicleController extends Controller
 
             return redirect()->back()->with('error','Something Went Wrong - '.$ex->getMessage());
         }
+    }
+
+    // ==== fetch_current_vehicle_type
+
+    public function fetch_current_vehicle_type(Request $request){
+
+        $data['agentVehicleType'] = Vehicle::where('id',$request->agentVehicleID)->pluck('vehicle_type');
+        return response()->json($data);
     }
 }

@@ -22,6 +22,9 @@ Policy | Create
         justify-content: space-between;
         align-items: self-start;
     }
+    .border {
+        border: var(--bs-border-width) var(--bs-border-style) #000000 !important;
+    }
 </style>
 @endpush
 
@@ -47,7 +50,7 @@ Policy | Create
                                     </div>
 
                                     <div class="tab-content">
-                                        <div class="tab-pane fade active show border border-2 border-black p-4" style="border-radius: 5px;" id="v-pills-agent" role="tabpanel" aria-labelledby="v-pills-agent-tab">
+                                        <div class="tab-pane fade active show border p-4" style="border-radius: 5px; border-color: 1px solid black;" id="v-pills-agent" role="tabpanel" aria-labelledby="v-pills-agent-tab">
                                             <form method="POST" action="{{ route('policy.store') }}" enctype="multipart/form-data">
                                                 @csrf
 
@@ -148,10 +151,19 @@ Policy | Create
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
                                                                 <label><b>Select Vehicle Type : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" hidden id="agent_vehicle_type" name="agent_vehicle_type"  class="form-control" value="{{ old('agent_vehicle_type') }}">
                                                                 <select  class="form-control select @error('vehicle_id') is-invalid @enderror" id="agent_vehicle_id" name="vehicle_id">
                                                                     <option value="">Select Vehicle Type</option>
                                                                     @foreach ($vehicles as $value )
-                                                                    <option value="{{ $value->id }}" {{ (old("vehicle_id") == $value->id ? "selected":"") }}>{{ $value->vehicle_type }}</option>
+                                                                    @php
+                                                                        $vehicleType = '';
+                                                                        if($value->vehicle_type == '1'){
+                                                                            $vehicleType = 'Private';
+                                                                        } else if($value->vehicle_type == '2'){
+                                                                            $vehicleType = 'Other';
+                                                                        }
+                                                                    @endphp
+                                                                    <option value="{{ $value->id }}" {{ (old("vehicle_id") == $value->id ? "selected":"") }}><b>[{{ $vehicleType }}] - {{ $value->vehicle_name }}</b></option>
                                                                     @endforeach
                                                                 </select>
                                                                 @error('vehicle_id')
@@ -296,8 +308,8 @@ Policy | Create
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
                                                                 <label><b>Agent Commission (Rs) : </b></label>
-                                                                <input type="text" readonly id="agent_comission_rupees" name="comission_rupees"  class="form-control @error('comission_rupees') is-invalid @enderror" value="{{ old('comission_rupees') }}" placeholder="Enter Agent Commission (Rs)">
-                                                                @error('comission_rupees')
+                                                                <input type="text" readonly id="agent_comission_rupees" name="agent_comission_rupees"  class="form-control @error('agent_comission_rupees') is-invalid @enderror" value="{{ old('comission_rupees') }}" placeholder="Enter Agent Commission (Rs)">
+                                                                @error('agent_comission_rupees')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -308,8 +320,8 @@ Policy | Create
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
                                                                 <label><b>Actual Agent Commission : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" readonly id="agent_actual_commission_amt" name="agent_actual_commission_amt"  class="form-control @error('agent_actual_commission_amt') is-invalid @enderror" value="{{ old('agent_actual_commission_amt') }}" placeholder="Enter Agent Commission (Rs)">
-                                                                @error('agent_actual_commission_amt')
+                                                                <input type="text" readonly id="agent_actual_commission_amt" name="agent_actual_comission"  class="form-control @error('agent_actual_comission') is-invalid @enderror" value="{{ old('agent_actual_comission') }}" placeholder="Enter Agent Commission">
+                                                                @error('agent_actual_comission')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -450,7 +462,7 @@ Policy | Create
                                             </form>
                                         </div>
 
-                                        <div class="tab-pane fade  border border-2 border-black p-4" style="border-radius: 5px;" id="v-pills-retailer" role="tabpanel" aria-labelledby="v-pills-retailer-tab">
+                                        <div class="tab-pane fade  border p-4" style="border-radius: 5px;" id="v-pills-retailer" role="tabpanel" aria-labelledby="v-pills-retailer-tab">
                                             <form method="POST" action="{{ route('policy.store') }}" enctype="multipart/form-data">
                                                 @csrf
 
@@ -1014,6 +1026,28 @@ Policy | Create
     });
 </script>
 
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#agent_vehicle_id', function() {
+            let agent_vehicle_id = $(this).val();
+            $('#agent_vehicle_type').show();
+            $.ajax({
+                method: 'POST',
+                url: "{{ route('fetch_current_vehicle_type') }}",
+                data: {
+                    agentVehicleID: agent_vehicle_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function (result) {
+                    // display in  agent_vehicle_type in input value field
+                    $('#agent_vehicle_type').val(result.agentVehicleType);
+                },
+            });
+        });
+    });
+</script>
+
 {{-- Company Commission In Percentage fetch by agent_company_commission_percentage --}}
 <script>
     $(document).ready(function(){
@@ -1063,6 +1097,7 @@ Policy | Create
 <script>
     $(document).ready(function () {
 
+        // Calculate Net Preimum
         $('#agent_main_price, #agent_tp_premimum').on('keyup', function () {
             agent_main_price = $('#agent_main_price').val();
             agent_tp_premimum = $('#agent_tp_premimum').val();
@@ -1079,88 +1114,152 @@ Policy | Create
 
         });
 
-        $('#agent_main_price, #company_commission_percentage').on('keyup', function () {
-            agent_main_price = $('#agent_main_price').val();
-            company_commission_percentage = $('#company_commission_percentage').val();
+        // Calculate GST
+        $('#agent_net_premimum, #agent_gross').on('keyup', function () {
+            agent_net_premimum = $('#agent_net_premimum').val();
+            agent_gross = $('#agent_gross').val();
 
-            if (agent_main_price != '' && company_commission_percentage != '') {
-
-                var one_percent_value = (parseInt(agent_main_price) / 100);
-                var total_percent_value = (parseInt(one_percent_value) * parseInt(company_commission_percentage));
-                $('#agent_profit_amt').val(total_percent_value);
+            if (agent_net_premimum != '' && agent_gross != '') {
+                var agent_net_premimum = $('#agent_net_premimum').val();
+                var total_gst_amt = (parseInt(agent_gross) - parseInt(agent_net_premimum));
+                $('#agent_gst').val(total_gst_amt);
             }
             else {
-                $('#agent_profit_amt').val('');
+                $('#agent_gst').val('');
             }
         });
 
-        $('#agent_net_premimum, #agent_gross, #agent_commission_type, #agent_commission_percentage, #agent_comission_rupees, #agent_profit_amt').on('keyup', function () {
+        // Calculate Company Commission
+        $('#agent_main_price, #company_commission_percentage, #agent_vehicle_type, #agent_tp_premimum').on('keyup', function () {
 
-            agent_net_premimum = $('#agent_net_premimum').val();
-            agent_gross = $('#agent_gross').val();
+            agent_main_price = $('#agent_main_price').val();
+            agent_tp_premimum = $('#agent_tp_premimum').val();
+            company_commission_percentage = $('#company_commission_percentage').val();
+
+            // ==== check agent_vehicle_type
+            if ($('#agent_vehicle_type').val() == '1') {
+                if (agent_main_price != '' && company_commission_percentage != '') {
+                    var one_percent_value = (parseInt(agent_main_price) / 100);
+                    var total_percent_value = (parseInt(one_percent_value) * parseInt(company_commission_percentage));
+                    $('#agent_profit_amt').val(total_percent_value);
+                }
+                else {
+                    $('#agent_profit_amt').val('');
+                }
+            } else if ($('#agent_vehicle_type').val() == '2') {
+                if (agent_tp_premimum != '' && company_commission_percentage != '') {
+                    var one_percent_value = (parseInt(agent_tp_premimum) / 100);
+                    var total_percent_value = (parseInt(one_percent_value) * parseInt(company_commission_percentage));
+                    $('#agent_profit_amt').val(total_percent_value);
+                }
+                else {
+                    $('#agent_profit_amt').val('');
+                }
+            }
+
+        });
+
+        // Calculate Agent Commission
+        $('#agent_commission_type, #agent_comission_rupees, #agent_commission_percentage, #agent_main_price, #agent_vehicle_type, #agent_tp_premimum').on('keyup', function () {
+
             agent_commission_type = $('#agent_commission_type').val();
             agent_commission_percentage = $('#agent_commission_percentage').val();
             agent_comission_rupees = $('#agent_comission_rupees').val();
-            agent_profit_amt = $('#agent_profit_amt').val();
+            agent_main_price = $('#agent_main_price').val();
+            agent_tp_premimum = $('#agent_tp_premimum').val();
 
-            if (agent_net_premimum != '' && agent_gross != '') {
-
-                var agent_net_premimum = $('#agent_net_premimum').val();
-                var agent_gross = $('#agent_gross').val();
-                var total_gst_amt = (parseInt(agent_net_premimum) - parseInt(agent_gross));
-                $('#agent_gst').val(total_gst_amt);
-            } else {
-                $('#agent_gst').val('');
+            // ==== check agent_vehicle_type
+            if ($('#agent_vehicle_type').val() == '1') {
+                if (agent_commission_type == 1) {
+                    if (agent_commission_percentage != '' && agent_main_price != '') {
+                        var agent_commission_percentage = $('#agent_commission_percentage').val();
+                        var agent_main_price = $('#agent_main_price').val();
+                        var total_commission_amt = (parseInt(agent_commission_percentage) / 100) * parseInt(agent_main_price);
+                        $('#agent_actual_commission_amt').val(total_commission_amt);
+                    } else {
+                        $('#agent_actual_commission_amt').val('');
+                    }
+                } else if (agent_commission_type == 2) {
+                    if (agent_comission_rupees != '' && agent_main_price != '') {
+                        var agent_comission_rupees = $('#agent_comission_rupees').val();
+                        var agent_main_price = $('#agent_main_price').val();
+                        var total_commission_amt = (parseInt(agent_comission_rupees) - parseInt(agent_main_price));
+                        $('#agent_actual_commission_amt').val(total_commission_amt);
+                    } else {
+                        $('#agent_actual_commission_amt').val('');
+                    }
+                }
+            } else if ($('#agent_vehicle_type').val() == '2') {
+                if (agent_commission_type == 1) {
+                    if (agent_commission_percentage != '' && agent_tp_premimum != '') {
+                        var agent_commission_percentage = $('#agent_commission_percentage').val();
+                        var agent_tp_premimum = $('#agent_tp_premimum').val();
+                        var total_commission_amt = (parseInt(agent_commission_percentage) / 100) * parseInt(agent_tp_premimum);
+                        $('#agent_actual_commission_amt').val(total_commission_amt);
+                    } else {
+                        $('#agent_actual_commission_amt').val('');
+                    }
+                } else if (agent_commission_type == 2) {
+                    if (agent_comission_rupees != '' && agent_tp_premimum != '') {
+                        var agent_comission_rupees = $('#agent_comission_rupees').val();
+                        var agent_tp_premimum = $('#agent_tp_premimum').val();
+                        var total_commission_amt = (parseInt(agent_comission_rupees) - parseInt(agent_tp_premimum));
+                        $('#agent_actual_commission_amt').val(total_commission_amt);
+                    } else {
+                        $('#agent_actual_commission_amt').val('');
+                    }
+                }
             }
 
-            if (agent_commission_type == 1) {
-                if (agent_commission_percentage != '' && agent_profit_amt != '') {
-                    var agent_commission_percentage = $('#agent_commission_percentage').val();
-                    var agent_profit_amt = $('#agent_profit_amt').val();
-                    var total_commission_amt = (parseInt(agent_commission_percentage) / 100) * parseInt(agent_profit_amt);
-                    $('#agent_actual_commission_amt').val(total_commission_amt);
-                } else {
-                    $('#agent_actual_commission_amt').val('');
-                }
-            } else if (agent_commission_type == 2) {
-                if (agent_comission_rupees != '' && agent_profit_amt != '') {
-                    var agent_comission_rupees = $('#agent_comission_rupees').val();
-                    var agent_profit_amt = $('#agent_profit_amt').val();
-                    var total_commission_amt = parseInt(agent_comission_rupees) - parseInt(agent_profit_amt);
-                    $('#agent_actual_commission_amt').val(total_commission_amt);
-                } else {
-                    $('#agent_actual_commission_amt').val('');
-                }
-            }
         });
 
-        $('agent_profit_amt, #agent_tds_deduction, #agent_actual_commission_amt').on('keyup', function () {
+        // Calculate Company Profit
+        $('agent_main_price, #agent_tds_deduction, #agent_actual_commission_amt, #agent_vehicle_type, #agent_tp_premimum').on('keyup', function () {
 
-            agent_profit_amt = $('#agent_profit_amt').val();
+            agent_main_price = $('#agent_main_price').val();
             agent_tds_deduction = $('#agent_tds_deduction').val();
+            agent_tp_premimum = $('#agent_tp_premimum').val();
             agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
 
-            if (agent_profit_amt != '' && agent_tds_deduction != '') {
+            // ==== check agent_vehicle_type
+            if ($('#agent_vehicle_type').val() == '1') {
 
-                var agent_profit_amt = $('#agent_profit_amt').val();
-                var agent_tds_deduction = $('#agent_tds_deduction').val();
-                var agent_actual_profit_amt = $('#agent_actual_profit_amt').val();
-                var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+                if (agent_main_price != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
 
-                // === Agent Profit Amount minus TDS deduction in percentage
-                var agent_profit_amt_minus_tds = (parseInt(agent_profit_amt) / 100 ) * parseInt(agent_tds_deduction);
-                var company_profit = (parseInt(agent_profit_amt) - parseInt(agent_profit_amt_minus_tds));
+                    var agent_main_price = $('#agent_main_price').val();
+                    var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
 
-                // company_profit - agent_actual_commission_amt
-                var company_profit_minus_with_commissionInDiscount = parseInt(company_profit) - parseInt(agent_actual_commission_amt);
+                    // ==== Calculate TDS Deduction in Percentage
+                    var one_percent_value = (parseInt(agent_main_price) / 100);
+                    var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
 
-                $('#agent_actual_profit_amt').val(company_profit_minus_with_commissionInDiscount);
-            } else {
-                $('#agent_actual_profit_amt').val('');
+                    // ==== Calculate Company Profit
+                    var total_company_profit = (parseInt(agent_main_price) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
+
+                    $('#agent_actual_profit_amt').val(total_company_profit);
+                } else {
+                    $('#agent_actual_profit_amt').val('');
+                }
+            } else if ($('#agent_vehicle_type').val() == '2') {
+                if (agent_tp_premimum != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
+
+                    var agent_tp_premimum = $('#agent_tp_premimum').val();
+                    var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+
+                    // ==== Calculate TDS Deduction in Percentage
+                    var one_percent_value = (parseInt(agent_tp_premimum) / 100);
+                    var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
+
+                    // ==== Calculate Company Profit in rupees
+                    var total_company_profit = parseInt(agent_actual_commission_amt) - (parseInt(agent_tp_premimum) - parseInt(total_tds_deduction_amt));
+
+                    $('#agent_actual_profit_amt').val(total_tds_deduction_amt);
+                } else {
+                    $('#agent_actual_profit_amt').val('');
+                }
             }
 
         });
-
 
     });
 </script>

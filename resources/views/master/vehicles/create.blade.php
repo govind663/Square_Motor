@@ -35,9 +35,25 @@ Vehicle | Add
                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                             <div class="input-block mb-3">
                                                 <label><b>Vehicle Type : <span class="text-danger">*</span></b></label>
-                                                <input type="text" id="vehicle_type" name="vehicle_type" class="form-control @error('vehicle_type') is-invalid @enderror" value="{{ old('vehicle_type') }}" placeholder="Enter Vehicle Type">
-
+                                                <select class="form-select @error('vehicle_type') is-invalid @enderror select" id="vehicle_type" name="vehicle_type">
+                                                    <option value="">Select Vehicle Type</option>
+                                                    <option value="1" {{ (old("vehicle_type") == '1' ? "selected":"") }}>Private</option>
+                                                    <option value="2" {{ (old("vehicle_type") == '2' ? "selected":"") }}>Other</option>
+                                                </select>
                                                 @error('vehicle_type')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                            <div class="input-block mb-3">
+                                                <label><b>Vehicle Name : </b></label>
+                                                <input type="text" id="vehicle_name" name="vehicle_name" class="form-control @error('vehicle_name') is-invalid @enderror" value="{{ old('vehicle_name') }}" placeholder="Enter Vehicle Name">
+
+                                                @error('vehicle_name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>

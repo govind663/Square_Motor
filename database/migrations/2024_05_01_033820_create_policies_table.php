@@ -37,10 +37,10 @@ return new class extends Migration
             $table->foreignIdFor(InsuranceCompany::class)->nullable()->index();
             $table->string('main_price')->nullable();
             $table->string('company_commission_percentage')->nullable();
+            $table->string('commission_percentage')->nullable();
             $table->string('profit_amt')->nullable();
             $table->string('tds_deduction')->nullable();
             $table->string('actual_profit_amt')->nullable();
-            $table->string('commission_percentage')->nullable();
             $table->string('comission_rupees')->nullable();
             $table->string('payable_amount')->nullable();
             $table->date('from_dt')->nullable();

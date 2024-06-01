@@ -36,14 +36,21 @@ class PolicyRequest extends FormRequest
                     'vehicle_config'=> 'required|max:255',
                     'insurance_type'=> 'required|numeric',
                     'insurance_company_id'=> 'required|numeric',
+                    'agent_company_id'=> 'required|numeric',
 
                     'main_price'=> 'required|numeric',
+                    'agent_tp_premimum'=> 'required|numeric',
+                    'agent_net_premimum'=> 'required|numeric',
+                    'agent_gross'=> 'required|numeric',
+                    'agent_gst'=> 'required|numeric',
                     'company_commission_percentage'=> 'required|numeric',
                     'profit_amt'=> 'required|numeric',
                     'tds_deduction'=> 'required|numeric',
                     'actual_profit_amt'=> 'required|numeric',
-                    'commission_percentage'=> 'required|numeric',
-                    'comission_rupees'=> 'required|numeric',
+                    'commission_percentage'=> 'nullable|numeric',
+                    'agent_comission_rupees'=> 'nullable|numeric',
+                    'agent_actual_comission'=> 'required|numeric',
+                    // 'comission_rupees'=> 'required|numeric',
 
                     // === policy date
                     'from_dt'=> 'required|max:255',
@@ -67,15 +74,22 @@ class PolicyRequest extends FormRequest
                     'vehicle_config'=> 'required|max:255',
                     'insurance_type'=> 'required|numeric',
                     'insurance_company_id'=> 'required|numeric',
+                    'agent_company_id'=> 'required|numeric',
 
                     // === Commercial Validation
                     'main_price'=> 'required|numeric',
+                    'agent_tp_premimum'=> 'required|numeric',
+                    'agent_net_premimum'=> 'required|numeric',
+                    'agent_gross'=> 'required|numeric',
+                    'agent_gst'=> 'required|numeric',
                     'company_commission_percentage'=> 'required|numeric',
                     'profit_amt'=> 'required|numeric',
                     'tds_deduction'=> 'required|numeric',
                     'actual_profit_amt'=> 'required|numeric',
-                    'commission_percentage'=> 'required|numeric',
-                    'comission_rupees'=> 'required|numeric',
+                    'commission_percentage'=> 'nullable|numeric',
+                    'agent_comission_rupees'=> 'nullable|numeric',
+                    'agent_actual_comission'=> 'required|numeric',
+                    // 'comission_rupees'=> 'required|numeric',
 
                     // === policy date Validation
                     'from_dt'=> 'required|max:255',
@@ -173,15 +187,21 @@ class PolicyRequest extends FormRequest
             'vehicle_config.required' => __('Vehicle Configuration is required'),
             'insurance_type.required' => __('Please Select Insurance Type'),
             'insurance_company_id.required' => __('Please Select Company Policy'),
+            'agent_company_id.required' => __('Please Select Insurance Company ID'),
 
             // === Commercia Details custom message
             'main_price.required' => __('Main Price is required'),
+            'agent_tp_premimum.required' => __('TP Premium is required'),
+            'agent_net_premimum.required' => __('Net Premium is required'),
+            'agent_gross.required' => __('Gross is required'),
+            'agent_gst.required' => __('GST is required'),
             'company_commission_percentage.required' => __('Company Commission (%) is required'),
             'profit_amt.required' => __('Company Profit Amount is required'),
             'tds_deduction.required' => __('TDS Deduction (%) is required'),
-            'actual_profit_amt.required' => __('Actual Profit is required'),
+            'actual_profit_amt.required' => __('Actual Profit (RS) is required'),
             'commission_percentage.required' => __('Agent Commission (%) is required'),
-            'comission_rupees.required' => __('Agent Commission (in rupees) is required'),
+            'agent_actual_comission.required' => __('Actual Agent Commission is required'),
+            'comission_rupees.required' => __('Agent Commission (RS) is required'),
 
             // === Policy Period custom message
             'from_dt.required' => __('From Date is required'),
