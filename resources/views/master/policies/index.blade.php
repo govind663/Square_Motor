@@ -71,7 +71,7 @@ Policy | List
                                         <th>Policy Id</th></th>
                                         <th>Customer Name</th>
                                         <th>Agent Name</th>
-                                        <th>Amount</th>
+                                        <th>Amount (Rs)</th>
                                         <th>Issue Date</th>
                                         <th>Policy Document</th>
                                         <th>Policy Type</th>
@@ -89,7 +89,7 @@ Policy | List
                                             $totalAmount = '';
 
                                             if($value->policy_type == '1'){
-                                                $totalAmount = $value->comission_rupees;
+                                                $totalAmount = $value->profit_amt;
                                             }elseif($value->policy_type == '2'){
                                                 $totalAmount = $value->payable_amount;
                                             }

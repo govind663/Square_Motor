@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use Carbon\Carbon;
 use Illuminate\Foundation\Http\FormRequest;
 
 class PaymentRequest extends FormRequest
@@ -53,5 +54,14 @@ class PaymentRequest extends FormRequest
             'payment_dt.required'=> __('Date is required')
 
         ];
+    }
+
+    protected function prepareForValidation()
+    {
+        if ($this->has('payment_dt')) {
+            $this->merge([
+                'payment_dt' => Carbon::createFromFormat('d-m-Y', $this->payment_dt)->format('Y-m-d'),
+            ]);
+        }
     }
 }

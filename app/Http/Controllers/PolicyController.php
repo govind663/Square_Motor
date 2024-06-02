@@ -53,7 +53,8 @@ class PolicyController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(PolicyRequest $request){
+    public function store(PolicyRequest $request)
+    {
         $data = $request->validated();
         try {
 
@@ -120,15 +121,13 @@ class PolicyController extends Controller
                 Policy::where('id', $policy->id)->update($update);
 
                 // ==== create agentDebitCreditLogs
-                $totalBalance = 0;
                 $tranxDate = Carbon::now()->format('Y-m-d');
                 $agentId = $request->agent_id;
                 $insuranceCompanyId = null;
                 $policyId = $policyNumber;
                 $tranxDebit = 0;
-                $tranxCredit = $request->comission_rupees;
-                $totalBalance += $request->comission_rupees;
-                $balance = $totalBalance;
+                $tranxCredit = $request->profit_amt;
+                $balance = $tranxCredit - $tranxDebit;
                 $tranx_type = '1';
                 $policyType = '1';
                 $insertedBy = Auth::user()->id;

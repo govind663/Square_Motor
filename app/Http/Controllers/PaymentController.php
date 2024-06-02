@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\logs\agentDebitCreditLogs;
+use App\Models\AgentDebitCreditLog;
 
 class PaymentController extends Controller
 {
@@ -24,7 +25,7 @@ class PaymentController extends Controller
      */
     public function index()
     {
-        $payments = Payment::with('agents')->orderBy("id","desc")->whereNull('deleted_at')->get();
+        $payments = Payment::with('agents')->where('payment_by', 1)->orderBy("id","desc")->whereNull('deleted_at')->get();
         return view('finance.payments.agents.index',['payments' => $payments]);
     }
 
@@ -45,26 +46,32 @@ class PaymentController extends Controller
         $data = $request->validated();
         try {
             $payment = Payment::create($data);
+
             $payment->agent_id = $request->agent_id;
             $payment->amount = $request->amount;
             $payment->payment_mode = $request->payment_mode;
             $payment->notes = $request->notes;
-            $payment->payment_dt = date("Y-m-d", strtotime($request->payment_dt));
+            $payment->payment_dt = Carbon::createFromFormat('Y-m-d', $request['payment_dt'])->format('Y-m-d');
             $payment->payment_status = 1;
+            $payment->payment_by = 1;
             $payment->inserted_at = Carbon::now();
             $payment->inserted_by = Auth::user()->id;
             $payment->save();
 
+            // ==== Calulate the total Credit Tranx based on Agent_Type
+            $currentOpeningBalance = AgentDebitCreditLog::where('agent_id', $request->agent_id)
+                                                    ->pluck('balance')
+                                                    ->whereNull('deleted_at')
+                                                    ->first();
+
             // ==== create agentDebitCreditLogs
-            $totalBalance = 0;
             $tranxDate = Carbon::now()->format('Y-m-d');
             $agentId = $request->agent_id;
             $insuranceCompanyId = null;
             $policyId = $request->payment_mode;
             $tranxDebit = $request->amount;
             $tranxCredit = 0;
-            $totalBalance += $tranxDebit;
-            $balance = $totalBalance;
+            $balance = $currentOpeningBalance - $tranxDebit;
             $tranx_type = '2';
             $policyType = '1';
             $insertedBy = Auth::user()->id;

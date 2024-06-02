@@ -149,7 +149,7 @@ Report | List
                                             $totalAmount = '';
 
                                             if(!empty($value->policy_type == '1')){
-                                                $totalAmount = $value->comission_rupees;
+                                                $totalAmount = $value->profit_amt;
                                             }elseif(!empty($value->policy_type == '2')){
                                                 $totalAmount = $value->payable_amount;
                                             }

@@ -16,7 +16,7 @@ class PaymentToCompanyController extends Controller
      */
     public function index()
     {
-        $payments = Payment::with('insurance_companies')->orderBy("id","desc")->whereNull('deleted_at')->get();
+        $payments = Payment::with('insurance_companies')->where('payment_by', 2)->orderBy("id","desc")->whereNull('deleted_at')->get();
         return view('finance.payments.company.index',['payments' => $payments]);
     }
 
@@ -43,6 +43,7 @@ class PaymentToCompanyController extends Controller
             $payment->notes = $request->notes;
             $payment->payment_dt = Carbon::createFromFormat('Y-m-d', $request['payment_dt'])->format('Y-m-d');
             $payment->payment_status = 1;
+            $payment->payment_by = 1;
             $payment->inserted_at = Carbon::now();
             $payment->inserted_by = Auth::user()->id;
             $payment->save();

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -19,6 +20,7 @@ class Payment extends Model
         'notes',
         'payment_dt',
         'payment_status',
+        'payment_by',
         'inserted_by',
         'inserted_at',
         'modified_by',
