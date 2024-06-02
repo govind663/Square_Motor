@@ -93,7 +93,7 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHisto
     // ==== Expenses resources routes
     Route::resource('expenses', ExpensesController::class);
     // ==== serch expenses by from - To date
-    Route::get('expenses/search', [ExpensesController::class, 'search'])->name('expenses.search');
+    Route::post('expenses/search', [ExpensesController::class, 'search'])->name('expenses.search');
 
     // === fetch Agent Commission in percentage
     Route::post ('agent_commission_percentage', [AgentController::class,'agent_commission_percentage'])->name('agent_commission_percentage');

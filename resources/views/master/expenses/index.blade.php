@@ -52,7 +52,7 @@ Expenses | List
             <div class="col-sm-12">
                 <div class="card">
                     <div class="row card-body">
-                        <form method="POST" class='col-sm-12 p-3' action="#" enctype="multipart/form-data">
+                        <form method="POST" class='col-sm-12 p-3' action="{{ route('expenses.search') }}" enctype="multipart/form-data">
                             @csrf
 
                             <div class="form-group-customer customer-additional-form">

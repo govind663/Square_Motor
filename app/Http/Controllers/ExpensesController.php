@@ -122,8 +122,8 @@ class ExpensesController extends Controller
             'from_date' => 'required',
             'to_date' => 'required',
            ],[
-            'from_date.required' => 'From Date of Transaction is required.',
-            'to_date.required' => 'To Date of Transaction is required.',
+            'from_date.required' => 'From Date is required.',
+            'to_date.required' => 'To Date is required.',
             ]);
 
         $fromDate = date("Y-m-d", strtotime($request['from_date']) );
