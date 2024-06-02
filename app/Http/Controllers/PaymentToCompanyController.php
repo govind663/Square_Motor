@@ -86,7 +86,9 @@ class PaymentToCompanyController extends Controller
             $payment->amount = $request->amount;
             $payment->payment_mode = $request->payment_mode;
             $payment->notes = $request->notes;
-            $payment->payment_dt = date("Y-m-d", strtotime($request->payment_dt));
+            $payment->payment_dt = Carbon::createFromFormat('Y-m-d', $request['payment_dt'])->format('Y-m-d');
+            $payment->payment_status = 1;
+            $payment->payment_by = 1;
             $payment->modified_at = Carbon::now();
             $payment->modified_by = Auth::user()->id;
             $payment->save();
