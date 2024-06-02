@@ -99,8 +99,8 @@
                         <li class="{{ ($currentRoute === 'retailer_to_company.index') ? 'active' : '' }}">
                             <a href="{{ route('retailer_to_company.index') }}"><span>Direct Customer</span></a>
                         </li>
-                        <li>
-                            <a href="#"><span>Company Leadger</span></a>
+                        <li class="{{ ($currentRoute === 'company_to_company.index') ? 'active' : '' }}">
+                            <a href="{{ route('company_to_company.index') }}"><span>Company Leadger</span></a>
                         </li>
                     </ul>
                 </li>

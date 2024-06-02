@@ -128,7 +128,7 @@ Route::group(['prefix'=> 'finance','middleware'=>['auth', PreventBackHistoryMidd
     Route::post('retailer_to_company/search_retailer_wise_tranx', [RetailerToCompanyController::class, 'search_retailer_wise_tranx'])->name('retailer_to_company.search_retailer_wise_tranx');
 
     // ====== CompanyToCompany
-    // Route::get('company_to_company/index', [CompanyToCompanyController::class, 'index'])->name('company_to_company.index');
-    // Route::post('company_to_company/search_company_wise_tranx', [CompanyToCompanyController::class, 'search_company_wise_tranx'])->name('company_to_company.search_company_wise_tranx');
+    Route::get('company_to_company/index', [CompanyToCompanyController::class, 'index'])->name('company_to_company.index');
+    Route::post('company_to_company/search_company_wise_tranx', [CompanyToCompanyController::class, 'search_company_wise_tranx'])->name('company_to_company.search_company_wise_tranx');
 
 });

@@ -12,7 +12,7 @@ class CompanyDebitCreditLog extends Model
     public $timestamps = false;
     protected $fillable = [
         'id',
-        'agent_id',
+        'insurance_company_id',
         'tranx_dt',
         'policy_id',
         'debit_tranx',
@@ -28,4 +28,9 @@ class CompanyDebitCreditLog extends Model
     ];
 
     protected $dates = ['deleted_at'];
+
+    // relationship with insurance_company_id
+    public function insuranceCompany(){
+        return $this->belongsTo(InsuranceCompany::class, 'insurance_company_id', 'id');
+    }
 }
