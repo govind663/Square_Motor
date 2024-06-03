@@ -1231,7 +1231,7 @@ Policy | Create
                 var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
 
                 // ==== Calculate Company Profit
-                var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
+                var total_company_profit = parseInt(agent_actual_commission_amt) - (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt));
 
                 $('#agent_actual_profit_amt').val(total_company_profit);
             } else {
