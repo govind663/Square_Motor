@@ -1183,7 +1183,7 @@ Policy | Create
                     if (agent_comission_rupees != '' && agent_main_price != '') {
                         var agent_comission_rupees = $('#agent_comission_rupees').val();
                         var agent_main_price = $('#agent_main_price').val();
-                        var total_commission_amt = (parseInt(agent_comission_rupees) - parseInt(agent_main_price));
+                        var total_commission_amt = (parseInt(agent_main_price) - parseInt(agent_comission_rupees));
                         $('#agent_actual_commission_amt').val(total_commission_amt);
                     } else {
                         $('#agent_actual_commission_amt').val('');
@@ -1214,49 +1214,28 @@ Policy | Create
         });
 
         // Calculate Company Profit
-        $('agent_main_price, #agent_tds_deduction, #agent_actual_commission_amt, #agent_vehicle_type, #agent_tp_premimum').on('keyup', function () {
+        $('agent_profit_amt, #agent_tds_deduction, #agent_actual_commission_amt, #agent_vehicle_type, #agent_tp_premimum').on('keyup', function () {
 
-            agent_main_price = $('#agent_main_price').val();
+            agent_profit_amt = $('#agent_profit_amt').val();
             agent_tds_deduction = $('#agent_tds_deduction').val();
             agent_tp_premimum = $('#agent_tp_premimum').val();
             agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
 
-            // ==== check agent_vehicle_type
-            if ($('#agent_vehicle_type').val() == '1') {
+            if (agent_profit_amt != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
 
-                if (agent_main_price != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
+                var agent_profit_amt = $('#agent_profit_amt').val();
+                var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
 
-                    var agent_main_price = $('#agent_main_price').val();
-                    var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+                // ==== Calculate TDS Deduction in Percentage
+                var one_percent_value = (parseInt(agent_profit_amt) / 100);
+                var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
 
-                    // ==== Calculate TDS Deduction in Percentage
-                    var one_percent_value = (parseInt(agent_main_price) / 100);
-                    var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
+                // ==== Calculate Company Profit
+                var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
 
-                    // ==== Calculate Company Profit
-                    var total_company_profit = (parseInt(agent_main_price) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
-
-                    $('#agent_actual_profit_amt').val(total_company_profit);
-                } else {
-                    $('#agent_actual_profit_amt').val('');
-                }
-            } else if ($('#agent_vehicle_type').val() == '2') {
-                if (agent_tp_premimum != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
-
-                    var agent_tp_premimum = $('#agent_tp_premimum').val();
-                    var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
-
-                    // ==== Calculate TDS Deduction in Percentage
-                    var one_percent_value = (parseInt(agent_tp_premimum) / 100);
-                    var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
-
-                    // ==== Calculate Company Profit in rupees
-                    var total_company_profit = parseInt(agent_actual_commission_amt) - (parseInt(agent_tp_premimum) - parseInt(total_tds_deduction_amt));
-
-                    $('#agent_actual_profit_amt').val(total_tds_deduction_amt);
-                } else {
-                    $('#agent_actual_profit_amt').val('');
-                }
+                $('#agent_actual_profit_amt').val(total_company_profit);
+            } else {
+                $('#agent_actual_profit_amt').val('');
             }
 
         });
