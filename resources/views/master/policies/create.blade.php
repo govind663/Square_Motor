@@ -1203,7 +1203,7 @@ Policy | Create
                     if (agent_comission_rupees != '' && agent_tp_premimum != '') {
                         var agent_comission_rupees = $('#agent_comission_rupees').val();
                         var agent_tp_premimum = $('#agent_tp_premimum').val();
-                        var total_commission_amt = (parseInt(agent_comission_rupees) - parseInt(agent_tp_premimum));
+                        var total_commission_amt = ( parseInt(agent_tp_premimum) - parseInt(agent_comission_rupees));
                         $('#agent_actual_commission_amt').val(total_commission_amt);
                     } else {
                         $('#agent_actual_commission_amt').val('');
