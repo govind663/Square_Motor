@@ -131,9 +131,22 @@ class AgentCommissionController extends Controller
         }
     }
 
-    // ==== fetch_insurance_company_id
+    // ==== Fetch Company Name
+    public function fetch_insurance_company(Request $request){
+        $data['insuranceCompany'] = AgentCommission::with('insuranceCompany')->where('agent_id', $request->agentID)->whereNull('deleted_at')->get(['insurance_company_id', 'id']);
+        return response()->json($data);
+    }
+
+    // ==== Fetch Insurance Company Id
     public function fetch_insurance_company_id(Request $request){
         $data['insuranceCompanyID'] = InsuranceCompanyID::where('insurance_company_id', $request->insuranceCompanyID)->whereNull('deleted_at')->get(['company_id', 'id']);
+
+        return response()->json($data);
+    }
+
+    // ==== Fetch Vehicle Type
+    public function fetch_vehicle_type(Request $request){
+        $data['vehicleType'] = InsuranceCompanyID::with('vehicle')->where('vehicle_id', $request->agentCompanyID)->whereNull('deleted_at')->get(['vehicle_id', 'id']);
 
         return response()->json($data);
     }

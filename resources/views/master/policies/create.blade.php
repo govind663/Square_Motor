@@ -122,9 +122,7 @@ Policy | Create
                                                                 <label><b>Select Company Name : <span class="text-danger">*</span></b></label>
                                                                 <select  class="form-control select @error('insurance_company_id') is-invalid @enderror" id="agent_insurance_company_id" name="insurance_company_id">
                                                                     <option value="">Select Company Namee</option>
-                                                                    @foreach ($insuranceCompany as $value )
-                                                                    <option value="{{ $value->id }}" {{ (old("insurance_company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
-                                                                    @endforeach
+
                                                                 </select>
                                                                 @error('insurance_company_id')
                                                                     <span class="invalid-feedback" role="alert">
@@ -139,6 +137,7 @@ Policy | Create
                                                                 <label><b>Select Insurance Company ID : <span class="text-danger">*</span></b></label>
                                                                 <select  class="form-control select @error('agent_company_id') is-invalid @enderror" id="agent_company_id" name="agent_company_id">
                                                                     <option value="">Select Insurance Company ID</option>
+
                                                                 </select>
                                                                 @error('agent_company_id')
                                                                     <span class="invalid-feedback" role="alert">
@@ -154,17 +153,7 @@ Policy | Create
                                                                 <input type="text" hidden id="agent_vehicle_type" name="agent_vehicle_type"  class="form-control" value="{{ old('agent_vehicle_type') }}">
                                                                 <select  class="form-control select @error('vehicle_id') is-invalid @enderror" id="agent_vehicle_id" name="vehicle_id">
                                                                     <option value="">Select Vehicle Type</option>
-                                                                    @foreach ($vehicles as $value )
-                                                                    @php
-                                                                        $vehicleType = '';
-                                                                        if($value->vehicle_type == '1'){
-                                                                            $vehicleType = 'Private';
-                                                                        } else if($value->vehicle_type == '2'){
-                                                                            $vehicleType = 'Other';
-                                                                        }
-                                                                    @endphp
-                                                                    <option value="{{ $value->id }}" {{ (old("vehicle_id") == $value->id ? "selected":"") }}><b>[{{ $vehicleType }}] - {{ $value->vehicle_name }}</b></option>
-                                                                    @endforeach
+
                                                                 </select>
                                                                 @error('vehicle_id')
                                                                     <span class="invalid-feedback" role="alert">
@@ -994,6 +983,38 @@ Policy | Create
     });
 </script>
 
+{{-- Fetch Company Name --}}
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#agent_id', function() {
+            let agent_id = $(this).val();
+            $('#agent_insurance_company_id').show();
+            $.ajax({
+                method: 'POST',
+                url: "{{ route('fetch_insurance_company') }}",
+                data: {
+                    agentID: agent_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function (result) {
+                    // display in  agent_insurance_company_id in select option
+                    $('#agent_insurance_company_id').html('<option value="">Select Company Name</option>');
+                    $.each(result.insuranceCompany, function (key, value) {
+                        // === check value is selected or not
+                        if (value.id == agent_id) {
+                            $('#agent_insurance_company_id').append('<option value="' + value.insurance_company_id + '" selected>' + value.insurance_company.company_name + '</option>');
+                        }
+                        else {
+                            $('#agent_insurance_company_id').append('<option value="' + value.insurance_company_id + '">' + value.insurance_company.company_name + '</option>');
+                        }
+                    });
+                },
+            });
+        });
+    });
+</script>
+
 {{-- Fetch Company ID --}}
 <script>
     $(document).ready(function(){
@@ -1018,6 +1039,38 @@ Policy | Create
                         }
                         else {
                             $('#agent_company_id').append('<option value="' + value.company_id + '">' + value.company_id + '</option>');
+                        }
+                    });
+                },
+            });
+        });
+    });
+</script>
+
+{{-- Fetch Vehicle Type --}}
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#agent_company_id', function() {
+            let agent_company_id = $(this).val();
+            $('#agent_vehicle_id').show();
+            $.ajax({
+                method: 'POST',
+                url: "{{ route('fetch_vehicle_type') }}",
+                data: {
+                    agentCompanyID: agent_company_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function (result) {
+                    // display in  agent_vehicle_id in select option
+                    $('#agent_vehicle_id').html('<option value="">Select Vehicle Type</option>');
+                    $.each(result.vehicleType, function (key, value) {
+                        // === check value is selected or not
+                        if (value.id == agent_company_id) {
+                            $('#agent_vehicle_id').append('<option value="' + value.vehicle_id + '" selected>' + value.vehicle.vehicle_name + '</option>');
+                        }
+                        else {
+                            $('#agent_vehicle_id').append('<option value="' + value.vehicle_id + '">' + value.vehicle.vehicle_name + '</option>');
                         }
                     });
                 },

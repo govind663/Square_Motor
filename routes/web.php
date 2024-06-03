@@ -63,8 +63,14 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHisto
     // ==== Agent Commission routes
     Route::resource('agent_commission', AgentCommissionController::class);
 
-    // ==== fetch_insurance_company_id
+    // ==== Fetch Company Name
+    Route::post('fetch_insurance_company', [AgentCommissionController::class, 'fetch_insurance_company'])->name('fetch_insurance_company');
+
+    // ==== Fetch Insurance Company Id
     Route::post('fetch_insurance_company_id', [AgentCommissionController::class, 'fetch_insurance_company_id'])->name('fetch_insurance_company_id');
+
+    // ==== Fetch Vehicle Type
+    Route::post('fetch_vehicle_type', [AgentCommissionController::class, 'fetch_vehicle_type'])->name('fetch_vehicle_type');
 
     // ==== Vehicle resources routes
     Route::resource('vehicle', VehicleController::class);

@@ -120,9 +120,7 @@ Policy | Edit
                                                                 <label><b>Select Company Name : <span class="text-danger">*</span></b></label>
                                                                 <select  class="form-control select @error('insurance_company_id') is-invalid @enderror" id="agent_insurance_company_id" name="insurance_company_id">
                                                                     <option value="">Select Company Namee</option>
-                                                                    @foreach ($insuranceCompany as $value )
-                                                                    <option value="{{ $value->id }}" {{ ($policy->insurance_company_id == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
-                                                                    @endforeach
+
                                                                 </select>
                                                                 @error('insurance_company_id')
                                                                     <span class="invalid-feedback" role="alert">
@@ -137,9 +135,7 @@ Policy | Edit
                                                                 <label><b>Select Insurance Company ID : <span class="text-danger">*</span></b></label>
                                                                 <select  class="form-control select @error('agent_company_id') is-invalid @enderror" id="agent_company_id" name="agent_company_id">
                                                                     <option value="">Select Insurance Company ID</option>
-                                                                    @foreach ($insuranceCompanyID as $value )
-                                                                    <option value="{{ $value->company_id }}" {{ ($policy->agent_company_id == $value->company_id ? "selected":"") }}>{{ $value->company_id }}</option>
-                                                                    @endforeach
+
                                                                 </select>
                                                                 @error('agent_company_id')
                                                                     <span class="invalid-feedback" role="alert">
@@ -155,17 +151,7 @@ Policy | Edit
                                                                 <input type="text" hidden id="agent_vehicle_type" name="agent_vehicle_type"  class="form-control" value="{{ old('agent_vehicle_type') }}">
                                                                 <select  class="form-control select @error('vehicle_id') is-invalid @enderror" id="agent_vehicle_id" name="vehicle_id">
                                                                     <option value="">Select Vehicle Type</option>
-                                                                    @foreach ($vehicles as $value )
-                                                                    @php
-                                                                        $vehicleType = '';
-                                                                        if($value->vehicle_type == '1'){
-                                                                            $vehicleType = 'Private';
-                                                                        } else if($value->vehicle_type == '2'){
-                                                                            $vehicleType = 'Other';
-                                                                        }
-                                                                    @endphp
-                                                                    <option value="{{ $value->id }}" {{ ($policy->vehicle_id == $value->id ? "selected":"") }}><b>[{{ $vehicleType }}] - {{ $value->vehicle_name }}</b></option>
-                                                                    @endforeach
+
                                                                 </select>
                                                                 @error('vehicle_id')
                                                                     <span class="invalid-feedback" role="alert">
@@ -889,6 +875,7 @@ Policy | Edit
         });
     });
 </script>
+
 {{-- Agent Commission In Percentage fetch by agent_commission_percentage --}}
 <script>
     $(document).ready(function(){
@@ -917,6 +904,38 @@ Policy | Edit
     });
 </script>
 
+{{-- Fetch Company Name --}}
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#agent_id', function() {
+            let agent_id = $(this).val();
+            $('#agent_insurance_company_id').show();
+            $.ajax({
+                method: 'POST',
+                url: "{{ route('fetch_insurance_company') }}",
+                data: {
+                    agentID: agent_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function (result) {
+                    // display in  agent_insurance_company_id in select option
+                    $('#agent_insurance_company_id').html('<option value="">Select Company Name</option>');
+                    $.each(result.insuranceCompany, function (key, value) {
+                        // === check value is selected or not
+                        if (value.id == agent_id) {
+                            $('#agent_insurance_company_id').append('<option value="' + value.insurance_company_id + '" selected>' + value.insurance_company.company_name + '</option>');
+                        }
+                        else {
+                            $('#agent_insurance_company_id').append('<option value="' + value.insurance_company_id + '">' + value.insurance_company.company_name + '</option>');
+                        }
+                    });
+                },
+            });
+        });
+    });
+</script>
+
 {{-- Fetch Company ID --}}
 <script>
     $(document).ready(function(){
@@ -941,6 +960,38 @@ Policy | Edit
                         }
                         else {
                             $('#agent_company_id').append('<option value="' + value.company_id + '">' + value.company_id + '</option>');
+                        }
+                    });
+                },
+            });
+        });
+    });
+</script>
+
+{{-- Fetch Vehicle Type --}}
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#agent_company_id', function() {
+            let agent_company_id = $(this).val();
+            $('#agent_vehicle_id').show();
+            $.ajax({
+                method: 'POST',
+                url: "{{ route('fetch_vehicle_type') }}",
+                data: {
+                    agentCompanyID: agent_company_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function (result) {
+                    // display in  agent_vehicle_id in select option
+                    $('#agent_vehicle_id').html('<option value="">Select Vehicle Type</option>');
+                    $.each(result.vehicleType, function (key, value) {
+                        // === check value is selected or not
+                        if (value.id == agent_company_id) {
+                            $('#agent_vehicle_id').append('<option value="' + value.vehicle_id + '" selected>' + value.vehicle.vehicle_name + '</option>');
+                        }
+                        else {
+                            $('#agent_vehicle_id').append('<option value="' + value.vehicle_id + '">' + value.vehicle.vehicle_name + '</option>');
                         }
                     });
                 },
@@ -1106,7 +1157,7 @@ Policy | Edit
                     if (agent_comission_rupees != '' && agent_main_price != '') {
                         var agent_comission_rupees = $('#agent_comission_rupees').val();
                         var agent_main_price = $('#agent_main_price').val();
-                        var total_commission_amt = (parseInt(agent_comission_rupees) - parseInt(agent_main_price));
+                        var total_commission_amt = (parseInt(agent_main_price) - parseInt(agent_comission_rupees));
                         $('#agent_actual_commission_amt').val(total_commission_amt);
                     } else {
                         $('#agent_actual_commission_amt').val('');
@@ -1126,7 +1177,7 @@ Policy | Edit
                     if (agent_comission_rupees != '' && agent_tp_premimum != '') {
                         var agent_comission_rupees = $('#agent_comission_rupees').val();
                         var agent_tp_premimum = $('#agent_tp_premimum').val();
-                        var total_commission_amt = (parseInt(agent_comission_rupees) - parseInt(agent_tp_premimum));
+                        var total_commission_amt = ( parseInt(agent_tp_premimum) - parseInt(agent_comission_rupees));
                         $('#agent_actual_commission_amt').val(total_commission_amt);
                     } else {
                         $('#agent_actual_commission_amt').val('');
@@ -1137,49 +1188,28 @@ Policy | Edit
         });
 
         // Calculate Company Profit
-        $('agent_main_price, #agent_tds_deduction, #agent_actual_commission_amt, #agent_vehicle_type, #agent_tp_premimum').on('keyup', function () {
+        $('agent_profit_amt, #agent_tds_deduction, #agent_actual_commission_amt, #agent_vehicle_type, #agent_tp_premimum').on('keyup', function () {
 
-            agent_main_price = $('#agent_main_price').val();
+            agent_profit_amt = $('#agent_profit_amt').val();
             agent_tds_deduction = $('#agent_tds_deduction').val();
             agent_tp_premimum = $('#agent_tp_premimum').val();
             agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
 
-            // ==== check agent_vehicle_type
-            if ($('#agent_vehicle_type').val() == '1') {
+            if (agent_profit_amt != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
 
-                if (agent_main_price != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
+                var agent_profit_amt = $('#agent_profit_amt').val();
+                var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
 
-                    var agent_main_price = $('#agent_main_price').val();
-                    var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+                // ==== Calculate TDS Deduction in Percentage
+                var one_percent_value = (parseInt(agent_profit_amt) / 100);
+                var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
 
-                    // ==== Calculate TDS Deduction in Percentage
-                    var one_percent_value = (parseInt(agent_main_price) / 100);
-                    var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
+                // ==== Calculate Company Profit
+                var total_company_profit = parseInt(agent_actual_commission_amt) - (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt));
 
-                    // ==== Calculate Company Profit
-                    var total_company_profit = (parseInt(agent_main_price) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
-
-                    $('#agent_actual_profit_amt').val(total_company_profit);
-                } else {
-                    $('#agent_actual_profit_amt').val('');
-                }
-            } else if ($('#agent_vehicle_type').val() == '2') {
-                if (agent_tp_premimum != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
-
-                    var agent_tp_premimum = $('#agent_tp_premimum').val();
-                    var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
-
-                    // ==== Calculate TDS Deduction in Percentage
-                    var one_percent_value = (parseInt(agent_tp_premimum) / 100);
-                    var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
-
-                    // ==== Calculate Company Profit in rupees
-                    var total_company_profit = parseInt(agent_actual_commission_amt) - (parseInt(agent_tp_premimum) - parseInt(total_tds_deduction_amt));
-
-                    $('#agent_actual_profit_amt').val(total_tds_deduction_amt);
-                } else {
-                    $('#agent_actual_profit_amt').val('');
-                }
+                $('#agent_actual_profit_amt').val(total_company_profit);
+            } else {
+                $('#agent_actual_profit_amt').val('');
             }
 
         });
