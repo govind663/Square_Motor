@@ -71,7 +71,7 @@ Customer List
                                         <th>Name</th>
                                         <th>Mobile No.</th>
                                         <th>Email Id</th>
-                                        <th>Vehicle Type</th>
+                                        <th>Vehicle</th>
                                         <th class="no-export">Action</th>
                                     </tr>
                                 </thead>
@@ -82,7 +82,7 @@ Customer List
                                         <td>{{ $value->name }}</td>
                                         <td>{{ $value->mobile }}</td>
                                         <td>{{ $value->email }}</td>
-                                        <td>{{ $value->Vehicle?->vehicle_type }}</td>
+                                        <td>{{ $value->Vehicle?->vehicle_name }}</td>
                                         <td class="no-export d-flex">
                                             <a href="{{ route('retailer.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">
                                                 <i class="far fa-edit me-2"></i>Edit

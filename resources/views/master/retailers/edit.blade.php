@@ -72,7 +72,15 @@ Customer | Edit
                                             <select class="select" id="vehicle_id" name="vehicle_id">
                                                 <option value="">Select Vehicle Type</option>
                                                 @foreach ($vehicles as $value )
-                                                <option value="{{ $value->id }}" {{ ($retailer->vehicle_id == $value->id ? "selected":"") }}>{{ $value->vehicle_type }}</option>
+                                                @php
+                                                    $vehicleType = '';
+                                                    if($value->vehicle_type == '1'){
+                                                        $vehicleType = 'Private';
+                                                    } else if($value->vehicle_type == '2'){
+                                                        $vehicleType = 'Other';
+                                                    }
+                                                @endphp
+                                                <option value="{{ $value->id }}" {{ ($retailer->vehicle_id == $value->id ? "selected":"") }}>{{ $value->vehicle_name }} - [{{ $vehicleType }}]</option>
                                                 @endforeach
                                             </select>
                                         </div>
