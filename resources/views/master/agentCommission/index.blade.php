@@ -83,7 +83,7 @@
                                         <td >{{ $value->agent?->name }}</td>
                                         <td >{{ $value->insuranceCompany?->company_name }}</td>
                                         <td >{{ $value->insuranceCompanyID?->company_id }}</td>
-                                        <td >{{ $value->vehicle?->vehicle_type }}</td>
+                                        <td >{{ $value->vehicle?->vehicle_name }}</td>
                                         @php
                                             $commissionAmount = '';
                                             if($value->comission_type == '1'){

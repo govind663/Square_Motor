@@ -90,7 +90,15 @@ Commission | Create
                                             <select  class="form select @error('vehicle_id') is-invalid @enderror" id="vehicle_id" name="vehicle_id">
                                                 <option value="">Select Vehicle Type</option>
                                                 @foreach ($vehicles as $value )
-                                                <option value="{{ $value->id }}" {{ ( $agentCommission->vehicle_id == $value->id ? "selected":"") }}>{{ $value->vehicle_type }}</option>
+                                                @php
+                                                    $vehicleType = '';
+                                                    if($value->vehicle_type == '1'){
+                                                        $vehicleType = 'Private';
+                                                    } else if($value->vehicle_type == '2'){
+                                                        $vehicleType = 'Other';
+                                                    }
+                                                @endphp
+                                                <option value="{{ $value->id }}" {{ ( $agentCommission->vehicle_id == $value->id ? "selected":"") }}>{{ $value->vehicle_name }} - [{{ $vehicleType }}]</option>
                                                 @endforeach
                                             </select>
                                             @error('vehicle_id')

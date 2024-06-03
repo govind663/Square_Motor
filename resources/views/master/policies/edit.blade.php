@@ -211,8 +211,8 @@ Policy | Edit
                                                     <div class="row">
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>OD Premimum : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" id="agent_main_price" name="main_price"  class="form-control @error('main_price') is-invalid @enderror" value="{{ $policy->main_price }}" placeholder="Enter OD Premimum">
+                                                                <label><b>OD Premium : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" id="agent_main_price" name="main_price"  class="form-control @error('main_price') is-invalid @enderror" value="{{ $policy->main_price }}" placeholder="Enter OD Premium">
                                                                 @error('main_price')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -223,8 +223,8 @@ Policy | Edit
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>TP Premimum : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" id="agent_tp_premimum" name="agent_tp_premimum"  class="form-control @error('agent_tp_premimum') is-invalid @enderror" value="{{ $policy->agent_tp_premimum }}" placeholder="Enter TP Premimum">
+                                                                <label><b>TP Premium : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" id="agent_tp_premimum" name="agent_tp_premimum"  class="form-control @error('agent_tp_premimum') is-invalid @enderror" value="{{ $policy->agent_tp_premimum }}" placeholder="Enter TP Premium">
                                                                 @error('agent_tp_premimum')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -235,8 +235,8 @@ Policy | Edit
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>NET Premimum : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" readonly id="agent_net_premimum" name="agent_net_premimum"  class="form-control @error('agent_net_premimum') is-invalid @enderror" value="{{ $policy->agent_net_premium }}" placeholder="Enter NET Premimum">
+                                                                <label><b>NET Premium : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" readonly id="agent_net_premimum" name="agent_net_premimum"  class="form-control @error('agent_net_premimum') is-invalid @enderror" value="{{ $policy->agent_net_premium }}" placeholder="Enter NET Premium">
                                                                 @error('agent_net_premimum')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
