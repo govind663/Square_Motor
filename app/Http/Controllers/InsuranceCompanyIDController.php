@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\InsuranceCompanyIDRequest;
 use App\Models\InsuranceCompany;
 use App\Models\InsuranceCompanyID;
+use App\Models\Vehicle;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -26,7 +27,8 @@ class InsuranceCompanyIDController extends Controller
     public function create()
     {
         $insuranceCompany = InsuranceCompany::orderBy("id","desc")->whereNull('deleted_at')->get();
-        return view('master.insurance_company_ids.create', ['insuranceCompany' => $insuranceCompany]);
+        $vehicles = Vehicle::orderBy("id","desc")->whereNull('deleted_at')->get();
+        return view('master.insurance_company_ids.create', ['insuranceCompany' => $insuranceCompany, 'vehicles' => $vehicles]);
     }
 
     /**
@@ -39,6 +41,7 @@ class InsuranceCompanyIDController extends Controller
             $InsuranceCompanyID = new InsuranceCompanyID();
             $InsuranceCompanyID->insurance_company_id = $request->insurance_company_id;
             $InsuranceCompanyID->company_id = $request->company_id;
+            $InsuranceCompanyID->vehicle_id = $request->vehicle_id;
             $InsuranceCompanyID->commision_percentage = $request->commision_percentage;
             $InsuranceCompanyID->inserted_at = Carbon::now();
             $InsuranceCompanyID->inserted_by = Auth::user()->id;
@@ -68,8 +71,8 @@ class InsuranceCompanyIDController extends Controller
     {
         $InsuranceCompanyID = InsuranceCompanyID::find($id);
         $insuranceCompany = InsuranceCompany::orderBy("id","desc")->whereNull('deleted_at')->get();
-
-        return view('master.insurance_company_ids.edit', ['insuranceCompany' => $insuranceCompany, 'InsuranceCompanyID' => $InsuranceCompanyID]);
+        $vehicles = Vehicle::orderBy("id","desc")->whereNull('deleted_at')->get();
+        return view('master.insurance_company_ids.edit', ['insuranceCompany' => $insuranceCompany, 'InsuranceCompanyID' => $InsuranceCompanyID, 'vehicles' => $vehicles]);
     }
 
     /**
@@ -83,6 +86,7 @@ class InsuranceCompanyIDController extends Controller
             $InsuranceCompanyID = InsuranceCompanyID::findOrFail($id);
             $InsuranceCompanyID->insurance_company_id = $request->insurance_company_id;
             $InsuranceCompanyID->company_id = $request->company_id;
+            $InsuranceCompanyID->vehicle_id = $request->vehicle_id;
             $InsuranceCompanyID->commision_percentage = $request->commision_percentage;
             $InsuranceCompanyID->modified_at = Carbon::now();
             $InsuranceCompanyID->modified_by = Auth::user()->id;

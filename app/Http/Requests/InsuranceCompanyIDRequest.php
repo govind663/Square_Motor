@@ -25,12 +25,14 @@ class InsuranceCompanyIDRequest extends FormRequest
             $rule = [
                 'insurance_company_id' => 'required|numeric',
                 'company_id'=> 'required|numeric',
+                'vehicle_id'=>'required|numeric',
                 'commision_percentage'=>'required|string',
             ];
         }else{
             $rule = [
                 'insurance_company_id' => 'required|numeric',
                 'company_id'=> 'required|numeric|unique:insurance_company_i_d_s,company_id',
+                'vehicle_id'=>'required|numeric',
                 'commision_percentage'=>'required|string',
             ];
         }
@@ -42,6 +44,7 @@ class InsuranceCompanyIDRequest extends FormRequest
         return [
             'insurance_company_id.required' => 'Please select Company Name',
             'company_id.required' => 'Company Id is required.',
+            'vehicle_id.required' => 'Vehicle Type is required.',
             'commision_percentage.required' => 'Commision Percentage is required.',
         ];
     }

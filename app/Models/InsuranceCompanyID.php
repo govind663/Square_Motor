@@ -14,6 +14,7 @@ class InsuranceCompanyID extends Model
         'id',
         'insurance_company_id',
         'company_id',
+        'vehicle_id',
         'commision_percentage',
         'inserted_by',
         'inserted_at',
@@ -25,8 +26,12 @@ class InsuranceCompanyID extends Model
 
     protected $dates = ['deleted_at'];
 
-    // ==== relationship between insurance_company_id
     public function insuranceCompany(){
-        return $this->belongsTo(InsuranceCompany::class, 'insurance_company_id', 'id');
+        return $this->belongsTo(InsuranceCompany::class, 'insurance_company_id');
+    }
+
+    // ==== relationship with vehicle
+    public function vehicle(){
+        return $this->belongsTo(Vehicle::class, 'vehicle_id');
     }
 }

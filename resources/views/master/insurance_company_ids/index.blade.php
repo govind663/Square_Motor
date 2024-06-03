@@ -70,6 +70,7 @@ Insurance Company IDs | List
                                         <th>Sr. No.</th>
                                         <th>Company Name</th>
                                         <th>Company ID No.</th>
+                                        <th>Vehicle Name</th>
                                         <th>Commision (%)</th>
                                         <th class="no-export">Action</th>
                                     </tr>
@@ -80,6 +81,7 @@ Insurance Company IDs | List
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $value->insuranceCompany?->company_name }}</td>
                                         <td>{{ $value->company_id }}</td>
+                                        <td >{{ $value->vehicle?->vehicle_name }}</td>
                                         <td>{{ $value->commision_percentage }}</td>
                                         <td class="no-export d-flex">
                                             <a href="{{ route('insurance_company_id.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">

@@ -31,7 +31,7 @@ Insurance Company ID | Add
                             <div class="form-group-customer customer-additional-form">
                                 <div class="row">
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Select Company Name : <span class="text-danger">*</span></b></label>
                                             <select class="form-select @error('insurance_company_id') is-invalid @enderror select" id="insurance_company_id" name="insurance_company_id">
@@ -48,7 +48,7 @@ Insurance Company ID | Add
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Company ID : <span class="text-danger">*</span></b></label>
                                             <input type="text" id="company_id" name="company_id" class="form-control @error('company_id') is-invalid @enderror" value="{{ old('company_id') }}" placeholder="Enter Company ID">
@@ -60,7 +60,32 @@ Insurance Company ID | Add
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="input-block mb-3">
+                                            <label><b>Select Vehicle Type : <span class="text-danger">*</span></b></label>
+                                            <select  class="form select @error('vehicle_id') is-invalid @enderror" id="vehicle_id" name="vehicle_id">
+                                                <option value="">Select Vehicle Type</option>
+                                                @foreach ($vehicles as $value )
+                                                @php
+                                                    $vehicleType = '';
+                                                    if($value->vehicle_type == '1'){
+                                                        $vehicleType = 'Private';
+                                                    } else if($value->vehicle_type == '2'){
+                                                        $vehicleType = 'Other';
+                                                    }
+                                                @endphp
+                                                <option value="{{ $value->id }}" {{ (old("vehicle_id") == $value->id ? "selected":"") }}>{{ $value->vehicle_name }} - [{{ $vehicleType }}]</option>
+                                                @endforeach
+                                            </select>
+                                            @error('vehicle_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
                                         <div class="input-block mb-3" >
                                             <label><b>Commission Percentage (%) : <span class="text-danger">*</span></b></label>
                                             <input type="text" id="commision_percentage" name="commision_percentage" class="form-control @error('commision_percentage') is-invalid @enderror" value="{{ old('commision_percentage') }}" placeholder="Enter Commission Percentage (%)">
