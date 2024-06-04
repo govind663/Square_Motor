@@ -88,7 +88,7 @@ Policy | Edit
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Vehicle Registration Number : </b></label>
+                                                                <label><b>Vehicle Registration Number : <span class="text-danger">*</span></b></label>
                                                                 <input type="text" onkeypress="allowAlphaNumericSpace(event)" id="vehicle_reg_no" name="vehicle_reg_no"  class="form-control @error('vehicle_reg_no') is-invalid @enderror" value="{{ $policy->vehicle_reg_no }}" placeholder="Enter Vehicle Registration Number">
                                                                 @error('vehicle_reg_no')
                                                                     <span class="invalid-feedback" role="alert">
@@ -163,7 +163,7 @@ Policy | Edit
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Vehicle Configuration : <span class="text-danger">*</span></b></label>
+                                                                <label><b>Vehicle Configuration : </b></label>
                                                                 <input type="text" id="vehicle_config" name="vehicle_config"  class="form-control @error('vehicle_config') is-invalid @enderror" value="{{ $policy->vehicle_config }}" placeholder="Enter Vehicle Configuration">
                                                                 @error('vehicle_config')
                                                                     <span class="invalid-feedback" role="alert">
@@ -281,6 +281,18 @@ Policy | Edit
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
+                                                                <label><b>TDS Deduction (%) : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" id="agent_tds_deduction" name="tds_deduction"  class="form-control @error('tds_deduction') is-invalid @enderror" value="{{ $policy->tds_deduction }}" placeholder="Enter TDS Deduction (10%)">
+                                                                @error('tds_deduction')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
                                                                 <label><b>Agent Commission (%) : </b></label>
                                                                 <input type="hidden" id="agent_commission_type" name="agent_commission_type"  class="form-control" value="{{ old('agent_commission_type') }}" >
                                                                 <input type="text" readonly id="agent_commission_percentage" name="commission_percentage"  class="form-control @error('commission_percentage') is-invalid @enderror" value="{{ $policy->commission_percentage }}" placeholder="Enter Agent Commission (%)">
@@ -309,18 +321,6 @@ Policy | Edit
                                                                 <label><b>Actual Agent Commission : <span class="text-danger">*</span></b></label>
                                                                 <input type="text" readonly id="agent_actual_commission_amt" name="agent_actual_comission"  class="form-control @error('agent_actual_comission') is-invalid @enderror" value="{{ $policy->agent_actual_comission }}" placeholder="Enter Agent Commission">
                                                                 @error('agent_actual_comission')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-4 col-md-6 col-sm-12">
-                                                            <div class="input-block mb-3">
-                                                                <label><b>TDS Deduction (%) : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" id="agent_tds_deduction" name="tds_deduction"  class="form-control @error('tds_deduction') is-invalid @enderror" value="{{ $policy->tds_deduction }}" placeholder="Enter TDS Deduction (10%)">
-                                                                @error('tds_deduction')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
