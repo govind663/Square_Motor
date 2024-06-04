@@ -15,6 +15,7 @@ class InsuranceCompanyID extends Model
         'insurance_company_id',
         'company_id',
         'vehicle_id',
+        'r_t_o_id',
         'commision_percentage',
         'inserted_by',
         'inserted_at',

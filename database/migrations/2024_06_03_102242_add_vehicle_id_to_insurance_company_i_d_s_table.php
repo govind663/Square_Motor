@@ -14,7 +14,7 @@ return new class extends Migration
     {
         Schema::table('insurance_company_i_d_s', function (Blueprint $table) {
             // Add vehicle_id after insurance_company_i_d_s
-            $table->foreignIdFor(Vehicle::class)->nullable()->index()->after('insurance_company_id');
+            $table->foreignIdFor(Vehicle::class)->nullable()->index()->after('company_id');
         });
     }
 

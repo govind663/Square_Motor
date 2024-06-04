@@ -24,7 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('agent_debit_credit_logs', function (Blueprint $table) {
-            $table->dropColumn(Agent::class);
+            $table->dropColumn('agent_id');
         });
     }
 };

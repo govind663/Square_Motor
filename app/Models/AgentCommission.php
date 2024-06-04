@@ -16,6 +16,7 @@ class AgentCommission extends Model
         'agent_id',
         'insurance_company_id',
         'insurance_company_i_d_id',
+        'r_t_o_id',
         'vehicle_id',
         'comission_type',
         'percentage_amt',

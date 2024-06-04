@@ -84,6 +84,23 @@ Define Out Commission | Create
                                         </div>
                                     </div>
 
+                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                        <div class="input-block mb-3">
+                                            <label><b>Select RTO : <span class="text-danger">*</span></b></label>
+                                            <select class="form-select @error('r_t_o_id') is-invalid @enderror select" id="r_t_o_id" name="r_t_o_id">
+                                                <option value="">Select RTO</option>
+                                                @foreach ($rtos as $value )
+                                                <option value="{{ $value->id }}" {{ ($InsuranceCompanyID->r_t_o_id == $value->id ? "selected":"") }}>{{ $value->pincode }} - {{ $value->state }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('r_t_o_id')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
+                                    </div>
+
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Select Vehicle Type : <span class="text-danger">*</span></b></label>

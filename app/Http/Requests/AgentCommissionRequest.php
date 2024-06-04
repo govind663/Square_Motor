@@ -26,6 +26,7 @@ class AgentCommissionRequest extends FormRequest
                 'agent_id' => 'required|numeric',
                 'insurance_company_id' => 'required|numeric',
                 'insurance_company_i_d_id' => 'required|numeric',
+                'r_t_o_id'=>'required|numeric',
                 'vehicle_id' => 'required|numeric',
                 'comission_type' => 'required|numeric',
                 'percentage_amt' => 'nullable|string',
@@ -36,6 +37,7 @@ class AgentCommissionRequest extends FormRequest
                 'agent_id' => 'required|numeric',
                 'insurance_company_id' => 'required|numeric',
                 'insurance_company_i_d_id' => 'required|numeric',
+                'r_t_o_id'=>'required|numeric',
                 'vehicle_id' => 'required|numeric',
                 'comission_type' => 'required|numeric',
                 'percentage_amt' => 'nullable|string',
@@ -51,6 +53,7 @@ class AgentCommissionRequest extends FormRequest
             'agent_id.required' => 'Please Select Agent Name.',
             'insurance_company_id.required' => 'Please Select Insurance Company Name.',
             'insurance_company_i_d_id.required' => 'Please Select Insurance Company ID.',
+            'r_t_o_id.required' => 'Please Select RTO.',
             'vehicle_id.required' => 'Please Select Vehicle Name.',
             'comission_type.required' => 'Please Select Commission Type.',
         ];

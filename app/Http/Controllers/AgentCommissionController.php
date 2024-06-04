@@ -47,6 +47,7 @@ class AgentCommissionController extends Controller
             $agentCommission->agent_id = $request->agent_id;
             $agentCommission->insurance_company_id = $request->insurance_company_id;
             $agentCommission->insurance_company_i_d_id = $request->insurance_company_i_d_id;
+            $agentCommission->r_t_o_id = $request->r_t_o_id;
             $agentCommission->vehicle_id = $request->vehicle_id;
             $agentCommission->comission_type = $request->comission_type;
             $agentCommission->percentage_amt = $request->percentage_amt;
@@ -97,6 +98,7 @@ class AgentCommissionController extends Controller
             $agentCommission->agent_id = $request->agent_id;
             $agentCommission->insurance_company_id = $request->insurance_company_id;
             $agentCommission->insurance_company_i_d_id = $request->insurance_company_i_d_id;
+            $agentCommission->r_t_o_id = $request->r_t_o_id;
             $agentCommission->vehicle_id = $request->vehicle_id;
             $agentCommission->comission_type = $request->comission_type;
             $agentCommission->percentage_amt = $request->percentage_amt;
