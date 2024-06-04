@@ -1,19 +1,19 @@
 @extends('layouts.master')
 
 @section('title')
-  Define Out Commission List
+Manage Company Id | List
 @endsection
 
 @push('styles')
 <style>
     .btn-secondary {
         color: #fff;
-        background-color: #387dff;
-        border-color: #387dff;
+        background-color: #387dff !important;
+        border-color: #387dff !important;
     }
     .pagination li.active a.page-link {
-        background: #387dff;
-        border-color: #387dff;
+        background: #387dff !important;
+        border-color: #387dff !important;
         border-radius: 5px;
     }
     table.dataTable thead > tr > th.dt-orderable-asc, table.dataTable thead > tr > th.dt-orderable-desc, table.dataTable thead > tr > th.dt-ordering-asc, table.dataTable thead > tr > th.dt-ordering-desc, table.dataTable thead > tr > td.dt-orderable-asc, table.dataTable thead > tr > td.dt-orderable-desc, table.dataTable thead > tr > td.dt-ordering-asc, table.dataTable thead > tr > td.dt-ordering-desc {
@@ -38,10 +38,10 @@
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Manage Define Out Commission</h3>
+                    <h3 class="page-title">Manage Company Id</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">All Define Out Commission List</li>
+                        <li class="breadcrumb-item active">All Company Id List</li>
                     </ul>
                 </div>
             </div>
@@ -52,12 +52,12 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="row card-body">
-                        <div class="col-10">
-                            <h5 class="card-title">All Define Out Commission List</h5>
+                        <div class="col-9">
+                            <h5 class="card-title">All Company Id List</h5>
                         </div>
-                        <div class="col-2 float-right">
-                            <a href="{{ route('agent_commission.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Define Out Commission
+                        <div class="col-3 float-right">
+                            <a href="{{ route('company_id.create') }}" class="btn btn-primary btn-sm">
+                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Company Id
                             </a>
                         </div>
                     </div>
@@ -68,39 +68,25 @@
                                 <thead>
                                     <tr>
                                         <th>Sr. No.</th>
-                                        <th>Agent Name</th>
                                         <th>Company Name</th>
-                                        <th>Company ID</th>
-                                        <th>Vehicle Name</th>
-                                        <th>Commission Amount</th>
+                                        <th>Company ID No.</th>
+                                        <th>TDS (%)</th>
                                         <th class="no-export">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($agentCommission as $key=>$value )
+                                    @foreach ($companiesTDS as $key=>$value )
                                     <tr>
-                                        <td class="text-left">{{ ++$key }}</td>
-                                        <td >{{ $value->agent?->name }}</td>
-                                        <td >{{ $value->insuranceCompany?->company_name }}</td>
-                                        <td >{{ $value->insuranceCompanyID?->company_id }}</td>
-                                        <td >{{ $value->vehicle?->vehicle_name }}</td>
-                                        @php
-                                            $commissionAmount = '';
-                                            if($value->comission_type == '1'){
-                                                // === append %
-                                                $commissionAmount = $value->percentage_amt.'%';
-                                            }elseif($value->comission_type == '2'){
-                                                // === append Rs
-                                                $commissionAmount = $value->fixed_amt.' Rs';
-                                            }
-                                        @endphp
-                                        <td >{{ $commissionAmount }}</td>
+                                        <td>{{ ++$key }}</td>
+                                        <td>{{ $value->insuranceCompanies?->company_name }}</td>
+                                        <td>{{ $value->insuranceCompanyIdies?->company_id }}</td>
+                                        <td>{{ $value->tds_in_percentage }}</td>
                                         <td class="no-export d-flex">
-                                            <a href="{{ route('agent_commission.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">
+                                            <a href="{{ route('company_id.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">
                                                 <i class="far fa-edit me-2"></i>Edit
                                             </a>
                                             &nbsp;
-                                            <form action="{{ route('agent_commission.destroy', $value->id) }}" method="post">
+                                            <form action="{{ route('company_id.destroy', $value->id) }}" method="post">
                                                 @csrf
                                                 @method('DELETE')
                                                 <input name="_method" type="hidden" value="DELETE">
@@ -128,7 +114,7 @@
 <script>
     $('.data-table-export1').DataTable({
         scrollCollapse: true,
-        autoWidth: false,
+        autoWidth: true,
         responsive: true,
         columnDefs: [{
             targets: "datatable-nosort",
@@ -169,7 +155,7 @@
                     columns: ':not(.no-export)',
                 },
                header: true,
-               title: 'All Commission List',
+               title: 'Report',
                orientation: 'landscape',
                pageSize: 'A4',
                customize: function(doc) {

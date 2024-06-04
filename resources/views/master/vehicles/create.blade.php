@@ -37,7 +37,7 @@ Vehicle | Add
                                                 <label><b>Vehicle Type : <span class="text-danger">*</span></b></label>
                                                 <select class="form-select @error('vehicle_type') is-invalid @enderror select" id="vehicle_type" name="vehicle_type">
                                                     <option value="">Select Vehicle Type</option>
-                                                    <option value="1" {{ (old("vehicle_type") == '1' ? "selected":"") }}>Private</option>
+                                                    <option value="1" {{ (old("vehicle_type") == '1' ? "selected":"") }}>Private Car Comprehensive</option>
                                                     <option value="2" {{ (old("vehicle_type") == '2' ? "selected":"") }}>Other</option>
                                                 </select>
                                                 @error('vehicle_type')

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Insurance Company ID | Edit
+Define In Commission | Edit
 @endsection
 
 @push('styles')
@@ -20,7 +20,7 @@ Insurance Company ID | Edit
 
                 <div class="page-header">
                     <div class="content-page-header">
-                        <h5>Edit Insurance Company ID </h5>
+                        <h5>Edit Define In Commission </h5>
                     </div>
                 </div>
 
@@ -38,7 +38,7 @@ Insurance Company ID | Edit
                                         <div class="input-block mb-3">
                                             <label><b>Select Company Name : <span class="text-danger">*</span></b></label>
                                             <select class="form-select @error('insurance_company_id') is-invalid @enderror select" id="insurance_company_id" name="insurance_company_id">
-                                                <option value="">Select Commision Type</option>
+                                                <option value="">Select Company Name</option>
                                                 @foreach ($insuranceCompany as $value )
                                                 <option value="{{ $value->id }}" {{ ($InsuranceCompanyID->insurance_company_id == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
                                                 @endforeach

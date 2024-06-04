@@ -20,7 +20,14 @@
                 <li class="{{ ($currentRoute === 'insurance_company_id.index') || ($currentRoute === 'insurance_company_id.create') || ($currentRoute === 'insurance_company_id.edit') ? 'active' : '' }}">
                     <a href="{{ route('insurance_company_id.index') }}">
                         <i class="fe fe-clipboard"></i>
-                        <span>Manage Insurance Company IDs</span>
+                        <span>Define In Commission</span>
+                    </a>
+                </li>
+
+                <li class="{{ ($currentRoute === 'company_id.index') || ($currentRoute === 'company_id.create') || ($currentRoute === 'company_id.edit') ? 'active' : '' }}">
+                    <a href="{{ route('company_id.index') }}">
+                        <i class="fe fe-clipboard"></i>
+                        <span>Manage Company Id</span>
                     </a>
                 </li>
 
@@ -41,7 +48,7 @@
                 <li class="{{ ($currentRoute === 'agent_commission.index') || ($currentRoute === 'agent_commission.create') || ($currentRoute === 'agent_commission.edit') ? 'active' : '' }}">
                     <a href="{{ route('agent_commission.index') }}">
                         <i class="fe fe-user"></i>
-                        <span>Manage Commission</span>
+                        <span>Define Out Commission</span>
                     </a>
                 </li>
 

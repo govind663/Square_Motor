@@ -88,7 +88,7 @@ Policy | Edit
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Vehicle Registration Number : <span class="text-danger">*</span></b></label>
+                                                                <label><b>Vehicle Registration Number : </b></label>
                                                                 <input type="text" onkeypress="allowAlphaNumericSpace(event)" id="vehicle_reg_no" name="vehicle_reg_no"  class="form-control @error('vehicle_reg_no') is-invalid @enderror" value="{{ $policy->vehicle_reg_no }}" placeholder="Enter Vehicle Registration Number">
                                                                 @error('vehicle_reg_no')
                                                                     <span class="invalid-feedback" role="alert">
@@ -1072,18 +1072,18 @@ Policy | Edit
     $(document).ready(function () {
 
         // Calculate Net Preimum
-        $('#agent_main_price, #agent_tp_premimum').on('keyup', function () {
+        $('#agent_main_price, #agent_net_premimum').on('keyup', function () {
             agent_main_price = $('#agent_main_price').val();
-            agent_tp_premimum = $('#agent_tp_premimum').val();
+            agent_net_premimum = $('#agent_net_premimum').val();
 
-            if (agent_main_price != '' && agent_tp_premimum != '') {
+            if (agent_main_price != '' && agent_net_premimum != '') {
                 var agent_main_price = $('#agent_main_price').val();
-                var agent_tp_premimum = $('#agent_tp_premimum').val();
-                var total_net_premimum_amt = (parseInt(agent_main_price) + parseInt(agent_tp_premimum));
-                $('#agent_net_premimum').val(total_net_premimum_amt);
+                var agent_net_premimum = $('#agent_net_premimum').val();
+                var total_net_premimum_amt = (parseInt(agent_net_premimum) - parseInt(agent_main_price));
+                $('#agent_tp_premimum').val(total_net_premimum_amt);
             }
             else {
-                $('#agent_net_premimum').val('');
+                $('#agent_tp_premimum').val('');
             }
 
         });

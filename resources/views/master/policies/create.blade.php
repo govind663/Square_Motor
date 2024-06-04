@@ -90,7 +90,7 @@ Policy | Create
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Vehicle Registration Number : <span class="text-danger">*</span></b></label>
+                                                                <label><b>Vehicle Registration Number : </b></label>
                                                                 <input type="text" onkeypress="allowAlphaNumericSpace(event)" id="vehicle_reg_no" name="vehicle_reg_no"  class="form-control @error('vehicle_reg_no') is-invalid @enderror" value="{{ old('vehicle_reg_no') }}" placeholder="Enter Vehicle Registration Number">
                                                                 @error('vehicle_reg_no')
                                                                     <span class="invalid-feedback" role="alert">
@@ -199,6 +199,18 @@ Policy | Create
                                                     <div class="row">
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
+                                                                <label><b>NET Premium : <span class="text-danger">*</span></b></label>
+                                                                <input type="text"  id="agent_net_premimum" name="agent_net_premimum"  class="form-control @error('agent_net_premimum') is-invalid @enderror" value="{{ old('agent_net_premimum') }}" placeholder="Enter NET Premium">
+                                                                @error('agent_net_premimum')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
                                                                 <label><b>OD Premium : <span class="text-danger">*</span></b></label>
                                                                 <input type="text" id="agent_main_price" name="main_price"  class="form-control @error('main_price') is-invalid @enderror" value="{{ old('main_price') }}" placeholder="Enter OD Premium">
                                                                 @error('main_price')
@@ -212,20 +224,8 @@ Policy | Create
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
                                                                 <label><b>TP Premium : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" id="agent_tp_premimum" name="agent_tp_premimum"  class="form-control @error('agent_tp_premimum') is-invalid @enderror" value="{{ old('agent_tp_premimum') }}" placeholder="Enter TP Premium">
+                                                                <input type="text" readonly id="agent_tp_premimum" name="agent_tp_premimum"  class="form-control @error('agent_tp_premimum') is-invalid @enderror" value="{{ old('agent_tp_premimum') }}" placeholder="Enter TP Premium">
                                                                 @error('agent_tp_premimum')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-4 col-md-6 col-sm-12">
-                                                            <div class="input-block mb-3">
-                                                                <label><b>NET Premium : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" readonly id="agent_net_premimum" name="agent_net_premimum"  class="form-control @error('agent_net_premimum') is-invalid @enderror" value="{{ old('agent_net_premimum') }}" placeholder="Enter NET Premium">
-                                                                @error('agent_net_premimum')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -1151,18 +1151,18 @@ Policy | Create
     $(document).ready(function () {
 
         // Calculate Net Preimum
-        $('#agent_main_price, #agent_tp_premimum').on('keyup', function () {
+        $('#agent_main_price, #agent_net_premimum').on('keyup', function () {
             agent_main_price = $('#agent_main_price').val();
-            agent_tp_premimum = $('#agent_tp_premimum').val();
+            agent_net_premimum = $('#agent_net_premimum').val();
 
-            if (agent_main_price != '' && agent_tp_premimum != '') {
+            if (agent_main_price != '' && agent_net_premimum != '') {
                 var agent_main_price = $('#agent_main_price').val();
-                var agent_tp_premimum = $('#agent_tp_premimum').val();
-                var total_net_premimum_amt = (parseInt(agent_main_price) + parseInt(agent_tp_premimum));
-                $('#agent_net_premimum').val(total_net_premimum_amt);
+                var agent_net_premimum = $('#agent_net_premimum').val();
+                var total_net_premimum_amt = (parseInt(agent_net_premimum) - parseInt(agent_main_price));
+                $('#agent_tp_premimum').val(total_net_premimum_amt);
             }
             else {
-                $('#agent_net_premimum').val('');
+                $('#agent_tp_premimum').val('');
             }
 
         });

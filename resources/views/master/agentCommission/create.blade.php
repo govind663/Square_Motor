@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Commission | Add
+Define Out Commission | Add
 @endsection
 
 @push('styles')
@@ -20,7 +20,7 @@ Commission | Add
 
                     <div class="page-header">
                         <div class="content-page-header">
-                            <h5>Add Commission</h5>
+                            <h5>Add Define Out Commission</h5>
                         </div>
                     </div>
 

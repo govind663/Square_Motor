@@ -19,6 +19,7 @@ use App\Http\Controllers\RetailerController;
 use App\Http\Controllers\RtoController;
 use App\Http\Controllers\VehicleController;
 use App\Http\Controllers\ExpensesController;
+use App\Http\Controllers\CompanyIDController;
 
 // === Middleware for PreventBackHistory of Browser data
 use App\Http\Middleware\PreventBackHistoryMiddleware;
@@ -65,6 +66,10 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHisto
 
     // ==== Fetch Company Name
     Route::post('fetch_insurance_company', [AgentCommissionController::class, 'fetch_insurance_company'])->name('fetch_insurance_company');
+
+    // ==== Resource Company Id Routes
+    Route::resource('company_id', CompanyIDController::class);
+    Route::post('fetch_insurance_company_name', [CompanyIDController::class, 'fetch_insurance_company_name'])->name('fetch_insurance_company_name');
 
     // ==== Fetch Insurance Company Id
     Route::post('fetch_insurance_company_id', [AgentCommissionController::class, 'fetch_insurance_company_id'])->name('fetch_insurance_company_id');
