@@ -49,7 +49,7 @@ Insurance Company | Edit
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Upload Company Logo : <span class="text-danger">*</span></b></label>
-                                            <input type="file" id="logo_doc" name="logo_doc" class="form-control @error('logo_doc') is-invalid @enderror" value="{{ $insuranceCompany->logo_doc }}" accept=".jpg, .jpeg, .png, .pdf">
+                                            <input type="file" id="logo_doc" name="logo_doc" onchange="companyPreviewFile()" class="form-control @error('logo_doc') is-invalid @enderror" value="{{ $insuranceCompany->logo_doc }}" accept=".jpg, .jpeg, .png, .pdf">
                                             <small class="text-secondary"><b>Note : The file size  should be less than 2MB .</b></small>
                                             <br>
                                             <small class="text-secondary"><b>Note : Only files in .jpg, .jpeg, .png, .pdf format can be uploaded .</b></small>
@@ -66,6 +66,9 @@ Insurance Company | Edit
                                                     </a>
                                                 @endif
                                             </div>
+                                            <div id="preview-container">
+                                                <div id="file-preview"></div>
+                                            </div>
                                         </div>
                                     </div>
 
@@ -75,36 +78,6 @@ Insurance Company | Edit
                                             <textarea type="text" id="description" name="description" class="form-control" value="{{ $insuranceCompany->description }}" placeholder="Enter Description">{{ $insuranceCompany->description }}</textarea>
                                         </div>
                                     </div>
-
-                                    {{-- <div class="col-lg-4 col-md-12 col-sm-12">
-                                        <div class="input-block mb-3" >
-                                            <label><b>Commision Type : <span class="text-danger">*</span></b></label>
-                                            <select class="@error('commision_type') is-invalid @enderror select" id="commision_type" name="commision_type">
-                                                <option value="">Select Commision Type</option>
-                                                <option value="01" {{ ($insuranceCompany->commision_type == '01' ? "selected":"") }}>Percentage</option>
-                                                <option value="02" {{ ($insuranceCompany->commision_type == '02' ? "selected":"") }}>Fixed</option>
-                                            </select>
-                                            @error('commision_type')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-12 col-sm-12 01 box" style="display:none">
-                                        <div class="input-block mb-3" >
-                                            <label><b>Percentage : </b></label>
-                                            <input type="text" id="percentage_amt" name="percentage_amt" class="form-control" value="{{ $insuranceCompany->percentage_amt }}" placeholder="Enter Percentage">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-lg-4 col-md-12 col-sm-12 02 box" style="display:none">
-                                        <div class="input-block mb-3" >
-                                            <label><b>Fixed :</b></label>
-                                            <input type="text" id="fixed_amt" name="fixed_amt" class="form-control" value="{{ $insuranceCompany->fixed_amt }}" placeholder="Enter Fixed Amount">
-                                        </div>
-                                    </div> --}}
 
                                 </div>
                             </div>
@@ -136,5 +109,44 @@ Insurance Company | Edit
             });
         }).change();
     });
+</script>
+
+{{-- preview both agent image and PDF --}}
+<script>
+    function companyPreviewFile() {
+        const fileInput = document.getElementById('logo_doc');
+        const previewContainer = document.getElementById('preview-container');
+        const filePreview = document.getElementById('file-preview');
+        const file = fileInput.files[0];
+
+        if (file) {
+            const fileType = file.type;
+            const validImageTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+            const validPdfTypes = ['application/pdf'];
+
+            if (validImageTypes.includes(fileType)) {
+                // Image preview
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    filePreview.innerHTML = `<img src="${e.target.result}" alt="File Preview" style="height:100px; width: 100% ;">`;
+                };
+                reader.readAsDataURL(file);
+            } else if (validPdfTypes.includes(fileType)) {
+                // PDF preview using an embed element
+                filePreview.innerHTML =
+                    `<embed src="${URL.createObjectURL(file)}" type="application/pdf" width="100%" height="150px" />`;
+            } else {
+                // Unsupported file type
+                filePreview.innerHTML = '<p>Unsupported file type</p>';
+            }
+
+            previewContainer.style.display = 'block';
+        } else {
+            // No file selected
+            previewContainer.style.display = 'none';
+        }
+
+    }
+
 </script>
 @endpush

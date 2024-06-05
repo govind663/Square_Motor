@@ -81,7 +81,7 @@ Insurance Company | List
                                         <td>{{ $value->company_name }}</td>
                                         <td class="text-start no-export">
                                             @if(!empty($value->logo_doc))
-                                                <img src="{{url('/')}}/company_policy/logo_doc/{{ $value->logo_doc }}" alt="{{ $value->logo_doc }}" style="height:60px !important; width: 60px !important; border-radius: 50%;" >
+                                                <img src="{{url('/')}}/company_policy/logo_doc/{{ $value->logo_doc }}" alt="{{ $value->logo_doc }}" style="height:40px !important; width: 90px !important;" >
                                             @endif
                                         </td>
                                         <td>{{ $value->description }}</td>

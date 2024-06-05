@@ -38,6 +38,13 @@
                     </a>
                 </li>
 
+                <li class="{{ ($currentRoute === 'rto.index') || ($currentRoute === 'rto.create') || ($currentRoute === 'rto.edit') ? 'active' : '' }}">
+                    <a href="{{ route('rto.index') }}">
+                        <i class="fe fe-settings"></i>
+                        <span>Manage RTO</span>
+                    </a>
+                </li>
+
                 <li class="{{ ($currentRoute === 'vehicle.index') || ($currentRoute === 'vehicle.create') || ($currentRoute === 'vehicle.edit') ? 'active' : '' }}">
                     <a href="{{ route('vehicle.index') }}">
                         <i class="fe fe-grid"></i>
@@ -63,13 +70,6 @@
                     <a href="{{ route('employee.index') }}">
                         <i class="fe fe-user-check"></i>
                         <span>Manage Employee</span>
-                    </a>
-                </li>
-
-                <li class="{{ ($currentRoute === 'rto.index') || ($currentRoute === 'rto.create') || ($currentRoute === 'rto.edit') ? 'active' : '' }}">
-                    <a href="{{ route('rto.index') }}">
-                        <i class="fe fe-settings"></i>
-                        <span>Manage RTO</span>
                     </a>
                 </li>
 
