@@ -82,7 +82,7 @@
                                         <td class="text-left">{{ ++$key }}</td>
                                         <td >{{ $value->agent?->name }}</td>
                                         <td >{{ $value->insuranceCompany?->company_name }}</td>
-                                        <td >{{ $value->insuranceCompanyID?->company_id }}</td>
+                                        <td >{{ $value->insurance_company_i_d_id }}</td>
                                         <td >{{ $value->vehicle?->vehicle_name }}</td>
                                         @php
                                             $commissionAmount = '';

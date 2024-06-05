@@ -35,4 +35,9 @@ class InsuranceCompanyID extends Model
     public function vehicle(){
         return $this->belongsTo(Vehicle::class, 'vehicle_id');
     }
+
+    // ==== relationship with RTO
+    public function rto(){
+        return $this->belongsTo(RTO::class, 'r_t_o_id');
+    }
 }

@@ -90,7 +90,7 @@ Define Out Commission | Create
                                             <select class="form-select @error('r_t_o_id') is-invalid @enderror select" id="r_t_o_id" name="r_t_o_id">
                                                 <option value="">Select RTO</option>
                                                 @foreach ($rtos as $value )
-                                                <option value="{{ $value->id }}" {{ ($InsuranceCompanyID->r_t_o_id == $value->id ? "selected":"") }}>{{ $value->pincode }} - {{ $value->state }}</option>
+                                                <option value="{{ $value->id }}" {{ ($value->r_t_o_id == $value->id ? "selected":"") }}>{{ $value->pincode }} - {{ $value->state }}</option>
                                                 @endforeach
                                             </select>
                                             @error('r_t_o_id')
@@ -207,10 +207,10 @@ Define Out Commission | Create
                     $.each(result.insuranceCompanyID, function (key, value) {
                         // === check value is selected or not in
                         if (value.id == insurance_company_id) {
-                            $('#insurance_company_i_d_id').append('<option value="' + value.id + '" selected>' + value.company_id + '</option>');
+                            $('#insurance_company_i_d_id').append('<option value="' + value.company_id + '" selected>' + value.company_id + '</option>');
                         }
                         else {
-                            $('#insurance_company_i_d_id').append('<option value="' + value.id + '">' + value.company_id + '</option>');
+                            $('#insurance_company_i_d_id').append('<option value="' + value.company_id + '">' + value.company_id + '</option>');
                         }
                     });
                 },

@@ -200,10 +200,10 @@ Define Out Commission | Add
                     $.each(result.insuranceCompanyID, function (key, value) {
                         // === check value is selected or not
                         if (value.id == insurance_company_id) {
-                            $('#insurance_company_i_d_id').append('<option value="' + value.id + '" selected>' + value.company_id + '</option>');
+                            $('#insurance_company_i_d_id').append('<option value="' + value.company_id + '" selected>' + value.company_id + '</option>');
                         }
                         else {
-                            $('#insurance_company_i_d_id').append('<option value="' + value.id + '">' + value.company_id + '</option>');
+                            $('#insurance_company_i_d_id').append('<option value="' + value.company_id + '">' + value.company_id + '</option>');
                         }
                     });
                 },

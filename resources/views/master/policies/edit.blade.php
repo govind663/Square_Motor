@@ -100,27 +100,12 @@ Policy | Edit
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Select RTO : <span class="text-danger">*</span></b></label>
-                                                                <select  class="form-control select @error('r_t_o_id') is-invalid @enderror" id="agent_rto_id" name="r_t_o_id">
-                                                                    <option value="">Select RTO</option>
-                                                                    @foreach ($Rto as $value )
-                                                                    <option value="{{ $value->id }}" {{ ($policy->r_t_o_id == $value->id ? "selected":"") }}>{{ $value->state }} - {{ $value->pincode }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                @error('r_t_o_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-4 col-md-6 col-sm-12">
-                                                            <div class="input-block mb-3">
                                                                 <label><b>Select Company Name : <span class="text-danger">*</span></b></label>
                                                                 <select  class="form-control select @error('insurance_company_id') is-invalid @enderror" id="agent_insurance_company_id" name="insurance_company_id">
                                                                     <option value="">Select Company Namee</option>
-
+                                                                    @foreach ($insuranceCompany as $value )
+                                                                    <option value="{{ $value->id }}" {{ ( $policy->insurance_company_id == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('insurance_company_id')
                                                                     <span class="invalid-feedback" role="alert">
@@ -135,7 +120,9 @@ Policy | Edit
                                                                 <label><b>Select Insurance Company ID : <span class="text-danger">*</span></b></label>
                                                                 <select  class="form-control select @error('agent_company_id') is-invalid @enderror" id="agent_company_id" name="agent_company_id">
                                                                     <option value="">Select Insurance Company ID</option>
-
+                                                                    @foreach ($insuranceCompanyID as $value )
+                                                                    <option value="{{ $value->id }}" {{ ( $policy->agent_company_id == $value->id ? "selected":"") }}>{{ $value->company_id }}</option>
+                                                                    @endforeach
                                                                 </select>
                                                                 @error('agent_company_id')
                                                                     <span class="invalid-feedback" role="alert">
@@ -151,9 +138,36 @@ Policy | Edit
                                                                 <input type="text" hidden id="agent_vehicle_type" name="agent_vehicle_type"  class="form-control" value="{{ old('agent_vehicle_type') }}">
                                                                 <select  class="form-control select @error('vehicle_id') is-invalid @enderror" id="agent_vehicle_id" name="vehicle_id">
                                                                     <option value="">Select Vehicle Type</option>
-
+                                                                    @foreach ($vehicles as $value )
+                                                                        @php
+                                                                            $vehicleType = '';
+                                                                            if($value->vehicle_type == '1'){
+                                                                                $vehicleType = 'Private';
+                                                                            } else if($value->vehicle_type == '2'){
+                                                                                $vehicleType = 'Other';
+                                                                            }
+                                                                        @endphp
+                                                                        <option value="{{ $value->id }}" {{ ( $policy->vehicle_id == $value->id ? "selected":"") }}>{{ $value->vehicle_name }} - [{{ $vehicleType }}]</option>
+                                                                   @endforeach
                                                                 </select>
                                                                 @error('vehicle_id')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
+                                                                <label><b>Select RTO : <span class="text-danger">*</span></b></label>
+                                                                <select  class="form-control select @error('r_t_o_id') is-invalid @enderror" id="agent_rto_id" name="r_t_o_id">
+                                                                    <option value="">Select RTO</option>
+                                                                    @foreach ($Rto as $value )
+                                                                    <option value="{{ $value->id }}" {{ ($policy->r_t_o_id == $value->id ? "selected":"") }}>{{ $value->state }} - {{ $value->pincode }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('r_t_o_id')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -189,8 +203,6 @@ Policy | Edit
                                                                 @enderror
                                                             </div>
                                                         </div>
-
-
                                                     </div>
 
                                                     <h5 class="card-title text-primary mb-2">Commercial Details</h5>
@@ -880,14 +892,14 @@ Policy | Edit
 <script>
     $(document).ready(function(){
         // ==== pass multiple parameter in onChange
-        $(document).on('change','#agent_id', function() {
-            let agent_id = $(this).val();
+        $(document).on('change','#agent_vehicle_id', function() {
+            let agent_vehicle_id = $(this).val();
             $('#agent_commission_percentage').show();
             $.ajax({
                 method: 'post',
                 url: "{{ route('agent_commission_percentage') }}",
                 data: {
-                    agentId: agent_id,
+                    agentVehicleId: agent_vehicle_id,
                     _token : '{{ csrf_token() }}'
                 },
                 success: function(data) {
@@ -924,7 +936,7 @@ Policy | Edit
                     $.each(result.insuranceCompany, function (key, value) {
                         // === check value is selected or not
                         if (value.id == agent_id) {
-                            $('#agent_insurance_company_id').append('<option value="' + value.insurance_company_id + '" selected>' + value.insurance_company.company_name + '</option>');
+                            $('#agent_insurance_company_id').append('<option value="' + value.insurance_company_id + '" >' + value.insurance_company.company_name + '</option>');
                         }
                         else {
                             $('#agent_insurance_company_id').append('<option value="' + value.insurance_company_id + '">' + value.insurance_company.company_name + '</option>');
@@ -956,7 +968,7 @@ Policy | Edit
                     $.each(result.insuranceCompanyID, function (key, value) {
                         // === check value is selected or not
                         if (value.id == agent_insurance_company_id) {
-                            $('#agent_company_id').append('<option value="' + value.company_id + '" selected>' + value.company_id + '</option>');
+                            $('#agent_company_id').append('<option value="' + value.company_id + '" >' + value.company_id + '</option>');
                         }
                         else {
                             $('#agent_company_id').append('<option value="' + value.company_id + '">' + value.company_id + '</option>');
@@ -968,17 +980,49 @@ Policy | Edit
     });
 </script>
 
-{{-- Fetch Vehicle Type --}}
+{{-- Fetch RTO --}}
 <script>
     $(document).ready(function(){
         $(document).on('change','#agent_company_id', function() {
             let agent_company_id = $(this).val();
+            $('#agent_rto_id').show();
+            $.ajax({
+                method: 'POST',
+                url: "{{ route('fetch_rto_name') }}",
+                data: {
+                    agentCompanyIDs: agent_company_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function (result) {
+
+                    $('#agent_rto_id').html('<option value="">Select RTO</option>');
+                    $.each(result.rtoData, function (key, value) {
+                        // === check value is selected or not
+                        if (value.id == agent_company_id) {
+                            $('#agent_rto_id').append('<option value="' + value.r_t_o_id + '" >' + value.rto.pincode + ' - ' + value.rto.state + '</option>');
+                        }
+                        else {
+                            $('#agent_rto_id').append('<option value="' + value.r_t_o_id + '">' + value.rto.pincode + ' - ' + value.rto.state + '</option>');
+                        }
+                    });
+                },
+            });
+        });
+    });
+</script>
+
+{{-- Fetch Vehicle Type --}}
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#agent_rto_id', function() {
+            let agent_rto_id = $(this).val();
             $('#agent_vehicle_id').show();
             $.ajax({
                 method: 'POST',
                 url: "{{ route('fetch_vehicle_type') }}",
                 data: {
-                    agentCompanyID: agent_company_id,
+                    agentRtoID: agent_rto_id,
                     _token : '{{ csrf_token() }}'
                 },
                 dataType: 'json',
@@ -987,7 +1031,7 @@ Policy | Edit
                     $('#agent_vehicle_id').html('<option value="">Select Vehicle Type</option>');
                     $.each(result.vehicleType, function (key, value) {
                         // === check value is selected or not
-                        if (value.id == agent_company_id) {
+                        if (value.id == agent_rto_id) {
                             $('#agent_vehicle_id').append('<option value="' + value.vehicle_id + '" selected>' + value.vehicle.vehicle_name + '</option>');
                         }
                         else {
@@ -1025,14 +1069,14 @@ Policy | Edit
 {{-- Company Commission In Percentage fetch by agent_company_commission_percentage --}}
 <script>
     $(document).ready(function(){
-        $(document).on('change','#agent_company_id', function() {
-            let agent_company_id = $(this).val();
+        $(document).on('change','#agent_vehicle_id', function() {
+            let agent_vehicle_id = $(this).val();
             $('#company_commission_percentage').show();
             $.ajax({
                 method: 'post',
                 url: "{{ route('fetch_agent_profit_amt') }}",
                 data: {
-                    agentCompanyId: agent_company_id,
+                    agentVehicleId: agent_vehicle_id,
                     _token : '{{ csrf_token() }}'
                 },
                 success: function(data) {

@@ -89,6 +89,9 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHisto
     // ==== RTO resources routes
     Route::resource('rto', RtoController::class);
 
+    // ==== Fetch fetch_rto_name
+    Route::post('fetch_rto_name', [AgentCommissionController::class, 'fetch_rto'])->name('fetch_rto_name');
+
     // ===== Employee resources routes
     Route::resource('employee', EmployeeController::class);
 
