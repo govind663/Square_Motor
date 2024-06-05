@@ -31,13 +31,6 @@
                     </a>
                 </li>
 
-                <li class="{{ ($currentRoute === 'agent.index') || ($currentRoute === 'agent.create') || ($currentRoute === 'agent.edit') ? 'active' : '' }}">
-                    <a href="{{ route('agent.index') }}">
-                        <i class="fe fe-users"></i>
-                        <span>Manage Agents</span>
-                    </a>
-                </li>
-
                 <li class="{{ ($currentRoute === 'rto.index') || ($currentRoute === 'rto.create') || ($currentRoute === 'rto.edit') ? 'active' : '' }}">
                     <a href="{{ route('rto.index') }}">
                         <i class="fe fe-settings"></i>
@@ -49,6 +42,13 @@
                     <a href="{{ route('vehicle.index') }}">
                         <i class="fe fe-grid"></i>
                         <span>Manage Vehicle</span>
+                    </a>
+                </li>
+
+                <li class="{{ ($currentRoute === 'agent.index') || ($currentRoute === 'agent.create') || ($currentRoute === 'agent.edit') ? 'active' : '' }}">
+                    <a href="{{ route('agent.index') }}">
+                        <i class="fe fe-users"></i>
+                        <span>Manage Agents</span>
                     </a>
                 </li>
 

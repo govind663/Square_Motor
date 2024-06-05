@@ -7,6 +7,7 @@ use App\Models\Agent;
 use App\Models\AgentCommission;
 use App\Models\InsuranceCompany;
 use App\Models\InsuranceCompanyID;
+use App\Models\RTO;
 use App\Models\Vehicle;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -32,8 +33,8 @@ class AgentCommissionController extends Controller
         $insuranceCompany = InsuranceCompany::orderBy("id","desc")->whereNull('deleted_at')->get();
         $insuranceCompanyID = InsuranceCompanyID::orderBy("id","desc")->whereNull('deleted_at')->get();
         $vehicles = Vehicle::orderBy("id","desc")->whereNull('deleted_at')->get();
-
-        return view('master.agentCommission.create', ['agents' => $agents, 'insuranceCompany' => $insuranceCompany, 'insuranceCompanyID' => $insuranceCompanyID,'vehicles' => $vehicles]);
+        $rtos = RTO::orderBy("id","desc")->whereNull('deleted_at')->get();
+        return view('master.agentCommission.create', ['agents' => $agents, 'insuranceCompany' => $insuranceCompany, 'insuranceCompanyID' => $insuranceCompanyID,'vehicles' => $vehicles, 'rtos'=>$rtos]);
     }
 
     /**
@@ -83,8 +84,8 @@ class AgentCommissionController extends Controller
         $insuranceCompany = InsuranceCompany::orderBy("id","desc")->whereNull('deleted_at')->get();
         $insuranceCompanyID = InsuranceCompanyID::orderBy("id","desc")->whereNull('deleted_at')->get();
         $vehicles = Vehicle::orderBy("id","desc")->whereNull('deleted_at')->get();
-
-        return view('master.agentCommission.edit', ['agents' => $agents, 'insuranceCompany' => $insuranceCompany, 'insuranceCompanyID' => $insuranceCompanyID,'vehicles' => $vehicles, 'agentCommission' => $agentCommission]);
+        $rtos = RTO::orderBy("id","desc")->whereNull('deleted_at')->get();
+        return view('master.agentCommission.edit', ['agents' => $agents, 'insuranceCompany' => $insuranceCompany, 'insuranceCompanyID' => $insuranceCompanyID,'vehicles' => $vehicles, 'agentCommission' => $agentCommission, 'rtos'=>$rtos]);
     }
 
     /**
