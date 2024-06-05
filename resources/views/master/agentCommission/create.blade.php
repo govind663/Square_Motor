@@ -79,7 +79,7 @@ Define Out Commission | Add
                                     </div>
                                 </div>
 
-                                <div class="col-lg-3 col-md-6 col-sm-12">
+                                <div class="col-lg-4 col-md-12 col-sm-12">
                                     <div class="input-block mb-3">
                                         <label><b>Select RTO : <span class="text-danger">*</span></b></label>
                                         <select class="form-select @error('r_t_o_id') is-invalid @enderror select" id="r_t_o_id" name="r_t_o_id">
