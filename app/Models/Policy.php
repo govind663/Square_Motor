@@ -31,6 +31,7 @@ class Policy extends Model
         'profit_amt',
         'tds_deduction',
         'actual_profit_amt',
+        'agent_company_comission_rupees',
         'commission_percentage',
         'agent_comission_rupees',
         'agent_actual_comission',

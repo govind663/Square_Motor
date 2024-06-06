@@ -155,9 +155,13 @@ class AgentController extends Controller
 
     public function fetch_agent_profit_amt(Request $request)
     {
-        // === Fetch AgentCommission
+        $data['companyComissionType'] = InsuranceCompanyID::where('vehicle_id', $request->agentVehicleId)->pluck('comission_type');
+
+        $data['companyCommissionPercentage'] = '';
+        $data['companyCommissionAmount'] = '';
 
         $data['companyCommissionPercentage'] = InsuranceCompanyID::where('vehicle_id',$request->agentVehicleId)->pluck('commision_percentage');
+        $data['companyCommissionAmount'] = InsuranceCompanyID::where('vehicle_id',$request->agentVehicleId)->pluck('comission_fixed');
 
         return response()->json($data);
     }

@@ -96,6 +96,7 @@ class PolicyController extends Controller
                 $policy->agent_gst = $request->agent_gst ? $request->agent_gst : null;
                 $policy->company_commission_percentage = $request->company_commission_percentage ? $request->company_commission_percentage : null;
                 $policy->profit_amt = $request->profit_amt ? $request->profit_amt : null;
+                $policy->agent_company_comission_rupees = $request->agent_company_comission_rupees ? $request->agent_company_comission_rupees : null;
                 $policy->commission_percentage = $request->commission_percentage ? $request->commission_percentage : null;
                 $policy->agent_comission_rupees = $request->agent_comission_rupees ? $request->agent_comission_rupees : null;
                 $policy->agent_actual_comission = $request->agent_actual_comission ? $request->agent_actual_comission : null;
@@ -343,6 +344,7 @@ class PolicyController extends Controller
             $policy->agent_gst = $request->agent_gst ? $request->agent_gst : null;
             $policy->company_commission_percentage = $request->company_commission_percentage ? $request->company_commission_percentage : null;
             $policy->profit_amt = $request->profit_amt ? $request->profit_amt : null;
+            $policy->agent_company_comission_rupees = $request->agent_company_comission_rupees ? $request->agent_company_comission_rupees : null;
             $policy->commission_percentage = $request->commission_percentage ? $request->commission_percentage : null;
             $policy->agent_comission_rupees = $request->agent_comission_rupees ? $request->agent_comission_rupees : null;
             $policy->agent_actual_comission = $request->agent_actual_comission ? $request->agent_actual_comission : null;
