@@ -270,12 +270,21 @@ Policy | Edit
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
                                                                 <label><b>Company Commission (%) : <span class="text-danger">*</span></b></label>
+                                                                <input type="hidden" id="agent_company_commission_type" name="agent_company_commission_type"  class="form-control" value="{{ $policy->agent_company_commission_type }}">
                                                                 <input type="text" id="company_commission_percentage" readonly name="company_commission_percentage" class="form-control @error('company_commission_percentage') is-invalid @enderror" value="{{ $policy->company_commission_percentage }}" placeholder="Enter Company Profit (%)">
                                                                 @error('company_commission_percentage')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
                                                                 @enderror
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
+                                                                <label><b>Company Commission (Rs): <span class="text-danger">*</span></b></label>
+                                                                <input type="text" id="agent_company_comission_rupees" readonly name="agent_company_comission_rupees" class="form-control" value="{{ $policy->agent_company_comission_rupees }}" placeholder="Enter Company Commission (Rs)">
+
                                                             </div>
                                                         </div>
 
@@ -886,8 +895,7 @@ Policy | Edit
             })
         });
     });
-</script>
-
+</script>s
 {{-- Agent Commission In Percentage fetch by agent_commission_percentage --}}
 <script>
     $(document).ready(function(){
@@ -1080,8 +1088,13 @@ Policy | Edit
                     _token : '{{ csrf_token() }}'
                 },
                 success: function(data) {
-                    // === aler the data percentage amt
-                    $('#company_commission_percentage').val(data.companyCommissionPercentage);
+                    if(data.companyComissionType == 1){
+                        $('#agent_company_commission_type').val(data.companyComissionType);
+                        $('#company_commission_percentage').val(data.companyCommissionPercentage);
+                    } else if(data.companyComissionType == 2){
+                        $('#agent_company_commission_type').val(data.companyComissionType);
+                        $('#company_commission_rupees').val(data.companyCommissionAmount);
+                    }
                 }
             })
         });
@@ -1148,30 +1161,59 @@ Policy | Edit
         });
 
         // Calculate Company Commission
-        $('#agent_main_price, #company_commission_percentage, #agent_vehicle_type, #agent_tp_premimum').on('keyup', function () {
+        $('#agent_company_commission_type, #company_commission_percentage, #agent_company_comission_rupees, #agent_main_price, #agent_vehicle_type, #agent_tp_premimum').on('keyup', function () {
 
+            // ==== get all values
+            agent_company_commission_type = $('#agent_company_commission_type').val();
+            company_commission_percentage = $('#company_commission_percentage').val();
+            agent_company_comission_rupees = $('#agent_company_comission_rupees').val();
             agent_main_price = $('#agent_main_price').val();
             agent_tp_premimum = $('#agent_tp_premimum').val();
-            company_commission_percentage = $('#company_commission_percentage').val();
 
-            // ==== check agent_vehicle_type
+
+            // ==== check agent_company_commission_type
             if ($('#agent_vehicle_type').val() == '1') {
-                if (agent_main_price != '' && company_commission_percentage != '') {
-                    var one_percent_value = (parseInt(agent_main_price) / 100);
-                    var total_percent_value = (parseInt(one_percent_value) * parseInt(company_commission_percentage));
-                    $('#agent_profit_amt').val(total_percent_value);
-                }
-                else {
-                    $('#agent_profit_amt').val('');
+                if (agent_company_commission_type == 1) {
+                    if (agent_main_price != '' && company_commission_percentage != '') {
+                        var company_commission_percentage = $('#company_commission_percentage').val();
+                        var agent_main_price = $('#agent_main_price').val();
+                        var totalCompanyCommissionAmt = (parseInt(company_commission_percentage) / 100) * parseInt(agent_main_price);
+
+                        $('#agent_profit_amt').val(totalCompanyCommissionAmt);
+                    } else {
+                        $('#agent_profit_amt').val('');
+                    }
+                } else if (agent_company_commission_type == 2) {
+                    if (agent_company_comission_rupees != '' && company_commission_percentage != '') {
+
+                        var agent_company_comission_rupees = $('#agent_company_comission_rupees').val();
+                        var agent_main_price = $('#agent_main_price').val();
+                        var totalCompanyCommissionRupees = (parseInt(agent_main_price) - parseInt(agent_company_comission_rupees));
+                        $('#agent_profit_amt').val(totalCompanyCommissionRupees);
+                    } else {
+                        $('#agent_profit_amt').val('');
+                    }
                 }
             } else if ($('#agent_vehicle_type').val() == '2') {
-                if (agent_tp_premimum != '' && company_commission_percentage != '') {
-                    var one_percent_value = (parseInt(agent_tp_premimum) / 100);
-                    var total_percent_value = (parseInt(one_percent_value) * parseInt(company_commission_percentage));
-                    $('#agent_profit_amt').val(total_percent_value);
-                }
-                else {
-                    $('#agent_profit_amt').val('');
+                if (agent_company_commission_type == 1) {
+                    if (agent_tp_premimum != '' && company_commission_percentage != '') {
+                        var company_commission_percentage = $('#company_commission_percentage').val();
+                        var agent_tp_premimum = $('#agent_tp_premimum').val();
+                        var totalCompanyCommissionAmt = (parseInt(company_commission_percentage) / 100) * parseInt(agent_tp_premimum);
+                        $('#agent_profit_amt').val(totalCompanyCommissionAmt);
+                    } else {
+                        $('#agent_profit_amt').val('');
+                    }
+                } else if (agent_company_commission_type == 2) {
+                    if (agent_company_comission_rupees != '' && agent_tp_premimum != '') {
+
+                        var agent_company_comission_rupees = $('#agent_company_comission_rupees').val();
+                        var agent_tp_premimum = $('#agent_tp_premimum').val();
+                        var totalCompanyCommissionRupees = (parseInt(agent_tp_premimum) - parseInt(agent_company_comission_rupees));
+                        $('#agent_profit_amt').val(totalCompanyCommissionRupees);
+                    } else {
+                        $('#agent_profit_amt').val('');
+                    }
                 }
             }
 
@@ -1232,28 +1274,77 @@ Policy | Edit
         });
 
         // Calculate Company Profit
-        $('agent_profit_amt, #agent_tds_deduction, #agent_actual_commission_amt, #agent_vehicle_type, #agent_tp_premimum').on('keyup', function () {
+        $('#agent_profit_amt, #agent_company_comission_rupees, #agent_tds_deduction, #agent_actual_commission_amt, #agent_vehicle_type, #agent_company_commission_type').on('keyup', function () {
 
             agent_profit_amt = $('#agent_profit_amt').val();
             agent_tds_deduction = $('#agent_tds_deduction').val();
-            agent_tp_premimum = $('#agent_tp_premimum').val();
+            agent_company_commission_type = $('#agent_company_commission_type').val();
             agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+            agent_company_comission_rupees = $('#agent_company_comission_rupees').val();
 
-            if (agent_profit_amt != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
+            // ==== check agent_vehicle_type
+            if ($('#agent_vehicle_type').val() == '1') {
+                if (agent_company_commission_type == 1) {
+                    if (agent_profit_amt != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
+                        var agent_profit_amt = $('#agent_profit_amt').val();
+                        var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+                        var agent_tds_deduction = $('#agent_tds_deduction').val();
 
-                var agent_profit_amt = $('#agent_profit_amt').val();
-                var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+                        // ==== Calculate TDS Deduction in Percentage
+                        var one_percent_value = (parseInt(agent_profit_amt) / 100);
+                        var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
 
-                // ==== Calculate TDS Deduction in Percentage
-                var one_percent_value = (parseInt(agent_profit_amt) / 100);
-                var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
+                        // ==== Calculate Company Profit
+                        var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
+                        $('#agent_actual_profit_amt').val(total_company_profit);
 
-                // ==== Calculate Company Profit
-                var total_company_profit = parseInt(agent_actual_commission_amt) - (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt));
+                    } else {
+                        $('#agent_actual_profit_amt').val('');
+                    }
+                } else if (agent_company_commission_type == 2) {
+                    if (agent_company_comission_rupees != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
+                        var agent_company_comission_rupees = $('#agent_company_comission_rupees').val();
+                        var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+                        var agent_tds_deduction = $('#agent_tds_deduction').val();
 
-                $('#agent_actual_profit_amt').val(total_company_profit);
-            } else {
-                $('#agent_actual_profit_amt').val('');
+                        // ==== Calculate Company Profit
+                        var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
+                        $('#agent_actual_profit_amt').val(total_company_profit);
+                    } else {
+                        $('#agent_actual_profit_amt').val('');
+                    }
+                }
+            } else if ($('#agent_vehicle_type').val() == '2') {
+                if (agent_company_commission_type == 2) {
+                    if (agent_profit_amt != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
+                        var agent_profit_amt = $('#agent_profit_amt').val();
+                        var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+                        var agent_tds_deduction = $('#agent_tds_deduction').val();
+
+                        // ==== Calculate TDS Deduction in Percentage
+                        var one_percent_value = (parseInt(agent_profit_amt) / 100);
+                        var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
+
+                        // ==== Calculate Company Profit
+                        var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
+                        $('#agent_actual_profit_amt').val(total_company_profit);
+
+                    } else {
+                        $('#agent_actual_profit_amt').val('');
+                    }
+                } else if (agent_company_commission_type == 2) {
+                    if (agent_company_comission_rupees != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
+                        var agent_company_comission_rupees = $('#agent_company_comission_rupees').val();
+                        var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+                        var agent_tds_deduction = $('#agent_tds_deduction').val();
+
+                        // ==== Calculate Company Profit
+                        var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
+                        $('#agent_actual_profit_amt').val(total_company_profit);
+                    } else {
+                        $('#agent_actual_profit_amt').val('');
+                    }
+                }
             }
 
         });

@@ -1263,7 +1263,7 @@ Policy | Create
                         var agent_tp_premimum = $('#agent_tp_premimum').val();
                         var totalCompanyCommissionAmt = (parseInt(company_commission_percentage) / 100) * parseInt(agent_tp_premimum);
                         $('#agent_profit_amt').val(totalCompanyCommissionAmt);
-                    } else if {
+                    } else {
                         $('#agent_profit_amt').val('');
                     }
                 } else if (agent_company_commission_type == 2) {
@@ -1273,7 +1273,7 @@ Policy | Create
                         var agent_tp_premimum = $('#agent_tp_premimum').val();
                         var totalCompanyCommissionRupees = (parseInt(agent_tp_premimum) - parseInt(agent_company_comission_rupees));
                         $('#agent_profit_amt').val(totalCompanyCommissionRupees);
-                    } else if{
+                    } else {
                         $('#agent_profit_amt').val('');
                     }
                 }
@@ -1370,7 +1370,7 @@ Policy | Create
                         var agent_tds_deduction = $('#agent_tds_deduction').val();
 
                         // ==== Calculate Company Profit
-                        var total_company_profit = (parseInt(agent_company_comission_rupees) - parseInt(agent_tds_deduction)) - parseInt(agent_actual_commission_amt);
+                        var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
                         $('#agent_actual_profit_amt').val(total_company_profit);
                     } else {
                         $('#agent_actual_profit_amt').val('');
@@ -1401,7 +1401,7 @@ Policy | Create
                         var agent_tds_deduction = $('#agent_tds_deduction').val();
 
                         // ==== Calculate Company Profit
-                        var total_company_profit = (parseInt(agent_company_comission_rupees) - parseInt(agent_tds_deduction)) - parseInt(agent_actual_commission_amt);
+                        var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
                         $('#agent_actual_profit_amt').val(total_company_profit);
                     } else {
                         $('#agent_actual_profit_amt').val('');
