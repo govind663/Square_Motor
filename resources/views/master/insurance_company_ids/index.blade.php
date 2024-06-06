@@ -71,7 +71,7 @@ Define In Commission | List
                                         <th>Company Name</th>
                                         <th>Company ID No.</th>
                                         <th>Vehicle Name</th>
-                                        <th>Commision (%)</th>
+                                        <th>Commision Amount</th>
                                         <th class="no-export">Action</th>
                                     </tr>
                                 </thead>
@@ -82,7 +82,18 @@ Define In Commission | List
                                         <td>{{ $value->insuranceCompany?->company_name }}</td>
                                         <td>{{ $value->company_id }}</td>
                                         <td >{{ $value->vehicle?->vehicle_name }}</td>
-                                        <td>{{ $value->commision_percentage }}</td>
+                                        @php
+                                            $commissionAmount = '';
+                                            if($value->comission_type == '1'){
+                                                // === append %
+                                                $commissionAmount = $value->commision_percentage.'%';
+                                            }elseif($value->comission_type == '2'){
+                                                // === append Rs
+                                                $commissionAmount = $value->comission_fixed.' Rs';
+                                            }
+                                        @endphp
+                                        <td >{{ $commissionAmount }}</td>
+
                                         <td class="no-export d-flex">
                                             <a href="{{ route('insurance_company_id.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">
                                                 <i class="far fa-edit me-2"></i>Edit

@@ -1359,25 +1359,10 @@ Policy | Create
 
                     $('#agent_actual_profit_amt').val(total_company_profit);
                 } else {
+                    $('#agent_actual_profit_amt').val('');
+                }
+
             }
-
-
-            // if (agent_profit_amt != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
-
-            //     var agent_profit_amt = $('#agent_profit_amt').val();
-            //     var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
-
-            //     // ==== Calculate TDS Deduction in Percentage
-            //     var one_percent_value = (parseInt(agent_profit_amt) / 100);
-            //     var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
-
-            //     // ==== Calculate Company Profit
-            //     var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
-
-            //     $('#agent_actual_profit_amt').val(total_company_profit);
-            // } else {
-            //     $('#agent_actual_profit_amt').val('');
-            // }
 
         });
 

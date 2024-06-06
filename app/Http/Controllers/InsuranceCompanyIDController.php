@@ -45,7 +45,9 @@ class InsuranceCompanyIDController extends Controller
             $InsuranceCompanyID->company_id = $request->company_id;
             $InsuranceCompanyID->vehicle_id = $request->vehicle_id;
             $InsuranceCompanyID->r_t_o_id = $request->r_t_o_id;
+            $InsuranceCompanyID->comission_type = $request->comission_type;
             $InsuranceCompanyID->commision_percentage = $request->commision_percentage;
+            $InsuranceCompanyID->comission_fixed = $request->commision_fixed;
             $InsuranceCompanyID->inserted_at = Carbon::now();
             $InsuranceCompanyID->inserted_by = Auth::user()->id;
             $InsuranceCompanyID->save();
@@ -92,7 +94,9 @@ class InsuranceCompanyIDController extends Controller
             $InsuranceCompanyID->company_id = $request->company_id;
             $InsuranceCompanyID->vehicle_id = $request->vehicle_id;
             $InsuranceCompanyID->r_t_o_id = $request->r_t_o_id;
+            $InsuranceCompanyID->comission_type = $request->comission_type;
             $InsuranceCompanyID->commision_percentage = $request->commision_percentage;
+            $InsuranceCompanyID->commision_fixed = $request->commision_fixed;
             $InsuranceCompanyID->modified_at = Carbon::now();
             $InsuranceCompanyID->modified_by = Auth::user()->id;
             $InsuranceCompanyID->save();

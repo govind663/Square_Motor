@@ -30,8 +30,7 @@ Define In Commission | Add
 
                             <div class="form-group-customer customer-additional-form">
                                 <div class="row">
-
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Select Company Name : <span class="text-danger">*</span></b></label>
                                             <select class="form-select @error('insurance_company_id') is-invalid @enderror select" id="insurance_company_id" name="insurance_company_id">
@@ -48,7 +47,7 @@ Define In Commission | Add
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Company ID : <span class="text-danger">*</span></b></label>
                                             <input type="text" id="company_id" name="company_id" class="form-control @error('company_id') is-invalid @enderror" value="{{ old('company_id') }}" placeholder="Enter Company ID">
@@ -60,7 +59,7 @@ Define In Commission | Add
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Select RTO : <span class="text-danger">*</span></b></label>
                                             <select class="form-select @error('r_t_o_id') is-invalid @enderror select" id="r_t_o_id" name="r_t_o_id">
@@ -77,7 +76,7 @@ Define In Commission | Add
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Select Vehicle Type : <span class="text-danger">*</span></b></label>
                                             <select  class="form select @error('vehicle_id') is-invalid @enderror" id="vehicle_id" name="vehicle_id">
@@ -102,15 +101,33 @@ Define In Commission | Add
                                         </div>
                                     </div>
 
-                                    <div class="col-lg-3 col-md-6 col-sm-12">
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="input-block mb-3" >
-                                            <label><b>Commission Percentage (%) : <span class="text-danger">*</span></b></label>
-                                            <input type="text" id="commision_percentage" name="commision_percentage" class="form-control @error('commision_percentage') is-invalid @enderror" value="{{ old('commision_percentage') }}" placeholder="Enter Commission Percentage (%)">
-                                            @error('commision_percentage')
+                                            <label><b>Commision Type : <span class="text-danger">*</span></b></label>
+                                            <select class="@error('comission_type') is-invalid @enderror select" id="comission_type" name="comission_type">
+                                                <option value="">Select Commision Type</option>
+                                                <option value="01" {{ (old("comission_type") == '01' ? "selected":"") }}>Percentage</option>
+                                                <option value="02" {{ (old("comission_type") == '02' ? "selected":"") }}>Fixed</option>
+                                            </select>
+                                            @error('comission_type')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 col-sm-12 01 box" style="display:none">
+                                        <div class="input-block mb-3" >
+                                            <label><b>Percentage (%) : </b></label>
+                                            <input type="text" id="commision_percentage" name="commision_percentage" class="form-control" value="{{ old('commision_percentage') }}" placeholder="Enter Percentage">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 col-sm-12 02 box" style="display:none">
+                                        <div class="input-block mb-3" >
+                                            <label><b>Fixed (Rs) :</b></label>
+                                            <input type="text" id="commision_fixed" name="commision_fixed" class="form-control" value="{{ old('commision_fixed') }}" placeholder="Enter Fixed Amount">
                                         </div>
                                     </div>
 
@@ -130,4 +147,19 @@ Define In Commission | Add
 @endsection
 
 @push('scripts')
+<script>
+    $(document).ready(function(){
+        $("select").change(function(){
+            $(this).find("option:selected").each(function(){
+                var optionValue = $(this).attr("value");
+                if(optionValue){
+                    $(".box").not("." + optionValue).hide();
+                    $("." + optionValue).show();
+                } else{
+                    $(".box").hide();
+                }
+            });
+        }).change();
+    });
+</script>
 @endpush
