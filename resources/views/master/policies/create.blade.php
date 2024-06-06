@@ -1150,12 +1150,12 @@ Policy | Create
                     _token : '{{ csrf_token() }}'
                 },
                 success: function(data) {
-                    if(data.companyComissionType == 1){
+                    if(data.companyComissionType == '01'){
                         $('#agent_company_commission_type').val(data.companyComissionType);
                         $('#company_commission_percentage').val(data.companyCommissionPercentage);
-                    } else if(data.companyComissionType == 2){
+                    } else if(data.companyComissionType == '02'){
                         $('#agent_company_commission_type').val(data.companyComissionType);
-                        $('#company_commission_rupees').val(data.companyCommissionAmount);
+                        $('#agent_company_comission_rupees').val(data.companyCommissionAmount);
                     }
                 }
             })
