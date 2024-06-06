@@ -160,6 +160,18 @@ class PolicyController extends Controller
                 $companyPolicyType = '1';
                 $companyInsertedBy = Auth::user()->id;
                 $companyInsertedAt = Carbon::now();
+                $this->companyDebitCreditLogs->companyDebitCreditActivity(
+                    $companyTranxDate,
+                    $companyInsuranceCompanyId,
+                    $companyPolicyId,
+                    $companyTranxDebit,
+                    $companyTranxCredit,
+                    $companyBalance,
+                    $companyTranx_type,
+                    $companyInsertedBy,
+                    $companyInsertedAt,
+                    $companyPolicyType
+                );
 
                 return redirect()->route('policy.index')->with('message', 'Agent Policy Created Successfully');
 
