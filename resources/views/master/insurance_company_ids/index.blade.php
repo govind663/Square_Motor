@@ -84,10 +84,10 @@ Define In Commission | List
                                         <td >{{ $value->vehicle?->vehicle_name }}</td>
                                         @php
                                             $commissionAmount = '';
-                                            if($value->comission_type == '1'){
+                                            if($value->comission_type == '01'){
                                                 // === append %
                                                 $commissionAmount = $value->commision_percentage.'%';
-                                            }elseif($value->comission_type == '2'){
+                                            }elseif($value->comission_type == '02'){
                                                 // === append Rs
                                                 $commissionAmount = $value->comission_fixed.' Rs';
                                             }
