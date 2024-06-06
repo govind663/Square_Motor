@@ -1153,6 +1153,28 @@ Policy | Create
     });
 </script>
 
+{{-- fetch TDS --}}
+{{-- <script>
+    $(document).ready(function(){
+        $(document).on('change','#agent_vehicle_id', function() {
+            let agent_vehicle_id = $(this).val();
+            $('#company_commission_percentage').show();
+            $.ajax({
+                method: 'post',
+                url: "{{ route('fetch_agent_profit_amt') }}",
+                data: {
+                    agentVehicleId: agent_vehicle_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                success: function(data) {
+                    // === aler the data percentage amt
+                    $('#company_commission_percentage').val(data.companyCommissionPercentage);
+                }
+            })
+        });
+    });
+</script> --}}
+
 {{-- Company Commission In Percentage fetch by retailer_company_commission_percentage --}}
 <script>
     $(document).ready(function(){
@@ -1304,22 +1326,58 @@ Policy | Create
             agent_tp_premimum = $('#agent_tp_premimum').val();
             agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
 
-            if (agent_profit_amt != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
+            // ==== check agent_vehicle_type
+            if ($('#agent_vehicle_type').val() == '1') {
+                if (agent_profit_amt != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
+                    var agent_profit_amt = $('#agent_profit_amt').val();
+                    var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+                    var agent_tds_deduction = $('#agent_tds_deduction').val();
 
-                var agent_profit_amt = $('#agent_profit_amt').val();
-                var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+                    // ==== Calculate TDS Deduction in Percentage
+                    var one_percent_value = (parseInt(agent_profit_amt) / 100);
+                    var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
 
-                // ==== Calculate TDS Deduction in Percentage
-                var one_percent_value = (parseInt(agent_profit_amt) / 100);
-                var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
+                    // ==== Calculate Company Profit
+                    var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
 
-                // ==== Calculate Company Profit
-                var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
+                    $('#agent_actual_profit_amt').val(total_company_profit);
+                } else {
+                    $('#agent_actual_profit_amt').val('');
+                }
+            } else if ($('#agent_vehicle_type').val() == '2') {
+                if (agent_profit_amt != '' && agent_actual_commission_amt != '' && agent_tp_premimum != '') {
+                    var agent_profit_amt = $('#agent_profit_amt').val();
+                    var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+                    var agent_tp_premimum = $('#agent_tp_premimum').val();
 
-                $('#agent_actual_profit_amt').val(total_company_profit);
-            } else {
-                $('#agent_actual_profit_amt').val('');
+                    // ==== Calculate TDS Deduction in Percentage
+                    var one_percent_value = (parseInt(agent_profit_amt) / 100);
+                    var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
+
+                    // ==== Calculate Company Profit
+                    var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
+
+                    $('#agent_actual_profit_amt').val(total_company_profit);
+                } else {
             }
+
+
+            // if (agent_profit_amt != '' && agent_actual_commission_amt != '' && agent_tds_deduction != '') {
+
+            //     var agent_profit_amt = $('#agent_profit_amt').val();
+            //     var agent_actual_commission_amt = $('#agent_actual_commission_amt').val();
+
+            //     // ==== Calculate TDS Deduction in Percentage
+            //     var one_percent_value = (parseInt(agent_profit_amt) / 100);
+            //     var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
+
+            //     // ==== Calculate Company Profit
+            //     var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
+
+            //     $('#agent_actual_profit_amt').val(total_company_profit);
+            // } else {
+            //     $('#agent_actual_profit_amt').val('');
+            // }
 
         });
 
