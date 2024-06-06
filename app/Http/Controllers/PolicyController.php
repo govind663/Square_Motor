@@ -14,15 +14,17 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\logs\agentDebitCreditLogs;
 use App\logs\retailerDebitCreditLogs;
+use App\logs\companyDebitCreditLogs;
 use App\Models\InsuranceCompanyID;
 
 class PolicyController extends Controller
 {
-    protected $agentDebitCreditLogs, $retailerDebitCreditLogs;
+    protected $agentDebitCreditLogs, $companyDebitCreditLogs, $retailerDebitCreditLogs;
 
-    public function __construct(agentDebitCreditLogs $agentDebitCreditLogs, retailerDebitCreditLogs $retailerDebitCreditLogs)
+    public function __construct(agentDebitCreditLogs $agentDebitCreditLogs, companyDebitCreditLogs $companyDebitCreditLogs, retailerDebitCreditLogs $retailerDebitCreditLogs)
     {
         $this->agentDebitCreditLogs = $agentDebitCreditLogs;
+        $this->companyDebitCreditLogs = $companyDebitCreditLogs;
         $this->retailerDebitCreditLogs = $retailerDebitCreditLogs;
     }
 
@@ -126,7 +128,7 @@ class PolicyController extends Controller
                 $insuranceCompanyId = null;
                 $policyId = $policyNumber;
                 $tranxDebit = 0;
-                $tranxCredit = $request->profit_amt;
+                $tranxCredit = $request->actual_profit_amt;
                 $balance = $tranxCredit - $tranxDebit;
                 $tranx_type = '1';
                 $policyType = '1';
@@ -146,6 +148,18 @@ class PolicyController extends Controller
                     $insertedAt,
                     $policyType
                 );
+
+                // ==== create companyDebitCreditLogs
+                $companyTranxDate = Carbon::now()->format('Y-m-d');
+                $companyInsuranceCompanyId = $request->insurance_company_id;
+                $companyPolicyId = $policyNumber;
+                $companyTranxDebit = 0;
+                $companyTranxCredit = $request->profit_amt;
+                $companyBalance = $companyTranxCredit - $companyTranxDebit;
+                $companyTranx_type = '2';
+                $companyPolicyType = '1';
+                $companyInsertedBy = Auth::user()->id;
+                $companyInsertedAt = Carbon::now();
 
                 return redirect()->route('policy.index')->with('message', 'Agent Policy Created Successfully');
 
