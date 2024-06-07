@@ -66,12 +66,12 @@ Define Out Commission | Add
 
                                 <div class="col-lg-4 col-md-12 col-sm-12">
                                     <div class="input-block mb-3">
-                                        <label><b>Select Insurance Company ID : <span class="text-danger">*</span></b></label>
-                                        <select  class="form-control select @error('insurance_company_i_d_id') is-invalid @enderror" id="insurance_company_i_d_id" name="insurance_company_i_d_id">
+                                        <label><b>Select Company ID : <span class="text-danger">*</span></b></label>
+                                        <select  class="form-control select @error('company_id_id') is-invalid @enderror" id="company_id_id" name="company_id_id">
                                             <option value="">Select Insurance Company ID</option>
 
                                         </select>
-                                        @error('insurance_company_i_d_id')
+                                        @error('company_id_id')
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $message }}</strong>
                                             </span>
@@ -185,7 +185,7 @@ Define Out Commission | Add
     $(document).ready(function(){
         $(document).on('change','#insurance_company_id', function() {
             let insurance_company_id = $(this).val();
-            $('#insurance_company_i_d_id').show();
+            $('#company_id_id').show();
             $.ajax({
                 method: 'POST',
                 url: "{{ route('fetch_insurance_company_id') }}",
@@ -195,15 +195,46 @@ Define Out Commission | Add
                 },
                 dataType: 'json',
                 success: function (result) {
-                    // display in  insurance_company_i_d_id in select option
-                    $('#insurance_company_i_d_id').html('<option value="">Select Insurance Company ID</option>');
+                    // display in  company_id_id in select option
+                    $('#company_id_id').html('<option value="">Select Company ID</option>');
                     $.each(result.insuranceCompanyID, function (key, value) {
                         // === check value is selected or not
-                        if (value.id == insurance_company_id) {
-                            $('#insurance_company_i_d_id').append('<option value="' + value.company_id + '" selected>' + value.company_id + '</option>');
+                        if (value.company_id_id == insurance_company_id) {
+                            $('#company_id_id').append('<option value="' + value.company_id_id + '" >' + value.company_ids.company_id + '</option>');
                         }
                         else {
-                            $('#insurance_company_i_d_id').append('<option value="' + value.company_id + '">' + value.company_id + '</option>');
+                            $('#company_id_id').append('<option value="' + value.company_id_id + '">' + value.company_ids.company_id + '</option>');
+                        }
+                    });
+                },
+            });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#company_id_id', function() {
+            let company_id_id = $(this).val();
+
+            $('#comission_type').show();
+            $.ajax({
+                method: 'POST',
+                url: "{{ route('fetch_company_commission') }}",
+                data: {
+                    companyID: company_id_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function (result) {
+
+                    $('#comission_type').html('<option value="">Select Commision Type</option>');
+                    $.each(result.companyCommission, function (key, value) {
+                        // ===== value.commission_type == 1
+                        if(value.commission_type == 1){
+                            $('#comission_type').append('<option value="' + '01' + '">' + 'Percentage' + '</option>');
+                        } else if (value.commission_type == 2){
+                            $('#comission_type').append('<option value="' + '02' + '">' + 'Fixed' + '</option>');
                         }
                     });
                 },

@@ -80,7 +80,7 @@ Define In Commission | List
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $value->insuranceCompany?->company_name }}</td>
-                                        <td>{{ $value->company_id }}</td>
+                                        <td>{{ $value->companyIds?->company_id }}</td>
                                         <td >{{ $value->vehicle?->vehicle_name }}</td>
                                         @php
                                             $commissionAmount = '';

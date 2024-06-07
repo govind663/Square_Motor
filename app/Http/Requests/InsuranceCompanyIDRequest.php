@@ -24,7 +24,7 @@ class InsuranceCompanyIDRequest extends FormRequest
         if ($this->id){
             $rule = [
                 'insurance_company_id' => 'required|numeric',
-                'company_id'=> 'required|numeric',
+                'company_id_id'=> 'required|numeric',
                 'vehicle_id'=>'required|numeric',
                 'r_t_o_id'=>'required|numeric',
                 'comission_type'=>'required|numeric',
@@ -34,7 +34,7 @@ class InsuranceCompanyIDRequest extends FormRequest
         }else{
             $rule = [
                 'insurance_company_id' => 'required|numeric',
-                'company_id'=> 'required|numeric',
+                'company_id_id'=> 'required|numeric',
                 'vehicle_id'=>'required|numeric',
                 'r_t_o_id'=>'required|numeric',
                 'comission_type'=>'required|numeric',
@@ -49,7 +49,7 @@ class InsuranceCompanyIDRequest extends FormRequest
     {
         return [
             'insurance_company_id.required' => 'Please select Company Name',
-            'company_id.required' => 'Company Id is required.',
+            'company_id_id.required' => 'Company Id is required.',
             'vehicle_id.required' => 'Vehicle Type is required.',
             'r_t_o_id.required' => 'Please Select RTO.',
             'comission_type.required' => 'Commission Type is required.',

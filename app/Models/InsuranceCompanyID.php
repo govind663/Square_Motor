@@ -13,7 +13,7 @@ class InsuranceCompanyID extends Model
     protected $fillable = [
         'id',
         'insurance_company_id',
-        'company_id',
+        'company_id_id',
         'vehicle_id',
         'r_t_o_id',
         'comission_type',
@@ -31,6 +31,11 @@ class InsuranceCompanyID extends Model
 
     public function insuranceCompany(){
         return $this->belongsTo(InsuranceCompany::class, 'insurance_company_id');
+    }
+
+    // ==== relationship with company_id_id
+    public function companyIds(){
+        return $this->belongsTo(CompanyId::class, 'company_id_id');
     }
 
     // ==== relationship with vehicle

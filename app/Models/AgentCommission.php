@@ -15,7 +15,7 @@ class AgentCommission extends Model
         'id',
         'agent_id',
         'insurance_company_id',
-        'insurance_company_i_d_id',
+        'company_id_id',
         'r_t_o_id',
         'vehicle_id',
         'comission_type',
@@ -41,9 +41,9 @@ class AgentCommission extends Model
         return $this->belongsTo(InsuranceCompany::class, 'insurance_company_id');
     }
 
-    // ==== relationship with insurance company Ids
-    public function insuranceCompanyID(){
-        return $this->belongsTo(InsuranceCompanyID::class, 'insurance_company_i_d_id');
+    // ==== relationship with company_id_id
+    public function companyIds(){
+        return $this->belongsTo(CompanyId::class, 'company_id_id');
     }
 
     // ==== relationship with vehicle

@@ -20,7 +20,7 @@ class AgentCommissionController extends Controller
      */
     public function index()
     {
-        $agentCommission = AgentCommission::with('agent', 'insuranceCompany', 'insuranceCompanyID', 'vehicle')->orderBy("id","desc")->whereNull('deleted_at')->get();
+        $agentCommission = AgentCommission::with('agent', 'insuranceCompany', 'companyIds', 'vehicle')->orderBy("id","desc")->whereNull('deleted_at')->get();
         return view('master.agentCommission.index', ['agentCommission' => $agentCommission]);
     }
 
@@ -44,20 +44,26 @@ class AgentCommissionController extends Controller
     {
         $data = $request->validated();
         try {
-            $agentCommission = new AgentCommission();
-            $agentCommission->agent_id = $request->agent_id;
-            $agentCommission->insurance_company_id = $request->insurance_company_id;
-            $agentCommission->insurance_company_i_d_id = $request->insurance_company_i_d_id;
-            $agentCommission->r_t_o_id = $request->r_t_o_id;
-            $agentCommission->vehicle_id = $request->vehicle_id;
-            $agentCommission->comission_type = $request->comission_type;
-            $agentCommission->percentage_amt = $request->percentage_amt;
-            $agentCommission->fixed_amt = $request->fixed_amt;
-            $agentCommission->inserted_at = Carbon::now();
-            $agentCommission->inserted_by = Auth::user()->id;
-            $agentCommission->save();
+            // cheack data is exist or not in (company_id_id, vehicle_id, r_t_o_id)
+            $checkData = AgentCommission::where('company_id_id', $request->company_id_id)->where('vehicle_id', $request->vehicle_id)->where('r_t_o_id', $request->r_t_o_id)->whereNull('deleted_at')->first();
+            if($checkData){
+                return redirect()->route('agent_commission.index')->with('info','Data Already Exist');
+            } else {
+                $agentCommission = new AgentCommission();
+                $agentCommission->agent_id = $request->agent_id;
+                $agentCommission->insurance_company_id = $request->insurance_company_id;
+                $agentCommission->company_id_id = $request->company_id_id;
+                $agentCommission->r_t_o_id = $request->r_t_o_id;
+                $agentCommission->vehicle_id = $request->vehicle_id;
+                $agentCommission->comission_type = $request->comission_type;
+                $agentCommission->percentage_amt = $request->percentage_amt;
+                $agentCommission->fixed_amt = $request->fixed_amt;
+                $agentCommission->inserted_at = Carbon::now();
+                $agentCommission->inserted_by = Auth::user()->id;
+                $agentCommission->save();
 
-            return redirect()->route('agent_commission.index')->with('message','Agent Commission created successfully');
+                return redirect()->route('agent_commission.index')->with('message','Agent Commission created successfully');
+            }
 
         } catch(\Exception $ex){
 
@@ -98,7 +104,7 @@ class AgentCommissionController extends Controller
             $agentCommission = AgentCommission::findOrFail($id);
             $agentCommission->agent_id = $request->agent_id;
             $agentCommission->insurance_company_id = $request->insurance_company_id;
-            $agentCommission->insurance_company_i_d_id = $request->insurance_company_i_d_id;
+            $agentCommission->company_id_id = $request->company_id_id;
             $agentCommission->r_t_o_id = $request->r_t_o_id;
             $agentCommission->vehicle_id = $request->vehicle_id;
             $agentCommission->comission_type = $request->comission_type;
@@ -142,7 +148,7 @@ class AgentCommissionController extends Controller
 
     // ==== Fetch Insurance Company Id
     public function fetch_insurance_company_id(Request $request){
-        $data['insuranceCompanyID'] = InsuranceCompanyID::where('insurance_company_id', $request->insuranceCompanyID)->whereNull('deleted_at')->get(['company_id', 'id']);
+        $data['insuranceCompanyID'] = InsuranceCompanyID::with('companyIds')->where('company_id_id', $request->insuranceCompanyID)->whereNull('deleted_at')->get(['company_id_id', 'id']);
         return response()->json($data);
     }
 

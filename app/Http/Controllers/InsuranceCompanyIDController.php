@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\InsuranceCompanyIDRequest;
+use App\Models\CompanyId;
 use App\Models\InsuranceCompany;
 use App\Models\InsuranceCompanyID;
 use App\Models\RTO;
@@ -18,7 +19,7 @@ class InsuranceCompanyIDController extends Controller
      */
     public function index()
     {
-        $InsuranceCompanyID = InsuranceCompanyID::with('insuranceCompany')->orderBy("id","desc")->whereNull('deleted_at')->get();
+        $InsuranceCompanyID = InsuranceCompanyID::with('insuranceCompany', 'companyIds')->orderBy("id","desc")->whereNull('deleted_at')->get();
         return view('master.insurance_company_ids.index', ['InsuranceCompanyID' => $InsuranceCompanyID]);
     }
 
@@ -40,19 +41,26 @@ class InsuranceCompanyIDController extends Controller
     {
         $data = $request->validated();
         try {
-            $InsuranceCompanyID = new InsuranceCompanyID();
-            $InsuranceCompanyID->insurance_company_id = $request->insurance_company_id;
-            $InsuranceCompanyID->company_id = $request->company_id;
-            $InsuranceCompanyID->vehicle_id = $request->vehicle_id;
-            $InsuranceCompanyID->r_t_o_id = $request->r_t_o_id;
-            $InsuranceCompanyID->comission_type = $request->comission_type;
-            $InsuranceCompanyID->commision_percentage = $request->commision_percentage;
-            $InsuranceCompanyID->comission_fixed = $request->commision_fixed;
-            $InsuranceCompanyID->inserted_at = Carbon::now();
-            $InsuranceCompanyID->inserted_by = Auth::user()->id;
-            $InsuranceCompanyID->save();
 
-            return redirect()->route('insurance_company_id.index')->with('message', 'Insurance Company ID Created Successfully');
+            // cheack data is exist or not in (company_id_id, vehicle_id, r_t_o_id)
+            $checkData = InsuranceCompanyID::where('company_id_id', $request->company_id_id)->where('vehicle_id', $request->vehicle_id)->where('r_t_o_id', $request->r_t_o_id)->whereNull('deleted_at')->first();
+            if($checkData){
+                return redirect()->route('insurance_company_id.index')->with('info', 'Data Already Exist');
+            }else{
+                $InsuranceCompanyID = new InsuranceCompanyID();
+                $InsuranceCompanyID->insurance_company_id = $request->insurance_company_id;
+                $InsuranceCompanyID->company_id_id = $request->company_id_id;
+                $InsuranceCompanyID->vehicle_id = $request->vehicle_id;
+                $InsuranceCompanyID->r_t_o_id = $request->r_t_o_id;
+                $InsuranceCompanyID->comission_type = $request->comission_type;
+                $InsuranceCompanyID->commision_percentage = $request->commision_percentage;
+                $InsuranceCompanyID->comission_fixed = $request->commision_fixed;
+                $InsuranceCompanyID->inserted_at = Carbon::now();
+                $InsuranceCompanyID->inserted_by = Auth::user()->id;
+                $InsuranceCompanyID->save();
+
+                return redirect()->route('insurance_company_id.index')->with('message', 'Insurance Company ID Created Successfully');
+            }
 
         } catch(\Exception $ex){
 
@@ -91,7 +99,7 @@ class InsuranceCompanyIDController extends Controller
 
             $InsuranceCompanyID = InsuranceCompanyID::findOrFail($id);
             $InsuranceCompanyID->insurance_company_id = $request->insurance_company_id;
-            $InsuranceCompanyID->company_id = $request->company_id;
+            $InsuranceCompanyID->company_id_id = $request->company_id_id;
             $InsuranceCompanyID->vehicle_id = $request->vehicle_id;
             $InsuranceCompanyID->r_t_o_id = $request->r_t_o_id;
             $InsuranceCompanyID->comission_type = $request->comission_type;
@@ -125,5 +133,18 @@ class InsuranceCompanyIDController extends Controller
 
             return redirect()->back()->with('error','Something Went Wrong - '.$ex->getMessage());
         }
+
+    }
+
+    // === fetch_company_ids
+    public function fetch_company_ids (Request $request){
+        $data['companyIds'] = CompanyID::where('insurance_company_id', $request->insuranceCompanyID)->whereNull('deleted_at')->get(['company_id', 'id']);
+        return response()->json($data);
+    }
+
+    // === fetch_company_commission
+    public function fetch_company_commission (Request $request){
+        $data['companyCommission'] = CompanyID::where('id', $request->companyID)->whereNull('deleted_at')->get(['commission_type']);
+        return response()->json($data);
     }
 }

@@ -100,6 +100,8 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHisto
 
     // Manage Insurance CompanyID Routes
     Route::resource('insurance_company_id', InsuranceCompanyIDController::class);
+    Route::post('fetch_company_ids', [InsuranceCompanyIDController::class, 'fetch_company_ids'])->name('fetch_company_ids');
+    Route::post('fetch_company_commission', [InsuranceCompanyIDController::class, 'fetch_company_commission'])->name('fetch_company_commission');
 
     // ==== Policies resources routes
     Route::resource('policy', PolicyController::class);

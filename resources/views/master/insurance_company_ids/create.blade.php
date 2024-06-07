@@ -49,9 +49,11 @@ Define In Commission | Add
 
                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="input-block mb-3">
-                                            <label><b>Company ID : <span class="text-danger">*</span></b></label>
-                                            <input type="text" id="company_id" name="company_id" class="form-control @error('company_id') is-invalid @enderror" value="{{ old('company_id') }}" placeholder="Enter Company ID">
-                                            @error('company_id')
+                                            <label><b>Select Company ID : <span class="text-danger">*</span></b></label>
+                                            <select class="form-select @error('company_id_id') is-invalid @enderror select" id="company_id_id" name="company_id_id">
+                                                <option value="">Select Company ID</option>
+                                            </select>
+                                            @error('company_id_id')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -160,6 +162,62 @@ Define In Commission | Add
                 }
             });
         }).change();
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#insurance_company_id', function() {
+            let insurance_company_id = $(this).val();
+            $('#company_id_id').show();
+            $.ajax({
+                method: 'POST',
+                url: "{{ route('fetch_company_ids') }}",
+                data: {
+                    insuranceCompanyID: insurance_company_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function (result) {
+
+                    $('#company_id_id').html('<option value="">Select Company ID</option>');
+                    $.each(result.companyIds, function (key, value) {
+                        $('#company_id_id').append('<option value="' + value.id + '">' + value.company_id + '</option>');
+                    });
+                },
+            });
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function(){
+        $(document).on('change','#company_id_id', function() {
+            let company_id_id = $(this).val();
+
+            $('#comission_type').show();
+            $.ajax({
+                method: 'POST',
+                url: "{{ route('fetch_company_commission') }}",
+                data: {
+                    companyID: company_id_id,
+                    _token : '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function (result) {
+
+                    $('#comission_type').html('<option value="">Select Commision Type</option>');
+                    $.each(result.companyCommission, function (key, value) {
+                        // ===== value.commission_type == 1
+                        if(value.commission_type == 1){
+                            $('#comission_type').append('<option value="' + '01' + '">' + 'Percentage' + '</option>');
+                        } else if (value.commission_type == 2){
+                            $('#comission_type').append('<option value="' + '02' + '">' + 'Fixed' + '</option>');
+                        }
+                    });
+                },
+            });
+        });
     });
 </script>
 @endpush
