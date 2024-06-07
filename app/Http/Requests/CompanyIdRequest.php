@@ -26,14 +26,16 @@ class CompanyIdRequest extends FormRequest
         if ($this->id){
             $rule = [
                 'insurance_company_id' => 'required|numeric',
-                'insurance_company_i_d_id' => 'required|numeric',
+                'company_id' => 'required|numeric',
                 'tds_in_percentage' => 'required|string',
+                'commission_type' => 'required|numeric',
             ];
         }else{
             $rule = [
                 'insurance_company_id' => 'required|numeric',
-                'insurance_company_i_d_id' => 'required|numeric',
+                'company_id' => 'required|numeric',
                 'tds_in_percentage' => 'required|string',
+                'commission_type' => 'required|numeric',
             ];
         }
         return $rule;
@@ -42,10 +44,11 @@ class CompanyIdRequest extends FormRequest
     public function messages()
     {
         return [
-            'insurance_company_id.required' => 'Please Select Insurance Company Name.',
-            'insurance_company_i_d_id.required' => 'Please Select Insurance Company ID.',
+            'insurance_company_id.required' => 'Please Select Company Name.',
+            'company_id.required' => 'Company ID is required.',
             'tds_in_percentage.required' => 'TDS is required.',
             'tds_in_percentage.string' => 'TDS must be a string.',
+            'commission_type.required' => 'Commission Type is required.',
         ];
     }
 }

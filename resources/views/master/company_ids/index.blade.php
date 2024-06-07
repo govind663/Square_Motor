@@ -69,8 +69,9 @@ Manage Company Id | List
                                     <tr>
                                         <th>Sr. No.</th>
                                         <th>Company Name</th>
-                                        <th>Company ID No.</th>
+                                        <th>Company ID </th>
                                         <th>TDS (%)</th>
+                                        <th>Commission Type</th>
                                         <th class="no-export">Action</th>
                                     </tr>
                                 </thead>
@@ -79,8 +80,19 @@ Manage Company Id | List
                                     <tr>
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $value->insuranceCompanies?->company_name }}</td>
-                                        <td>{{ $value->insuranceCompanyIdies?->company_id }}</td>
+                                        <td>{{ $value->company_id }}</td>
                                         <td>{{ $value->tds_in_percentage }}</td>
+                                        @php
+                                            $comissionType = '';
+                                            if($value->commission_type == '1'){
+                                                $comissionType = 'Percentage';
+                                            }elseif($value->commission_type == '2'){
+                                                $comissionType = 'Fixed';
+                                            }else{
+                                                $comissionType = '';
+                                            }
+                                        @endphp
+                                        <td>{{ $comissionType }}</td>
                                         <td class="no-export d-flex">
                                             <a href="{{ route('company_id.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">
                                                 <i class="far fa-edit me-2"></i>Edit

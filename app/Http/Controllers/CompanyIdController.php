@@ -17,7 +17,7 @@ class CompanyIdController extends Controller
      */
     public function index()
     {
-        $companiesTDS = CompanyId::with('insuranceCompanies', 'insuranceCompanyIdies')->orderBy("id","desc")->whereNull('deleted_at')->get();
+        $companiesTDS = CompanyId::with('insuranceCompanies')->orderBy("id","desc")->whereNull('deleted_at')->get();
         // dd($companiesTDS);
         return view('master.company_ids.index', ['companiesTDS' => $companiesTDS]);
     }
@@ -40,8 +40,9 @@ class CompanyIdController extends Controller
         try {
             $companyId = new CompanyId();
             $companyId->insurance_company_id = $request->insurance_company_id;
-            $companyId->insurance_company_i_d_id = $request->insurance_company_i_d_id;
+            $companyId->company_id = $request->company_id;
             $companyId->tds_in_percentage = $request->tds_in_percentage;
+            $companyId->commission_type = $request->commission_type;
             $companyId->inserted_at = Carbon::now();
             $companyId->inserted_by = Auth::user()->id;
             $companyId->save();
@@ -84,8 +85,9 @@ class CompanyIdController extends Controller
         try {
             $companyId = CompanyId::findOrFail($id);
             $companyId->insurance_company_id = $request->insurance_company_id;
-            $companyId->insurance_company_i_d_id = $request->insurance_company_i_d_id;
+            $companyId->company_id = $request->company_id;
             $companyId->tds_in_percentage = $request->tds_in_percentage;
+            $companyId->commission_type = $request->commission_type;
             $companyId->modified_at = Carbon::now();
             $companyId->modified_by = Auth::user()->id;
             $companyId->save();

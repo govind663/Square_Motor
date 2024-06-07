@@ -53,14 +53,9 @@ Company Id | Edit
 
                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="input-block mb-3">
-                                            <label><b>Select Insurance Company ID : <span class="text-danger">*</span></b></label>
-                                            <select  class="form select @error('insurance_company_i_d_id') is-invalid @enderror" id="insurance_company_i_d_id" name="insurance_company_i_d_id">
-                                                <option value="">Select Insurance Company ID</option>
-                                                @foreach ($insuranceCompanyIDs as $value )
-                                                <option value="{{ $value->id }}" {{ ( $companiesTDS->insurance_company_i_d_id == $value->id ? "selected":"") }}>{{ $value->company_id }}</option>
-                                                @endforeach
-                                            </select>
-                                            @error('insurance_company_i_d_id')
+                                            <label><b>Company ID : <span class="text-danger">*</span></b></label>
+                                            <input type="text" id="company_id" name="company_id" class="form-control @error('company_id') is-invalid @enderror" value="{{ $companiesTDS->company_id }}" placeholder="Enter Company ID">
+                                            @error('company_id')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -77,6 +72,31 @@ Company Id | Edit
                                                     <strong>{{ $message }}</strong>
                                                 </span>
                                             @enderror
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                        <div class="input-block mb-3 row">
+                                            <label><b>Commission Type : <span class="text-danger">*</span></b></label>
+                                            <div class="col-lg-9">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input @error('commission_type') is-invalid @enderror" type="radio" name="commission_type" id="commission_type_percentage" value="1" @if($companiesTDS->commission_type == '1') checked @endif>
+                                                    <label class="form-check-label" for="commission_type_percentage">
+                                                        Percentage
+                                                    </label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-inpu @error('commission_type') is-invalid @enderror" type="radio" name="commission_type" id="commission_type_fixed" value="2" @if($companiesTDS->commission_type == '2') checked @endif>
+                                                    <label class="form-check-label" for="commission_type_fixed">
+                                                        Fixed
+                                                    </label>
+                                                </div>
+                                                @error('commission_type')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
 

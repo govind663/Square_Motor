@@ -14,8 +14,9 @@ class CompanyId extends Model
     protected $fillable = [
         'id',
         'insurance_company_id',
-        'insurance_company_i_d_id',
+        'company_id',
         'tds_in_percentage',
+        'commission_type',
         'inserted_by',
         'inserted_at',
         'modified_by',
@@ -29,10 +30,5 @@ class CompanyId extends Model
     // ==== relationship with insurance company
     public function insuranceCompanies(){
         return $this->belongsTo(InsuranceCompany::class, 'insurance_company_id');
-    }
-
-    // ==== relationship with insurance company Ids
-    public function insuranceCompanyIdies(){
-        return $this->belongsTo(InsuranceCompanyID::class, 'insurance_company_i_d_id');
     }
 }

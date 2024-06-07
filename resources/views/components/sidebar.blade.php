@@ -17,17 +17,17 @@
                     </a>
                 </li>
 
-                <li class="{{ ($currentRoute === 'insurance_company_id.index') || ($currentRoute === 'insurance_company_id.create') || ($currentRoute === 'insurance_company_id.edit') ? 'active' : '' }}">
-                    <a href="{{ route('insurance_company_id.index') }}">
-                        <i class="fe fe-clipboard"></i>
-                        <span>Define In Commission</span>
-                    </a>
-                </li>
-
                 <li class="{{ ($currentRoute === 'company_id.index') || ($currentRoute === 'company_id.create') || ($currentRoute === 'company_id.edit') ? 'active' : '' }}">
                     <a href="{{ route('company_id.index') }}">
                         <i class="fe fe-clipboard"></i>
                         <span>Manage Company Id</span>
+                    </a>
+                </li>
+
+                <li class="{{ ($currentRoute === 'insurance_company_id.index') || ($currentRoute === 'insurance_company_id.create') || ($currentRoute === 'insurance_company_id.edit') ? 'active' : '' }}">
+                    <a href="{{ route('insurance_company_id.index') }}">
+                        <i class="fe fe-clipboard"></i>
+                        <span>Define In Commission</span>
                     </a>
                 </li>
 
