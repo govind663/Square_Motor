@@ -154,7 +154,7 @@ class AgentCommissionController extends Controller
 
     // ==== Fetch RTO
     public function fetch_rto(Request $request){
-        $data['rtoData'] = InsuranceCompanyID::with('rto')->where('company_id', $request->agentCompanyIDs)->whereNull('deleted_at')->get(['r_t_o_id', 'id']);
+        $data['rtoData'] = InsuranceCompanyID::with('rto')->where('company_id_id', $request->agentCompanyIDs)->whereNull('deleted_at')->get(['r_t_o_id', 'id']);
         return response()->json($data);
     }
 

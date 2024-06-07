@@ -1037,11 +1037,11 @@ Policy | Create
                     $('#agent_company_id').html('<option value="">Select Insurance Company ID</option>');
                     $.each(result.insuranceCompanyID, function (key, value) {
                         // === check value is selected or not
-                        if (value.id == agent_insurance_company_id) {
-                            $('#agent_company_id').append('<option value="' + value.company_id + '" >' + value.company_id + '</option>');
+                        if (value.company_id_id == agent_insurance_company_id) {
+                            $('#agent_company_id').append('<option value="' + value.company_id_id + '" >' + value.company_ids.company_id + '</option>');
                         }
                         else {
-                            $('#agent_company_id').append('<option value="' + value.company_id + '">' + value.company_id + '</option>');
+                            $('#agent_company_id').append('<option value="' + value.company_id_id + '">' + value.company_ids.company_id + '</option>');
                         }
                     });
                 },
@@ -1151,7 +1151,8 @@ Policy | Create
                 },
                 success: function(data) {
                     $('#agent_company_commission_type').val(data.companyComissionType);
-                    $('#company_commission_percentage').val(data.companyCommission);
+                    $('#company_commission_percentage').val(data.companyCommissionPercentage);
+                    $('#agent_company_comission_rupees').val(data.companyCommissionRupees);
                 }
             })
         });

@@ -157,11 +157,8 @@ class AgentController extends Controller
     {
         $data['companyComissionType'] = InsuranceCompanyID::where('vehicle_id', $request->agentVehicleId)->pluck('comission_type');
 
-        $data['companyCommissionPercentage'] = '';
-        $data['companyCommission'] = '';
-
-        $data['companyCommission'] = InsuranceCompanyID::where('vehicle_id',$request->agentVehicleId)->pluck('commision_percentage');
-        $data['companyCommission'] = InsuranceCompanyID::where('vehicle_id',$request->agentVehicleId)->pluck('comission_fixed');
+        $data['companyCommissionPercentage'] = InsuranceCompanyID::where('vehicle_id', $request->agentVehicleId)->pluck('commision_percentage');
+        $data['companyCommissionRupees'] = InsuranceCompanyID::where('vehicle_id', $request->agentVehicleId)->pluck('comission_fixed');
 
         return response()->json($data);
     }
