@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\PaymentToCompanyRequest;
+use App\logs\companyDebitCreditLogs;
+use App\Models\CompanyDebitCreditLog;
 use App\Models\InsuranceCompany;
 use App\Models\Payment;
 use Illuminate\Http\Request;
@@ -11,6 +13,13 @@ use Illuminate\Support\Facades\Auth;
 
 class PaymentToCompanyController extends Controller
 {
+    protected $companyDebitCreditLogs;
+
+    public function __construct(companyDebitCreditLogs $companyDebitCreditLogs)
+    {
+        $this->companyDebitCreditLogs = $companyDebitCreditLogs;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -48,7 +57,37 @@ class PaymentToCompanyController extends Controller
             $payment->inserted_by = Auth::user()->id;
             $payment->save();
 
-            return redirect()->route('payment_to_company.index')->with('message','Payment created successfully');
+            // ==== Calulate the total Credit Tranx based on Agent_Type
+            $currentOpeningBalance = CompanyDebitCreditLog::where('insurance_company_id', $request->insurance_company_id)
+                                                            ->pluck('balance')
+                                                            ->whereNull('deleted_at')
+                                                            ->first();
+
+            // ==== create agentDebitCreditLogs
+            $companyTranxDate = Carbon::now()->format('Y-m-d');
+            $companyInsuranceCompanyId = $request->insurance_company_id;
+            $companyPolicyId = $request->payment_mode;
+            $companyTranxDebit = $request->amount;
+            $companyTranxCredit = 0;
+            $companyBalance = $currentOpeningBalance - $companyTranxDebit;
+            $companyTranx_type = '2';
+            $companyPolicyType = '2';
+            $companyInsertedBy = Auth::user()->id;
+            $companyInsertedAt = Carbon::now();
+
+            $this->companyDebitCreditLogs->companyDebitCreditActivity(
+                $companyTranxDate,
+                $companyInsuranceCompanyId,
+                $companyPolicyId,
+                $companyTranxDebit,
+                $companyTranxCredit,
+                $companyBalance,
+                $companyTranx_type,
+                $companyInsertedBy,
+                $companyInsertedAt,
+                $companyPolicyType
+            );
+            return redirect()->route('payment_to_company.index')->with('message','Company Payment created successfully');
 
         } catch(\Exception $ex){
 
@@ -93,7 +132,7 @@ class PaymentToCompanyController extends Controller
             $payment->modified_by = Auth::user()->id;
             $payment->save();
 
-            return redirect()->route('payment_to_company.index')->with('message','Payment Updated Successfully');
+            return redirect()->route('payment_to_company.index')->with('message','Company Payment Updated Successfully');
 
         } catch(\Exception $ex){
 
@@ -112,7 +151,7 @@ class PaymentToCompanyController extends Controller
             $payment = Payment::findOrFail($id);
             $payment->update($data);
 
-            return redirect()->route('payment_to_company.index')->with('message','Payment Deleted Succeessfully');
+            return redirect()->route('payment_to_company.index')->with('message','Company Payment Deleted Succeessfully');
         } catch(\Exception $ex){
 
             return redirect()->back()->with('error','Something Went Wrong - '.$ex->getMessage());
