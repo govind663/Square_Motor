@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AgentCommissionRequest;
 use App\Models\Agent;
 use App\Models\AgentCommission;
+use App\Models\CompanyId;
 use App\Models\InsuranceCompany;
 use App\Models\InsuranceCompanyID;
 use App\Models\RTO;
@@ -88,10 +89,12 @@ class AgentCommissionController extends Controller
         $agentCommission = AgentCommission::findOrFail($id);
         $agents = Agent::orderBy("id","desc")->whereNull('deleted_at')->get();
         $insuranceCompany = InsuranceCompany::orderBy("id","desc")->whereNull('deleted_at')->get();
+        $companyId = CompanyId::orderBy("id","desc")->whereNull('deleted_at')->get();
         $insuranceCompanyID = InsuranceCompanyID::orderBy("id","desc")->whereNull('deleted_at')->get();
         $vehicles = Vehicle::orderBy("id","desc")->whereNull('deleted_at')->get();
         $rtos = RTO::orderBy("id","desc")->whereNull('deleted_at')->get();
-        return view('master.agentCommission.edit', ['agents' => $agents, 'insuranceCompany' => $insuranceCompany, 'insuranceCompanyID' => $insuranceCompanyID,'vehicles' => $vehicles, 'agentCommission' => $agentCommission, 'rtos'=>$rtos]);
+
+        return view('master.agentCommission.edit', ['agents' => $agents, 'insuranceCompany' => $insuranceCompany, 'companyId' => $companyId, 'insuranceCompanyID' => $insuranceCompanyID,'vehicles' => $vehicles, 'agentCommission' => $agentCommission, 'rtos'=>$rtos]);
     }
 
     /**

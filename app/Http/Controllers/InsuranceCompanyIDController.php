@@ -84,9 +84,11 @@ class InsuranceCompanyIDController extends Controller
     {
         $InsuranceCompanyID = InsuranceCompanyID::find($id);
         $insuranceCompany = InsuranceCompany::orderBy("id","desc")->whereNull('deleted_at')->get();
+        $companyId = CompanyId::orderBy("id","desc")->whereNull('deleted_at')->get();
         $vehicles = Vehicle::orderBy("id","desc")->whereNull('deleted_at')->get();
         $rtos = RTO::orderBy("id","desc")->whereNull('deleted_at')->get();
-        return view('master.insurance_company_ids.edit', ['insuranceCompany' => $insuranceCompany, 'InsuranceCompanyID' => $InsuranceCompanyID, 'vehicles' => $vehicles, 'rtos'=>$rtos]);
+
+        return view('master.insurance_company_ids.edit', ['insuranceCompany' => $insuranceCompany, 'companyId' => $companyId, 'InsuranceCompanyID' => $InsuranceCompanyID, 'vehicles' => $vehicles, 'rtos'=>$rtos]);
     }
 
     /**

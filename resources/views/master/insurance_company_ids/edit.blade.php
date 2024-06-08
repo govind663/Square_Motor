@@ -56,6 +56,9 @@ Define In Commission | Edit
                                             <label><b>Select Company ID : <span class="text-danger">*</span></b></label>
                                             <select class="form-select @error('company_id_id') is-invalid @enderror select" id="company_id_id" name="company_id_id">
                                                 <option value="">Select Company ID</option>
+                                                @foreach ($companyId as $value )
+                                                <option value="{{ $value->id }}" {{ ($InsuranceCompanyID->company_id_id == $value->id ? "selected":"") }}>{{ $value->company_id }}</option>
+                                                @endforeach
                                             </select>
                                             @error('company_id_id')
                                                 <span class="invalid-feedback" role="alert">
