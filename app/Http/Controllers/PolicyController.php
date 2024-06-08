@@ -161,7 +161,7 @@ class PolicyController extends Controller
                     $companyTranxCredit = $request->actual_profit_amt;
                     $companyBalance = $companyTranxCredit - $companyTranxDebit;
                     $companyTranx_type = '2';
-                    $companyPolicyType = '1';
+                    $companyPolicyType = '3';
                     $companyInsertedBy = Auth::user()->id;
                     $companyInsertedAt = Carbon::now();
 

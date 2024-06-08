@@ -22,7 +22,7 @@ class CompanyToCompanyController extends Controller
         $companyDebitCreditLog = CompanyDebitCreditLog::with('insuranceCompany')
                                 ->orderBy("tranx_dt","asc")
                                 ->whereIn('insurance_company_id', $insuraanceCompanyID)
-                                ->where('policy_type', '1')
+                                ->where('policy_type', '3')
                                 ->whereNull('deleted_at')
                                 ->get();
         // dd($companyDebitCreditLog);
