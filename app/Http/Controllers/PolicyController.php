@@ -9,13 +9,14 @@ use App\Models\Policy;
 use App\Models\RTO;
 use App\Models\Vehicle;
 use App\Models\Retailer;
+use App\Models\InsuranceCompanyID;
+use App\Models\CompanyId;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\logs\agentDebitCreditLogs;
 use App\logs\retailerDebitCreditLogs;
 use App\logs\companyDebitCreditLogs;
-use App\Models\InsuranceCompanyID;
 
 class PolicyController extends Controller
 {
@@ -129,7 +130,7 @@ class PolicyController extends Controller
                 $insuranceCompanyId = null;
                 $policyId = $policyNumber;
                 $tranxDebit = 0;
-                $tranxCredit = $request->actual_profit_amt;
+                $tranxCredit = $request->agent_actual_comission;
                 $balance = $tranxCredit - $tranxDebit;
                 $tranx_type = '1';
                 $policyType = '1';
@@ -155,12 +156,13 @@ class PolicyController extends Controller
                 $companyInsuranceCompanyId = $request->insurance_company_id;
                 $companyPolicyId = $policyNumber;
                 $companyTranxDebit = 0;
-                $companyTranxCredit = $request->profit_amt;
+                $companyTranxCredit = $request->actual_profit_amt;
                 $companyBalance = $companyTranxCredit - $companyTranxDebit;
                 $companyTranx_type = '2';
                 $companyPolicyType = '1';
                 $companyInsertedBy = Auth::user()->id;
                 $companyInsertedAt = Carbon::now();
+
                 $this->companyDebitCreditLogs->companyDebitCreditActivity(
                     $companyTranxDate,
                     $companyInsuranceCompanyId,
@@ -233,14 +235,12 @@ class PolicyController extends Controller
                 Policy::where('id', $policy->id)->update($update);
 
                 // ==== create retailerDebitCreditLogs
-                $totalBalance = 0;
                 $tranxDate = Carbon::now()->format('Y-m-d');
                 $retailerId = $request->retailer_id;
                 $policyId = $policyNumber;
                 $tranxDebit = 0;
                 $tranxCredit = $request->retailer_payable_amount;
-                $totalBalance += $request->retailer_payable_amount;
-                $balance = $totalBalance;
+                $balance = $tranxCredit - $tranxDebit;
                 $tranx_type = '1';
                 $policyType = '2';
                 $insertedBy = Auth::user()->id;
@@ -287,6 +287,7 @@ class PolicyController extends Controller
         $vehicles = Vehicle::orderBy("id","desc")->whereNull('deleted_at')->get();
         $Rto = RTO::orderBy("id","desc")->whereNull('deleted_at')->get();
         $insuranceCompany = InsuranceCompany::orderBy("id","desc")->whereNull('deleted_at')->get();
+        $companyId = CompanyId::orderBy("id","desc")->whereNull('deleted_at')->get();
         $insuranceCompanyID = InsuranceCompanyID::orderBy("id","desc")->whereNull('deleted_at')->get();
         $retailerUser = Retailer::orderBy("id","desc")->whereNull('deleted_at')->get();
 
@@ -300,7 +301,7 @@ class PolicyController extends Controller
         if ($policy->policy_type == '2') {
             $filledTabs[] = 'tab2';
         }
-        return view('master.policies.edit', ['policy'=> $policy, 'agents'=> $agents, 'vehicles'=>$vehicles, 'Rto'=>$Rto, 'insuranceCompany'=>$insuranceCompany, 'insuranceCompanyID'=>$insuranceCompanyID, 'filledTabs'=>$filledTabs, 'retailerUser'=>$retailerUser]);
+        return view('master.policies.edit', ['policy'=> $policy, 'agents'=> $agents, 'vehicles'=>$vehicles, 'Rto'=>$Rto, 'insuranceCompany'=>$insuranceCompany, 'companyId' => $companyId, 'insuranceCompanyID'=>$insuranceCompanyID, 'filledTabs'=>$filledTabs, 'retailerUser'=>$retailerUser]);
     }
 
     /**
@@ -327,6 +328,7 @@ class PolicyController extends Controller
             // ==== Agent Details
             $policy->policy_type = $request->policy_type ? $request->policy_type : null;
             $policy->agent_id = $request->agent_id ? $request->agent_id : null;
+            $policy->retailer_id = $request->retailer_id ? $request->retailer_id : null;
             $policy->customer_name = $request->customer_name? $request->customer_name : null;
             $policy->vehicle_reg_no = $request->vehicle_reg_no ? $request->vehicle_reg_no : null;
             $policy->r_t_o_id = $request->r_t_o_id ? $request->r_t_o_id : null;
@@ -350,6 +352,7 @@ class PolicyController extends Controller
             $policy->agent_actual_comission = $request->agent_actual_comission ? $request->agent_actual_comission : null;
             $policy->tds_deduction = $request->tds_deduction ? $request->tds_deduction : null;
             $policy->actual_profit_amt = $request->actual_profit_amt ? $request->actual_profit_amt : null;
+            $policy->payable_amount = $request->retailer_payable_amount ? $request->retailer_payable_amount : null;
 
             // === Policy Period
             $policy->from_dt = date("Y-m-d", strtotime($request->from_dt));

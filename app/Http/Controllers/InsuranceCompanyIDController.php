@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\InsuranceCompanyIDRequest;
-use App\Models\CompanyId;
-use App\Models\InsuranceCompany;
-use App\Models\InsuranceCompanyID;
+use Carbon\Carbon;
 use App\Models\RTO;
 use App\Models\Vehicle;
-use Carbon\Carbon;
+use App\Models\CompanyId;
 use Illuminate\Http\Request;
+use App\Models\InsuranceCompany;
+use App\Models\InsuranceCompanyID;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\InsuranceCompanyIDRequest;
 
 class InsuranceCompanyIDController extends Controller
 {
@@ -147,6 +147,12 @@ class InsuranceCompanyIDController extends Controller
     // === fetch_company_commission
     public function fetch_company_commission (Request $request){
         $data['companyCommission'] = CompanyID::where('id', $request->companyID)->whereNull('deleted_at')->get(['commission_type']);
+        return response()->json($data);
+    }
+
+    // === fetch_company_tds
+    public function fetch_company_tds (Request $request){
+        $data['companyTds'] = CompanyID::where('id', $request->agentCompanyID)->whereNull('deleted_at')->pluck('tds_in_percentage');
         return response()->json($data);
     }
 }
