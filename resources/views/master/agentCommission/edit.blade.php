@@ -73,7 +73,7 @@ Define Out Commission | Create
                                             <select  class="form-control select @error('company_id_id') is-invalid @enderror" id="company_id_id" name="company_id_id">
                                                 <option value="">Select Company ID</option>
                                                 @foreach ($companyId as $value )
-                                                <option value="{{ $value->id }}" {{ ($agentCommission->company_id_id == $value->company_id ? "selected":"") }}>{{ $value->company_id }}</option>
+                                                <option value="{{ $value->id }}" {{ ($agentCommission->company_id_id == $value->id ? "selected":"") }}>{{ $value->company_id }}</option>
                                                 @endforeach
                                             </select>
                                             @error('company_id_id')
