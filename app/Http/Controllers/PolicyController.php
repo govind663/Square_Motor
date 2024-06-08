@@ -58,7 +58,7 @@ class PolicyController extends Controller
      */
     public function store(PolicyRequest $request)
     {
-        $data = $request->validated();
+        $request->validated();
         try {
 
             if($request->policy_type == '1'){
@@ -124,59 +124,62 @@ class PolicyController extends Controller
                 ];
                 Policy::where('id', $policy->id)->update($update);
 
-                // ==== create agentDebitCreditLogs
-                $tranxDate = Carbon::now()->format('Y-m-d');
-                $agentId = $request->agent_id;
-                $insuranceCompanyId = null;
-                $policyId = $policyNumber;
-                $tranxDebit = 0;
-                $tranxCredit = $request->agent_actual_comission;
-                $balance = $tranxCredit - $tranxDebit;
-                $tranx_type = '1';
-                $policyType = '1';
-                $insertedBy = Auth::user()->id;
-                $insertedAt = Carbon::now();
+                // ==== Check Policy_type in if condition
+                if($request->policy_type == '1'){
+                    // ==== create agentDebitCreditLogs
+                    $tranxDate = Carbon::now()->format('Y-m-d');
+                    $agentId = $request->agent_id;
+                    $insuranceCompanyId = null;
+                    $policyId = $policyNumber;
+                    $tranxDebit = 0;
+                    $tranxCredit = $request->agent_actual_comission;
+                    $balance = $tranxCredit - $tranxDebit;
+                    $tranx_type = '1';
+                    $policyType = '1';
+                    $insertedBy = Auth::user()->id;
+                    $insertedAt = Carbon::now();
 
-                $this->agentDebitCreditLogs->agentDebitCreditActivity(
-                    $tranxDate,
-                    $agentId,
-                    $insuranceCompanyId,
-                    $policyId,
-                    $tranxDebit,
-                    $tranxCredit,
-                    $balance,
-                    $tranx_type,
-                    $insertedBy,
-                    $insertedAt,
-                    $policyType
-                );
+                    $this->agentDebitCreditLogs->agentDebitCreditActivity(
+                        $tranxDate,
+                        $agentId,
+                        $insuranceCompanyId,
+                        $policyId,
+                        $tranxDebit,
+                        $tranxCredit,
+                        $balance,
+                        $tranx_type,
+                        $insertedBy,
+                        $insertedAt,
+                        $policyType
+                    );
+                } else if ($request->policy_type == '2'){
+                    // ==== create companyDebitCreditLogs
+                    $companyTranxDate = Carbon::now()->format('Y-m-d');
+                    $companyInsuranceCompanyId = $request->insurance_company_id;
+                    $companyPolicyId = $policyNumber;
+                    $companyTranxDebit = 0;
+                    $companyTranxCredit = $request->actual_profit_amt;
+                    $companyBalance = $companyTranxCredit - $companyTranxDebit;
+                    $companyTranx_type = '2';
+                    $companyPolicyType = '1';
+                    $companyInsertedBy = Auth::user()->id;
+                    $companyInsertedAt = Carbon::now();
 
-                // ==== create companyDebitCreditLogs
-                $companyTranxDate = Carbon::now()->format('Y-m-d');
-                $companyInsuranceCompanyId = $request->insurance_company_id;
-                $companyPolicyId = $policyNumber;
-                $companyTranxDebit = 0;
-                $companyTranxCredit = $request->actual_profit_amt;
-                $companyBalance = $companyTranxCredit - $companyTranxDebit;
-                $companyTranx_type = '2';
-                $companyPolicyType = '1';
-                $companyInsertedBy = Auth::user()->id;
-                $companyInsertedAt = Carbon::now();
+                    $this->companyDebitCreditLogs->companyDebitCreditActivity(
+                        $companyTranxDate,
+                        $companyInsuranceCompanyId,
+                        $companyPolicyId,
+                        $companyTranxDebit,
+                        $companyTranxCredit,
+                        $companyBalance,
+                        $companyTranx_type,
+                        $companyInsertedBy,
+                        $companyInsertedAt,
+                        $companyPolicyType
+                    );
+                }
 
-                $this->companyDebitCreditLogs->companyDebitCreditActivity(
-                    $companyTranxDate,
-                    $companyInsuranceCompanyId,
-                    $companyPolicyId,
-                    $companyTranxDebit,
-                    $companyTranxCredit,
-                    $companyBalance,
-                    $companyTranx_type,
-                    $companyInsertedBy,
-                    $companyInsertedAt,
-                    $companyPolicyType
-                );
-
-                return redirect()->route('policy.index')->with('message', 'Agent Policy Created Successfully');
+                return redirect()->route('policy.index')->with('message', 'Agent Policy Created Successfully.');
 
             } elseif($request->policy_type == '2'){
                 $policy = Policy::create() ;

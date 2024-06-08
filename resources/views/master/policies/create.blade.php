@@ -54,7 +54,7 @@ Policy | Create
                                             <form method="POST" action="{{ route('policy.store') }}" enctype="multipart/form-data">
                                                 @csrf
 
-                                                <input type="hidden" name="policy_type" id="policy_type" value="1" selected>
+                                                <input type="hidden" name="policy_type" id="policy_type" value="1" >
 
                                                 <div class="row">
                                                     <h5 class="card-title text-primary mb-2">Agent Details</h5>

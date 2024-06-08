@@ -35,6 +35,7 @@ class AgentCommissionController extends Controller
         $insuranceCompanyID = InsuranceCompanyID::orderBy("id","desc")->whereNull('deleted_at')->get();
         $vehicles = Vehicle::orderBy("id","desc")->whereNull('deleted_at')->get();
         $rtos = RTO::orderBy("id","desc")->whereNull('deleted_at')->get();
+
         return view('master.agentCommission.create', ['agents' => $agents, 'insuranceCompany' => $insuranceCompany, 'insuranceCompanyID' => $insuranceCompanyID,'vehicles' => $vehicles, 'rtos'=>$rtos]);
     }
 
