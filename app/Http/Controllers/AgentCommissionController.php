@@ -151,7 +151,7 @@ class AgentCommissionController extends Controller
 
     // ==== Fetch Insurance Company Id
     public function fetch_insurance_company_id(Request $request){
-        $data['insuranceCompanyID'] = InsuranceCompanyID::with('companyIds')->where('company_id_id', $request->insuranceCompanyID)->whereNull('deleted_at')->get(['company_id_id', 'id']);
+        $data['insuranceCompanyID'] = InsuranceCompanyID::with('companyIds')->where('insurance_company_id', $request->insuranceCompanyID)->whereNull('deleted_at')->get(['company_id_id', 'id']);
         return response()->json($data);
     }
 
