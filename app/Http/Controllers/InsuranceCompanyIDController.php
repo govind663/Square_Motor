@@ -45,8 +45,9 @@ class InsuranceCompanyIDController extends Controller
             // cheack data is exist or not in (insurance_company_id, company_id_id, vehicle_id, r_t_o_id)
             $checkData = InsuranceCompanyID::where('insurance_company_id', $request->insurance_company_id)->where('company_id_id', $request->company_id_id)->where('vehicle_id', $request->vehicle_id)->where('r_t_o_id', $request->r_t_o_id)->whereNull('deleted_at')->first();
             if($checkData){
-                return redirect()->route('insurance_company_id.index')->with('info', 'Data Already Exist');
+                return redirect()->back()->with('info', 'Data Already Exist');
             }else{
+
                 $InsuranceCompanyID = new InsuranceCompanyID();
                 $InsuranceCompanyID->insurance_company_id = $request->insurance_company_id;
                 $InsuranceCompanyID->company_id_id = $request->company_id_id;
@@ -106,7 +107,7 @@ class InsuranceCompanyIDController extends Controller
             $InsuranceCompanyID->r_t_o_id = $request->r_t_o_id;
             $InsuranceCompanyID->comission_type = $request->comission_type;
             $InsuranceCompanyID->commision_percentage = $request->commision_percentage;
-            $InsuranceCompanyID->commision_fixed = $request->commision_fixed;
+            $InsuranceCompanyID->comission_fixed = $request->commision_fixed;
             $InsuranceCompanyID->modified_at = Carbon::now();
             $InsuranceCompanyID->modified_by = Auth::user()->id;
             $InsuranceCompanyID->save();

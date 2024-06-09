@@ -49,7 +49,7 @@ class AgentCommissionController extends Controller
             // cheack data is exist or not in (company_id_id, vehicle_id, r_t_o_id)
             $checkData = AgentCommission::where('company_id_id', $request->company_id_id)->where('vehicle_id', $request->vehicle_id)->where('r_t_o_id', $request->r_t_o_id)->whereNull('deleted_at')->first();
             if($checkData){
-                return redirect()->route('agent_commission.index')->with('info','Data Already Exist');
+                return redirect()->back()->with('info', 'Data Already Exist');
             } else {
                 $agentCommission = new AgentCommission();
                 $agentCommission->agent_id = $request->agent_id;

@@ -24,8 +24,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('agent_commissions', function (Blueprint $table) {
-            // add insurance_company_id column
-            $table->foreignIdFor(CompanyID::class)->nullable()->index()->after('insurance_company_id');
+            $table->dropColumn('company_id_id');
         });
     }
 };

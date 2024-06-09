@@ -303,7 +303,7 @@ Policy | Edit
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
                                                                 <label><b>TDS Deduction (%) : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" id="agent_tds_deduction" name="tds_deduction"  class="form-control @error('tds_deduction') is-invalid @enderror" value="{{ $policy->tds_deduction }}" placeholder="Enter TDS Deduction (10%)">
+                                                                <input type="text" readonly id="agent_tds_deduction" name="tds_deduction"  class="form-control @error('tds_deduction') is-invalid @enderror" value="{{ $policy->tds_deduction }}" placeholder="Enter TDS Deduction (10%)">
                                                                 @error('tds_deduction')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -896,6 +896,7 @@ Policy | Edit
         });
     });
 </script>
+
 {{-- Agent Commission In Percentage fetch by agent_commission_percentage --}}
 <script>
     $(document).ready(function(){
@@ -917,6 +918,10 @@ Policy | Edit
                     } else if(data.comissionType == 2){
                         $('#agent_commission_type').val(data.comissionType);
                         $('#agent_comission_rupees').val(parseInt(data.commissionAmount));
+                    } else {
+                        $('#agent_commission_type').val('');
+                        $('#agent_comission_rupees').val('');
+                        $('#agent_commission_percentage').val('');
                     }
                 }
             })
@@ -1043,7 +1048,7 @@ Policy | Edit
     });
 </script>
 
-{{-- Fetch Vehicle Type --}}
+{{-- Fetch Vehicle --}}
 <script>
     $(document).ready(function(){
         $(document).on('change','#agent_rto_id', function() {
@@ -1075,6 +1080,7 @@ Policy | Edit
     });
 </script>
 
+{{-- Fetch Vehicle Type --}}
 <script>
     $(document).ready(function(){
         $(document).on('change','#agent_vehicle_id', function() {
@@ -1097,7 +1103,7 @@ Policy | Edit
     });
 </script>
 
-{{-- Company Commission In Percentage fetch by agent_company_commission_percentage --}}
+{{-- Fetch Company Commission for Agent --}}
 <script>
     $(document).ready(function(){
         $(document).on('change','#agent_vehicle_id', function() {
@@ -1111,16 +1117,25 @@ Policy | Edit
                     _token : '{{ csrf_token() }}'
                 },
                 success: function(data) {
-                    $('#agent_company_commission_type').val(data.companyComissionType);
-                    $('#company_commission_percentage').val(data.companyCommissionPercentage);
-                    $('#agent_company_comission_rupees').val(parseInt(data.companyCommissionRupees));
+                    // === check data.companyComissionType == 01 in if condition
+                    if(data.companyComissionType == 01) {
+                        $('#agent_company_commission_type').val(data.companyComissionType);
+                        $('#company_commission_percentage').val(data.companyCommissionPercentage);
+                    } else if (data.companyComissionType == 02){
+                        $('#agent_company_comission_rupees').val(parseInt(data.companyCommissionRupees));
+                        $('#agent_company_commission_type').val(data.companyComissionType);
+                    }else{
+                        $('#agent_company_commission_type').val('');
+                        $('#company_commission_percentage').val('');
+                        $('#agent_company_comission_rupees').val('');
+                    }
                 }
             })
         });
     });
 </script>
 
-{{-- Company Commission In Percentage fetch by retailer_company_commission_percentage --}}
+{{-- Fetch Company Commission for Retailer --}}
 <script>
     $(document).ready(function(){
         $(document).on('change','#retailer_company_id', function() {
@@ -1310,12 +1325,12 @@ Policy | Edit
                         var agent_tds_deduction = $('#agent_tds_deduction').val();
 
                         // ==== Calculate TDS Deduction in Percentage
-                        var one_percent_value = (parseInt(agent_profit_amt) / 100);
-                        var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
+                        var one_percent_value = ((agent_profit_amt) / 100);
+                        var total_tds_deduction_amt = ((one_percent_value) * (agent_tds_deduction));
 
                         // ==== Calculate Company Profit
-                        var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt)) - parseInt(agent_actual_commission_amt);
-                        $('#agent_actual_profit_amt').val(total_company_profit);
+                        var total_company_profit = ((agent_profit_amt) - (total_tds_deduction_amt)) - (agent_actual_commission_amt);
+                        $('#agent_actual_profit_amt').val((total_company_profit));
 
                     } else {
                         $('#agent_actual_profit_amt').val('');
@@ -1327,12 +1342,12 @@ Policy | Edit
                         var agent_tds_deduction = $('#agent_tds_deduction').val();
 
                         // ==== Calculate TDS Deduction in Percentage
-                        var one_percent_value = (parseInt(agent_profit_amt) / 100);
-                        var total_tds_deduction_amt = (parseInt(one_percent_value) * parseInt(agent_tds_deduction));
+                        var one_percent_value = ((agent_profit_amt) / 100);
+                        var total_tds_deduction_amt = ((one_percent_value) * (agent_tds_deduction));
 
                         // ==== Calculate Company Profit
-                        var total_company_profit = (parseInt(agent_profit_amt) - parseInt(total_tds_deduction_amt));
-                        var actual_profit_amy = (parseInt(agent_actual_commission_amt) - parseInt(total_company_profit))
+                        var total_company_profit = ((agent_profit_amt) - (total_tds_deduction_amt));
+                        var actual_profit_amy = ((agent_actual_commission_amt) - (total_company_profit))
                         $('#agent_actual_profit_amt').val(actual_profit_amy);
 
                     } else {

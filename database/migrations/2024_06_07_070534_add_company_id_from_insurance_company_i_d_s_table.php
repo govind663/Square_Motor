@@ -25,7 +25,7 @@ return new class extends Migration
     {
         Schema::table('insurance_company_i_d_s', function (Blueprint $table) {
             // Drop column company_id after insurance_company_id
-            $table->dropColumn('company_id');
+            $table->dropColumn('company_id_id');
         });
     }
 };

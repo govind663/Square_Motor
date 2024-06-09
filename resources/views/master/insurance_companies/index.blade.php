@@ -68,8 +68,9 @@ Insurance Company | List
                                 <thead>
                                     <tr>
                                         <th>Sr. No.</th>
+                                        <th class="text-start">Company Logo</th>
                                         <th>Company Name</th>
-                                        <th class="text-start no-export">Company Logo</th>
+
                                         <th>Description</th>
                                         <th class="no-export">Action</th>
                                     </tr>
@@ -78,12 +79,12 @@ Insurance Company | List
                                     @foreach ($insuranceCompanies as $key=>$value )
                                     <tr>
                                         <td>{{ ++$key }}</td>
-                                        <td>{{ $value->company_name }}</td>
-                                        <td class="text-start no-export">
+                                        <td class="text-start">
                                             @if(!empty($value->logo_doc))
                                                 <img src="{{url('/')}}/company_policy/logo_doc/{{ $value->logo_doc }}" alt="{{ $value->logo_doc }}" style="height:40px !important; width: 90px !important;" >
                                             @endif
                                         </td>
+                                        <td>{{ $value->company_name }}</td>
                                         <td>{{ $value->description }}</td>
                                         <td class="no-export d-flex">
                                             <a href="{{ route('insurance_company.edit', $value->id) }}" class="btn btn-warning btn-sm text-dark">

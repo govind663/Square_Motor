@@ -48,7 +48,7 @@ RTO | Add
                                         <div class="col-lg-4 col-md-12 col-sm-12">
                                             <div class="input-block mb-3">
                                                 <label><b>RTO Code : <span class="text-danger">*</span></b></label>
-                                                <input type="text" id="pincode" name="pincode" class="form-control @error('city') is-invalid @enderror" value="{{ old('pincode') }}" placeholder="Enter RTO Code">
+                                                <input type="text" maxlength="6" id="pincode" name="pincode" class="form-control @error('city') is-invalid @enderror" value="{{ old('pincode') }}" placeholder="Enter RTO Code">
                                                 @error('pincode')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
