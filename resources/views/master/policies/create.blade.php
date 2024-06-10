@@ -1399,7 +1399,7 @@ Policy | Create
 
                         // ==== Calculate Company Profit
                         var total_company_profit = ((agent_profit_amt) - (total_tds_deduction_amt)) - (agent_actual_commission_amt);
-                        $('#agent_actual_profit_amt').val((total_company_profit));
+                        $('#agent_actual_profit_amt').val(Math.round(total_company_profit, 4));
 
                     } else {
                         $('#agent_actual_profit_amt').val('');
@@ -1417,7 +1417,7 @@ Policy | Create
                         // ==== Calculate Company Profit
                         var total_company_profit = ((agent_profit_amt) - (total_tds_deduction_amt));
                         var actual_profit_amy = ((agent_actual_commission_amt) - (total_company_profit))
-                        $('#agent_actual_profit_amt').val(actual_profit_amy);
+                        $('#agent_actual_profit_amt').val(Math.round(actual_profit_amy, 4));
 
                     } else {
                         $('#agent_actual_profit_amt').val('');
