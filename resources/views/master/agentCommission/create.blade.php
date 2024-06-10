@@ -146,7 +146,7 @@ Define Out Commission | Add
 
                                 <div class="col-lg-4 col-md-12 col-sm-12 02 box" style="display:none">
                                     <div class="input-block mb-3" >
-                                        <label><b>Fixed (Rs) :</b></label>
+                                        <label><b>Fixed (Fixed) :</b></label>
                                         <input type="text" id="fixed_amt" name="fixed_amt" class="form-control" value="{{ old('fixed_amt') }}" placeholder="Enter Fixed Amount">
                                     </div>
                                 </div>

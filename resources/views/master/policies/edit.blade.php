@@ -117,9 +117,9 @@ Policy | Edit
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Select Insurance Company ID : <span class="text-danger">*</span></b></label>
+                                                                <label><b>Select Company ID : <span class="text-danger">*</span></b></label>
                                                                 <select  class="form-control select @error('agent_company_id') is-invalid @enderror" id="agent_company_id" name="agent_company_id">
-                                                                    <option value="">Select Insurance Company ID</option>
+                                                                    <option value="">Select Company ID</option>
                                                                     @foreach ($companyId as $value )
                                                                     <option value="{{ $value->id }}" {{ ( $policy->agent_company_id == $value->id ? "selected":"") }}>{{ $value->company_id }}</option>
                                                                     @endforeach
@@ -207,6 +207,19 @@ Policy | Edit
 
                                                     <h5 class="card-title text-primary mb-2">Commercial Details</h5>
                                                     <div class="row">
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
+                                                                <label><b>NET Premium : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" readonly id="agent_net_premimum" name="agent_net_premimum"  class="form-control @error('agent_net_premimum') is-invalid @enderror" value="{{ $policy->agent_net_premium }}" placeholder="Enter NET Premium">
+                                                                @error('agent_net_premimum')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
                                                                 <label><b>OD Premium : <span class="text-danger">*</span></b></label>
@@ -224,18 +237,6 @@ Policy | Edit
                                                                 <label><b>TP Premium : <span class="text-danger">*</span></b></label>
                                                                 <input type="text" id="agent_tp_premimum" name="agent_tp_premimum"  class="form-control @error('agent_tp_premimum') is-invalid @enderror" value="{{ $policy->agent_tp_premimum }}" placeholder="Enter TP Premium">
                                                                 @error('agent_tp_premimum')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="col-lg-4 col-md-6 col-sm-12">
-                                                            <div class="input-block mb-3">
-                                                                <label><b>NET Premium : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" readonly id="agent_net_premimum" name="agent_net_premimum"  class="form-control @error('agent_net_premimum') is-invalid @enderror" value="{{ $policy->agent_net_premium }}" placeholder="Enter NET Premium">
-                                                                @error('agent_net_premimum')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
                                                                     </span>
@@ -282,7 +283,7 @@ Policy | Edit
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Company Commission (Rs): <span class="text-danger">*</span></b></label>
+                                                                <label><b>Company Commission (Fixed): <span class="text-danger">*</span></b></label>
                                                                 <input type="text" id="agent_company_comission_rupees" readonly name="agent_company_comission_rupees" class="form-control" value="{{ $policy->agent_company_comission_rupees }}" placeholder="Enter Company Commission (Rs)">
 
                                                             </div>
@@ -327,7 +328,7 @@ Policy | Edit
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Agent Commission (Rs) : </b></label>
+                                                                <label><b>Agent Commission (Fixed) : </b></label>
                                                                 <input type="text" readonly id="agent_comission_rupees" name="agent_comission_rupees"  class="form-control @error('agent_comission_rupees') is-invalid @enderror" value="{{ $policy->comission_rupees }}" placeholder="Enter Agent Commission (Rs)">
                                                                 @error('agent_comission_rupees')
                                                                     <span class="invalid-feedback" role="alert">
@@ -339,8 +340,8 @@ Policy | Edit
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Actual Agent Commission : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" readonly id="agent_actual_commission_amt" name="agent_actual_comission"  class="form-control @error('agent_actual_comission') is-invalid @enderror" value="{{ $policy->agent_actual_comission }}" placeholder="Enter Agent Commission">
+                                                                <label><b>Actual Agent Commission (RS): <span class="text-danger">*</span></b></label>
+                                                                <input type="text" readonly id="agent_actual_commission_amt" name="agent_actual_comission"  class="form-control @error('agent_actual_comission') is-invalid @enderror" value="{{ $policy->agent_actual_comission }}" placeholder="Enter Agent Commission (Rs)">
                                                                 @error('agent_actual_comission')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -874,7 +875,7 @@ Policy | Edit
 
 </script>
 
-{{-- Retailer Commission In Percentage fetch by retailer_commission_percentage --}}
+{{-- Fetch by  Retailer Commission --}}
 <script>
     $(document).ready(function(){
         $(document).on('change','#retailer_id', function() {
@@ -897,7 +898,7 @@ Policy | Edit
     });
 </script>
 
-{{-- Agent Commission In Percentage fetch by agent_commission_percentage --}}
+{{-- Fetch by Agent Commission --}}
 <script>
     $(document).ready(function(){
         // ==== pass multiple parameter in onChange
@@ -977,7 +978,7 @@ Policy | Edit
                 dataType: 'json',
                 success: function (result) {
                     // display in  agent_company_id in select option
-                    $('#agent_company_id').html('<option value="">Select Insurance Company ID</option>');
+                    $('#agent_company_id').html('<option value="">Select Company ID</option>');
                     $.each(result.insuranceCompanyID, function (key, value) {
                         // === check value is selected or not
                         if (value.company_id_id == agent_insurance_company_id) {
@@ -1213,7 +1214,7 @@ Policy | Edit
                         var agent_main_price = $('#agent_main_price').val();
                         var totalCompanyCommissionAmt = (parseInt(company_commission_percentage) / 100) * parseInt(agent_main_price);
 
-                        $('#agent_profit_amt').val(totalCompanyCommissionAmt);
+                        $('#agent_profit_amt').val(parseFloat(totalCompanyCommissionAmt.toFixed(4)));
                     } else {
                         $('#agent_profit_amt').val('');
                     }
@@ -1234,7 +1235,7 @@ Policy | Edit
                         var company_commission_percentage = $('#company_commission_percentage').val();
                         var agent_tp_premimum = $('#agent_tp_premimum').val();
                         var totalCompanyCommissionAmt = (parseInt(company_commission_percentage) / 100) * parseInt(agent_tp_premimum);
-                        $('#agent_profit_amt').val(totalCompanyCommissionAmt);
+                        $('#agent_profit_amt').val(parseFloat(totalCompanyCommissionAmt.toFixed(4)));
                     } else {
                         $('#agent_profit_amt').val('');
                     }
@@ -1269,7 +1270,7 @@ Policy | Edit
                         var agent_commission_percentage = $('#agent_commission_percentage').val();
                         var agent_main_price = $('#agent_main_price').val();
                         var total_commission_amt = (parseInt(agent_commission_percentage) / 100) * parseInt(agent_main_price);
-                        $('#agent_actual_commission_amt').val(total_commission_amt);
+                        $('#agent_actual_commission_amt').val(parseFloat(total_commission_amt.toFixed(4)));
                     } else {
                         $('#agent_actual_commission_amt').val('');
                     }
@@ -1289,7 +1290,7 @@ Policy | Edit
                         var agent_commission_percentage = $('#agent_commission_percentage').val();
                         var agent_tp_premimum = $('#agent_tp_premimum').val();
                         var total_commission_amt = (parseInt(agent_commission_percentage) / 100) * parseInt(agent_tp_premimum);
-                        $('#agent_actual_commission_amt').val(total_commission_amt);
+                        $('#agent_actual_commission_amt').val(parseFloat(total_commission_amt.toFixed(4)));
                     } else {
                         $('#agent_actual_commission_amt').val('');
                     }
@@ -1330,7 +1331,7 @@ Policy | Edit
 
                         // ==== Calculate Company Profit
                         var total_company_profit = ((agent_profit_amt) - (total_tds_deduction_amt)) - (agent_actual_commission_amt);
-                        $('#agent_actual_profit_amt').val(Math.round(total_company_profit, 4));
+                        $('#agent_actual_profit_amt').val(parseFloat(total_company_profit.toFixed(4)));
 
                     } else {
                         $('#agent_actual_profit_amt').val('');
@@ -1348,7 +1349,7 @@ Policy | Edit
                         // ==== Calculate Company Profit
                         var total_company_profit = ((agent_profit_amt) - (total_tds_deduction_amt));
                         var actual_profit_amy = ((agent_actual_commission_amt) - (total_company_profit))
-                        $('#agent_actual_profit_amt').val(Math.round(actual_profit_amy, 4));
+                        $('#agent_actual_profit_amt').val(parseFloat(actual_profit_amy.toFixed(4)));
 
                     } else {
                         $('#agent_actual_profit_amt').val('');

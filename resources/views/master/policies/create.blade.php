@@ -117,9 +117,9 @@ Policy | Create
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Select Insurance Company ID : <span class="text-danger">*</span></b></label>
+                                                                <label><b>Select Company ID : <span class="text-danger">*</span></b></label>
                                                                 <select  class="form-control select @error('agent_company_id') is-invalid @enderror" id="agent_company_id" name="agent_company_id">
-                                                                    <option value="">Select Insurance Company ID</option>
+                                                                    <option value="">Select Company ID</option>
 
                                                                 </select>
                                                                 @error('agent_company_id')
@@ -266,8 +266,8 @@ Policy | Create
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Company Commission (Rs): </b></label>
-                                                                <input type="text" id="agent_company_comission_rupees" readonly name="agent_company_comission_rupees" class="form-control" value="{{ old('agent_company_comission_rupees') }}" placeholder="Enter Company Commission (Rs)">
+                                                                <label><b>Company Commission (Fixed): </b></label>
+                                                                <input type="text" id="agent_company_comission_rupees" readonly name="agent_company_comission_rupees" class="form-control" value="{{ old('agent_company_comission_rupees') }}" placeholder="Enter Company Commission (Fixed)">
 
                                                             </div>
                                                         </div>
@@ -311,7 +311,7 @@ Policy | Create
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Agent Commission (Rs) : </b></label>
+                                                                <label><b>Agent Commission (Fixed) : </b></label>
                                                                 <input type="text" readonly id="agent_comission_rupees" name="agent_comission_rupees"  class="form-control @error('agent_comission_rupees') is-invalid @enderror" value="{{ old('comission_rupees') }}" placeholder="Enter Agent Commission (Rs)">
                                                                 @error('agent_comission_rupees')
                                                                     <span class="invalid-feedback" role="alert">
@@ -323,8 +323,8 @@ Policy | Create
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>Actual Agent Commission : <span class="text-danger">*</span></b></label>
-                                                                <input type="text" readonly id="agent_actual_commission_amt" name="agent_actual_comission"  class="form-control @error('agent_actual_comission') is-invalid @enderror" value="{{ old('agent_actual_comission') }}" placeholder="Enter Agent Commission">
+                                                                <label><b>Actual Agent Commission (Rs) : <span class="text-danger">*</span></b></label>
+                                                                <input type="text" readonly id="agent_actual_commission_amt" name="agent_actual_comission"  class="form-control @error('agent_actual_comission') is-invalid @enderror" value="{{ old('agent_actual_comission') }}" placeholder="Enter Agent Commission (Rs)">
                                                                 @error('agent_actual_comission')
                                                                     <span class="invalid-feedback" role="alert">
                                                                         <strong>{{ $message }}</strong>
@@ -943,7 +943,7 @@ Policy | Create
 
 </script>
 
-{{-- Retailer Commission In Percentage fetch by retailer_commission_percentage --}}
+{{-- Fetch by Retailer Commission --}}
 <script>
     $(document).ready(function(){
         $(document).on('change','#retailer_id', function() {
@@ -966,7 +966,7 @@ Policy | Create
     });
 </script>
 
-{{-- Agent Commission In Percentage fetch by agent_commission_percentage --}}
+{{-- Fetch by Agent Commission --}}
 <script>
     $(document).ready(function(){
         // ==== pass multiple parameter in onChange
@@ -1046,7 +1046,7 @@ Policy | Create
                 dataType: 'json',
                 success: function (result) {
                     // display in  agent_company_id in select option
-                    $('#agent_company_id').html('<option value="">Select Insurance Company ID</option>');
+                    $('#agent_company_id').html('<option value="">Select Company ID</option>');
                     $.each(result.insuranceCompanyID, function (key, value) {
                         // === check value is selected or not
                         if (value.company_id_id == agent_insurance_company_id) {
@@ -1282,7 +1282,7 @@ Policy | Create
                         var agent_main_price = $('#agent_main_price').val();
                         var totalCompanyCommissionAmt = (parseInt(company_commission_percentage) / 100) * parseInt(agent_main_price);
 
-                        $('#agent_profit_amt').val(totalCompanyCommissionAmt);
+                        $('#agent_profit_amt').val(parseFloat(totalCompanyCommissionAmt.toFixed(4)));
                     } else {
                         $('#agent_profit_amt').val('');
                     }
@@ -1303,7 +1303,7 @@ Policy | Create
                         var company_commission_percentage = $('#company_commission_percentage').val();
                         var agent_tp_premimum = $('#agent_tp_premimum').val();
                         var totalCompanyCommissionAmt = (parseInt(company_commission_percentage) / 100) * parseInt(agent_tp_premimum);
-                        $('#agent_profit_amt').val(totalCompanyCommissionAmt);
+                        $('#agent_profit_amt').val(parseFloat(totalCompanyCommissionAmt.toFixed(4)));
                     } else {
                         $('#agent_profit_amt').val('');
                     }
@@ -1338,7 +1338,7 @@ Policy | Create
                         var agent_commission_percentage = $('#agent_commission_percentage').val();
                         var agent_main_price = $('#agent_main_price').val();
                         var total_commission_amt = (parseInt(agent_commission_percentage) / 100) * parseInt(agent_main_price);
-                        $('#agent_actual_commission_amt').val(total_commission_amt);
+                        $('#agent_actual_commission_amt').val(parseFloat(total_commission_amt.toFixed(4)));
                     } else {
                         $('#agent_actual_commission_amt').val('');
                     }
@@ -1358,7 +1358,7 @@ Policy | Create
                         var agent_commission_percentage = $('#agent_commission_percentage').val();
                         var agent_tp_premimum = $('#agent_tp_premimum').val();
                         var total_commission_amt = (parseInt(agent_commission_percentage) / 100) * parseInt(agent_tp_premimum);
-                        $('#agent_actual_commission_amt').val(total_commission_amt);
+                        $('#agent_actual_commission_amt').val(parseFloat(total_commission_amt.toFixed(4)));
                     } else {
                         $('#agent_actual_commission_amt').val('');
                     }
@@ -1399,7 +1399,7 @@ Policy | Create
 
                         // ==== Calculate Company Profit
                         var total_company_profit = ((agent_profit_amt) - (total_tds_deduction_amt)) - (agent_actual_commission_amt);
-                        $('#agent_actual_profit_amt').val(Math.round(total_company_profit, 4));
+                        $('#agent_actual_profit_amt').val(parseFloat(total_company_profit.toFixed(4)));
 
                     } else {
                         $('#agent_actual_profit_amt').val('');
@@ -1417,7 +1417,7 @@ Policy | Create
                         // ==== Calculate Company Profit
                         var total_company_profit = ((agent_profit_amt) - (total_tds_deduction_amt));
                         var actual_profit_amy = ((agent_actual_commission_amt) - (total_company_profit))
-                        $('#agent_actual_profit_amt').val(Math.round(actual_profit_amy, 4));
+                        $('#agent_actual_profit_amt').val(parseFloat(actual_profit_amy.toFixed(4)));
 
                     } else {
                         $('#agent_actual_profit_amt').val('');
