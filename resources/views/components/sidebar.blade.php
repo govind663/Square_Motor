@@ -10,6 +10,7 @@
                     </a>
                 </li>
 
+                @if(Auth::user()->user_type == '1')
                 <li class="{{ ($currentRoute === 'insurance_company.index') || ($currentRoute === 'insurance_company.create') || ($currentRoute === 'insurance_company.edit') ? 'active' : '' }}">
                     <a href="{{ route('insurance_company.index') }}">
                         <i class="fe fe-file-plus"></i>
@@ -125,6 +126,20 @@
                         <span>Manage Expenses</span>
                     </a>
                 </li>
+                @elseif(Auth::user()->user_type == '2')
+                <li class="{{ ($currentRoute === 'employee.index') || ($currentRoute === 'employee.create') || ($currentRoute === 'employee.edit') ? 'active' : '' }}">
+                    <a href="{{ route('employee.index') }}">
+                        <i class="fe fe-user-check"></i>
+                        <span>Manage Employee</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <i class="fe fe-file-text"></i>
+                        <span>Download Section</span>
+                    </a>
+                </li>
+                @endif
 
             </ul>
         </div>
