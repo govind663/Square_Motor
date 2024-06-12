@@ -368,28 +368,24 @@ Policy | Edit
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
                                                                 <label><b>Start Date : <span class="text-danger">*</span></b></label>
-                                                                <div class="cal-icon cal-icon-info">
-                                                                    <input type="date" id="agent_from_dt" name="from_dt"  class="form-control @error('from_dt') is-invalid @enderror" value="{{ $policy->from_dt }}" placeholder="Enter Start Date">
-                                                                    @error('from_dt')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
+                                                                <input type="date" id="agent_from_dt" name="from_dt"  class="form-control @error('from_dt') is-invalid @enderror" value="{{ $policy->from_dt }}" placeholder="Enter Start Date">
+                                                                @error('from_dt')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
                                                                 <label><b>End Date : <span class="text-danger">*</span></b></label>
-                                                                <div class="cal-icon cal-icon-info">
-                                                                    <input type="text" readonly id="agent_to_dt" name="to_dt"  class="form-control @error('to_dt') is-invalid @enderror" value="{{ $policy->to_dt }}" placeholder="Enter End Date">
-                                                                    @error('to_dt')
-                                                                        <span class="invalid-feedback" role="alert">
-                                                                            <strong>{{ $message }}</strong>
-                                                                        </span>
-                                                                    @enderror
-                                                                </div>
+                                                                <input type="text" readonly id="agent_to_dt" name="to_dt"  class="form-control @error('to_dt') is-invalid @enderror" value="{{ $policy->to_dt }}" placeholder="Enter End Date">
+                                                                @error('to_dt')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
                                                             </div>
                                                         </div>
 
