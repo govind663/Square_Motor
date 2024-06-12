@@ -896,7 +896,7 @@ Policy | Edit
 
 </script>
 
-{{-- Fetch by  Retailer Commission --}}
+{{-- Fetch by Retailer Commission --}}
 <script>
     $(document).ready(function(){
         $(document).on('change','#retailer_id', function() {
@@ -925,11 +925,21 @@ Policy | Edit
         // ==== pass multiple parameter in onChange
         $(document).on('change','#agent_vehicle_id', function() {
             let agent_vehicle_id = $(this).val();
+            // get agent_id, agent_insurance_company_id, agent_company_id, agent_rto_id, agent_vehicle_id
+            let agent_id = $('#agent_id').val();
+            let agent_insurance_company_id = $('#agent_insurance_company_id').val();
+            let agent_company_id = $('#agent_company_id').val();
+            let agent_rto_id = $('#agent_rto_id').val();
+
             $('#agent_commission_percentage').show();
             $.ajax({
                 method: 'post',
                 url: "{{ route('agent_commission_percentage') }}",
                 data: {
+                    agentId: agent_id,
+                    agentInsuranceCompanyId: agent_insurance_company_id,
+                    agentCompanyId: agent_company_id,
+                    agentRtoId: agent_rto_id,
                     agentVehicleId: agent_vehicle_id,
                     _token : '{{ csrf_token() }}'
                 },

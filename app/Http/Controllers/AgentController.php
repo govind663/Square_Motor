@@ -135,14 +135,37 @@ class AgentController extends Controller
 
     public function agent_commission_percentage(Request $request)
     {
-        $data['comissionType'] = AgentCommission::where('vehicle_id', $request->agentVehicleId)->pluck('comission_type');
+        $data['agentId'] = $request->agentId;
+        $data['agentInsuranceCompanyId'] = $request->agentInsuranceCompanyId;
+        $data['agentCompanyId'] = $request->agentCompanyId;
+        $data['agentRtoId'] = $request->agentRtoId;
+        $data['agentVehicleId'] = $request->agentVehicleId;
+
+        // dd($data);
+
+        $data['comissionType'] = AgentCommission::where('agent_id', $request->agentId)
+                                    ->where('insurance_company_id', $request->agentInsuranceCompanyId)
+                                    ->where('company_id_id', $request->agentCompanyId)
+                                    ->where('r_t_o_id', $request->agentRtoId)
+                                    ->where('vehicle_id', $request->agentVehicleId)
+                                    ->pluck('comission_type');
 
         $data['commissionPercentage'] = '';
         $data['commissionAmount'] = '';
 
-        $data['commissionPercentage'] = AgentCommission::where('vehicle_id', $request->agentVehicleId)->pluck('percentage_amt');
-        $data['commissionAmount'] = AgentCommission::where('vehicle_id', $request->agentVehicleId)->pluck('fixed_amt');
+        $data['commissionPercentage'] = AgentCommission::where('agent_id', $request->agentId)
+                                    ->where('insurance_company_id', $request->agentInsuranceCompanyId)
+                                    ->where('company_id_id', $request->agentCompanyId)
+                                    ->where('r_t_o_id', $request->agentRtoId)
+                                    ->where('vehicle_id', $request->agentVehicleId)
+                                    ->pluck('percentage_amt');
 
+        $data['commissionAmount'] = AgentCommission::where('agent_id', $request->agentId)
+                                    ->where('insurance_company_id', $request->agentInsuranceCompanyId)
+                                    ->where('company_id_id', $request->agentCompanyId)
+                                    ->where('r_t_o_id', $request->agentRtoId)
+                                    ->where('vehicle_id', $request->agentVehicleId)
+                                    ->pluck('fixed_amt');
         return response()->json($data);
     }
 
