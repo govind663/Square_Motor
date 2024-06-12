@@ -213,33 +213,33 @@ Define Out Commission | Add
 </script>
 
 <script>
-    $(document).ready(function(){
-        $(document).on('change','#company_id_id', function() {
-            let company_id_id = $(this).val();
+    // $(document).ready(function(){
+    //     $(document).on('change','#company_id_id', function() {
+    //         let company_id_id = $(this).val();
 
-            $('#comission_type').show();
-            $.ajax({
-                method: 'POST',
-                url: "{{ route('fetch_company_commission') }}",
-                data: {
-                    companyID: company_id_id,
-                    _token : '{{ csrf_token() }}'
-                },
-                dataType: 'json',
-                success: function (result) {
+    //         $('#comission_type').show();
+    //         $.ajax({
+    //             method: 'POST',
+    //             url: "{{ route('fetch_company_commission') }}",
+    //             data: {
+    //                 companyID: company_id_id,
+    //                 _token : '{{ csrf_token() }}'
+    //             },
+    //             dataType: 'json',
+    //             success: function (result) {
 
-                    $('#comission_type').html('<option value="">Select Commision Type</option>');
-                    $.each(result.companyCommission, function (key, value) {
-                        // ===== value.commission_type == 1
-                        if(value.commission_type == 1){
-                            $('#comission_type').append('<option value="' + '01' + '">' + 'Percentage' + '</option>');
-                        } else if (value.commission_type == 2){
-                            $('#comission_type').append('<option value="' + '02' + '">' + 'Fixed' + '</option>');
-                        }
-                    });
-                },
-            });
-        });
-    });
+    //                 $('#comission_type').html('<option value="">Select Commision Type</option>');
+    //                 $.each(result.companyCommission, function (key, value) {
+    //                     // ===== value.commission_type == 1
+    //                     if(value.commission_type == 1){
+    //                         $('#comission_type').append('<option value="' + '01' + '">' + 'Percentage' + '</option>');
+    //                     } else if (value.commission_type == 2){
+    //                         $('#comission_type').append('<option value="' + '02' + '">' + 'Fixed' + '</option>');
+    //                     }
+    //                 });
+    //             },
+    //         });
+    //     });
+    // });
 </script>
 @endpush
