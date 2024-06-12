@@ -113,6 +113,7 @@ Agent Payment | Edit
                                             @enderror
                                         </div>
                                     </div>
+
                                     <div class="col-lg-4 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Date : <span class="text-danger">*</span></b></label>

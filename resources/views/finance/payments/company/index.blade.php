@@ -74,6 +74,7 @@ Company Payment | List
                                         <th>Sr. No.</th>
                                         <th>Company Name</th></th>
                                         <th>Amount</th>
+                                        <th>Payment Type</th>
                                         <th>Payment Mode</th>
                                         <th>Notes</th>
                                         <th>Date</th>
@@ -86,6 +87,13 @@ Company Payment | List
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $value->insurance_companies?->company_name }}</td>
                                         <td>{{ $value->amount }}</td>
+                                        <td>
+                                            @if($value->payment_type == '1')
+                                                <span class="badge bg-danger">Debit</span>
+                                            @elseif($value->payment_type == '2')
+                                                <span class="badge bg-success">Credit</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             @if($value->payment_mode == '1')
                                                 <span class="badge bg-success" >Cash</span>

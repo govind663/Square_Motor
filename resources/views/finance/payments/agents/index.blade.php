@@ -89,9 +89,9 @@ Agent Payment | List
                                         <td>{{ $value->amount }}</td>
                                         <td>
                                             @if($value->payment_type == '1')
-                                                <span class="badge bg-success">Debit</span>
+                                                <span class="badge bg-danger">Debit</span>
                                             @elseif($value->payment_type == '2')
-                                                <span class="badge bg-primary">Credit</span>
+                                                <span class="badge bg-success">Credit</span>
                                             @endif
                                         </td>
                                         <td>
