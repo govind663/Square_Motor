@@ -369,7 +369,7 @@ Policy | Edit
                                                             <div class="input-block mb-3">
                                                                 <label><b>Start Date : <span class="text-danger">*</span></b></label>
                                                                 <div class="cal-icon cal-icon-info">
-                                                                    <input type="text" id="from_dt" name="from_dt"  class="form-control datetimepicker @error('from_dt') is-invalid @enderror" value="{{ $policy->from_dt }}" placeholder="Enter Start Date">
+                                                                    <input type="date" id="agent_from_dt" name="from_dt"  class="form-control @error('from_dt') is-invalid @enderror" value="{{ $policy->from_dt }}" placeholder="Enter Start Date">
                                                                     @error('from_dt')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -383,7 +383,7 @@ Policy | Edit
                                                             <div class="input-block mb-3">
                                                                 <label><b>End Date : <span class="text-danger">*</span></b></label>
                                                                 <div class="cal-icon cal-icon-info">
-                                                                    <input type="text" id="to_dt" name="to_dt"  class="form-control datetimepicker @error('to_dt') is-invalid @enderror" value="{{ $policy->to_dt }}" placeholder="Enter End Date">
+                                                                    <input type="text" readonly id="agent_to_dt" name="to_dt"  class="form-control @error('to_dt') is-invalid @enderror" value="{{ $policy->to_dt }}" placeholder="Enter End Date">
                                                                     @error('to_dt')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -782,6 +782,31 @@ Policy | Edit
         var month = myDate.getMonth() + 1;
         var prettyDate = myDate.getDate() + '-' + month + '-' + myDate.getFullYear();
         $("#agent_issue_dt").val(prettyDate);
+    });
+</script>
+
+{{-- Calculate Finicial Year --}}
+<script>
+    $(document).ready(function() {
+        $('#agent_from_dt').change(function() {
+            var agentFromDate = $(this).val();
+            $('#agent_to_dt').val('');
+            $.ajax({
+                url: "{{ route('calculate_financial_year') }}",
+                method: 'POST',
+                data: {
+                    agent_from_dt: agentFromDate,
+                    _token: '{{ csrf_token() }}'
+                },
+                dataType: 'json',
+                success: function(data) {
+                    $('#agent_to_dt').val(data.financialYear);
+                },
+                error: function(data) {
+                    console.log('Error:', data);
+                }
+            });
+        });
     });
 </script>
 

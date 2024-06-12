@@ -106,6 +106,8 @@ Route::group(['prefix' => 'square-motor','middleware'=>['auth', PreventBackHisto
 
     // ==== Policies resources routes
     Route::resource('policy', PolicyController::class);
+    // ==== Calculate Finicial Year (calculate_financial_year)
+    Route::post('calculate_financial_year', [PolicyController::class, 'calculate_financial_year'])->name('calculate_financial_year');
 
     // ==== Expenses resources routes
     Route::resource('expenses', ExpensesController::class);

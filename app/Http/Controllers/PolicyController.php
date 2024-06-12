@@ -395,4 +395,13 @@ class PolicyController extends Controller
             return redirect()->back()->with('error','Something Went Wrong - '.$ex->getMessage());
         }
     }
+
+    // ==== Calculate Finicial Year (calculate_financial_year)
+    public function calculate_financial_year(Request $request){
+
+        $startDate = $request->input('agent_from_dt');
+        $endDate = date('d-m-Y', strtotime('+1 year', strtotime($startDate)));
+        $financialYear = date('d-m-Y', strtotime('-1 day', strtotime($endDate)));
+        return response()->json(['financialYear' => $financialYear]);
+    }
 }
