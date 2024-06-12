@@ -26,6 +26,7 @@ class PaymentRequest extends FormRequest
             $rule = [
                 'agent_id' => 'required|max:255',
                 'amount'=>'required|max:255',
+                'payment_type'=>'required|max:255',
                 'payment_mode'=>'required|max:255',
                 'notes'=>'required|max:255',
                 'payment_dt'=>'required|max:255'
@@ -34,6 +35,7 @@ class PaymentRequest extends FormRequest
             $rule = [
                 'agent_id' => 'required|max:255',
                 'amount'=>'required|max:255',
+                'payment_type'=>'required|max:255',
                 'payment_mode'=>'required|max:255',
                 'notes'=>'required|max:255',
                 'payment_dt'=>'required|max:255'
@@ -49,6 +51,7 @@ class PaymentRequest extends FormRequest
             'agent_id.max' => __('The length of Agent Name should not exceed 255 characters'),
             'amount.required' => __('Please Select Amount'),
             'amount.max' => __('The length of Amount should not exceed 255 characters'),
+            'payment_type.required'=> __('Please Select Payment Type'),
             'payment_mode.required'=> __('Please Select Payment Mode'),
             'notes.required'=> __('Notes is required'),
             'payment_dt.required'=> __('Date is required')

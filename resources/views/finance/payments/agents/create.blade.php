@@ -64,6 +64,22 @@ Agent Payment | Add
 
                                         <div class="col-lg-4 col-md-12 col-sm-12">
                                             <div class="input-block mb-3" >
+                                                <label><b>Payment Type : <span class="text-danger">*</span></b></label>
+                                                <select class="form-control @error('payment_type') is-invalid @enderror select" id="payment_type" name="payment_type">
+                                                    <option value="">Select Payment Type</option>
+                                                    <option value="1" {{ (old("payment_type") == '1' ? "selected":"") }}>Debit</option>
+                                                    <option value="2" {{ (old("payment_type") == '2' ? "selected":"") }}>Credit</option>
+                                                </select>
+                                                @error('payment_type')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4 col-md-12 col-sm-12">
+                                            <div class="input-block mb-3" >
                                                 <label><b>Payment Mode : <span class="text-danger">*</span></b></label>
                                                 <select class="form-control @error('payment_mode') is-invalid @enderror select" id="payment_mode" name="payment_mode">
                                                     <option value="">Select Payment Mode</option>
@@ -72,6 +88,9 @@ Agent Payment | Add
                                                     <option value="3" {{ (old("payment_mode") == '3' ? "selected":"") }}>Online Transfer</option>
                                                     <option value="4" {{ (old("payment_mode") == '4' ? "selected":"") }}>GooglePay</option>
                                                     <option value="5" {{ (old("payment_mode") == '5' ? "selected":"") }}>PhonePay</option>
+                                                    <option value="6" {{ (old("payment_mode") == '6' ? "selected":"") }}>UPI</option>
+                                                    <option value="7" {{ (old("payment_mode") == '7' ? "selected":"") }}>Card</option>
+                                                    <option value="8" {{ (old("payment_mode") == '8' ? "selected":"") }}>Net Banking</option>
                                                 </select>
                                                 @error('payment_mode')
                                                     <span class="invalid-feedback" role="alert">

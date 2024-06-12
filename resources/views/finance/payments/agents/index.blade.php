@@ -74,6 +74,7 @@ Agent Payment | List
                                         <th>Sr. No.</th>
                                         <th>Agent Name</th></th>
                                         <th>Amount</th>
+                                        <th>Payment Type</th>
                                         <th>Payment Mode</th>
                                         <th>Notes</th>
                                         <th>Date</th>
@@ -86,6 +87,13 @@ Agent Payment | List
                                         <td>{{ ++$key }}</td>
                                         <td>{{ $value->agents?->name }}</td>
                                         <td>{{ $value->amount }}</td>
+                                        <td>
+                                            @if($value->payment_type == '1')
+                                                <span class="badge bg-success">Debit</span>
+                                            @elseif($value->payment_type == '2')
+                                                <span class="badge bg-primary">Credit</span>
+                                            @endif
+                                        </td>
                                         <td>
                                             @if($value->payment_mode == '1')
                                                 <span class="badge bg-success" >Cash</span>

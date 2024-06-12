@@ -49,6 +49,7 @@ class PaymentController extends Controller
 
             $payment->agent_id = $request->agent_id;
             $payment->amount = $request->amount;
+            $payment->payment_type = $request->payment_type;
             $payment->payment_mode = $request->payment_mode;
             $payment->notes = $request->notes;
             $payment->payment_dt = Carbon::createFromFormat('Y-m-d', $request['payment_dt'])->format('Y-m-d');
@@ -126,6 +127,7 @@ class PaymentController extends Controller
             $payment = Payment::find($id);
             $payment->agent_id = $request->agent_id;
             $payment->amount = $request->amount;
+            $payment->payment_type = $request->payment_type;
             $payment->payment_mode = $request->payment_mode;
             $payment->notes = $request->notes;
             $payment->payment_dt = date("Y-m-d", strtotime($request->payment_dt));

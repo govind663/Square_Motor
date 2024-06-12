@@ -16,6 +16,7 @@ class Payment extends Model
         'agent_id',
         'insurance_company_id',
         'amount',
+        'payment_type',
         'payment_mode',
         'notes',
         'payment_dt',
