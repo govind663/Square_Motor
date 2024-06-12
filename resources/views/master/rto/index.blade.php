@@ -57,7 +57,7 @@ RTO | List
                         </div>
                         <div class="col-2 float-right">
                             <a href="{{ route('rto.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i> RTO
+                                <i class="fa fa-plus me-2" aria-hidden="true"></i> RTO
                             </a>
                         </div>
                     </div>

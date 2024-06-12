@@ -57,7 +57,7 @@ Define In Commission | List
                         </div>
                         <div class="col-3 float-right">
                             <a href="{{ route('insurance_company_id.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Define In Commission
+                                <i class="fa fa-plus me-2" aria-hidden="true"></i>Define In Commission
                             </a>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Manage Payment to Company | List
+Company Payment | List
 @endsection
 
 @push('styles')
@@ -43,10 +43,10 @@ Manage Payment to Company | List
         <div class="page-header">
             <div class="row">
                 <div class="col">
-                    <h3 class="page-title">Manage Payment to Company</h3>
+                    <h3 class="page-title">Company Payment</h3>
                     <ul class="breadcrumb">
                         <li class="breadcrumb-item"><a href="{{ route('home') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">All Payment to Company List</li>
+                        <li class="breadcrumb-item active">All Company Payment List</li>
                     </ul>
                 </div>
             </div>
@@ -58,11 +58,11 @@ Manage Payment to Company | List
                 <div class="card">
                     <div class="row card-body">
                         <div class="col-9">
-                            <h5 class="card-title">All Payment to Company List</h5>
+                            <h5 class="card-title">All Company Payment List</h5>
                         </div>
                         <div class="col-3 float-right">
                             <a href="{{ route('payment_to_company.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Payment to Company
+                                <i class="fa fa-plus me-2" aria-hidden="true"></i>Company Payment
                             </a>
                         </div>
                     </div>

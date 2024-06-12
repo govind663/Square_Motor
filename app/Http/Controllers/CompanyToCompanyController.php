@@ -52,8 +52,8 @@ class CompanyToCompanyController extends Controller
             'to_date' => 'required',
             'insurance_company_id' => 'required',
            ],[
-            'from_date.required' => 'From Date of Transaction is required.',
-            'to_date.required' => 'To Date of Transaction is required.',
+            'from_date.required' => 'Start Date of Transaction is required.',
+            'to_date.required' => 'End Date of Transaction is required.',
             'insurance_company_id.required' => 'Insurance Company Name is required.',
             ]);
 

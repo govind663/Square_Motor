@@ -59,7 +59,7 @@ Expenses | List
                                 <div class="row">
                                     <div class="col-lg-3 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
-                                            <label><b>From Date : <span class="text-danger">*</span></b></b></label>
+                                            <label><b>Start Date : <span class="text-danger">*</span></b></b></label>
                                             <div class="cal-icon cal-icon-info">
                                                 <input type="text"  id="from_date" name="from_date" class="form-control datetimepicker @error('from_date') is-invalid @enderror" value="{{ old('from_date') }}" placeholder="DD/MM/YYYY">
                                                 @error('from_date')
@@ -73,7 +73,7 @@ Expenses | List
 
                                     <div class="col-lg-3 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
-                                            <label><b>To Date : <span class="text-danger">*</span></b></b></label>
+                                            <label><b>End Date : <span class="text-danger">*</span></b></b></label>
                                             <div class="cal-icon cal-icon-info">
                                                 <input type="text"  id="to_date" name="to_date" class="form-control datetimepicker @error('to_date') is-invalid @enderror" value="{{ old('to_date') }}" placeholder="DD/MM/YYYY">
                                                 @error('to_date')
@@ -101,7 +101,7 @@ Expenses | List
                         </div>
                         <div class="col-2 float-right">
                             <a href="{{ route('expenses.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Expenses
+                                <i class="fa fa-plus me-2" aria-hidden="true"></i>Expenses
                             </a>
                         </div>
                     </div>

@@ -367,9 +367,9 @@ Policy | Edit
                                                     <div class="row">
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>From Date : <span class="text-danger">*</span></b></label>
+                                                                <label><b>Start Date : <span class="text-danger">*</span></b></label>
                                                                 <div class="cal-icon cal-icon-info">
-                                                                    <input type="text" id="from_dt" name="from_dt"  class="form-control datetimepicker @error('from_dt') is-invalid @enderror" value="{{ $policy->from_dt }}" placeholder="Enter From Date">
+                                                                    <input type="text" id="from_dt" name="from_dt"  class="form-control datetimepicker @error('from_dt') is-invalid @enderror" value="{{ $policy->from_dt }}" placeholder="Enter Start Date">
                                                                     @error('from_dt')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -381,9 +381,9 @@ Policy | Edit
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>To Date : <span class="text-danger">*</span></b></label>
+                                                                <label><b>End Date : <span class="text-danger">*</span></b></label>
                                                                 <div class="cal-icon cal-icon-info">
-                                                                    <input type="text" id="to_dt" name="to_dt"  class="form-control datetimepicker @error('to_dt') is-invalid @enderror" value="{{ $policy->to_dt }}" placeholder="Enter To Date">
+                                                                    <input type="text" id="to_dt" name="to_dt"  class="form-control datetimepicker @error('to_dt') is-invalid @enderror" value="{{ $policy->to_dt }}" placeholder="Enter End Date">
                                                                     @error('to_dt')
                                                                         <span class="invalid-feedback" role="alert">
                                                                             <strong>{{ $message }}</strong>
@@ -653,18 +653,18 @@ Policy | Edit
                                                     <div class="row">
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>From Date : <span class="text-danger">*</span></b></label>
+                                                                <label><b>Start Date : <span class="text-danger">*</span></b></label>
                                                                 <div class="cal-icon cal-icon-info">
-                                                                     <input type="text" id="from_dt" name="from_dt" required class="form-control   datetimepicker" value="{{ date('d-m-Y', strtotime($policy->from_dt)) }}" placeholder="Enter From Date">
+                                                                     <input type="text" id="from_dt" name="from_dt" required class="form-control   datetimepicker" value="{{ date('d-m-Y', strtotime($policy->from_dt)) }}" placeholder="Enter Start Date">
                                                                 </div>
                                                             </div>
                                                         </div>
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
-                                                                <label><b>To Date : <span class="text-danger">*</span></b></label>
+                                                                <label><b>End Date : <span class="text-danger">*</span></b></label>
                                                                 <div class="cal-icon cal-icon-info">
-                                                                      <input type="text" id="to_date" name="to_date" required class="form-control   datetimepicker " value="{{ date('d-m-Y', strtotime($policy->to_dt)) }}" placeholder="Enter To Date">
+                                                                      <input type="text" id="to_date" name="to_date" required class="form-control   datetimepicker " value="{{ date('d-m-Y', strtotime($policy->to_dt)) }}" placeholder="Enter End Date">
                                                                 </div>
                                                             </div>
                                                         </div>

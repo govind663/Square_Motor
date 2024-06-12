@@ -175,8 +175,8 @@ class PolicyRequest extends FormRequest
             'comission_rupees.required' => __('Agent Commission (RS) is required'),
 
             // === Policy Period custom message
-            'from_dt.required' => __('From Date is required'),
-            'to_dt.required' => __('To Date is required'),
+            'from_dt.required' => __('Start Date is required'),
+            'to_dt.required' => __('End Date is required'),
             'issue_dt.required' => __('Issue Date is required'),
 
             // === Payment Through custom message

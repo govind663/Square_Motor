@@ -96,10 +96,10 @@
                     </a>
                     <ul style="display: none;">
                         <li class="menu-arrow {{ ($currentRoute === 'payment.index') || ($currentRoute === 'payment.create') || ($currentRoute === 'payment.edit') ? 'active' : '' }}">
-                            <a href="{{ route('payment.index') }}"><span>Payment to Agent</span></a>
+                            <a href="{{ route('payment.index') }}"><span>Agent Payment</span></a>
                         </li>
                         <li class="menu-arrow {{ ($currentRoute === 'payment_to_company.index') || ($currentRoute === 'payment_to_company.create') || ($currentRoute === 'payment_to_company.edit') ? 'active' : '' }}">
-                            <a href="{{ route('payment_to_company.index') }}"><span>Payment to Company</span></a>
+                            <a href="{{ route('payment_to_company.index') }}"><span>Company Payment</span></a>
                         </li>
                         <li class="{{ ($currentRoute === 'agent_to_company.index') ? 'active' : '' }}">
                             <a href="{{ route('agent_to_company.index') }}"><span>Agent Leadger</span></a>

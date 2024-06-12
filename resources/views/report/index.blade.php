@@ -64,7 +64,7 @@ Report | List
                                 <div class="row">
                                     <div class="col-lg-3 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
-                                            <label><b>From Date : <span class="text-danger">*</span></b></b></label>
+                                            <label><b>Start Date : <span class="text-danger">*</span></b></b></label>
                                             <div class="cal-icon cal-icon-info">
                                                 <input type="text"  id="from_date" name="from_date" class="form-control datetimepicker @error('from_date') is-invalid @enderror" value="{{ old('from_date', request('from_date')) }}" placeholder="DD-MM-YYYY">
                                                 @error('from_date')
@@ -78,7 +78,7 @@ Report | List
 
                                     <div class="col-lg-3 col-md-12 col-sm-12">
                                         <div class="input-block mb-3">
-                                            <label><b>To Date : <span class="text-danger">*</span></b></b></label>
+                                            <label><b>End Date : <span class="text-danger">*</span></b></b></label>
                                             <div class="cal-icon cal-icon-info">
                                                 <input type="text"  id="to_date" name="to_date" class="form-control datetimepicker @error('to_date') is-invalid @enderror" value="{{ old('to_date', request('to_date')) }}" placeholder="DD-MM-YYYY">
                                                 @error('to_date')

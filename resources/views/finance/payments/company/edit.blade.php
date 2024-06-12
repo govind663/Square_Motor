@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Payment | Edit
+Company Payment | Edit
 @endsection
 
 @push('styles')
@@ -20,7 +20,7 @@ Payment | Edit
 
                 <div class="page-header">
                     <div class="content-page-header">
-                        <h5>Edit Payment</h5>
+                        <h5>Edit Company Payment</h5>
                     </div>
                 </div>
 

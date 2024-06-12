@@ -57,7 +57,7 @@ Insurance Company | List
                         </div>
                         <div class="col-3 float-right">
                             <a href="{{ route('insurance_company.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Insurance Company
+                                <i class="fa fa-plus me-2" aria-hidden="true"></i>Insurance Company
                             </a>
                         </div>
                     </div>

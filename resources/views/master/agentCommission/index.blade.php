@@ -52,12 +52,12 @@
             <div class="col-sm-12">
                 <div class="card">
                     <div class="row card-body">
-                        <div class="col-10">
+                        <div class="col-9">
                             <h5 class="card-title">All Define Out Commission List</h5>
                         </div>
-                        <div class="col-2 float-right">
+                        <div class="col-3 float-right">
                             <a href="{{ route('agent_commission.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Define Out Commission
+                                <i class="fa fa-plus me-2" aria-hidden="true"></i>Define Out Commission
                             </a>
                         </div>
                     </div>

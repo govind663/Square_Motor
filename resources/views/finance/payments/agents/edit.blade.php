@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('title')
-Payment to Agent | Edit
+Agent Payment | Edit
 @endsection
 
 @push('styles')
@@ -20,7 +20,7 @@ Payment to Agent | Edit
 
                 <div class="page-header">
                     <div class="content-page-header">
-                        <h5>Edit Payment</h5>
+                        <h5>Edit Agent Payment</h5>
                     </div>
                 </div>
 

@@ -55,9 +55,9 @@ Manage Company Id | List
                         <div class="col-9">
                             <h5 class="card-title">All Company Id List</h5>
                         </div>
-                        <div class="col-3 float-right">
+                        <div class="col-3">
                             <a href="{{ route('company_id.create') }}" class="btn btn-primary btn-sm">
-                                <i class="fa fa-plus-circle me-2" aria-hidden="true"></i>Company Id
+                                <i class="fa fa-plus me-2" aria-hidden="true"></i>Company ID
                             </a>
                         </div>
                     </div>

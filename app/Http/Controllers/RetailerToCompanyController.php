@@ -50,8 +50,8 @@ class RetailerToCompanyController extends Controller
             'to_date' => 'required',
             'retailer_id' => 'required',
            ],[
-            'from_date.required' => 'From Date of Transaction is required.',
-            'to_date.required' => 'To Date of Transaction is required.',
+            'from_date.required' => 'Start Date of Transaction is required.',
+            'to_date.required' => 'End Date of Transaction is required.',
             'retailer_id' => 'Retailer Name is required.',
             ]);
 
