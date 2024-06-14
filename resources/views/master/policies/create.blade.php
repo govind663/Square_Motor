@@ -1295,14 +1295,14 @@ Policy | Create
         });
 
         // Calculate Company Commission
-        $('#agent_company_commission_type, #company_commission_percentage, #agent_company_comission_rupees, #agent_main_price, #agent_vehicle_type, #agent_tp_premimum').on('keyup', function () {
+        $('#agent_company_commission_type, #company_commission_percentage, #agent_company_comission_rupees, #agent_main_price, #agent_vehicle_type, #agent_net_premimum').on('keyup', function () {
 
             // ==== get all values
             agent_company_commission_type = $('#agent_company_commission_type').val();
             company_commission_percentage = $('#company_commission_percentage').val();
             agent_company_comission_rupees = $('#agent_company_comission_rupees').val();
             agent_main_price = $('#agent_main_price').val();
-            agent_tp_premimum = $('#agent_tp_premimum').val();
+            agent_net_premimum = $('#agent_net_premimum').val();
 
 
             // ==== check agent_company_commission_type
@@ -1330,20 +1330,20 @@ Policy | Create
                 }
             } else if ($('#agent_vehicle_type').val() == '2') {
                 if (agent_company_commission_type == 1) {
-                    if (agent_tp_premimum != '' && company_commission_percentage != '') {
+                    if (agent_net_premimum != '' && company_commission_percentage != '') {
                         var company_commission_percentage = $('#company_commission_percentage').val();
-                        var agent_tp_premimum = $('#agent_tp_premimum').val();
-                        var totalCompanyCommissionAmt = (parseInt(company_commission_percentage) / 100) * parseInt(agent_tp_premimum);
+                        var agent_net_premimum = $('#agent_net_premimum').val();
+                        var totalCompanyCommissionAmt = (parseInt(company_commission_percentage) / 100) * parseInt(agent_net_premimum);
                         $('#agent_profit_amt').val(parseFloat(totalCompanyCommissionAmt.toFixed(4)));
                     } else {
                         $('#agent_profit_amt').val('');
                     }
                 } else if (agent_company_commission_type == 2) {
-                    if (agent_company_comission_rupees != '' && agent_tp_premimum != '') {
+                    if (agent_company_comission_rupees != '' && agent_net_premimum != '') {
 
                         var agent_company_comission_rupees = $('#agent_company_comission_rupees').val();
-                        var agent_tp_premimum = $('#agent_tp_premimum').val();
-                        var totalCompanyCommissionRupees = (parseInt(agent_tp_premimum) - parseInt(agent_company_comission_rupees));
+                        var agent_net_premimum = $('#agent_net_premimum').val();
+                        var totalCompanyCommissionRupees = (parseInt(agent_net_premimum) - parseInt(agent_company_comission_rupees));
                         $('#agent_profit_amt').val(totalCompanyCommissionRupees);
                     } else {
                         $('#agent_profit_amt').val('');
@@ -1354,13 +1354,13 @@ Policy | Create
         });
 
         // Calculate Agent Commission
-        $('#agent_commission_type, #agent_comission_rupees, #agent_commission_percentage, #agent_main_price, #agent_vehicle_type, #agent_tp_premimum').on('keyup', function () {
+        $('#agent_commission_type, #agent_comission_rupees, #agent_commission_percentage, #agent_main_price, #agent_vehicle_type, #agent_net_premimum').on('keyup', function () {
 
             agent_commission_type = $('#agent_commission_type').val();
             agent_commission_percentage = $('#agent_commission_percentage').val();
             agent_comission_rupees = $('#agent_comission_rupees').val();
             agent_main_price = $('#agent_main_price').val();
-            agent_tp_premimum = $('#agent_tp_premimum').val();
+            agent_net_premimum = $('#agent_net_premimum').val();
 
             // ==== check agent_vehicle_type
             if ($('#agent_vehicle_type').val() == '1') {
@@ -1385,19 +1385,19 @@ Policy | Create
                 }
             } else if ($('#agent_vehicle_type').val() == '2') {
                 if (agent_commission_type == 1) {
-                    if (agent_commission_percentage != '' && agent_tp_premimum != '') {
+                    if (agent_commission_percentage != '' && agent_net_premimum != '') {
                         var agent_commission_percentage = $('#agent_commission_percentage').val();
-                        var agent_tp_premimum = $('#agent_tp_premimum').val();
-                        var total_commission_amt = (parseInt(agent_commission_percentage) / 100) * parseInt(agent_tp_premimum);
+                        var agent_net_premimum = $('#agent_net_premimum').val();
+                        var total_commission_amt = (parseInt(agent_commission_percentage) / 100) * parseInt(agent_net_premimum);
                         $('#agent_actual_commission_amt').val(parseFloat(total_commission_amt.toFixed(4)));
                     } else {
                         $('#agent_actual_commission_amt').val('');
                     }
                 } else if (agent_commission_type == 2) {
-                    if (agent_comission_rupees != '' && agent_tp_premimum != '') {
+                    if (agent_comission_rupees != '' && agent_net_premimum != '') {
                         var agent_comission_rupees = $('#agent_comission_rupees').val();
-                        var agent_tp_premimum = $('#agent_tp_premimum').val();
-                        var total_commission_amt = ( parseInt(agent_tp_premimum) - parseInt(agent_comission_rupees));
+                        var agent_net_premimum = $('#agent_net_premimum').val();
+                        var total_commission_amt = ( parseInt(agent_net_premimum) - parseInt(agent_comission_rupees));
                         $('#agent_actual_commission_amt').val(total_commission_amt);
                     } else {
                         $('#agent_actual_commission_amt').val('');
