@@ -1300,7 +1300,7 @@ Policy | Edit
                     if (agent_commission_percentage != '' && agent_main_price != '') {
                         var agent_commission_percentage = $('#agent_commission_percentage').val();
                         var agent_main_price = $('#agent_main_price').val();
-                        var total_commission_amt = (parseInt(agent_commission_percentage) / 100) * parseInt(agent_main_price);
+                        var total_commission_amt = ((agent_commission_percentage) / 100) * (agent_main_price);
                         $('#agent_actual_commission_amt').val(parseFloat(total_commission_amt.toFixed(4)));
                     } else {
                         $('#agent_actual_commission_amt').val('');
@@ -1309,8 +1309,8 @@ Policy | Edit
                     if (agent_comission_rupees != '' && agent_main_price != '') {
                         var agent_comission_rupees = $('#agent_comission_rupees').val();
                         var agent_main_price = $('#agent_main_price').val();
-                        var total_commission_amt = (parseInt(agent_main_price) - parseInt(agent_comission_rupees));
-                        $('#agent_actual_commission_amt').val(total_commission_amt);
+                        var total_commission_amt = ((agent_main_price) - (agent_comission_rupees));
+                        $('#agent_actual_commission_amt').val(agent_comission_rupees);
                     } else {
                         $('#agent_actual_commission_amt').val('');
                     }
@@ -1320,7 +1320,7 @@ Policy | Edit
                     if (agent_commission_percentage != '' && agent_net_premimum != '') {
                         var agent_commission_percentage = $('#agent_commission_percentage').val();
                         var agent_net_premimum = $('#agent_net_premimum').val();
-                        var total_commission_amt = (parseInt(agent_commission_percentage) / 100) * parseInt(agent_net_premimum);
+                        var total_commission_amt = ((agent_commission_percentage) / 100) * (agent_net_premimum);
                         $('#agent_actual_commission_amt').val(parseFloat(total_commission_amt.toFixed(4)));
                     } else {
                         $('#agent_actual_commission_amt').val('');
@@ -1329,8 +1329,8 @@ Policy | Edit
                     if (agent_comission_rupees != '' && agent_net_premimum != '') {
                         var agent_comission_rupees = $('#agent_comission_rupees').val();
                         var agent_net_premimum = $('#agent_net_premimum').val();
-                        var total_commission_amt = ( parseInt(agent_net_premimum) - parseInt(agent_comission_rupees));
-                        $('#agent_actual_commission_amt').val(total_commission_amt);
+                        var total_commission_amt = ( (agent_net_premimum) - (agent_comission_rupees));
+                        $('#agent_actual_commission_amt').val(agent_comission_rupees);
                     } else {
                         $('#agent_actual_commission_amt').val('');
                     }
