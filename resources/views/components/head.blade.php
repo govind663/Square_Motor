@@ -35,11 +35,9 @@
 <link rel="stylesheet" href="{{ asset('assets/datatables/css/buttons.bootstrap5.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/datatables/css/responsive.bootstrap5.css') }}">
 
-
-<!-- Toaster Message -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
 <script src="{{ asset('/assets/js/layout.js') }}"></script>
 
+<!-- Toaster Message -->
+<link rel="stylesheet" href="{{ asset('assets/toaster/css/toastr.min.css') }}" />
+<script src="{{ asset('assets/toaster/js/jquery.min.js') }}"></script>
+<script src="{{ asset('assets/toaster/js/toaster.min.js') }}"></script>
