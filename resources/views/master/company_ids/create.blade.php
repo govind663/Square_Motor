@@ -34,7 +34,7 @@ Company Id | Add
                                     <div class="col-lg-4 col-md-6 col-sm-12">
                                         <div class="input-block mb-3">
                                             <label><b>Select Company Name : <span class="text-danger">*</span></b></label>
-                                            <select class="form-select @error('insurance_company_id') is-invalid @enderror select" id="insurance_company_id" name="insurance_company_id">
+                                            <select class="@error('insurance_company_id') is-invalid @enderror select" id="insurance_company_id" name="insurance_company_id">
                                                 <option value="">Select Company Name</option>
                                                 @foreach ($insuranceCompanies as $value )
                                                 <option value="{{ $value->id }}" {{ (old("insurance_company_id") == $value->id ? "selected":"") }}>{{ $value->company_name }}</option>

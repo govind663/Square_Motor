@@ -1,24 +1,25 @@
 <!-- jQuery -->
-<script src="{{ asset('/assets/js/jquery-3.7.1.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery-3.7.1.min.js') }}"></script>
 
 <!-- Bootstrap Core JS -->
-<script src="{{ asset('/assets/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap.bundle.min.js') }}"></script>
 
 <!-- Feather Icon JS -->
-<script src="{{ asset('/assets/js/feather.min.js') }}"></script>
+<script src="{{ asset('assets/js/feather.min.js') }}"></script>
 
 <!-- select2 JS -->
-<script src="{{ asset('/assets/plugins/select2/js/select2.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/select2/js/select2.full.js') }}"></script>
+<script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
 
 <!--- File Upload JS -->
-<script src="{{ asset('/assets/plugins/fileupload/fileupload.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/fileupload/fileupload.min.js') }}"></script>
 
 <!-- Slimscroll JS -->
-<script src="{{ asset('/assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
 <!-- Datetimepicker JS -->
-<script src="{{ asset('/assets/plugins/moment/moment.min.js') }}"></script>
-<script src="{{ asset('/assets/js/bootstrap-datetimepicker.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('assets/js/bootstrap-datetimepicker.min.js') }}"></script>
 
 <!-- Datatables JS -->
 <script src="{{ asset('assets/datatables/js/dataTables.js') }}"></script>
@@ -34,14 +35,14 @@
 <script src="{{ asset('assets/datatables/js/buttons.print.min.js') }}"></script>
 <script src="{{ asset('assets/datatables/js/buttons.colVis.min.js') }}"></script>
 
-<script src="{{ asset('/assets/js/jquery-ui.min.js') }}"></script>
+<script src="{{ asset('assets/js/jquery-ui.min.js') }}"></script>
 
-<script src="{{ asset('/assets/js/theme-settings.js') }}"></script>
-<script src="{{ asset('/assets/js/greedynav.js') }}"></script>
+<script src="{{ asset('assets/js/theme-settings.js') }}"></script>
+<script src="{{ asset('assets/js/greedynav.js') }}"></script>
 
 <!-- Custom JS -->
-<script src="{{ asset('/assets/js/script.js') }}"></script>
-
+<script src="{{ asset('assets/js/script.js') }}"></script>
+<script src="{{ asset('cdn-cgi/scripts/7d0fa10a/cloudflare-static/rocket-loader.min.js') }}" data-cf-settings="f6e2172995d506bdd2e27e54-|49" defer></script>
 
 <script>
     @if(Session::has('message'))
