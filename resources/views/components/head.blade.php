@@ -38,6 +38,6 @@
 <script src="{{ asset('assets/js/layout.js') }}" type="ecc6729bbed9073710614b89-text/javascript"></script>
 
 <!-- Toaster Message -->
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/toaster/css/toastr.min.css') }}" />
 <script src="{{ asset('assets/toaster/js/jquery.min.js') }}"></script>
+<link rel="stylesheet" type="text/css" href="{{ asset('assets/toaster/css/toastr.min.css') }}" />
 <script src="{{ asset('assets/toaster/js/toastr.min.js') }}"></script>
