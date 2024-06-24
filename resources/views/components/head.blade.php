@@ -31,9 +31,9 @@
 <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap-datetimepicker.min.css') }}">
 
 <!-- Datatables CSS -->
-<link rel="stylesheet" href="https://cdn.datatables.net/2.0.5/css/dataTables.bootstrap5.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/buttons/3.0.2/css/buttons.bootstrap5.css">
-<link rel="stylesheet" href="https://cdn.datatables.net/responsive/3.0.2/css/responsive.bootstrap5.css">
+<link rel="stylesheet" href="{{ asset('assets/datatables/css/dataTables.bootstrap5.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/datatables/css/buttons.bootstrap5.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/datatables/css/responsive.bootstrap5.css') }}">
 
 
 <!-- Toaster Message -->

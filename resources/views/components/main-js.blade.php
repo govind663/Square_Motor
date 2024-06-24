@@ -21,18 +21,18 @@
 <script src="{{ asset('/assets/js/bootstrap-datetimepicker.min.js') }}"></script>
 
 <!-- Datatables JS -->
-<script src="https://cdn.datatables.net/2.0.5/js/dataTables.js"></script>
-<script src="https://cdn.datatables.net/2.0.5/js/dataTables.bootstrap5.js"></script>
-<script src="https://cdn.datatables.net/responsive/3.0.2/js/dataTables.responsive.js"></script>
-<script src="https://cdn.datatables.net/responsive/3.0.2/js/responsive.bootstrap5.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.2/js/dataTables.buttons.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.bootstrap5.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.print.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.2/js/buttons.colVis.min.js"></script>
+<script src="{{ asset('assets/datatables/js/dataTables.js') }}"></script>
+<script src="{{ asset('assets/datatables/js/dataTables.bootstrap5.js') }}"></script>
+<script src="{{ asset('assets/datatables/js/dataTables.responsive.js') }}"></script>
+<script src="{{ asset('assets/datatables/js/responsive.bootstrap5.js') }}"></script>
+<script src="{{ asset('assets/datatables/js/dataTables.buttons.js') }}"></script>
+<script src="{{ asset('assets/datatables/js/buttons.bootstrap5.js') }}"></script>
+<script src="{{ asset('assets/datatables/js/jszip.min.js') }}"></script>
+<script src="{{ asset('assets/datatables/js/pdfmake.min.js') }}"></script>
+<script src="{{ asset('assets/datatables/js/vfs_fonts.js') }}"></script>
+<script src="{{ asset('assets/datatables/js/buttons.html5.min.js') }}"></script>
+<script src="{{ asset('assets/datatables/js/buttons.print.min.js') }}"></script>
+<script src="{{ asset('assets/datatables/js/buttons.colVis.min.js') }}"></script>
 
 <script src="{{ asset('/assets/js/jquery-ui.min.js') }}"></script>
 
