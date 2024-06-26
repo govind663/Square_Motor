@@ -134,6 +134,24 @@ Policy | Edit
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
+                                                                <label><b>Select RTO : <span class="text-danger">*</span></b></label>
+                                                                <select  class="form-control select @error('r_t_o_id') is-invalid @enderror" id="agent_rto_id" name="r_t_o_id">
+                                                                    <option value="">Select RTO</option>
+                                                                    @foreach ($Rto as $value )
+                                                                    <option value="{{ $value->id }}" {{ ($policy->r_t_o_id == $value->id ? "selected":"") }}>{{ $value->state }} - {{ $value->pincode }}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                                @error('r_t_o_id')
+                                                                    <span class="invalid-feedback" role="alert">
+                                                                        <strong>{{ $message }}</strong>
+                                                                    </span>
+                                                                @enderror
+                                                            </div>
+                                                        </div>
+
+
+                                                        <div class="col-lg-4 col-md-6 col-sm-12">
+                                                            <div class="input-block mb-3">
                                                                 <label><b>Select Vehicle Type : <span class="text-danger">*</span></b></label>
                                                                 <input type="text" hidden id="agent_vehicle_type" name="agent_vehicle_type"  class="form-control" value="{{ old('agent_vehicle_type') }}">
                                                                 <select  class="form-control select @error('vehicle_id') is-invalid @enderror" id="agent_vehicle_id" name="vehicle_id">
@@ -158,22 +176,6 @@ Policy | Edit
                                                             </div>
                                                         </div>
 
-                                                        <div class="col-lg-4 col-md-6 col-sm-12">
-                                                            <div class="input-block mb-3">
-                                                                <label><b>Select RTO : <span class="text-danger">*</span></b></label>
-                                                                <select  class="form-control select @error('r_t_o_id') is-invalid @enderror" id="agent_rto_id" name="r_t_o_id">
-                                                                    <option value="">Select RTO</option>
-                                                                    @foreach ($Rto as $value )
-                                                                    <option value="{{ $value->id }}" {{ ($policy->r_t_o_id == $value->id ? "selected":"") }}>{{ $value->state }} - {{ $value->pincode }}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                                @error('r_t_o_id')
-                                                                    <span class="invalid-feedback" role="alert">
-                                                                        <strong>{{ $message }}</strong>
-                                                                    </span>
-                                                                @enderror
-                                                            </div>
-                                                        </div>
 
                                                         <div class="col-lg-4 col-md-6 col-sm-12">
                                                             <div class="input-block mb-3">
