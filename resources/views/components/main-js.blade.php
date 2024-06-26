@@ -8,8 +8,9 @@
 <script src="{{ asset('assets/js/feather.min.js') }}"></script>
 
 <!-- select2 JS -->
-<script src="{{ asset('assets/plugins/select2/js/select2.full.js') }}"></script>
-<script src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
+{{-- <script src="{{ asset('assets/plugins/select2/js/select2.min.js') }}"></script> --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.0/js/select2.js"></script>
 
 <!--- File Upload JS -->
 <script src="{{ asset('assets/plugins/fileupload/fileupload.min.js') }}"></script>

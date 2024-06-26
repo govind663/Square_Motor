@@ -84,4 +84,35 @@ Vehicle | Add
 @endsection
 
 @push('scripts')
+{{-- Adding Search Vehicle Type --}}
+<script>
+    var typed = "";
+    $('#vehicle_type').select2({
+        language: {
+            noResults: function(term) {
+                typed = $('.select2-search__field').val();
+            }
+        }
+
+    });
+    $('#vehicle_type').on('select2:select', function(e) {
+        typed = ""; // clear
+    });
+    $("#but").on("click", function() {
+        if (typed) {
+            // var value = prompt("Do you have a state abbriviation for "+typed+"?"); // change typed to value where necessary
+
+            // Set the value, creating a new option if necessary
+            if ($('#vehicle_type').find("option[value='" + typed + "']").length) {
+                $('#vehicle_type').val(typed).trigger('change');
+            } else {
+                // Create a DOM Option and pre-select by default
+
+                var newOption = new Option(typed, typed, true, true);
+                // Append it to the select
+                $('#vehicle_type').append(newOption).trigger('change');
+            }
+        }
+    });
+</script>
 @endpush

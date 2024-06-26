@@ -145,4 +145,99 @@ Company Payment | Add
 @endsection
 
 @push('scripts')
+{{-- Adding Search Company Name --}}
+<script>
+    var typed = "";
+    $('#insurance_company_id').select2({
+        language: {
+            noResults: function(term) {
+                typed = $('.select2-search__field').val();
+            }
+        }
+
+    });
+    $('#insurance_company_id').on('select2:select', function(e) {
+        typed = ""; // clear
+    });
+    $("#but").on("click", function() {
+        if (typed) {
+            // var value = prompt("Do you have a state abbriviation for "+typed+"?"); // change typed to value where necessary
+
+            // Set the value, creating a new option if necessary
+            if ($('#insurance_company_id').find("option[value='" + typed + "']").length) {
+                $('#insurance_company_id').val(typed).trigger('change');
+            } else {
+                // Create a DOM Option and pre-select by default
+
+                var newOption = new Option(typed, typed, true, true);
+                // Append it to the select
+                $('#insurance_company_id').append(newOption).trigger('change');
+            }
+        }
+    });
+</script>
+
+{{-- Adding Search Payment Type --}}
+<script>
+    var typed = "";
+    $('#payment_type').select2({
+        language: {
+            noResults: function(term) {
+                typed = $('.select2-search__field').val();
+            }
+        }
+
+    });
+    $('#payment_type').on('select2:select', function(e) {
+        typed = ""; // clear
+    });
+    $("#but").on("click", function() {
+        if (typed) {
+            // var value = prompt("Do you have a state abbriviation for "+typed+"?"); // change typed to value where necessary
+
+            // Set the value, creating a new option if necessary
+            if ($('#payment_type').find("option[value='" + typed + "']").length) {
+                $('#payment_type').val(typed).trigger('change');
+            } else {
+                // Create a DOM Option and pre-select by default
+
+                var newOption = new Option(typed, typed, true, true);
+                // Append it to the select
+                $('#payment_type').append(newOption).trigger('change');
+            }
+        }
+    });
+</script>
+
+{{-- Adding Search Payment Mode --}}
+<script>
+    var typed = "";
+    $('#payment_mode').select2({
+        language: {
+            noResults: function(term) {
+                typed = $('.select2-search__field').val();
+            }
+        }
+
+    });
+    $('#payment_mode').on('select2:select', function(e) {
+        typed = ""; // clear
+    });
+    $("#but").on("click", function() {
+        if (typed) {
+            // var value = prompt("Do you have a state abbriviation for "+typed+"?"); // change typed to value where necessary
+
+            // Set the value, creating a new option if necessary
+            if ($('#payment_mode').find("option[value='" + typed + "']").length) {
+                $('#payment_mode').val(typed).trigger('change');
+            } else {
+                // Create a DOM Option and pre-select by default
+
+                var newOption = new Option(typed, typed, true, true);
+                // Append it to the select
+                $('#payment_mode').append(newOption).trigger('change');
+            }
+        }
+    });
+</script>
 @endpush

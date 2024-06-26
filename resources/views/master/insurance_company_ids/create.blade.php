@@ -220,4 +220,164 @@ Define In Commission | Add
     //     });
     // });
 </script>
+
+{{-- Adding Search Filter Company Name --}}
+<script>
+    var typed = "";
+    $('#insurance_company_id').select2({
+        language: {
+            noResults: function(term) {
+                typed = $('.select2-search__field').val();
+            }
+        }
+
+    });
+    $('#insurance_company_id').on('select2:select', function(e) {
+        typed = ""; // clear
+    });
+    $("#but").on("click", function() {
+        if (typed) {
+            // var value = prompt("Do you have a state abbriviation for "+typed+"?"); // change typed to value where necessary
+
+            // Set the value, creating a new option if necessary
+            if ($('#insurance_company_id').find("option[value='" + typed + "']").length) {
+                $('#insurance_company_id').val(typed).trigger('change');
+            } else {
+                // Create a DOM Option and pre-select by default
+
+                var newOption = new Option(typed, typed, true, true);
+                // Append it to the select
+                $('#insurance_company_id').append(newOption).trigger('change');
+            }
+        }
+    });
+</script>
+
+{{-- Adding Search Filter Company ID --}}
+<script>
+    var typed = "";
+    $('#company_id_id').select2({
+        language: {
+            noResults: function(term) {
+                typed = $('.select2-search__field').val();
+            }
+        }
+
+    });
+    $('#company_id_id').on('select2:select', function(e) {
+        typed = ""; // clear
+    });
+    $("#but").on("click", function() {
+        if (typed) {
+            // var value = prompt("Do you have a state abbriviation for "+typed+"?"); // change typed to value where necessary
+
+            // Set the value, creating a new option if necessary
+            if ($('#company_id_id').find("option[value='" + typed + "']").length) {
+                $('#company_id_id').val(typed).trigger('change');
+            } else {
+                // Create a DOM Option and pre-select by default
+
+                var newOption = new Option(typed, typed, true, true);
+                // Append it to the select
+                $('#company_id_id').append(newOption).trigger('change');
+            }
+        }
+    });
+</script>
+
+{{-- Adding Search Filter RTO ID --}}
+<script>
+    var typed = "";
+    $('#r_t_o_id').select2({
+        language: {
+            noResults: function(term) {
+                typed = $('.select2-search__field').val();
+            }
+        }
+
+    });
+    $('#r_t_o_id').on('select2:select', function(e) {
+        typed = ""; // clear
+    });
+    $("#but").on("click", function() {
+        if (typed) {
+            // var value = prompt("Do you have a state abbriviation for "+typed+"?"); // change typed to value where necessary
+
+            // Set the value, creating a new option if necessary
+            if ($('#r_t_o_id').find("option[value='" + typed + "']").length) {
+                $('#r_t_o_id').val(typed).trigger('change');
+            } else {
+                // Create a DOM Option and pre-select by default
+
+                var newOption = new Option(typed, typed, true, true);
+                // Append it to the select
+                $('#r_t_o_id').append(newOption).trigger('change');
+            }
+        }
+    });
+</script>
+
+{{-- Adding Search Vehicle Type --}}
+<script>
+    var typed = "";
+    $('#vehicle_id').select2({
+        language: {
+            noResults: function(term) {
+                typed = $('.select2-search__field').val();
+            }
+        }
+
+    });
+    $('#vehicle_id').on('select2:select', function(e) {
+        typed = ""; // clear
+    });
+    $("#but").on("click", function() {
+        if (typed) {
+            // var value = prompt("Do you have a state abbriviation for "+typed+"?"); // change typed to value where necessary
+
+            // Set the value, creating a new option if necessary
+            if ($('#vehicle_id').find("option[value='" + typed + "']").length) {
+                $('#vehicle_id').val(typed).trigger('change');
+            } else {
+                // Create a DOM Option and pre-select by default
+
+                var newOption = new Option(typed, typed, true, true);
+                // Append it to the select
+                $('#vehicle_id').append(newOption).trigger('change');
+            }
+        }
+    });
+</script>
+
+{{-- Adding Search Commision Type --}}
+<script>
+    var typed = "";
+    $('#comission_type').select2({
+        language: {
+            noResults: function(term) {
+                typed = $('.select2-search__field').val();
+            }
+        }
+
+    });
+    $('#comission_type').on('select2:select', function(e) {
+        typed = ""; // clear
+    });
+    $("#but").on("click", function() {
+        if (typed) {
+            // var value = prompt("Do you have a state abbriviation for "+typed+"?"); // change typed to value where necessary
+
+            // Set the value, creating a new option if necessary
+            if ($('#comission_type').find("option[value='" + typed + "']").length) {
+                $('#comission_type').val(typed).trigger('change');
+            } else {
+                // Create a DOM Option and pre-select by default
+
+                var newOption = new Option(typed, typed, true, true);
+                // Append it to the select
+                $('#comission_type').append(newOption).trigger('change');
+            }
+        }
+    });
+</script>
 @endpush

@@ -25,7 +25,8 @@
 <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
 
 <!-- Select2 CSS -->
-<link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.css') }}">
+{{-- <link rel="stylesheet" href="{{ asset('assets/plugins/select2/css/select2.min.css') }}"> --}}
 
 <!-- Datetimepicker CSS -->
 <link rel="stylesheet" href="{{ asset('assets/css/bootstrap-datetimepicker.min.css') }}">
@@ -41,6 +42,3 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css"/>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-{{-- <script src="{{ asset('assets/toaster/js/jquery.min.js') }}"></script>
-<link rel="stylesheet" type="text/css" href="{{ asset('assets/toaster/css/toastr.min.css') }}" />
-<script src="{{ asset('assets/toaster/js/toastr.min.js') }}"></script> --}}
